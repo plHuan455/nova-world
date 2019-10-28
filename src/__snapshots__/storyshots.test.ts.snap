@@ -2,19 +2,11 @@
 
 exports[`Storyshots Components|samples/RoundedButton With Some Emoji 1`] = `
 <button
+  className="RoundedButton"
   onClick={[Function]}
   style={
     Object {
       "backgroundColor": "papayawhip",
-      "border": "none",
-      "borderRadius": 5,
-      "color": "white",
-      "display": "inline-block",
-      "fontSize": "16px",
-      "margin": "4px 2px",
-      "padding": 20,
-      "textAlign": "center",
-      "textDecoration": "none",
     }
   }
 >
@@ -29,19 +21,11 @@ exports[`Storyshots Components|samples/RoundedButton With Some Emoji 1`] = `
 
 exports[`Storyshots Components|samples/RoundedButton With Text 1`] = `
 <button
+  className="RoundedButton"
   onClick={[Function]}
   style={
     Object {
       "backgroundColor": "hotpink",
-      "border": "none",
-      "borderRadius": 5,
-      "color": "white",
-      "display": "inline-block",
-      "fontSize": "16px",
-      "margin": "4px 2px",
-      "padding": 20,
-      "textAlign": "center",
-      "textDecoration": "none",
     }
   }
 >
