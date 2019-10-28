@@ -1,51 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Button Emoji 1`] = `
-<button
-  onClick={[Function]}
-  style={
-    Object {
-      "backgroundColor": "#FFFFFF",
-      "border": "1px solid #eee",
-      "borderRadius": 3,
-      "cursor": "pointer",
-      "fontSize": 15,
-      "margin": 10,
-      "padding": "3px 10px",
-    }
-  }
-  type="button"
->
-  <span
-    aria-label="so cool"
-    role="img"
-  >
-    😀 😎 👍 💯
-  </span>
-</button>
-`;
-
-exports[`Storyshots Button Text 1`] = `
-<button
-  onClick={[Function]}
-  style={
-    Object {
-      "backgroundColor": "#FFFFFF",
-      "border": "1px solid #eee",
-      "borderRadius": 3,
-      "cursor": "pointer",
-      "fontSize": 15,
-      "margin": 10,
-      "padding": "3px 10px",
-    }
-  }
-  type="button"
->
-  Hello Button
-</button>
-`;
-
-exports[`Storyshots RoundedButton With Some Emoji 1`] = `
+exports[`Storyshots Components|samples/RoundedButton With Some Emoji 1`] = `
 <button
   onClick={[Function]}
   style={
@@ -72,7 +27,7 @@ exports[`Storyshots RoundedButton With Some Emoji 1`] = `
 </button>
 `;
 
-exports[`Storyshots RoundedButton With Text 1`] = `
+exports[`Storyshots Components|samples/RoundedButton With Text 1`] = `
 <button
   onClick={[Function]}
   style={
@@ -94,7 +49,52 @@ exports[`Storyshots RoundedButton With Text 1`] = `
 </button>
 `;
 
-exports[`Storyshots Welcome To Storybook 1`] = `
+exports[`Storyshots Stories|Button Emoji 1`] = `
+<button
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#FFFFFF",
+      "border": "1px solid #eee",
+      "borderRadius": 3,
+      "cursor": "pointer",
+      "fontSize": 15,
+      "margin": 10,
+      "padding": "3px 10px",
+    }
+  }
+  type="button"
+>
+  <span
+    aria-label="so cool"
+    role="img"
+  >
+    😀 😎 👍 💯
+  </span>
+</button>
+`;
+
+exports[`Storyshots Stories|Button Text 1`] = `
+<button
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#FFFFFF",
+      "border": "1px solid #eee",
+      "borderRadius": 3,
+      "cursor": "pointer",
+      "fontSize": 15,
+      "margin": 10,
+      "padding": "3px 10px",
+    }
+  }
+  type="button"
+>
+  Hello Button
+</button>
+`;
+
+exports[`Storyshots Stories|Welcome To Storybook 1`] = `
 <article
   style={
     Object {

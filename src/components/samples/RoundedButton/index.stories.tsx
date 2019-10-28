@@ -1,10 +1,13 @@
 import React from "react";
+import base from 'paths.macro';
 
 import { action } from "@storybook/addon-actions";
-import RoundedButton from "../components/RoundedButton";
+
+import RoundedButton from ".";
 
 export default {
-  title: 'RoundedButton',
+  // title: `Components|${base.replace('/src/components/', '')}`,
+  title: "Components|samples/RoundedButton",
   component: RoundedButton,
 };
 

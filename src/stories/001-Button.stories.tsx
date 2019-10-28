@@ -1,10 +1,12 @@
 import React from 'react';
+import { filename } from 'paths.macro';
+
 import { action } from '@storybook/addon-actions';
 import { Button } from '@storybook/react/demo';
 
 export default {
-  title: 'Button',
-  component: Button,
+  // title: `Stories|${filename.replace(/(?:\d+-)(.+)\.stories/, '$1')}`,
+  title: 'Stories|Button',
 };
 
 export const text = () => <Button onClick={action('clicked')}>Hello Button</Button>;
