@@ -4,7 +4,7 @@ import React from 'react';
 
 interface RoundedButtonProps {
   /** Color description */
-  color: 'string';
+  color: string;
   style?: React.CSSProperties;
   onClick: () => void;
   children: React.ReactNode;

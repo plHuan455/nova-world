@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap-grid.min.css';
 import './App.scss';
 
 import React from 'react';
