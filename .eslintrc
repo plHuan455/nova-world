@@ -1,0 +1,85 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "airbnb"
+  ],
+  "overrides": [
+    {
+      "files": "*.{ts,tsx}",
+      "extends": [
+        "react-app",
+        "airbnb",
+        "plugin:import/typescript"
+      ],
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "paths": [
+              "src"
+            ]
+          }
+        }
+      },
+      "rules": {
+        "react/jsx-filename-extension": [
+          2,
+          {
+            "extensions": [
+              ".tsx"
+            ]
+          }
+        ],
+        "import/extensions": [
+          "error",
+          "always",
+          {
+            "js": "never",
+            "jsx": "never",
+            "ts": "never",
+            "tsx": "never"
+          }
+        ],
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": [
+              "src/**/*.stories.tsx"
+            ]
+          }
+        ],
+        "import/order": [
+          2,
+          {
+            "alphabetize": {
+              "order": "asc"
+            },
+            "newlines-between": "always"
+          }
+        ],
+        "react/prop-types": 0, // already validate using TS,
+        "no-use-before-define": 0,
+        "@typescript-eslint/no-use-before-define": "error"
+      }
+    }
+  ],
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "scripts/*.js",
+          "src/setupProxy.js"
+        ]
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc"
+        },
+        "newlines-between": "always"
+      }
+    ]
+  }
+}
