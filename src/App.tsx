@@ -1,16 +1,21 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap-grid.min.css';
 import './App.scss';
 
-const App: React.FC = () => {
+import React from 'react';
+
+import logo from './logo.svg';
+
+function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Edit
+          {' '}
+          <code>src/App.tsx</code>
+          {' '}
+          and save to reload.
         </p>
         <a
           className="App-link"

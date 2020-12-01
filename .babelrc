@@ -1,6 +1,0 @@
-{
-  "plugins": [
-    "macros",
-    "react-docgen"
-  ]
-}
