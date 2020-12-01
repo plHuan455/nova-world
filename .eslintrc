@@ -43,7 +43,8 @@
           "error",
           {
             "devDependencies": [
-              "src/**/*.stories.tsx"
+              "src/**/*.stories.tsx",
+              "src/**/*.test.tsx"
             ]
           }
         ],
