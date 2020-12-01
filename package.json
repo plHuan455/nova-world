@@ -13,6 +13,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "script:update-scss": "node scripts/update-scss.js",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
@@ -49,6 +50,7 @@
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "babel-loader": "8.1.0",
+    "glob": "^7.1.6",
     "node-sass": "^4.0.0",
     "react-scripts": "4.0.1",
     "source-map-explorer": "^2.5.1",
