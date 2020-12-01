@@ -43,8 +43,10 @@
           "error",
           {
             "devDependencies": [
+              "src/setupTests.ts",
               "src/**/*.stories.tsx",
-              "src/**/*.test.tsx"
+              "src/**/*.test.tsx",
+              "src/**/*.test.ts"
             ]
           }
         ],

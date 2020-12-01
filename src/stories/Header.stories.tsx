@@ -9,7 +9,14 @@ export default {
   component: Header,
 } as Meta;
 
-const Template: Story<HeaderProps> = (args) => <Header {...args} />;
+const Template: Story<HeaderProps> = ({
+  user, onCreateAccount, onLogin, onLogout,
+}) => (
+  <Header {...{
+    user, onCreateAccount, onLogin, onLogout,
+  }}
+  />
+);
 
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {

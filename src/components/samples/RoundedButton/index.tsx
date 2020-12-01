@@ -1,25 +1,30 @@
 import './index.scss';
 
-import { Property } from 'csstype';
 import React from 'react';
 
 interface RoundedButtonProps {
   /** Color description */
-  color: Property.BackgroundColor;
+  color: 'string';
   style?: React.CSSProperties;
   onClick: () => void;
   children: React.ReactNode;
 }
 
-const RoundedButton: React.FC<RoundedButtonProps> = (props: RoundedButtonProps) => (
+const RoundedButton: React.FC<RoundedButtonProps> = ({
+  color, style,
+  onClick,
+  children,
+}: RoundedButtonProps) => (
   <button
+    type="button"
     className="RoundedButton"
     style={{
-      backgroundColor: props.color,
+      backgroundColor: color,
+      ...style,
     }}
-    onClick={() => props.onClick()}
+    onClick={() => onClick()}
   >
-    {props.children}
+    {children}
   </button>
 );
 
