@@ -1,7 +1,8 @@
+import './page.scss';
+
 import React from 'react';
 
-import { Header } from 'stories/Header';
-import './page.css';
+import { Header } from './Header';
 
 export interface PageProps {
   user?: {};
@@ -45,8 +46,8 @@ export const Page: React.FC<PageProps> = ({
       <p>
         Get a guided tutorial on component-driven development at
         {' '}
-        <a href="https://www.learnstorybook.com" target="_blank" rel="noopener noreferrer">
-          Learn Storybook
+        <a href="https://storybook.js.org/tutorials/" target="_blank" rel="noopener noreferrer">
+          Storybook tutorials
         </a>
         . Read more in the
         {' '}

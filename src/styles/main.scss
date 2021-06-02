@@ -1,0 +1,33 @@
+* {
+  -webkit-tap-highlight-color: transparent; //issue click in mobile flash background highligh
+}
+
+button {
+  &:focus {
+    outline: none;
+  }
+}
+
+p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+[role='button'],
+button {
+  cursor: pointer;
+}
+
+input {
+  word-break: normal;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}

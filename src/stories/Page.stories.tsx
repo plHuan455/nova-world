@@ -1,10 +1,8 @@
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-// also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 
 import * as HeaderStories from './Header.stories';
-
-import { Page, PageProps } from 'stories/Page';
+import { Page, PageProps } from './Page';
 
 export default {
   title: 'Example/Page',
@@ -12,7 +10,8 @@ export default {
 } as Meta;
 
 const Template: Story<PageProps> = ({
-  user, onCreateAccount, onLogin, onLogout,
+  user,
+  onCreateAccount, onLogin, onLogout,
 }) => (
   <Page {...{
     user, onCreateAccount, onLogin, onLogout,

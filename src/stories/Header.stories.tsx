@@ -1,8 +1,7 @@
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-// also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 
-import { Header, HeaderProps } from 'stories/Header';
+import { Header, HeaderProps } from './Header';
 
 export default {
   title: 'Example/Header',
@@ -10,10 +9,14 @@ export default {
 } as Meta;
 
 const Template: Story<HeaderProps> = ({
-  user, onCreateAccount, onLogin, onLogout,
+  user,
+  onCreateAccount, onLogin, onLogout,
 }) => (
   <Header {...{
-    user, onCreateAccount, onLogin, onLogout,
+    user,
+    onCreateAccount,
+    onLogin,
+    onLogout,
   }}
   />
 );

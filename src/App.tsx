@@ -1,33 +1,38 @@
-import 'bootstrap/dist/css/bootstrap-grid.min.css';
-import './App.scss';
+import 'App.scss';
 
 import React from 'react';
+import { Provider } from 'react-redux';
 
-import logo from './logo.svg';
+import logo from 'logo.svg';
+import { store } from 'store';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.tsx</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: React.FC = () => (
+  <div className="app">
+    <header className="app-header">
+      <img src={logo} className="app-logo" alt="logo" />
+      <p>
+        Edit
+        {' '}
+        <code>src/App.tsx</code>
+        {' '}
+        and save to reload.
+      </p>
+      <a
+        className="app-link"
+        href="https://reactjs.org"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Learn React
+      </a>
+    </header>
+  </div>
+);
 
-export default App;
+const AppWrapper: React.FC = () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+export default AppWrapper;

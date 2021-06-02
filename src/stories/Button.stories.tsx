@@ -1,8 +1,7 @@
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-// also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 
-import { Button, ButtonProps } from 'stories/Button';
+import { Button, ButtonProps } from './Button';
 
 export default {
   title: 'Example/Button',
@@ -13,10 +12,11 @@ export default {
 } as Meta;
 
 const Template: Story<ButtonProps> = ({
-  label, backgroundColor, onClick, primary, size,
+  label, backgroundColor, primary, size,
+  onClick,
 }) => (
   <Button {...{
-    label, backgroundColor, onClick, primary, size,
+    label, backgroundColor, primary, size, onClick,
   }}
   />
 );

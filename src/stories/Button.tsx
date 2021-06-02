@@ -1,4 +1,4 @@
-import './button.css';
+import './button.scss';
 
 import React from 'react';
 
@@ -34,7 +34,6 @@ export const Button: React.FC<ButtonProps> = ({
   backgroundColor,
   label,
   onClick,
-  children,
 }) => {
   const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
   return (
@@ -42,7 +41,7 @@ export const Button: React.FC<ButtonProps> = ({
       type="button"
       className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
       style={{ backgroundColor }}
-      {...{ onClick, children }}
+      {...{ onClick }}
     >
       {label}
     </button>

@@ -4,10 +4,10 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact",
+    "typescriptreact"
   ],
-  "editor.codeActionsOnSave":{
-    "source.fixAll": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
   },
   "[typescriptreact]": {
     "editor.formatOnSave": false
@@ -15,5 +15,5 @@
   "[typescript]": {
     "editor.formatOnSave": false
   },
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

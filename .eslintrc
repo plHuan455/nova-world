@@ -1,13 +1,16 @@
 {
+  // For JS
   "extends": [
     "eslint:recommended",
-    "airbnb"
+    "airbnb-base"
   ],
   "overrides": [
     {
+      // For TS / TSX
       "files": "*.{ts,tsx}",
       "extends": [
         "react-app",
+        "react-app/jest",
         "airbnb",
         "plugin:import/typescript"
       ],
@@ -21,6 +24,7 @@
         }
       },
       "rules": {
+        "no-undef": "off", // Validated by TS
         "react/jsx-filename-extension": [
           2,
           {
@@ -45,8 +49,7 @@
             "devDependencies": [
               "src/setupTests.ts",
               "src/**/*.stories.tsx",
-              "src/**/*.test.tsx",
-              "src/**/*.test.ts"
+              "src/**/*.test.{ts,tsx}"
             ]
           }
         ],
@@ -60,8 +63,28 @@
           }
         ],
         "react/prop-types": 0, // already validate using TS,
+        "no-param-reassign": [
+          "error",
+          {
+            "props": true,
+            "ignorePropertyModificationsFor": [
+              "$state",
+              "$config"
+            ]
+          }
+        ],
         "no-use-before-define": 0,
         "@typescript-eslint/no-use-before-define": "error"
+        // Project rules
+      }
+    },
+    // Storybook
+    {
+      "files": [
+        "**/*.stories.*"
+      ],
+      "rules": {
+        "import/no-anonymous-default-export": "off"
       }
     }
   ],
@@ -70,8 +93,7 @@
       "error",
       {
         "devDependencies": [
-          "scripts/*.js",
-          "src/setupProxy.js"
+          "scripts/*.js"
         ]
       }
     ],
