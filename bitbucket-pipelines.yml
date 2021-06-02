@@ -40,8 +40,10 @@ pipelines:
                 - yarn install --frozen-lockfile
                 - yarn test
                 - yarn build
+                - yarn build-storybook
               artifacts:
                 - build/**
+                - storybook-static/**
           - step:
               name: Security Scan
               script:
@@ -59,3 +61,9 @@ pipelines:
                 SERVER: $SERVER
                 REMOTE_PATH: "/var/www/fedev"
                 LOCAL_PATH: "build/*"
+            - pipe: atlassian/scp-deploy:0.3.3
+              variables:
+                USER: $USER
+                SERVER: $SERVER
+                REMOTE_PATH: "/var/www/fedev-sb"
+                LOCAL_PATH: "storybook-static/*"

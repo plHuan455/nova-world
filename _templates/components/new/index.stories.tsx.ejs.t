@@ -7,7 +7,7 @@ import React from 'react';
 import <%= h.toPascalCase(name) %> from '.';
 
 export default {
-  title: 'Components|<%= level %>/<%= h.toPascalCase(name) %>',
+  title: 'Components/<%= level %>/<%= h.toPascalCase(name) %>',
   component: <%= h.toPascalCase(name) %>,
   argTypes: {},
 } as Meta;
