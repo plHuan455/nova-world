@@ -9,6 +9,9 @@
         "custom-properties",
         "declarations"
       ]
-    ]
+    ],
+    "max-nesting-depth": 4,
+    "selector-class-pattern": null,
+    "property-no-vendor-prefix": null
   }
 }

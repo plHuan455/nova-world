@@ -1,4 +1,11 @@
+html,
+body {
+  font-family: $font-iciel;
+  overflow-x: hidden;
+}
+
 * {
+  box-sizing: border-box;
   -webkit-tap-highlight-color: transparent; //issue click in mobile flash background highligh
 }
 
@@ -20,6 +27,10 @@ a {
 [role='button'],
 button {
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 input {
@@ -30,4 +41,12 @@ ul,
 ol {
   margin: 0;
   padding: 0;
+}
+
+.hidden-animation {
+  visibility: hidden;
+}
+
+.overflow-hidden {
+  height: 100vh;
 }

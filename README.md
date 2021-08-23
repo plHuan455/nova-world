@@ -3,15 +3,15 @@
 ## Glad to see you here!
 ## About Project
 
-In this project, we will create a website about FRONT-END CUSTOM SERVICES
+In this project, we will create a website about Nova World Ho Tram
 
 ## Repository
 
-<https://bitbucket.org/binhnguyenthien/3forcom-frontend-fe-2021/src/develop/>
+<https://bitbucket.org/binhnguyenthien/3forcom-nova-world-fe-2021/src/develop/>
 
 ## Design Workspace
 
-<https://www.figma.com/file/zinoDx41L06kXeUByUtzzq/FRONT-END-DEVELOPMENT-WEBSITE?node-id=258%3A1022>
+<https://www.figma.com/file/izG6GIaNFD8hZI7JH6QzUN/Website_Novaworld-Ho-Tram?node-id=1209%3A172>
 
 
 ## Languages and Frameworks

@@ -7,4 +7,7 @@ module.exports = {
     "@storybook/addon-viewport",
     '@whitespace/storybook-addon-html',
   ],
+  typescript: {
+    reactDocgen: 'none'
+  }
 };
