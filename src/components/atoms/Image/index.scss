@@ -34,4 +34,8 @@
   &-logo-novaworld {
     @include aspect-ratio(150, 38);
   }
+
+  &-1366x768 {
+    @include aspect-ratio(1366, 768);
+  }
 }
