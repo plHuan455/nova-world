@@ -17,7 +17,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
       ref={ref}
       {...rest}
     />
-    {error && <p className="a-input_error">{error}</p>}
+    {error && <p className="a-input_message">{error}</p>}
   </div>
 ));
 
