@@ -39,7 +39,7 @@ export const Tab: React.FC<TabProps> = ({
     onClick={handleClick}
     className={mapModifiers('o-tabs_tab', active && 'active')}
   >
-    <Text modifiers={['20x32', 'sm', 'uppercase', 'white']}>
+    <Text modifiers={['20x32', 'sm', 'uppercase', 'white', 's005']}>
       {label}
     </Text>
   </div>
