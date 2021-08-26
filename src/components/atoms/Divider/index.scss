@@ -1,0 +1,11 @@
+.a-divider {
+  background: $linear-gradient2;
+  height: rem(4);
+  margin-top: rem(10);
+  transform: rotate(-180deg);
+  width: 100%;
+
+  @include tablet-down {
+    margin-top: rem(2);
+  }
+}

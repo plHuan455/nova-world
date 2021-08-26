@@ -4,9 +4,18 @@ $white: rgb(255, 255, 255);
 $cyan-cobalt-blue: rgb(35, 84, 163); // #2354A3
 $white-smoke: rgb(246, 247, 249); // #f6f7f9
 $sliver-chalice: rgb(170, 176, 184);// #AAB0B8
+$sea-green: rgb(39, 146, 69); // #279245
+$spiro-disco-ball: rgb(15, 187, 238); // #0FBBEE
+$picton-blue: rgb(82, 186, 217); // #52BAD9
+$cerise-pink: rgb(224, 65, 138); // #E0418A
+$deep-lilac: rgb(140, 87, 181); // #8C57B5
+$topaz: rgb(239, 200, 121); //#EFC879
+$dark-tangerine: rgb(246, 171, 27); //#F6AB1B
+$cyan-cobalt-blue2: rgb(33, 84, 162); // #2154A2
 
 // Linear-gradient
 $linear-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.99) -68.75%, rgba(0, 0, 0, 0) 88.19%);
+$linear-gradient2: linear-gradient(90deg, $sea-green 9.69%, $cyan-cobalt-blue 10.12%, $spiro-disco-ball 22.27%, $picton-blue 43.94%, $cerise-pink 46.25%, $deep-lilac 66.64%, $topaz 67.69%, $dark-tangerine 88.29%, $cyan-cobalt-blue2 90.91%, $cyan-cobalt-blue2 101.84%);
 
 // Overlay
 $black-overlay01: rgba($black, 0.1);
