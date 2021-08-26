@@ -2,7 +2,8 @@ type Ratio =
   | '1x1'
   | '4x3'
   | '16x9'
-  | 'logo-novaworld';
+  | 'logo-novaworld'
+  | '1366x768';
 
 type FontWeightStyle =
   | '100'
