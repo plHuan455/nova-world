@@ -27,7 +27,7 @@ type TextStyle =
   | 'left'
   | 'right';
 
-type ColorStyle = 'white' | 'black' | 'cyanCobaltBlue';
+type ColorStyle = 'white' | 'black' | 'cyanCobaltBlue' | 'dimGray';
 
 type FontFamilyStyle = 'fontICiel';
 
