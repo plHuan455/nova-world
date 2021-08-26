@@ -15,6 +15,8 @@ type FontWeightStyle =
   | '800'
   | '900';
 
+type LetterSpacing = 's005';
+
 type TextStyle =
   | 'uppercase'
   | 'capitalize'
@@ -25,7 +27,7 @@ type TextStyle =
   | 'left'
   | 'right';
 
-type ColorStyle = 'white' | 'black';
+type ColorStyle = 'white' | 'black' | 'cyanCobaltBlue';
 
 type FontFamilyStyle = 'fontICiel';
 

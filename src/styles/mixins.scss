@@ -147,12 +147,31 @@
 $colors-design: (
   'white': $white,
   'black': $black,
+  'cyanCobaltBlue': $cyan-cobalt-blue,
 );
 
 @mixin style-color {
   @each $name, $color in $colors-design {
     &-#{$name} {
       color: $color;
+    }
+  }
+}
+
+@mixin style-letter-spacing() {
+  &-s005 {
+    letter-spacing: 0.005em;
+  }
+}
+
+$font-family: (
+  'fontICiel': $font-iciel,
+);
+
+@mixin style-font-family {
+  @each $name, $font in $font-family {
+    &-#{$name} {
+      font-family: $font;
     }
   }
 }
