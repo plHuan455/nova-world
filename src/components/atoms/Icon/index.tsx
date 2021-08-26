@@ -4,6 +4,7 @@ import mapModifiers from 'utils/functions';
 
 export const iconList = {
   search: 'search',
+  loadingWhite: 'loadingWhite',
 };
 
 export type IconName = keyof typeof iconList;

@@ -184,3 +184,60 @@ $font-family: (
     }
   }
 }
+
+@mixin style-color-button(
+  $hasBorder,
+  $nameVariant,
+  $textColor,
+  $bgDefaultColor,
+  $bgHoverColor,
+  $textHoverColor,
+  $borderColor,
+  $borderHoverColor,
+  $bgLoading,
+  $borderRadius
+) {
+  &-#{$nameVariant} {
+    background: $bgDefaultColor;
+    border-radius: rem($borderRadius);
+    color: $textColor;
+
+    &:disabled {
+      color: $textColor;
+    }
+
+    &:hover {
+      background: $bgHoverColor;
+      border: 1px solid $borderHoverColor;
+      color: $textHoverColor;
+    }
+
+    @if $hasBorder {
+      border: 1px solid $borderColor;
+      position: relative;
+
+      &:disabled::before {
+        display: none;
+      }
+    }
+
+    &.a-button-loading {
+      background: $bgLoading;
+      border: 1px solid $bgLoading;
+      pointer-events: none;
+    }
+  }
+}
+
+@mixin style-size-button(
+  $nameSize,
+  $fontSize,
+  $lineHeight,
+  $padding,
+) {
+  &-#{$nameSize} {
+    padding: rem($padding);
+
+    @include font-base($fontSize, $lineHeight);
+  }
+}

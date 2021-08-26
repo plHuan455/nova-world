@@ -1,0 +1,36 @@
+.a-button {
+  $root: &;
+  align-items: center;
+  appearance: none;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  margin: 0;
+  outline: none;
+  position: relative;
+  text-transform: uppercase;
+  transition: all $transition linear;
+  width: 100%;
+
+  @include style-color-button(false,
+  'normal',
+  $white,
+  $linear-gradient3,
+  $white,
+  $sea-green1,
+  $sea-green1,
+  $sea-green1,
+  $linear-gradient3,
+  4);
+
+  @include style-size-button('normal', 16, 24, 11);
+
+
+  &:disabled {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+}
