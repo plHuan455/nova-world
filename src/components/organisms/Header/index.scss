@@ -331,6 +331,10 @@
         background-color: $white-smoke;
       }
 
+      #{$root}-open & {
+        background-color: $white-smoke;
+      }
+
       @include tablet-down {
         background-color: transparent;
         position: absolute;
