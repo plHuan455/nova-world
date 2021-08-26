@@ -13,6 +13,11 @@ $topaz: rgb(239, 200, 121); //#EFC879
 $dark-tangerine: rgb(246, 171, 27); //#F6AB1B
 $cyan-cobalt-blue2: rgb(33, 84, 162); // #2154A2
 $dim-gray: rgb(97, 102, 110);//#61666e
+$red: rgb(255, 0, 0);//#f00
+$platinum: rgb(224, 224, 224);//#e0e0e0
+$raisin-black: rgb(37, 37, 37);//#252525
+$android-green: rgb(172, 202, 55);//#acca37
+$isabel-line: rgb(236, 236, 236); //#ececec
 
 // Linear-gradient
 $linear-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.99) -68.75%, rgba(0, 0, 0, 0) 88.19%);
@@ -22,3 +27,4 @@ $linear-gradient2: linear-gradient(90deg, $sea-green 9.69%, $cyan-cobalt-blue 10
 $black-overlay01: rgba($black, 0.1);
 $black-overlay02: rgba($black, 0.2);
 $white-overlay01: rgba($white, 0.1);
+$raisin-black-overlay07: rgba($raisin-black, 0.7);
