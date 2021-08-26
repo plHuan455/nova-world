@@ -1,4 +1,5 @@
 .a-text {
+  $root: &;
   color: $dim-gray;
   font-weight: 400;
   margin: 0;
@@ -7,66 +8,68 @@
     @include font-base(14, 20);
   }
 
-  &-12x18 {
-    @include font-base(12, 18);
+  &-48x56 {
+    @include font-base(48, 56);
+    @include tablet-down {
+      @include font-base(32, 48);
+    }
+    @include mobile-down {
+      @include font-base(24, 32);
+    }
   }
 
-  &-11x18 {
-    @include font-base(11, 18);
+  &-32x48 {
+    @include font-base(32, 48);
+    @include tablet-down {
+      @include font-base(24, 32);
+    }
+    @include mobile-down {
+      @include font-base(18, 24);
+    }
+  }
+
+  &-20x32 {
+    @include font-base(20, 32);
+    &#{$root}-xs {
+      @include tablet-down {
+        @include font-base(18, 22);
+      }
+      @include mobile-down {
+        @include font-base(12, 20);
+      }
+    }
+    &#{$root}-md {
+      @include tablet-down {
+        @include font-base(18, 22);
+      }
+      @include mobile-down {
+        @include font-base(14, 20);
+      }
+    }
+  }
+
+  &-20x24 {
+    @include font-base(20, 24);
+    @include tablet-down {
+      @include font-base(18, 22);
+    }
+    @include mobile-down {
+      @include font-base(16, 24);
+    }
+  }
+
+  &-16x19 {
+    @include font-base(16, 19);
+    @include tablet-down {
+      @include font-base(12, 14);
+    }
+    @include mobile-down {
+      @include font-base(7, 8);
+    }
   }
 
   &-14x21 {
     @include font-base(14, 21);
-  }
-
-  &-18x24 {
-    @include font-base(18, 24);
-    @include small-mobile {
-      @include font-base(14, 20);
-    }
-  }
-
-  &-18x27 {
-    @include font-base(18, 27);
-    @include small-mobile {
-      @include font-base(14, 20);
-    }
-  }
-
-  &-20x30 {
-    @include font-base(20, 30);
-    @include small-mobile {
-      @include font-base(18, 27);
-    }
-  }
-
-  &-22x32 {
-    @include font-base(22, 32);
-    @include small-mobile {
-      @include font-base(20, 30);
-    }
-  }
-
-  &-22x36 {
-    @include font-base(22, 36);
-    @include small-mobile {
-      @include font-base(20, 30);
-    }
-  }
-
-  &-24x36 {
-    @include font-base(24, 36);
-    @include mobile-down {
-      @include font-base(20, 28);
-    }
-  }
-
-  &-20x36 {
-    @include font-base(20, 36);
-  }
-
-  &-12x21 {
-    @include font-base(12, 21);
   }
 
   @include style-letter-spacing();

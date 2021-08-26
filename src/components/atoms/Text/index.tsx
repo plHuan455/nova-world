@@ -2,12 +2,14 @@ import React from 'react';
 
 import mapModifiers from 'utils/functions';
 
-export type Sizes = '12x18' | '11x18' | '14x21' | '18x24' | '18x27' | '20x30' | '22x32' | '22x36' | '24x36' | '20x36' | '12x21';
+type CustomSize = 'xs'| 'md';
 
-export type TextModifiers = (GeneralTextStyle | Sizes)[]
+type Sizes = '48x56'| '32x48'| '20x32'| '20x24'| '16x19'| '14x21';
+
+export type TextModifiers = (GeneralTextStyle | Sizes | CustomSize)[];
 
 export interface TextProps {
-  modifiers?: (GeneralTextStyle | Sizes)[];
+  modifiers?: TextModifiers;
   type?: 'p' | 'span' | 'div';
 }
 

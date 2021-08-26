@@ -15,7 +15,7 @@ type FontWeightStyle =
   | '800'
   | '900';
 
-type LetterSpacing = 's005';
+type LetterSpacing = 's001' | 's005' | 's00015';
 
 type TextStyle =
   | 'uppercase'
