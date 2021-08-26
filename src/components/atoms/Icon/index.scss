@@ -1,0 +1,16 @@
+@mixin icon-image($url: '', $width: 24, $height: 24) {
+  background-image: url($url);
+  height: rem($height);
+  width: rem($width);
+}
+
+.a-icon {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+
+  &-search {
+    @include icon-image('~assets/icons/ic_search.svg', 16, 16);
+  }
+}
