@@ -38,6 +38,14 @@
         @include font-base(12, 20);
       }
     }
+    &#{$root}-sm {
+      @include tablet-down {
+        @include font-base(18, 22);
+      }
+      @include mobile-down {
+        @include font-base(16, 24);
+      }
+    }
     &#{$root}-md {
       @include tablet-down {
         @include font-base(18, 22);
