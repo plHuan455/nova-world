@@ -148,6 +148,7 @@ $colors-design: (
   'white': $white,
   'black': $black,
   'cyanCobaltBlue': $cyan-cobalt-blue,
+  'dimGray': $dim-gray,
 );
 
 @mixin style-color {
@@ -159,8 +160,16 @@ $colors-design: (
 }
 
 @mixin style-letter-spacing() {
+  &-s001 {
+    letter-spacing: 0.01em;
+  }
+
   &-s005 {
     letter-spacing: 0.005em;
+  }
+
+  &-s00015 {
+    letter-spacing: 0.0015em;
   }
 }
 
