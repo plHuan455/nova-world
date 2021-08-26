@@ -24,26 +24,23 @@ const routes = [
 
 const NotFound = () => <div>Not found</div>;
 
-const App: React.FC = () => {
-  console.log(window.location);
-  return (
-    <div className="app">
-      <Router>
-        <Switch>
-          {routes.map((item, index) => (
-            <Route
-              key={`route-${index.toString()}`}
-              exact
-              path={item.path}
-              component={item.component}
-            />
-          ))}
-          <Route path="*" component={NotFound} />
-        </Switch>
-      </Router>
-    </div>
-  );
-};
+const App: React.FC = () => (
+  <div className="app">
+    <Router>
+      <Switch>
+        {routes.map((item, index) => (
+          <Route
+            key={`route-${index.toString()}`}
+            exact
+            path={item.path}
+            component={item.component}
+          />
+        ))}
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </Router>
+  </div>
+);
 
 const AppWrapper: React.FC = () => (
   <Provider store={store}>

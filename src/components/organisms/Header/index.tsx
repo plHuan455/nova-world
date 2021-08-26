@@ -1,20 +1,21 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {
   useCallback, useMemo, useRef, useState,
 } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import Container from '../Container';
 
-import LogoNovaWorld from 'assets/images/logo-novaworld-white.png';
+import LogoNovaWorldBlue from 'assets/images/logo-novaworld-blue.png';
+import LogoNovaWorldWhite from 'assets/images/logo-novaworld-white.png';
 import Icon from 'components/atoms/Icon';
 import Image from 'components/atoms/Image';
 import useClickOutside from 'hooks/useClickOutside';
 import useWindowScroll from 'hooks/useWindowScroll';
 import mapModifiers from 'utils/functions';
 
-interface HeaderProps {}
+interface HeaderProps {
+  isHome?: boolean;
+}
 
 const menuList = [
   {
@@ -69,16 +70,31 @@ const Language: React.FC = () => {
     setShow(!show);
   }, [show]);
 
+  const handleClickOption = useCallback((l) => {
+    setOption(l);
+    setShow(false);
+  }, []);
+
   return (
     <div className="o-header-language">
-      <div className="o-header-language-label" onClick={handleClick}>
+      <button
+        type="button"
+        className="o-header-language-label"
+        onClick={handleClick}
+      >
         {option.label}
         <div className={`o-header-language-dropdown ${show ? 'active' : ''}`} />
-      </div>
+      </button>
       <ul className={`o-header-language-list ${show ? 'show' : ''}`}>
         {language.map((l, i) => (
           <li className="o-header-language-item" key={`_language${String(i)}`}>
-            <button type="button" className={`o-header-language-button ${l.value === option.value ? 'active' : ''}`}>
+            <button
+              type="button"
+              className={`o-header-language-button ${
+                l.value === option.value ? 'active' : ''
+              }`}
+              onClick={() => handleClickOption(l)}
+            >
               {l.label}
             </button>
           </li>
@@ -88,11 +104,64 @@ const Language: React.FC = () => {
   );
 };
 
-const Header: React.FC<HeaderProps> = () => {
-  const location = useLocation();
+const Header: React.FC<HeaderProps> = ({ isHome }) => {
   const [isScroll, setIsScroll] = useState(false);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
 
-  const isHomePage = useMemo(() => location.pathname.length === 1, [location.pathname]);
+  const iconMenu = useMemo(() => (
+    <button
+      type="button"
+      className="o-header-hamburger"
+      onClick={() => setIsOpenMenu(true)}
+    >
+      <span />
+      <span />
+      <span />
+    </button>
+  ), []);
+
+  const IconCloseMenu = useMemo(() => (
+    <button
+      type="button"
+      className="o-header-sm-close"
+      onClick={() => setIsOpenMenu(false)}
+    >
+      <span />
+      <span />
+    </button>
+  ), []);
+
+  const nav = useMemo(() => (
+    <ul className="o-header-nav">
+      {menuList.map((menu, index) => (
+        <li className="o-header-nav-item" key={`_nav${String(index)}`}>
+          <NavLink className="o-header-link" to={menu.pathname} exact>
+            {menu.text}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  ), []);
+
+  const option = useMemo(() => (
+    <ul className="o-header-option">
+      <li className="o-header-option-item">
+        <div className="o-header-search">
+          <input
+            type="text"
+            className="o-header-search-input"
+            placeholder="Tìm kiếm"
+          />
+          <button type="button" className="o-header-search-button">
+            <Icon iconName="search" />
+          </button>
+        </div>
+      </li>
+      <li className="o-header-option-item">
+        <Language />
+      </li>
+    </ul>
+  ), []);
 
   useWindowScroll(() => {
     if (window.pageYOffset > 70) {
@@ -103,39 +172,42 @@ const Header: React.FC<HeaderProps> = () => {
   });
 
   return (
-    <div className={mapModifiers('o-header', isScroll && 'scroll', isHomePage && 'transparent')}>
+    <div
+      className={mapModifiers(
+        'o-header',
+        isScroll && 'scroll',
+        isHome && 'transparent',
+        isOpenMenu && 'open',
+      )}
+    >
       <Container paddingHalf>
         <div className="o-header-wrap">
+          {iconMenu}
           <div className="o-header-logo">
             <Link to="/">
               <Image
                 ratio="logo-novaworld"
-                imgSrc={LogoNovaWorld}
+                imgSrc={isHome ? LogoNovaWorldWhite : LogoNovaWorldBlue}
                 alt="logo_novaworld"
               />
             </Link>
           </div>
           <div className="o-header-menu">
-            <ul className="o-header-nav">
-              {menuList.map((menu, index) => (
-                <li className="o-header-nav-item" key={`_nav${String(index)}`}>
-                  <NavLink className="o-header-link" to={menu.pathname} exact>
-                    {menu.text}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
+            <div className="o-header-sm">
+              <div className="o-header-sm-logo">
+                <Link to="/">
+                  <Image
+                    ratio="logo-novaworld"
+                    imgSrc={LogoNovaWorldBlue}
+                    alt="logo_novaworld"
+                  />
+                </Link>
+              </div>
+              {IconCloseMenu}
+            </div>
+            {nav}
             <div className="o-header-divider" />
-            <ul className="o-header-option">
-              <li className="o-header-option-item">
-                <button type="button" className="o-header-search">
-                  <Icon iconName="search" />
-                </button>
-              </li>
-              <li className="o-header-option-item">
-                <Language />
-              </li>
-            </ul>
+            {option}
           </div>
         </div>
       </Container>
