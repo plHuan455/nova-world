@@ -1,7 +1,16 @@
+@mixin px ($pl, $pr) {
+  padding-left: rem($pl);
+  padding-right: rem($pr);
+}
+
+@mixin mx ($ml, $mr) {
+  margin-left: rem($ml);
+  margin-right: rem($mr);
+}
+
 .o-header {
   $root: &;
-  // background: $white;
-  // box-shadow: 0 rem(4) rem(10) $white-overlay01;
+  background: $white;
   left: 0;
   padding-bottom: rem(17);
   padding-top: rem(17);
@@ -15,6 +24,11 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
+    position: relative;
+
+    @include tablet-down {
+      justify-content: center;
+    }
   }
 
 
@@ -33,6 +47,7 @@
     .a-image {
       transition: $transition-long ease;
     }
+
     #{$root}-scroll & {
       .a-image {
         background-image: url('~assets/images/logo-novaworld-blue.png') !important;
@@ -40,75 +55,289 @@
     }
   }
 
+  &-hamburger {
+    @include reset-button();
+    background-color: transparent;
+    display: none;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    span {
+      background-color: $cyan-cobalt-blue;
+      display: block;
+      height: rem(2);
+      margin-bottom: rem(4);
+      position: relative;
+      transition: $transition-long ease;
+      width: rem(24);
+
+      &:nth-child(1) {
+        transform-origin: left;
+      }
+
+      &:nth-child(2) {
+        transform-origin: center;
+      }
+
+      &:nth-child(3) {
+        transform-origin: bottom;
+      }
+
+      #{$root}-transparent & {
+        background-color: $white;
+      }
+
+      #{$root}-scroll & {
+        background-color: $cyan-cobalt-blue;
+      }
+    }
+
+    @include tablet-down {
+      display: block;
+    }
+  }
+
   &-menu {
     align-items: center;
     display: flex;
+
+    @include tablet-down {
+      align-items: flex-start;
+      background-color: $white;
+      flex-direction: column;
+      height: 100vh;
+      overflow-y: auto;
+      padding: rem(24);
+      position: fixed;
+      right: -100%;
+      top: 0;
+      transition: right $transition-long linear;
+      width: 100%;
+      z-index: $z-menu-toggle;
+
+      #{$root}-open & {
+        right: 0;
+      }
+    }
+  }
+
+  &-sm {
+    @include tablet-up {
+      display: none;
+    }
+
+    order: 1;
+    position: relative;
+    width: 100%;
+
+    &-logo {
+      margin: auto;
+      width: rem(150);
+    }
+
+    &-close {
+      @include reset-button();
+      background-color: transparent;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+
+      span {
+        background-color: $cyan-cobalt-blue;
+        display: block;
+        height: rem(2);
+        margin-bottom: rem(4);
+        position: relative;
+        transition: $transition-long ease;
+        width: rem(24);
+
+        &:nth-child(1) {
+          left: 0;
+          top: -1px;
+          transform: rotate(45deg);
+          transform-origin: left;
+        }
+
+        &:nth-child(2) {
+          right: 3px;
+          top: 1px;
+          transform: rotate(315deg);
+          transform-origin: bottom;
+        }
+      }
+
+    }
   }
 
   &-nav {
     @include list-style-none();
     display: flex;
-    margin-left: rem(-20);
-    margin-right: rem(-20);
+    @include mx(-20, -20);
+
+    @include break-max(1365px) {
+      @include mx(-10, -10);
+    }
+
+    @include desktop-down {
+      @include mx(-6, -6);
+    }
+
+    @include tablet-down {
+      display: block;
+      order: 3;
+    }
 
     &-item {
-      padding-left: rem(20);
-      padding-right: rem(20);
-      @include break-max(1366px) {
-        // padding-left
+      @include px(20, 20);
+      margin-bottom: 0;
+
+      @include break-max(1365px) {
+        @include px(10, 10);
+      }
+
+      @include desktop-down {
+        @include px(6, 6);
+      }
+
+      @include tablet-down {
+        margin-top: rem(32);
+
+        &:not(:first-of-type) {
+          margin-top: rem(24);
+        }
       }
     }
+
   }
 
   &-divider {
     @include tablet-up {
-      background-color: $white;
+      @include mx(40, 26);
+      background-color: $cyan-cobalt-blue;
       height: rem(20);
-      margin-left: rem(40);
-      margin-right: rem(26);
       width: 1px;
+
+
+      #{$root}-transparent & {
+        background-color: $white;
+      }
+
       #{$root}-scroll & {
         background-color: $cyan-cobalt-blue;
+      }
+
+      @include break-max(1365px) {
+        @include mx(20, 13);
       }
     }
   }
 
   &-link {
-    color: $white;
+    color: $cyan-cobalt-blue;
     @include font-base(14, 20);
+
+    &.active {
+      font-weight: 700;
+    }
+
+    #{$root}-transparent & {
+      color: $white;
+    }
 
     #{$root}-scroll & {
       color: $cyan-cobalt-blue;
     }
 
-    &.active {
-      font-weight: 700;
+    #{$root}-open & {
+      color: $cyan-cobalt-blue;
     }
   }
 
   &-option {
     @include list-style-none();
+    @include mx(-12, -12);
     align-items: center;
     display: flex;
-    margin-left: rem(-12);
-    margin-right: rem(-12);
+
+    @include break-max(1365px) {
+      @include mx(-6, -6);
+    }
+
+    @include tablet-down {
+      margin-top: rem(40);
+      order: 2;
+      width: 100%;
+    }
 
     &-item {
-      padding-left: rem(12);
-      padding-right: rem(12);
+      @include px(12, 12);
+      margin-bottom: 0;
+
+      @include break-max(1365px) {
+        @include px(6, 6);
+      }
+
+      @include tablet-down {
+        &:first-of-type {
+          flex-grow: 1;
+        }
+      }
     }
   }
 
   &-search {
-    @include reset-button();
-    @include adjust-flex();
-    background-color: $white;
-    border-radius: 50%;
-    height: rem(28);
-    padding: 0;
-    width: rem(28);
-    #{$root}-scroll & {
+    position: relative;
+
+    &-input {
+      @include tablet-up {
+        display: none;
+      }
+
       background-color: $white-smoke;
+      border: 0;
+      border-radius: rem(20);
+      color: $cyan-cobalt-blue;
+      height: rem(44);
+      outline: 0;
+      padding-left: rem(16);
+      padding-right: rem(48);
+      width: 100%;
+      @include font-base(14, 20);
+
+      &::placeholder {
+        color: $sliver-chalice;
+      }
+    }
+
+    &-button {
+      @include reset-button();
+      @include adjust-flex();
+      background-color: $white-smoke;
+      border-radius: 50%;
+      height: rem(28);
+      padding: 0;
+      width: rem(28);
+
+      #{$root}-transparent & {
+        background-color: $white;
+      }
+
+      #{$root}-scroll & {
+        background-color: $white-smoke;
+      }
+
+      @include tablet-down {
+        background-color: transparent;
+        position: absolute;
+        right: rem(16);
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
   }
 
@@ -117,12 +346,24 @@
 
     &-label {
       align-items: center;
-      color: $white;
+      background-color: transparent;
+      color: $cyan-cobalt-blue;
       display: flex;
       font-weight: 500;
+      padding: 0;
       @include font-base(14, 20);
+      @include reset-button();
+
+
+      #{$root}-transparent & {
+        color: $white;
+      }
 
       #{$root}-scroll & {
+        color: $cyan-cobalt-blue;
+      }
+
+      #{$root}-open & {
         color: $cyan-cobalt-blue;
       }
     }
@@ -135,7 +376,7 @@
       width: rem(10);
 
       &::before {
-        background-image: url('~assets/icons/ic_dropdown_white.svg');
+        background-image: url('~assets/icons/ic_dropdown_blue.svg');
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
@@ -145,7 +386,16 @@
         transition: all $transition-long linear;
         width: 100%;
 
+
+        #{$root}-transparent & {
+          background-image: url('~assets/icons/ic_dropdown_white.svg');
+        }
+
         #{$root}-scroll & {
+          background-image: url('~assets/icons/ic_dropdown_blue.svg');
+        }
+
+        #{$root}-open & {
           background-image: url('~assets/icons/ic_dropdown_blue.svg');
         }
       }
@@ -157,16 +407,19 @@
 
     &-list {
       @include list-style-none();
+      backdrop-filter: blur(rem(113));
       background-color: $white;
-      border: 1px solid $cyan-cobalt-blue;
       border-radius: rem(5);
+      box-shadow: 0 rem(4) rem(16) $black-overlay01;
       opacity: 0;
       padding: rem(8);
       position: absolute;
       right: 0;
+      text-align: center;
       top: rem(25);
       transition: all $transition linear;
       visibility: hidden;
+      width: rem(60);
       z-index: $z-language;
 
       &.show {
@@ -195,6 +448,10 @@
       }
 
       #{$root}-scroll & {
+        color: $cyan-cobalt-blue;
+      }
+
+      #{$root}-open & {
         color: $cyan-cobalt-blue;
       }
     }

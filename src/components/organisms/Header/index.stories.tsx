@@ -1,5 +1,6 @@
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import Header from '.';
 
@@ -10,5 +11,7 @@ export default {
 } as Meta;
 
 export const normal: Story = () => (
-  <Header />
+  <BrowserRouter>
+    <Header />
+  </BrowserRouter>
 );

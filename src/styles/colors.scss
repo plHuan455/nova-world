@@ -3,10 +3,12 @@ $black: rgb(0, 0, 0);
 $white: rgb(255, 255, 255);
 $cyan-cobalt-blue: rgb(35, 84, 163); // #2354A3
 $white-smoke: rgb(246, 247, 249); // #f6f7f9
+$sliver-chalice: rgb(170, 176, 184);// #AAB0B8
 
 // Linear-gradient
 $linear-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.99) -68.75%, rgba(0, 0, 0, 0) 88.19%);
 
 // Overlay
+$black-overlay01: rgba($black, 0.1);
 $black-overlay02: rgba($black, 0.2);
 $white-overlay01: rgba($white, 0.1);
