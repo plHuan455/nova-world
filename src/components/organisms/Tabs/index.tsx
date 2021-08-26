@@ -60,6 +60,7 @@ const Tabs: React.FC<TabsProps> = ({
     focusOnSelect: true,
     variableWidth: true,
     infinite: false,
+    centerPadding: '0',
     responsive,
   };
 
@@ -73,7 +74,7 @@ const Tabs: React.FC<TabsProps> = ({
 
   return (
     <div className="o-tabs">
-      <Slider ref={sliderRef} centerPadding="0" {...settings}>
+      <Slider ref={sliderRef} {...settings}>
         {children}
       </Slider>
     </div>
