@@ -1,0 +1,147 @@
+.m-newscard {
+  $root: &;
+  position: relative;
+
+  &_content {
+    &_title {
+      margin-top: rem(27);
+      @include text-overflow(2);
+    }
+
+    &_desc {
+      margin: rem(16) 0 rem(40);
+    }
+  }
+
+  &_image {
+    position: relative;
+  }
+
+  &:hover {
+    #{$root}_image {
+      &::before {
+        background: $picton-blue;
+        bottom: 0;
+        content: '';
+        height: 100%;
+        left: 0;
+        opacity: 0.5;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        transition: $transition ease;
+        z-index: 1;
+      }
+    }
+    #{$root}_content_title {
+      .a-text {
+        color: $topaz;
+        @include small-mobile {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  @include small-mobile {
+    &_content {
+      &_desc,
+      &_updatedate {
+        display: none;
+      }
+    }
+
+    #{$root}_image {
+      position: relative;
+
+      &::before {
+        background: rgba(27, 30, 34, 0.4);
+        bottom: 0;
+        content: '';
+        height: 100%;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        transition: $transition ease;
+        z-index: 1;
+      }
+
+      .a-image {
+        @include aspect-ratio(450, 248);
+      }
+    }
+
+    #{$root}_content {
+      bottom: 0;
+      left: 0;
+      max-width: 100%;
+      padding: rem(16);
+      position: absolute;
+      right: 0;
+      transition: $transition ease;
+      width: 100%;
+      z-index: 2;
+    }
+
+    &:hover {
+      #{$root}_content {
+        bottom: rem(20);
+        display: block;
+      }
+    }
+  }
+
+  &-horizontal {
+    #{$root}_image {
+      position: relative;
+
+      &::before {
+        background: rgba(27, 30, 34, 0.4);
+        bottom: 0;
+        content: '';
+        height: 100%;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        transition: $transition ease;
+        z-index: 1;
+      }
+    }
+
+    #{$root}_content {
+      bottom: 0;
+      left: 0;
+      max-width: rem(370);
+      padding: rem(16);
+      position: absolute;
+      right: 0;
+      transition: $transition ease;
+      width: 100%;
+      z-index: 2;
+      @include small-mobile {
+        max-width: 100%;
+      }
+    }
+
+    &:hover {
+      #{$root}_content {
+        bottom: rem(20);
+        display: block;
+
+        &_title {
+          .a-text {
+            color: $white;
+          }
+        }
+      }
+      #{$root}_image {
+        &::before {
+          background-color: $picton-blue;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
