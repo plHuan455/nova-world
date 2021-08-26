@@ -1,0 +1,45 @@
+.a-heading {
+  $root: &;
+  margin: 0;
+
+  &-h1 {
+    @include font-base(42, 64);
+    @include tablet-down {
+      @include font-base(30, 50);
+    }
+    @include mobile-down {
+      @include font-base(18, 33);
+    }
+  }
+
+  &-h2 {
+    @include font-base(40, 56);
+    @include tablet-down {
+      @include font-base(24, 40);
+    }
+    @include mobile-down {
+      @include font-base(20, 30);
+    }
+  }
+
+  &-h6 {
+    @include font-base(24,32);
+    @include tablet-down {
+      @include font-base(20, 28);
+    }
+    @include mobile-down {
+      @include font-base(18, 24);
+    }
+    &#{$root}-xs {
+      @include mobile-down {
+        @include font-base(14, 24);
+      }
+    }
+  }
+  
+  @include style-font-weight();
+  @include style-general();
+  @include style-color();
+  @include style-font-family();
+  @include style-letter-spacing();
+}
