@@ -1,7 +1,9 @@
 import React from 'react';
 
+import Screen from 'container/Home';
+
 const Home: React.FC = () => (
-  <div>Page Home</div>
+  <Screen />
 );
 
 export default Home;

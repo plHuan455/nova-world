@@ -1,0 +1,26 @@
+.o-container {
+  $root: &;
+  @include break-min(1366px) {
+    max-width: 1366px;
+    padding-left: rem(120);
+    padding-right: rem(120);
+
+    &#{$root}-paddingHalf {
+      padding-left: rem(60);
+      padding-right: rem(60);
+    }
+  }
+
+  &-noPaddingRight {
+    padding-right: 0;
+  }
+
+  &-noPaddingLeft {
+    padding-left: 0;
+  }
+
+  &-fullscreen {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

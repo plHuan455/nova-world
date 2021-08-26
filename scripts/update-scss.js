@@ -3,7 +3,7 @@ const fs = require('fs');
 const glob = require('glob');
 
 const styles = glob.sync('src/components/**/*.scss')
-  .map((path) => `@import '${path.replace('src/', '')}';\n`)
+  .map((path) => `@import '${path.replace('src/', '').replace('/index.scss', '')}';\n`)
   .join('');
 
 const signal = '/* Components */';
