@@ -10,5 +10,8 @@ export default {
 } as Meta;
 
 export const normal: Story = () => (
-  <Divider />
+  <>
+    asdas
+    <Divider />
+  </>
 );
