@@ -13,4 +13,8 @@
   &-search {
     @include icon-image('~assets/icons/ic_search.svg', 16, 16);
   }
+  
+  &-loadingWhite {
+    @include icon-image('~assets/icons/ic_loading_white.svg');
+  }
 }
