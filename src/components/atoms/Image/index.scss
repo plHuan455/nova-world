@@ -46,4 +46,8 @@
   &-1366x768 {
     @include aspect-ratio(1366, 768);
   }
+
+  &-546x618 {
+    @include aspect-ratio(546, 618);
+  }
 }
