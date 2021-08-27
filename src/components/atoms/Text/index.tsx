@@ -2,7 +2,7 @@ import React from 'react';
 
 import mapModifiers from 'utils/functions';
 
-type CustomSize = 'xs'| 'md';
+type CustomSize = 'xs'| 'sm' | 'md';
 
 type Sizes = '48x56'| '32x48'| '20x32'| '20x24'| '16x19'| '14x21' | '24x24' | '48x24';
 

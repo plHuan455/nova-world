@@ -1,0 +1,68 @@
+.o-tabs {
+  $root: &;
+
+  .slick {
+    &-track {
+      @include mobile-up {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    &-list {
+      margin: 0 rem(-44);
+      @include desktop-down {
+        padding: 0 rem(-30);
+      }
+      @include  tablet-down {
+        margin: 0 rem(20);
+      }
+    }
+
+    &-slide {
+      padding: 0 rem(44);
+      @include desktop-down {
+        padding: 0 rem(30);
+      }
+      @include  tablet-down {
+        padding: 0 rem(20);
+      }
+    }
+  }
+
+  &_tab {
+    cursor: pointer;
+    padding-bottom: rem(8);
+    position: relative;
+    @include  tablet-down {
+      padding-bottom: rem(4);
+    }
+
+    &::before {
+      background-color: $white;
+      bottom: 0;
+      content: '';
+      height: 2px;
+      left: 0;
+      position: absolute;
+      transform: scale(0);
+      transition: $transition-long ease;
+      width: 100%;
+      z-index: 1;
+    }
+
+    &-active {
+      &::before {
+        transform: scale(1);
+      }
+    }
+  }
+
+  &_panel {
+    display: none;
+
+    &-active {
+      display: block;
+    }
+  }
+}
