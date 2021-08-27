@@ -1,0 +1,14 @@
+.m-locationcard {
+  background: $white;
+  border-radius: 10px;
+  box-shadow: 0 rem(9) rem(15) rem(-3) rgba(0, 0, 0, 0.11);
+
+  &_content {
+    padding: rem(12) rem(16) rem(16);
+
+    &_title {
+      margin-bottom: rem(16);
+      @include text-overflow(2);
+    }
+  }
+}

@@ -5,6 +5,7 @@ type Ratio =
   | '644x323'
   | '450x248'
   | '546x618'
+  | '257x125'
   | 'logo-novaworld'
   | '1366x768';
 
@@ -31,7 +32,7 @@ type TextStyle =
   | 'left'
   | 'right';
 
-type ColorStyle = 'white' | 'black' | 'cyanCobaltBlue' | 'dimGray';
+type ColorStyle = 'white' | 'black' | 'cyanCobaltBlue' | 'dimGray' | 'stormcloud';
 
 type FontFamilyStyle = 'fontICiel';
 
