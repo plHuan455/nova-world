@@ -6,7 +6,7 @@ import Divergences from '.';
 describe('<Divergences />', () => {
   test('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Divergences />, div);
+    ReactDOM.render(<Divergences data={[]} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });

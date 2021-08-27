@@ -1,9 +1,13 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
 
+import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
+import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
+import Container from 'components/organisms/Container';
 
 type DivergencesCardType = {
   srcLogo?: string;
@@ -13,6 +17,7 @@ type DivergencesCardType = {
   description?:string;
   link?: string;
   textLink?: string;
+  imgSrc?:string;
 }
 
 export const DivergencesCard:React.FC<DivergencesCardType> = ({
@@ -39,7 +44,7 @@ export const DivergencesCard:React.FC<DivergencesCardType> = ({
           {title}
         </Heading>
         <div className="t-divergences_card_part">
-          <Text modifiers={['32x48', 'cyanCobaltBlue']}>
+          <Text modifiers={['32x48', 'cyanCobaltBlue', 'uppercase', '500']}>
             {firstNumber}
             <span>{`/${secondNumber}`}</span>
           </Text>
@@ -60,11 +65,93 @@ export const DivergencesCard:React.FC<DivergencesCardType> = ({
 };
 
 interface DivergencesProps {
+  data:DivergencesCardType[];
+  title?:string;
 }
 
-const Divergences: React.FC<DivergencesProps> = ({ children }) => (
-  <div>{children}</div>
-);
+const settingsLeft = {
+  infinite: false,
+  dots: false,
+  slidesToShow: 1,
+  draggable: false,
+  speed: 0,
+  slidesToScroll: 1,
+  arrows: true,
+  prevArrow: <PrevArrow variant="normal" />,
+  nextArrow: <NextArrow variant="normal" />,
+};
+
+const settingsRight = {
+  infinite: false,
+  dots: false,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+};
+
+const Divergences: React.FC<DivergencesProps> = ({
+  data,
+  title,
+}) => {
+  const [nav1, setNav1] = useState<Slider|null>();
+  const [nav2, setNav2] = useState<Slider|null>();
+  return (
+    <div className="t-divergences">
+      <div className="t-divergences_heading">
+        <Heading type="h2">
+          {title}
+        </Heading>
+        <Divider />
+      </div>
+      <Container noPaddingRightDesktop>
+        <div className="t-divergences_content">
+          <div className="t-divergences_left">
+            <div className="t-divergences_carousel-left">
+              <Carousel
+                asNavFor={nav2 as Slider}
+                ref={(slider) => {
+                  setNav1(slider);
+                }}
+                settings={settingsLeft}
+              >
+                {
+                  data.map((item, index) => (
+                    <DivergencesCard
+                      key={`item-left-${index.toString()}`}
+                      srcLogo={item.srcLogo}
+                      title={item.title}
+                      numberPart={index + 1}
+                      numberTotal={data.length}
+                      description={item.description}
+                      link={item.link}
+                    />
+                  ))
+                }
+              </Carousel>
+            </div>
+          </div>
+          <div className="t-divergences_right">
+            <div className="t-divergences_carousel-right">
+              <Carousel
+                asNavFor={nav1 as Slider}
+                ref={(slider) => {
+                  setNav2(slider);
+                }}
+                settings={settingsRight}
+              >
+                {
+                  data.map((item, index) => (
+                    <Image key={`item-right-${index.toString()}`} ratio="762x470" imgSrc={item.imgSrc || ''} />
+                  ))
+                }
+              </Carousel>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </div>
+  );
+};
 
 Divergences.defaultProps = {
 };

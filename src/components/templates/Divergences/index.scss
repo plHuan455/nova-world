@@ -1,0 +1,118 @@
+.t-divergences {
+  &_heading {
+    display: inline-block;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+  }
+
+  &_content {
+    display: flex;
+    flex-wrap: wrap;
+    margin: rem(40) rem(-17.5) 0;
+    @include tablet-down {
+      margin: rem(26) rem(-10) 0;
+    }
+    @include mobile-down {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &_right {
+    align-items: center;
+    display: flex;
+    flex: 0 0 calc(762 / (1366 - 120) * 100%);
+    max-width: calc(762 / (1366 - 120) * 100%);
+    padding: 0 rem(17.5);
+    @include tablet-down {
+      flex: 0 0 45%;
+      max-width: 45%;
+      padding: 0 rem(10);
+    }
+    @include mobile-down {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+
+  &_carousel-right {
+    width: 100%;
+  }
+
+  &_left {
+    align-items: center;
+    display: flex;
+    flex: 0 0 calc(100% - (762 / (1366 - 120) * 100%));
+    max-width: calc(100% - (762 / (1366 - 120) * 100%));
+    padding: 0 rem(17.5);
+    @include tablet-down {
+      flex: 0 0 55%;
+      max-width: 55%;
+      padding: 0 rem(10);
+    }
+    @include mobile-down {
+      flex: 0 0 100%;
+      margin-top: rem(20);
+      max-width: 100%;
+    }
+  }
+
+  &_carousel-left {
+    width: 100%;
+
+    .slick-arrow {
+      top: 100%;
+      transform: translateY(calc(-50% - 12px));
+    }
+  }
+
+  &_card {
+    &_branch {
+      max-width: rem(126);
+    }
+
+    &_title {
+      align-items: center;
+      display: flex;
+      flex-grow: 1;
+      justify-content: space-between;
+      margin-top: rem(30);
+
+      .a-heading {
+        @include text-overflow(1);
+        @include mobile-down {
+          @include text-overflow(2);
+        }
+      }
+      @include tablet-down {
+        margin-top: rem(16);
+      }
+      @include mobile-down {
+        margin-top: rem(9);
+      }
+    }
+
+    &_part {
+      flex-shrink: 0;
+      margin-left: rem(10);
+
+      span {
+        font-size: rem(16);
+        font-weight: normal;
+        letter-spacing: 0.005em;
+        @include mobile-down {
+          font-size: rem(12);
+        }
+      }
+    }
+
+    &_description {
+      margin-top: rem(12);
+      @include text-overflow(5);
+    }
+
+    &_link {
+      margin-top: rem(34);
+    }
+  }
+}
