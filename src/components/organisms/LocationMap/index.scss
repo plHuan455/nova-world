@@ -1,0 +1,56 @@
+.o-locationmap {
+  background-color: $white;
+  position: relative;
+
+  &_map {
+    @include mobile-down {
+      margin-bottom: rem(-6);
+    }
+
+    &.page {
+      margin-top: 0;
+    }
+
+    svg {
+      width: 100%;
+    }
+
+    &_animate {
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+      transform-box: fill-box;
+      transform-origin: center center;
+    }
+
+    &_marker {
+      animation-duration: 0.7s;
+      animation-name: fadeInBlur;
+    }
+
+    &_building {
+      animation-duration: 0.4s;
+      animation-name: beatSmall;
+    }
+
+    &_strokeline {
+      animation: move 0.5s linear infinite;
+      animation-fill-mode: forwards;
+      stroke-dasharray: 5;
+      stroke-dashoffset: 5;
+    }
+
+    &_line {
+      animation-duration: 0.6s;
+      animation-name: fadeInBlur;
+    }
+
+    &_airplane {
+      animation-duration: 1s;
+      animation-name: animationFrames;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+}
