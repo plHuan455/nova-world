@@ -20,14 +20,14 @@ const NewsCard: React.FC<NewsCardProps> = ({
   title,
   desc,
   updatedate,
-  direction,
+  direction = 'vertical',
   imgSrc,
   alt,
   ratio,
   href,
 }) => (
   <Link to={href}>
-    <div className={mapModifiers('m-newscard', direction || 'vertical')}>
+    <div className={mapModifiers('m-newscard', direction)}>
       <div className="m-newscard_image">
         <Image imgSrc={imgSrc} alt={alt || 'thumbnail'} ratio={ratio} />
       </div>
