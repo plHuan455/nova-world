@@ -1,0 +1,127 @@
+.o-carousel {
+  &_arrow {
+    $arrow: &;
+    z-index: 1;
+
+    &::before {
+      border-radius: 50%;
+      content: '';
+      display: block;
+      height: 100%;
+      opacity: 1;
+      width: 100%;
+    }
+
+    &.light {
+      height: rem(44);
+      width: rem(44);
+
+      &::before {
+        box-shadow: 0 0 13.7647px rgba(0, 0, 0, 0.09);
+      }
+
+      &.prev {
+        left: calc(132 / 1366 * 100%);
+
+        &::before {
+          background: $white url('~assets/icons/ic_arrow_prev_black.svg') no-repeat center / 20px auto;
+        }
+      }
+
+      &.next {
+        right: calc(132 / 1366 * 100%);
+
+        &::before {
+          background: $white url('~assets/icons/ic_arrow_next_black.svg') no-repeat center / 20px auto;
+        }
+      }
+
+      &.slick-disabled {
+        &::before {
+          background-color: rgba($white, 0.6);
+          cursor: initial;
+        }
+      }
+    }
+
+    &.green {
+      height: rem(54);
+      width: rem(54);
+      @include mobile-down {
+        height: rem(44);
+        width: rem(44);
+      }
+
+      &.prev {
+        left: rem(2);
+
+        &::before {
+          background: url('~assets/icons/ic_arrow_prev_green.svg') no-repeat center / contain;
+        }
+      }
+
+      &.next {
+        right: rem(2);
+
+        &::before {
+          background: url('~assets/icons/ic_arrow_next_green.svg') no-repeat center / contain;
+        }
+      }
+
+      &.slick-disabled {
+        &::before {
+          cursor: initial;
+          opacity: 0.6;
+        }
+      }
+    }
+
+    &.normal {
+      height: rem(44);
+      width: rem(44);
+
+      &.prev {
+        left: auto;
+        right: rem(65);
+
+        &::before {
+          background: url('~assets/icons/ic_arrow_prev_arsenic.svg') no-repeat center / contain;
+        }
+      }
+
+      &.next {
+        right: rem(5);
+
+        &::before {
+          background: url('~assets/icons/ic_arrow_next_arsenic.svg') no-repeat center / contain;
+        }
+      }
+
+      &.slick-disabled {
+        &::before {
+          cursor: initial;
+          opacity: 0.6;
+        }
+      }
+    }
+
+    &.large {
+      height: rem(74);
+      width: rem(74);
+
+      &::before {
+        border: 1px solid $phthalo-green1;
+        box-sizing: border-box;
+      }
+
+      &.next {
+        left: 0;
+        right: auto;
+
+        &::before {
+          background: transparent url('~assets/icons/ic_arrow_next_phathalo_green.svg') no-repeat center / 20px auto;
+        }
+      }
+    }
+  }
+}
