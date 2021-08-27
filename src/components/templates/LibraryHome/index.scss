@@ -54,7 +54,7 @@
     position: relative;
 
     &::before {
-      background: linear-gradient(180deg, #10431f -18.49%, #2354a3 100%);
+      background: $linear-gradient4;
       content: '';
       height: 100%;
       left: 50%;
