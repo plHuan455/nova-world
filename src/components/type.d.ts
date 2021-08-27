@@ -37,7 +37,7 @@ type TextStyle =
   | 'left'
   | 'right';
 
-type ColorStyle = 'white' | 'black' | 'cyanCobaltBlue' | 'dimGray' | 'stormcloud';
+type ColorStyle = 'white' | 'black' | 'cyanCobaltBlue' | 'dimGray' | 'stormcloud' | 'androidGreen1';
 
 type FontFamilyStyle = 'fontICiel';
 

@@ -1,0 +1,132 @@
+.t-introduction-home {
+  &_content {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 rem(-33);
+  }
+
+  &_right {
+    display: flex;
+    flex: 0 0 41.6%;
+    flex-direction: column;
+    justify-content: flex-end;
+    max-width: 41.6%;
+    padding: 0 rem(33);
+  }
+
+  &_left {
+    flex: 0 0 58.4%;
+    max-width: 58.4%;
+    padding: 0 rem(33);
+  }
+
+  &_number-current {
+    left: rem(72);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &_number-total {
+    position: absolute;
+    right: rem(72);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &_carousel-position {
+    margin: rem(54) 0 rem(20);
+    position: relative;
+
+    .slick-list {
+      margin: 0 28%;
+
+      &::before {
+        background-color: $green;
+        content: '';
+        height: 1px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+      }
+    }
+  }
+
+  &_box {
+    margin: 0 auto;
+    padding-bottom: 60.79855%;
+    position: relative;
+    width: 90%;
+
+    &-image {
+    
+      // left: 50%;
+      position: absolute;
+      -webkit-transition: z-index 0 ease-in-out 0.4s;
+      transition: z-index 0 ease-in-out 0.4s;
+      // top: 50%;
+      width: 100%;
+
+      &:nth-child(1) {
+        transform: rotate(3deg);
+        z-index: 3;
+      }
+
+      &:nth-child(2) {
+        transform: rotate(-3deg);
+        z-index: 2;
+      }
+
+      &:nth-child(3) {
+        transform: rotate(6deg);
+        z-index: 1;
+      }
+
+      &.active {
+        z-index: 99;
+      }
+
+      &.remove {
+        animation: zoomImage 1s linear;
+      }
+    }
+  }
+
+  &_position-item {
+    align-items: center;
+    border: 1px solid $green;
+    border-radius: 50%;
+    display: flex;
+    height: rem(36);
+    justify-content: center;
+    position: relative;
+    transform: translateX(24px);
+    width: rem(36);
+
+    &::before {
+      background-color: $green;
+      border-radius: 50%;
+      bottom: rem(2);
+      content: '';
+      left: rem(2);
+      position: absolute;
+      right: rem(2);
+      top: rem(2);
+      z-index: -1;
+    }
+  }
+}
+@keyframes zoomImage {
+  0% {
+    transform: scale(1);
+  }
+
+  99% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
