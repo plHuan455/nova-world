@@ -51,7 +51,9 @@ export const DivergencesCard:React.FC<DivergencesCardType> = ({
         </div>
       </div>
       <div className="t-divergences_card_description">
-        {description}
+        <Text>
+          {description}
+        </Text>
       </div>
       <div className="t-divergences_card_link">
         <Link to={link}>

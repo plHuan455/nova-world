@@ -109,6 +109,9 @@
     &_description {
       margin-top: rem(12);
       @include text-overflow(5);
+      @include mobile-down {
+        @include text-overflow(3);
+      }
     }
 
     &_link {
