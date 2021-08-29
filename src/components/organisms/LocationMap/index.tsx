@@ -1,18 +1,41 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
 import mapImg from 'assets/images/locationmap/location_map.png';
 import markerImg from 'assets/images/locationmap/location_marker.png';
 import markerImg2 from 'assets/images/locationmap/location_marker2.png';
+import LocationCard from 'components/molecules/LocationCard';
+import useClickOutside from 'hooks/useClickOutside';
 import useScrollAnimate from 'hooks/useScrollAnimation';
 
 interface LocationMapProps {
+  imgSrc: string;
+  title: string;
+  seemore?: string;
+  href: string;
 }
 
-const LocationMap: React.FC<LocationMapProps> = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const animate = useScrollAnimate(ref);
+const LocationMap: React.FC<LocationMapProps> = ({
+  imgSrc,
+  title,
+  seemore,
+  href,
+}) => {
+  const ref = useRef<SVGGElement>(null);
+  const refanimation = useRef<HTMLElement>(null);
+  const animate = useScrollAnimate(refanimation);
+  const [isOpen, SetIsOpen] = useState(false);
+  const [isOpenMarker2, SetIsOpenMarker2] = useState(false);
+  const [isOpenMarker3, SetIsOpenMarker3] = useState(false);
+  const [isOpenMarker4, SetIsOpenMarker4] = useState(false);
+  const handleClickOutside = () => {
+    SetIsOpen(false);
+    SetIsOpenMarker2(false);
+    SetIsOpenMarker3(false);
+    SetIsOpenMarker4(false);
+  };
+  useClickOutside(ref, handleClickOutside);
   return (
-    <div className="o-locationmap" ref={ref}>
+    <div className="o-locationmap">
       <div className={animate ? 'animate animate-fadeInUp' : 'preanimate'}>
         <div className="o-locationmap_map">
           <svg width="100%" height="100%" viewBox="0 0 1366 606" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -106,11 +129,31 @@ const LocationMap: React.FC<LocationMapProps> = () => {
               <g className="o-locationmap_map_animate o-locationmap_map_line">
                 <path d="M474 412.678L489.786 418.002L500.174 431.257L508.016 460.273L506.692 468.519L508.525 478.435L513.312 485.01L519.219 490.229L523.7 497.222H530.524L533.375 499.831L535.82 498.996L535.412 495.97C535.412 495.97 539.079 490.333 539.588 489.603C539.995 488.872 545.902 485.219 545.902 485.219L547.124 484.697L561.586 466.745L564.438 458.603L561.688 452.863L570.141 441.382L575.946 439.503L582.261 441.486L593.056 439.607L597.334 436.998L602.935 426.769L610.37 423.22L626.461 425.412L637.664 424.786L651.617 426.352L671.273 424.577L678.3 424.682L685.531 419.88L688.586 412.574L702.437 401.719L708.141 401.302L716.39 402.032L721.686 400.362L725.963 402.137L735.639 399.736" stroke="#0D6F28" strokeWidth="2" strokeMiterlimit="10" />
               </g>
-              <g className="o-locationmap_map_animate o-locationmap_map_marker">
-                <rect x="670.57" y="340.572" width="51" height="74" fill="url(#patternMarker2)" />
-                <rect x="633.57" y="370.572" width="51" height="74" fill="url(#patternMarker)" />
-                <rect x="582.57" y="391.572" width="51" height="74" fill="url(#patternMarker)" />
-                <rect x="550.57" y="390.572" width="51" height="74" fill="url(#patternMarker)" />
+              <g className="o-locationmap_map_animate o-locationmap_map_marker" ref={ref}>
+                <g className="o-locationmap_map_marker_item1" onClick={() => SetIsOpen(!isOpen)}>
+                  <foreignObject x="720.57" y="340.572" width="257" height="250" viewBox="0 0 137 24" className={isOpen ? 'o-locationmap_locationcard o-locationmap_active' : 'o-locationmap_locationcard'}>
+                    <LocationCard imgSrc={imgSrc} title={title} seemore={seemore} href={href} />
+                  </foreignObject>
+                  <rect x="670.57" y="340.572" width="51" height="74" fill="url(#patternMarker2)" />
+                </g>
+                <g onClick={() => SetIsOpenMarker2(!isOpenMarker2)}>
+                  <foreignObject x="670.57" y="370.572" width="257" height="250" viewBox="0 0 137 24" className={isOpenMarker2 ? 'o-locationmap_locationcard o-locationmap_active' : 'o-locationmap_locationcard'}>
+                    <LocationCard imgSrc={imgSrc} title={title} seemore={seemore} href={href} />
+                  </foreignObject>
+                  <rect x="633.57" y="370.572" width="51" height="74" fill="url(#patternMarker)" />
+                </g>
+                <g onClick={() => SetIsOpenMarker3(!isOpenMarker3)}>
+                  <foreignObject x="620.57" y="391.572" width="257" height="250" viewBox="0 0 137 24" className={isOpenMarker3 ? 'o-locationmap_locationcard o-locationmap_active' : 'o-locationmap_locationcard'}>
+                    <LocationCard imgSrc={imgSrc} title={title} seemore={seemore} href={href} />
+                  </foreignObject>
+                  <rect x="582.57" y="391.572" width="51" height="74" fill="url(#patternMarker)" />
+                </g>
+                <g onClick={() => SetIsOpenMarker4(!isOpenMarker4)}>
+                  <foreignObject x="582.57" y="390.572" width="257" height="250" viewBox="0 0 137 24" className={isOpenMarker4 ? 'o-locationmap_locationcard o-locationmap_active' : 'o-locationmap_locationcard'}>
+                    <LocationCard imgSrc={imgSrc} title={title} seemore={seemore} href={href} />
+                  </foreignObject>
+                  <rect x="542.57" y="390.572" width="51" height="74" fill="url(#patternMarker)" />
+                </g>
               </g>
             </g>
             <defs>

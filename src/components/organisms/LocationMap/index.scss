@@ -1,8 +1,10 @@
 .o-locationmap {
   background-color: $white;
   position: relative;
+  $root: &;
 
   &_map {
+    position: relative;
     @include mobile-down {
       margin-bottom: rem(-6);
     }
@@ -25,6 +27,13 @@
     &_marker {
       animation-duration: 0.7s;
       animation-name: fadeInBlur;
+
+      #{$root}_locationcard {
+        display: none;
+      }
+      #{$root}_active {
+        display: block;
+      }
     }
 
     &_building {
