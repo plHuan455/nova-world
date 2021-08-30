@@ -21,7 +21,6 @@ const settings = {
   infinite: false,
   dots: false,
   slidesToShow: 1,
-  draggable: false,
   slidesToScroll: 1,
   arrows: true,
   prevArrow: <PrevArrow />,
