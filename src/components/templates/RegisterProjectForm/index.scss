@@ -1,15 +1,8 @@
 .t-registerprojectform {
   &_wrap {
-    background-color: $white;
-    border-radius: rem(20);
-    box-shadow: 0 4px 10px $black-overlay01;
-    padding: rem(30) rem(40) rem(40);
     position: relative;
-    @include mobile-down {
-      padding: rem(24) rem(16) rem(46);
-    }
 
-    &::before {
+    &::after {
       background: url('~assets/images/formRegister/bg_border.png') no-repeat center;
       background-size: 100% 99%;
       bottom: rem(20);
@@ -18,7 +11,6 @@
       position: absolute;
       right: rem(-32);
       top: rem(-40);
-      z-index: -1;
       @include tablet-down {
         background-size: cover;
         bottom: rem(27);
@@ -29,6 +21,18 @@
       @include mobile-down {
         background: url('~assets/images/formRegister/bg_border_mobile.png') no-repeat center / 100% 100%;
       }
+    }
+  }
+
+  &_content {
+    background-color: $white;
+    border-radius: rem(20);
+    box-shadow: 0 4px 10px $black-overlay01;
+    padding: rem(30) rem(40) rem(40);
+    position: relative;
+    z-index: 1;
+    @include mobile-down {
+      padding: rem(24) rem(16) rem(46);
     }
   }
 

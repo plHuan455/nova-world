@@ -37,69 +37,71 @@ const RegisterProjectForm: React.FC<RegisterProjectFormProps> = () => {
     <div className="t-registerprojectform">
       <Container>
         <div className="t-registerprojectform_wrap">
-          <Text modifiers={['20x32', 'sm', 'cyanCobaltBlue', 'center', 'uppercase', '700']}>
-            ĐĂNG KÝ TƯ VẤN THÔNG TIN DỰ ÁN
-          </Text>
-          <div className="t-registerprojectform_form">
-            <Form method={method} submitForm={handleSubmit}>
-              <div className="t-registerprojectform_fields">
-                <div className="t-registerprojectform_left">
-                  <div className="t-registerprojectform_name">
-                    <Controller
-                      name="name"
-                      render={({ field, fieldState }) => (
-                        <Input
-                          {...field}
-                          placeholder="Họ & Tên"
-                          error={fieldState.error?.message}
-                        />
-                      )}
-                    />
-                  </div>
-                  <div className="t-registerprojectform_phone">
-                    <Controller
-                      name="phone"
-                      render={({ field, fieldState }) => (
-                        <InputNumber
-                          {...field}
-                          placeholder="Điện thoại"
-                          error={fieldState.error?.message}
-                        />
-                      )}
-                    />
-                  </div>
-                  <div className="t-registerprojectform_email">
-                    <Controller
-                      name="email"
-                      render={({ field, fieldState }) => (
-                        <Input
-                          {...field}
-                          placeholder="Email"
-                          error={fieldState.error?.message}
-                        />
-                      )}
-                    />
-                  </div>
-                </div>
-                <div className="t-registerprojectform_right">
-                  <Controller
-                    name="content"
-                    render={({ field, fieldState }) => (
-                      <TextArea
-                        {...field}
-                        placeholder="Nội dung"
-                        error={fieldState.error?.message}
+          <div className="t-registerprojectform_content">
+            <Text modifiers={['20x32', 'sm', 'cyanCobaltBlue', 'center', 'uppercase', '700']}>
+              ĐĂNG KÝ TƯ VẤN THÔNG TIN DỰ ÁN
+            </Text>
+            <div className="t-registerprojectform_form">
+              <Form method={method} submitForm={handleSubmit}>
+                <div className="t-registerprojectform_fields">
+                  <div className="t-registerprojectform_left">
+                    <div className="t-registerprojectform_name">
+                      <Controller
+                        name="name"
+                        render={({ field, fieldState }) => (
+                          <Input
+                            {...field}
+                            placeholder="Họ & Tên"
+                            error={fieldState.error?.message}
+                          />
+                        )}
                       />
-                    )}
-                  />
+                    </div>
+                    <div className="t-registerprojectform_phone">
+                      <Controller
+                        name="phone"
+                        render={({ field, fieldState }) => (
+                          <InputNumber
+                            {...field}
+                            placeholder="Điện thoại"
+                            error={fieldState.error?.message}
+                          />
+                        )}
+                      />
+                    </div>
+                    <div className="t-registerprojectform_email">
+                      <Controller
+                        name="email"
+                        render={({ field, fieldState }) => (
+                          <Input
+                            {...field}
+                            placeholder="Email"
+                            error={fieldState.error?.message}
+                          />
+                        )}
+                      />
+                    </div>
+                  </div>
+                  <div className="t-registerprojectform_right">
+                    <Controller
+                      name="content"
+                      render={({ field, fieldState }) => (
+                        <TextArea
+                          {...field}
+                          placeholder="Nội dung"
+                          error={fieldState.error?.message}
+                        />
+                      )}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="t-registerprojectform_btn">
-                <Button type="submit">
-                  ĐĂNG KÝ
-                </Button>
-              </div>
-            </Form>
+                <div className="t-registerprojectform_btn">
+                  <Button type="submit">
+                    ĐĂNG KÝ
+                  </Button>
+                </div>
+              </Form>
+            </div>
           </div>
         </div>
       </Container>
