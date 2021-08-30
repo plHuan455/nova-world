@@ -1,0 +1,83 @@
+.t-registerprojectform {
+  &_wrap {
+    position: relative;
+
+    &::after {
+      background: url('~assets/images/formRegister/bg_border.png') no-repeat center;
+      background-size: 100% 99%;
+      bottom: rem(20);
+      content: '';
+      left: rem(-32);
+      position: absolute;
+      right: rem(-32);
+      top: rem(-40);
+      @include tablet-down {
+        background-size: cover;
+        bottom: rem(27);
+        left: rem(-40);
+        right: rem(-40);
+        top: rem(-24);
+      }
+      @include mobile-down {
+        background: url('~assets/images/formRegister/bg_border_mobile.png') no-repeat center / 100% 100%;
+      }
+    }
+  }
+
+  &_content {
+    background-color: $white;
+    border-radius: rem(20);
+    box-shadow: 0 4px 10px $black-overlay01;
+    padding: rem(30) rem(40) rem(40);
+    position: relative;
+    z-index: 1;
+    @include mobile-down {
+      padding: rem(24) rem(16) rem(46);
+    }
+  }
+
+  &_form {
+    margin-top: rem(24);
+    @include  mobile-down {
+      margin-top: rem(30);
+    }
+  }
+
+  &_fields {
+    display: grid;
+    grid-gap: rem(26) rem(33);
+    grid-template-columns: repeat(2, 1fr);
+    @include tablet-down {
+      grid-template-columns: 1fr;
+    }
+    @include  mobile-down {
+      grid-gap: rem(20);
+    }
+  }
+
+  &_left {
+    display: grid;
+    grid-gap: rem(26) 6%;
+    grid-template-columns: 43% 51%;
+    @include  mobile-down {
+      grid-gap: rem(20);
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &_name {
+    grid-column: 1/3;
+    @include  mobile-down {
+      grid-column: 1/2;
+    }
+  }
+
+  &_btn {
+    margin: rem(40) auto 0;
+    max-width: rem(162);
+    @include mobile-down {
+      margin: rem(32) auto 0;
+    }
+  }
+
+}
