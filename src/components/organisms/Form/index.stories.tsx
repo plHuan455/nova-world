@@ -18,17 +18,17 @@ export type TestForm = {
   test: number;
 };
 const validationSchema = yup.object({
-  test: yup.number().required(),
-});
-/* eslint-disable */
-// eslint-disable-next-line react-hooks/rules-of-hooks
-const method = useForm<TestForm>({
-  resolver: yupResolver(validationSchema),
-  mode: 'onSubmit',
+  test: yup.string().required('Field is required'),
 });
 
 export const normal: Story = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const method = useForm<TestForm>({
+    resolver: yupResolver(validationSchema),
+    mode: 'onSubmit',
+  });
   const onSubmit = (data: TestForm) => {
+    // eslint-disable-next-line no-console
     console.log(data);
   };
   return (
@@ -50,6 +50,8 @@ export const normal: Story = () => {
           />
         )}
       />
+      <br />
+      <button type="submit">Submit</button>
     </Form>
   );
 };
