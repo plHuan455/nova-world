@@ -24,7 +24,7 @@ const NewsHome: React.FC<NewsHomeProps> = ({ title, tabDataNewsHome }) => {
   return (
     <div className="t-newshome">
       <div className={animate ? 't-newshome_wrap animate animate-fadeInUp' : 't-newshome_wrap preanimate'}>
-        <Container fullScreen paddingHalf>
+        <Container>
           <div className="t-newshome_title">
             <Text modifiers={['40x60', '500', 's005', 'white', 'center', 'uppercase']}>
               {title}
