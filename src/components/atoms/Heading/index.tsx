@@ -22,7 +22,7 @@ const Heading: React.FC<HeadingProps> = ({
 };
 
 Heading.defaultProps = {
-  modifiers: ['500', 'cyanCobaltBlue', 'uppercase', 'center'],
+  modifiers: ['500', 'cyanCobaltBlue', 'uppercase', 'center', 's005'],
 };
 
 export default Heading;

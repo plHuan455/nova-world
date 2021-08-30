@@ -3,6 +3,8 @@ import React from 'react';
 
 import IntroductionHome from '.';
 
+import dataIntro from 'assets/dataDummy/introduction';
+
 export default {
   title: 'Components/templates/IntroductionHome',
   component: IntroductionHome,
@@ -10,5 +12,11 @@ export default {
 } as Meta;
 
 export const normal: Story = () => (
-  <IntroductionHome />
+  <div
+    style={{
+      paddingBottom: '300px',
+    }}
+  >
+    <IntroductionHome data={dataIntro.cardIntro} />
+  </div>
 );

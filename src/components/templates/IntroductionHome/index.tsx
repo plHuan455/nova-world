@@ -1,31 +1,20 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 
-import img2 from 'assets/images/img-library-1.jpg';
-import img3 from 'assets/images/img-library-2.jpg';
-import img1 from 'assets/images/img_newscard.png';
+import Divider from 'components/atoms/Divider';
+import Heading from 'components/atoms/Heading';
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 import Container from 'components/organisms/Container';
 
 interface IntroductionHomeProps {
+  data:{
+    imgSrc:string;
+    description:string;
+  }[]
 }
-type LinePositionProps={
-  position?: number;
-}
-export const LinePosition:React.FC<LinePositionProps> = ({
-  position,
-}) => (
-  <div className="t-introduction-home_position-item">
-    <Text modifiers={['20x32', 'sm', 's005', 'uppercase', '500', 'white']}>
-      {position || 0}
-    </Text>
-  </div>
-);
 
-const settingsPosition = {
+const settings = {
   infinite: false,
   dots: false,
   slidesToShow: 1,
@@ -36,69 +25,76 @@ const settingsPosition = {
   nextArrow: <NextArrow variant="green" />,
 };
 
-const settingsDescription = {
-  infinite: false,
-  dots: false,
-  slidesToShow: 1,
-  draggable: false,
-  slidesToScroll: 1,
-  arrows: true,
-  prevArrow: <PrevArrow variant="green" />,
-  nextArrow: <NextArrow variant="green" />,
-};
-const images = [img1, img2, img3];
-const IntroductionHome: React.FC<IntroductionHomeProps> = () => {
-  const [currentSlide, setCurrentSlide] = useState(1);
+const IntroductionHome: React.FC<IntroductionHomeProps> = ({
+  data,
+}) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
-    <div className="t-introduction-home">
+    <div className="t-introductionhome">
+      <div className="t-introductionhome_bg-tree-top" />
+      <div className="t-introductionhome_bg-tree-bottom" />
+      <div className="t-introductionhome_bg-circle-top" />
+      <div className="t-introductionhome_bg-circle-bottom" />
       <Container>
-        <div className="t-introduction-home_content">
-          <div className="t-introduction-home_left">
-            <div className="t-introduction-home_box">
+        <div className="t-introductionhome_title">
+          <Heading type="h2">
+            NOVAWORLD HO TRAM
+          </Heading>
+          <Divider />
+        </div>
+        <div className="t-introductionhome_content">
+          <div className="t-introductionhome_left">
+            <div className="t-introductionhome_box">
               {
-                images.map((item, index) => (
+                data.map((item, index) => (
                   <div
                     key={`item-${index.toString()}`}
-                    className={`t-introduction-home_box-image ${index + 1 === currentSlide ? 'active' : 'remove'}`}
+                    className={`t-introductionhome_box-image ${index === currentSlide ? 'active' : 'remove'}`}
                   >
-                    <Image imgSrc={item} ratio="551x335" />
+                    <Image imgSrc={item.imgSrc} ratio="551x335" />
                   </div>
                 ))
               }
             </div>
           </div>
-          <div className="t-introduction-home_right">
-            <div className="t-introduction-home_right_content">
-              <div className="t-introduction-home_right_top">
+          <div className="t-introductionhome_right">
+            <div className="t-introductionhome_right_content">
+              <div className="t-introductionhome_description">
                 <Text modifiers={['cyanCobaltBlue']}>
-                  Dự án chia làm nhiều giai đoạn phát triển,
-                  khai thác thế mạnh của thiên nhiên Hồ Tràm nguyên sơ,
-                  kết hợp hài hoà giữa địa thế rừng và biển liền kề,
-                  tạo nên chuỗi du lịch giải trí đa dạng và trải nghiệm nghỉ dưỡng.
+                  {data.length - 1 >= currentSlide ? data[currentSlide].description : ''}
                 </Text>
               </div>
-              <div className="t-introduction-home_carousel-position">
-                <div className="t-introduction-home_number-current">
+              <div className="t-introductionhome_carousel">
+                <div className="t-introductionhome_number-current">
                   <Text modifiers={['20x32', 'sm', 'androidGreen1', 's005']}>
-                    {currentSlide > 10 ? currentSlide : `0${currentSlide}`}
+                    {currentSlide + 1 > 10 ? currentSlide + 1 : `0${currentSlide + 1}`}
                   </Text>
                 </div>
                 <Carousel
                   settings={{
-                    ...settingsPosition,
+                    ...settings,
                     afterChange: (current:number) => {
-                      setCurrentSlide(current + 1);
+                      setCurrentSlide(current);
                     },
                   }}
                 >
-                  <LinePosition position={1} />
-                  <LinePosition position={2} />
-                  <LinePosition position={3} />
+                  {
+                    data.map((_, index) => (
+                      <div
+                        key={`position-item-${index.toString()}`}
+                        className="t-introductionhome_position-item"
+                      >
+                        <Text modifiers={['20x32', 'sm', 's005', 'uppercase', '500', 'white']}>
+                          {index + 1}
+                        </Text>
+                      </div>
+                    ))
+                  }
                 </Carousel>
-                <div className="t-introduction-home_number-total">
+                <div className="t-introductionhome_number-total">
                   <Text modifiers={['20x32', 'sm', 'androidGreen1', 's005']}>
-                    03
+                    {`0${data.length}`}
                   </Text>
                 </div>
               </div>
@@ -106,12 +102,8 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = () => {
           </div>
         </div>
       </Container>
-
     </div>
   );
-};
-
-IntroductionHome.defaultProps = {
 };
 
 export default IntroductionHome;
