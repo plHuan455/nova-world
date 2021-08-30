@@ -7,7 +7,7 @@ import LocationCard from 'components/molecules/LocationCard';
 import useClickOutside from 'hooks/useClickOutside';
 import useScrollAnimate from 'hooks/useScrollAnimation';
 
-interface LocationMapProps {
+export interface LocationMapProps {
   imgSrc: string;
   title: string;
   seemore?: string;
