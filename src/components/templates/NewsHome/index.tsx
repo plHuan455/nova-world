@@ -54,31 +54,24 @@ const NewsHome: React.FC<NewsHomeProps> = ({ title, tabDataNewsHome }) => {
                       ele.dataNewsHome.length > 0
                       && (
                         <>
-                          {
-                            ele.dataNewsHome.map((item, index) => (
-                              item.updatedate && (
-                                <div
-                                  className="t-newshome_right"
-                                  key={`item-${index.toString()}`}
-                                >
-                                  <NewsCard
-                                    imgSrc={item.imgSrc}
-                                    ratio={item.ratio}
-                                    title={item.title}
-                                    desc={item.desc}
-                                    updatedate={item.updatedate}
-                                    href=""
-                                  />
-                                </div>
-                              )
-                            ))
-                          }
+                          <div
+                            className="t-newshome_right"
+                          >
+                            <NewsCard
+                              imgSrc={ele.dataNewsHome[0].imgSrc}
+                              ratio={ele.dataNewsHome[0].ratio}
+                              title={ele.dataNewsHome[0].title}
+                              desc={ele.dataNewsHome[0].desc}
+                              updatedate={ele.dataNewsHome[0].updatedate}
+                              href=""
+                            />
+                          </div>
                           <div className="t-newshome_left">
                             {
-                              ele.dataNewsHome.map((item) => (
-                                item.direction === 'horizontal' && (
+                              ele.dataNewsHome.map((item, stt) => (
+                                stt > 0 && (
                                   <NewsCard
-                                    direction={item.direction}
+                                    direction="horizontal"
                                     imgSrc={item.imgSrc}
                                     ratio={item.ratio}
                                     title={item.title}

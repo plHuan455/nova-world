@@ -90,6 +90,12 @@
 
   &-40x60 {
     @include font-base(40, 60);
+    @include tablet-down {
+      @include font-base(24, 40);
+    }
+    @include mobile-down {
+      @include font-base(20, 30);
+    }
   }
 
   @include style-letter-spacing();

@@ -2,6 +2,7 @@ import React from 'react';
 
 import DivergencesHome from './divergences';
 import Library from './library';
+import NewsHomeContainer from './news';
 
 import HomeBanner from 'assets/images/home-banner.jpg';
 import Banner from 'components/organisms/Banner';
@@ -17,6 +18,9 @@ const Home: React.FC = () => (
     </section>
     <section className="s-library">
       <Library />
+    </section>
+    <section className="s-newshome">
+      <NewsHomeContainer />
     </section>
     <div
       style={{

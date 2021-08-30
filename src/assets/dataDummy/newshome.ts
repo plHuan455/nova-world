@@ -14,14 +14,12 @@ const newsHomeDataProject:NewsCardProps[] = [
     href: '',
   },
   {
-    direction: 'horizontal',
     imgSrc: imgNewsCard2,
     ratio: '450x248',
     title: 'Trải nghiệm nét đẹp văn hóa địa phương trong không gian...',
     href: '',
   },
   {
-    direction: 'horizontal',
     imgSrc: imgNewsCard3,
     ratio: '450x248',
     title: 'Hòa mình vào không gian Latin chuẩn 6 sao với Habana Island resort',
@@ -39,14 +37,12 @@ const newsHomeDataMarket:NewsCardProps[] = [
     href: '',
   },
   {
-    direction: 'horizontal',
     imgSrc: imgNewsCard2,
     ratio: '450x248',
     title: 'Trải nghiệm nét đẹp văn hóa địa phương trong không gian...',
     href: '',
   },
   {
-    direction: 'horizontal',
     imgSrc: imgNewsCard3,
     ratio: '450x248',
     title: 'Hòa mình vào không gian Latin chuẩn 6 sao với Habana Island resort',
@@ -64,14 +60,12 @@ const newsHomeDataCorporation:NewsCardProps[] = [
     href: '',
   },
   {
-    direction: 'horizontal',
     imgSrc: imgNewsCard2,
     ratio: '450x248',
     title: 'Trải nghiệm nét đẹp văn hóa địa phương trong không gian...',
     href: '',
   },
   {
-    direction: 'horizontal',
     imgSrc: imgNewsCard3,
     ratio: '450x248',
     title: 'Hòa mình vào không gian Latin chuẩn 6 sao với Habana Island resort',
