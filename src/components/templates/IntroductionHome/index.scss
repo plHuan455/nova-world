@@ -208,7 +208,7 @@
       position: absolute;
       top: 50%;
       transform: translate(-50%, -50%) rotate(-3deg);
-      transition-delay: $transition-long;
+      transition-delay: 0.35s;
       width: 100%;
 
       &:nth-child(1) {
