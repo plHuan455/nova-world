@@ -15,9 +15,10 @@
     &.light {
       height: rem(44);
       width: rem(44);
-
+      
       &::before {
         box-shadow: 0 0 13.7647px rgba(0, 0, 0, 0.09);
+        opacity: 1;
       }
 
       &.prev {
