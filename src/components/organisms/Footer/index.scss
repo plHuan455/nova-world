@@ -2,6 +2,13 @@
   background: linear-gradient(180deg, #10431f 0%, rgba(36, 85, 163, 0.55) 104.83%),
     url('~assets/images/footer/bg_footer.png') no-repeat center / cover;
 
+  &_form {
+    margin-top: rem(-126);
+    @include small-mobile {
+      margin-top: rem(-59);
+    }
+  }
+
   &_top {
     padding-top: rem(72);
     @include mobile-down {

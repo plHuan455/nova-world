@@ -14,6 +14,10 @@ export default {
 
 export const normal: Story = () => (
   <BrowserRouter>
+    <div style={{
+      height: '200px',
+    }}
+    />
     <Footer addressList={addressList} copyRight={copyRight} />
   </BrowserRouter>
 );

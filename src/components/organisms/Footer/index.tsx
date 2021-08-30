@@ -5,6 +5,7 @@ import logoFooter from 'assets/images/footer/logo_footer.png';
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
 import Container from 'components/organisms/Container';
+import RegisterProjectForm from 'components/templates/RegisterProjectForm';
 
 export type AddressItemType = {
   name?: string,
@@ -42,6 +43,9 @@ const Footer: React.FC<FooterProps> = ({
 
   return (
     <div className="o-footer">
+      <div className="o-footer_form">
+        <RegisterProjectForm />
+      </div>
       <div className="o-footer_top">
         <Container>
           <div className="o-footer_branch">
