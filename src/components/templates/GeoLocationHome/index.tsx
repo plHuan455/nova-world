@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 
 import Divider from 'components/atoms/Divider';
+import Heading from 'components/atoms/Heading';
 import Text from 'components/atoms/Text';
 import LocationMap, { LocationMapProps } from 'components/organisms/LocationMap';
 import useScrollAnimate from 'hooks/useScrollAnimation';
@@ -18,10 +19,10 @@ const GeoLocationHome: React.FC<GeoLocationHomeProps> = ({ title = 'VỊ TRÍ Đ
     <div className="t-geolocationhome">
       <div className={animate ? 't-geolocationhome_top animate animate-fadeInUp' : 't-geolocationhome_top preanimate'}>
         <div className="t-geolocationhome_title">
-          <Text modifiers={['48x56', '500', 's005', 'center', 'uppercase', 'cyanCobaltBlue']}>
+          <Heading type="h2" modifiers={['500', 's005', 'center', 'uppercase', 'cyanCobaltBlue']}>
             {title}
             <Divider />
-          </Text>
+          </Heading>
         </div>
         <div className="t-geolocationhome_desc">
           <div className="t-geolocationhome_desc_wrap">
