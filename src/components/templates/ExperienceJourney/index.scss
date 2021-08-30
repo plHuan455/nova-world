@@ -1,0 +1,49 @@
+.t-expjourney {
+  background: url('~assets/images/bg_expjourney.png');
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  position: relative;
+
+  &::before {
+    background: $linear-gradient6;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &_wrap {
+    padding: rem(89) 0 rem(212);
+    @include mobile-down {
+      margin-top: rem(14);
+      padding: rem(50) 0 rem(112);
+    }
+  }
+
+  &_title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: rem(85);
+    @include mobile-down {
+      margin-bottom: rem(24);
+    }
+  }
+
+  &_gallery {
+    column-gap: rem(35);
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: rem(35);
+    width: 100%;
+    @include mobile-down {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(1, 1fr);
+      row-gap: rem(16);
+    }
+  }
+}
