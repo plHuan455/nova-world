@@ -88,6 +88,10 @@
     @include font-base(48, 24);
   }
 
+  &-40x60 {
+    @include font-base(40, 60);
+  }
+
   @include style-letter-spacing();
   @include style-color();
   @include style-font-weight();
