@@ -1,0 +1,135 @@
+.t-featuredproduct {
+  &_title-main {
+    display: inline-block;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+
+  &_wrap {
+    position: relative;
+
+    &::before {
+      background: url('~assets/images/featuredProduct/bg_cloud.png') no-repeat center / cover;
+      content: '';
+      left: 0;
+      padding-bottom: calc(715 / 1366 * 100%);
+      position: absolute;
+      top: 0;
+      transform: translateY(-40%);
+      width: 100%;
+      z-index: 2;
+      @include desktop-down {
+        transform: translateY(-37%);
+      }
+      @include mobile-down {
+        transform: translateY(-32%);
+      }
+    }
+
+    &::after {
+      background: url('~assets/images/featuredProduct/bg_waves.png') no-repeat center / cover;
+      bottom: -16%;
+      content: '';
+      left: 0;
+      padding-bottom: calc(245 / 1366 * 100%);
+      position: absolute;
+      width: 100%;
+      z-index: 2;
+      @include mobile-down {
+        bottom: -8%;
+      }
+    }
+  }
+
+  &_content {
+    margin-top: rem(40);
+    position: relative;
+    @include mobile-down {
+      margin-top: rem(18);
+    }
+  }
+
+  &_info {
+    background: $white;
+    border-bottom-right-radius: rem(100);
+    border-top-right-radius: rem(100);
+    bottom: rem(40);
+    left: 0;
+    padding: rem(30) rem(121) rem(26) rem(118);
+    position: absolute;
+    width: rem(513);
+    z-index: 1;
+    @include desktop-down {
+      padding: rem(20) rem(100) rem(20) rem(50);
+      width: rem(444);
+    }
+    @include tablet-down {
+      bottom: rem(30);
+      padding: rem(18) rem(85) rem(18) rem(30);
+      width: rem(360);
+    }
+    @include mobile-down {
+      bottom: rem(20);
+      padding: rem(4) rem(50) rem(4) rem(17);
+      width: rem(215);
+    }
+
+    &::before {
+      background: url('~assets/images/featuredProduct/logo_card.png') no-repeat center / contain;
+      bottom: rem(10);
+      content: '';
+      position: absolute;
+      right: rem(10);
+      top: rem(10);
+      width: calc(93 / 513 * 100%);
+      @include tablet-down {
+        bottom: rem(7);
+        right: rem(7);
+        top: rem(7);
+      }
+      @include mobile-down {
+        bottom: rem(4);
+        right: rem(4);
+        top: rem(4);
+      }
+    }
+
+    &_title {
+      @include text-overflow(1);
+    }
+
+    &_title-sub {
+      @include text-overflow(1);
+      margin-top: rem(4);
+    }
+  }
+
+  &_carousel {
+    @include mobile-down {
+      .slick-arrow {
+        bottom: rem(20);
+        top: auto;
+        transform: translateY(0);
+  
+        &.next {
+          right: rem(16);
+        }
+  
+        &.prev {
+          left: auto;
+          right: rem(76);
+        }
+      }
+    }
+  }
+
+  &_card {
+    .a-image {
+      @include mobile-down {
+        min-height: rem(360);
+      }
+    }
+  }
+}
