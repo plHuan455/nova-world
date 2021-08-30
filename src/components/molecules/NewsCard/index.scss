@@ -20,11 +20,17 @@
     &_title {
       margin-top: rem(27);
       @include text-overflow(2);
+      @include desktop-down {
+        margin-top: rem(16);
+      }
     }
 
     &_desc {
       margin: rem(16) 0 rem(40);
       @include text-overflow(3);
+      @include desktop-down {
+        margin: rem(14) 0 rem(14);
+      }
       @include small-mobile {
         display: none;
       }

@@ -5,7 +5,7 @@ import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
 import mapModifiers from 'utils/functions';
 
-interface NewsCardProps {
+export interface NewsCardProps {
   title: string;
   desc?: string;
   updatedate?: string;

@@ -1,0 +1,64 @@
+.t-newshome {
+  background: rgb(29, 61, 23) url('~assets/images/bg_newshome.png') no-repeat center / cover;
+  background-position-y: inherit;
+  position: relative;
+
+  &::before {
+    background: linear-gradient(180deg, rgb(24, 73, 6) 0%, rgb(17, 73, 7) 10.58%, rgba(15, 73, 8, 0.53) 43.62%, rgba(12, 73, 8, 0.53) 68.84%, rgba(6, 73, 9, 0) 119.31%);
+    bottom: 0;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &_wrap {
+    padding: rem(100) 0 rem(240);
+    @include small-mobile {
+      padding: rem(54) rem(16) rem(100);
+    }
+  }
+
+  &_title {
+    margin-bottom: rem(24);
+    position: relative;
+  }
+
+  &_wrapper {
+    display: flex;
+    margin-top: rem(40);
+    width: 100%;
+
+    @include small-mobile {
+      display: block;
+    }
+  }
+
+  &_right {
+    width: 55%;
+
+    @include small-mobile {
+      width: 100%;
+    }
+  }
+
+  &_left {
+    padding-left: rem(32);
+    width: 45%;
+
+    .m-newscard {
+      margin-bottom: rem(32);
+    }
+
+    @include small-mobile {
+      padding: 0;
+      width: 100%;
+
+      .m-newscard {
+        margin: rem(16) 0;
+      }
+    }
+  }
+}
