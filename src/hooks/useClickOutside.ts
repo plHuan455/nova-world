@@ -1,6 +1,6 @@
 import React, { useEffect, MutableRefObject } from 'react';
 
-const useClickOutside = <T extends HTMLElement | HTMLDivElement>(
+const useClickOutside = <T extends HTMLElement | HTMLDivElement | SVGGElement>(
   ref: React.RefObject<T>,
   callback: (event: MouseEvent) => void,
 ): void => {
