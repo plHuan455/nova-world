@@ -1,0 +1,74 @@
+.t-expjourney {
+  background: url('~assets/images/experienceJourney/bg_expjourney.png') no-repeat 37% top;
+  position: relative;
+  @include small-mobile {
+    background-position: -2% top;
+  }
+  
+  &::before {
+    background: $linear-gradient6;
+    bottom: rem(-150);
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    @include mobile-down {
+      bottom: rem(-120);
+    }
+  }
+
+  &_wrap {
+    padding: rem(89) 0 rem(96);
+    @include mobile-down {
+      margin-top: rem(14);
+      padding: rem(40) 0 rem(87);
+    }
+  }
+
+  &_title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: rem(85);
+    @include mobile-down {
+      margin-bottom: rem(24);
+    }
+  }
+
+  &_gallery {
+    &_item {
+      padding: rem(16);
+
+      @include tablet-down {
+        padding: rem(7);
+      }
+    }
+  }
+
+  .slick-next {
+    bottom: rem(-50);
+    top: auto;
+    transform: none;
+  }
+
+  .large.next {
+    left: rem(10);
+  }
+
+  .slick-list {
+    @include mobile-down {
+      margin-left: calc(69 / 575 * 100%);
+    }
+  }
+
+  .slick-active {
+    @include mobile-down {
+      .m-expcard_image {
+        &::before {
+          height: 0;
+          width: 0;
+        }
+      }
+    }
+  }
+}

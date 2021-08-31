@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
 
-interface ExperienceCardProps {
+export interface ExperienceCardProps {
   imgSrc: string;
   alt?: string;
   title: string;

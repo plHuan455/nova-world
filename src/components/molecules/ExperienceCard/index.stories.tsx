@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import ExperienceCard from '.';
 
-import imgExperianceCard from 'assets/images/img_experienceCard.png';
+import imgExperianceCard from 'assets/images/experienceJourney/img_experienceCard.png';
 
 export default {
   title: 'Components/molecules/ExperienceCard',
