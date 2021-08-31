@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
 import Text from 'components/atoms/Text';
+import Animate from 'components/organisms/Animate';
 import mapModifiers from 'utils/functions';
 
 export interface LibraryCard {
@@ -22,13 +23,19 @@ const LibraryHome: React.FC<LibraryHomeProps> = ({ data }) => {
 
   return (
     <div className="t-libraryhome">
-      <div className="t-libraryhome-title">
+      <Animate
+        extendClassName="t-libraryhome-title"
+        type="fadeInUp"
+      >
         <Heading type="h2" modifiers={['cyanCobaltBlue', '500']}>
           THƯ VIỆN
           <Divider />
         </Heading>
-      </div>
-      <div className="t-libraryhome-content">
+      </Animate>
+      <Animate
+        extendClassName="t-libraryhome-content"
+        type="fadeInUp"
+      >
         {data?.map((item, index) => (
           <Link
             to={item.href}
@@ -43,7 +50,7 @@ const LibraryHome: React.FC<LibraryHomeProps> = ({ data }) => {
             </div>
           </Link>
         ))}
-      </div>
+      </Animate>
     </div>
   );
 };

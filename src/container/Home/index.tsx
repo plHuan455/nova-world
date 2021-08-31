@@ -2,6 +2,7 @@ import React from 'react';
 
 import DivergencesHome from './divergences';
 import ExperienceJourneyHome from './experiencejourney';
+import FeaturedProductHome from './featuredproduct';
 import Introduction from './introduction';
 import Library from './library';
 import Location from './location';
@@ -25,13 +26,16 @@ const Home: React.FC = () => (
     <section className="s-location">
       <Location />
     </section>
-    <section className="s-experiencejourney">
+    <section className="t-featured">
+      <FeaturedProductHome />
+    </section>
+    <section className="s-experience">
       <ExperienceJourneyHome />
     </section>
     <section className="s-library">
       <Library />
     </section>
-    <section className="s-newshome">
+    <section className="s-news">
       <NewsHomeContainer />
     </section>
   </MainLayout>

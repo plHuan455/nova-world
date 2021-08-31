@@ -6,6 +6,7 @@ import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
+import Animate from 'components/organisms/Animate';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 import Container from 'components/organisms/Container';
 
@@ -97,16 +98,23 @@ const Divergences: React.FC<DivergencesProps> = ({
 }) => {
   const [nav1, setNav1] = useState<Slider|null>();
   const [nav2, setNav2] = useState<Slider|null>();
+
   return (
     <div className="t-divergences">
-      <div className="t-divergences_heading">
+      <Animate
+        extendClassName="t-divergences_heading"
+        type="fadeInUp"
+      >
         <Heading type="h2">
           {title}
+          <Divider />
         </Heading>
-        <Divider />
-      </div>
+      </Animate>
       <Container noPaddingRightDesktop>
-        <div className="t-divergences_content">
+        <Animate
+          extendClassName="t-divergences_content"
+          type="fadeInUp"
+        >
           <div className="t-divergences_left">
             <div className="t-divergences_carousel-left">
               <Carousel
@@ -149,7 +157,7 @@ const Divergences: React.FC<DivergencesProps> = ({
               </Carousel>
             </div>
           </div>
-        </div>
+        </Animate>
       </Container>
     </div>
   );

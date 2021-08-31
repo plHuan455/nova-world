@@ -4,6 +4,7 @@ import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
+import Animate from 'components/organisms/Animate';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 import Container from 'components/organisms/Container';
 
@@ -35,13 +36,19 @@ const FeaturedProduct: React.FC<FeaturedProductProps> = ({
     <div className="t-featuredproduct">
       <Container fullScreen>
         <div className="t-featuredproduct_wrap">
-          <div className="t-featuredproduct_title-main">
+          <Animate
+            extendClassName="t-featuredproduct_title-main"
+            type="fadeInUp"
+          >
             <Heading type="h2">
               SẢN PHẨM NỔI BẬT
+              <Divider />
             </Heading>
-            <Divider />
-          </div>
-          <div className="t-featuredproduct_content">
+          </Animate>
+          <Animate
+            extendClassName="t-featuredproduct_content"
+            type="slideInLeft"
+          >
             <div className="t-featuredproduct_carousel">
               <Carousel
                 settings={{
@@ -77,7 +84,7 @@ const FeaturedProduct: React.FC<FeaturedProductProps> = ({
               </div>
             )
           }
-          </div>
+          </Animate>
         </div>
       </Container>
     </div>

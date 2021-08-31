@@ -96,10 +96,8 @@
   }
 
   &_title {
-    display: inline-block;
-    left: 50%;
-    position: relative;
-    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
   }
 
   &_content {

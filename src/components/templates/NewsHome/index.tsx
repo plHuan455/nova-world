@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 import Text from 'components/atoms/Text';
 import NewsCard, { NewsCardProps } from 'components/molecules/NewsCard';
+import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
 import Tabs, { Panel, Tab } from 'components/organisms/Tabs';
-import useScrollAnimate from 'hooks/useScrollAnimation';
 
 export interface NewsHomeTabProps {
   titleTab: string;
@@ -17,20 +17,24 @@ interface NewsHomeProps {
 }
 
 const NewsHome: React.FC<NewsHomeProps> = ({ title, tabDataNewsHome }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const animate = useScrollAnimate(ref);
   const [indexActive, setIndexActive] = useState(0);
 
   return (
     <div className="t-newshome">
-      <div className={animate ? 't-newshome_wrap animate animate-fadeInUp' : 't-newshome_wrap preanimate'}>
+      <div className="t-newshome_wrap">
         <Container>
-          <div className="t-newshome_title">
+          <Animate
+            type="fadeInUp"
+            extendClassName="t-newshome_title"
+          >
             <Text modifiers={['40x60', '500', 's005', 'white', 'center', 'uppercase']}>
               {title}
             </Text>
-          </div>
-          <div className="t-newshome_tabs">
+          </Animate>
+          <Animate
+            type="fadeInUp"
+            extendClassName="t-newshome_tabs"
+          >
             <Tabs slidesToShow={tabDataNewsHome.length}>
               {
                 tabDataNewsHome.map((ele, idx) => (
@@ -71,6 +75,7 @@ const NewsHome: React.FC<NewsHomeProps> = ({ title, tabDataNewsHome }) => {
                               ele.dataNewsHome.map((item, stt) => (
                                 stt > 0 && (
                                   <NewsCard
+                                    key={`news-card-${stt.toString()}`}
                                     direction="horizontal"
                                     imgSrc={item.imgSrc}
                                     ratio={item.ratio}
@@ -88,7 +93,7 @@ const NewsHome: React.FC<NewsHomeProps> = ({ title, tabDataNewsHome }) => {
                 </Panel>
               ))
             }
-          </div>
+          </Animate>
         </Container>
       </div>
     </div>
