@@ -1,6 +1,7 @@
 import React from 'react';
 
 import DivergencesHome from './divergences';
+import Introduction from './introduction';
 import Library from './library';
 import Location from './location';
 import NewsHomeContainer from './news';
@@ -13,6 +14,9 @@ const Home: React.FC = () => (
   <MainLayout isHome>
     <section className="s-banner">
       <Banner isHome thumbnail={HomeBanner} />
+    </section>
+    <section className="s-introduction">
+      <Introduction />
     </section>
     <section className="s-divergences">
       <DivergencesHome />
