@@ -1,7 +1,7 @@
-import imgExperienceCard from 'assets/images/img_experienceCard.png';
-import imgExperienceCard2 from 'assets/images/img_experienceCard2.png';
-import imgExperienceCard3 from 'assets/images/img_experienceCard3.png';
-import imgExperienceCard4 from 'assets/images/img_experienceCard4.png';
+import imgExperienceCard from 'assets/images/experienceJourney/img_experienceCard.png';
+import imgExperienceCard2 from 'assets/images/experienceJourney/img_experienceCard2.png';
+import imgExperienceCard3 from 'assets/images/experienceJourney/img_experienceCard3.png';
+import imgExperienceCard4 from 'assets/images/experienceJourney/img_experienceCard4.png';
 import { ExperienceCardProps } from 'components/molecules/ExperienceCard';
 
 const dataExperienceJourney:ExperienceCardProps[] = [

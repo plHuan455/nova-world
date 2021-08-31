@@ -1,7 +1,7 @@
 import React from 'react';
 
 import DivergencesHome from './divergences';
-import ExperienceJourneyContainer from './experiencejourney';
+import ExperienceJourneyHome from './experiencejourney';
 import Introduction from './introduction';
 import Library from './library';
 import Location from './location';
@@ -26,7 +26,7 @@ const Home: React.FC = () => (
       <Location />
     </section>
     <section className="s-experiencejourney">
-      <ExperienceJourneyContainer />
+      <ExperienceJourneyHome />
     </section>
     <section className="s-library">
       <Library />
