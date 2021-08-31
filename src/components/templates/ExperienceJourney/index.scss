@@ -54,8 +54,19 @@
 
   .slick-list {
     @include small-mobile {
-      margin-left: calc(150 / 1366 * 100%);
-      padding: 0 calc(78 / 1366 * 100%) 0 0 !important;
+      margin-left: calc(69 / 575 * 100%);
+      padding: 0 calc(91 / 575 * 100%) 0 0 !important;
+    }
+  }
+
+  .slick-active {
+    @include small-mobile {
+      .m-expcard_image {
+        &::before {
+          height: 0;
+          width: 0;
+        }
+      }
     }
   }
 }
