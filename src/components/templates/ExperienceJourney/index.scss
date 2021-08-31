@@ -34,21 +34,28 @@
 
   &_gallery {
     &_item {
-      padding: 15px;
+      padding: rem(15);
 
       @include tablet-down {
-        padding: 7px;
+        padding: rem(7);
       }
     }
   }
 
   .slick-next {
-    bottom: rem(-40);
+    bottom: rem(-50);
     top: auto;
     transform: none;
   }
 
   .large.next {
     left: rem(10);
+  }
+
+  .slick-list {
+    @include small-mobile {
+      margin-left: calc(150 / 1366 * 100%);
+      padding: 0 calc(78 / 1366 * 100%) 0 0 !important;
+    }
   }
 }

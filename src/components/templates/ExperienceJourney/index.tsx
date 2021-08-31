@@ -25,7 +25,6 @@ const settingMoblie = {
     {
       breakpoint: 575,
       settings: {
-        infinite: false,
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: true,
