@@ -1,25 +1,28 @@
 .t-expjourney {
-  background: url('~assets/images/bg_expjourney.png');
-  background-position-x: center;
-  background-repeat: no-repeat;
-  background-size: auto;
+  background: url('~assets/images/bg_expjourney.png') no-repeat 37% top;
   position: relative;
-
+  @include small-mobile {
+    background-position: -2% top;
+  }
+  
   &::before {
     background: $linear-gradient6;
-    bottom: 0;
+    bottom: rem(-150);
     content: '';
     left: 0;
     position: absolute;
     right: 0;
     top: 0;
+    @include mobile-down {
+      bottom: rem(-120);
+    }
   }
 
   &_wrap {
-    padding: rem(89) 0 rem(212);
+    padding: rem(89) 0 rem(96);
     @include mobile-down {
       margin-top: rem(14);
-      padding: rem(50) 0 rem(112);
+      padding: rem(40) 0 rem(87);
     }
   }
 
@@ -34,7 +37,7 @@
 
   &_gallery {
     &_item {
-      padding: rem(15);
+      padding: rem(16);
 
       @include tablet-down {
         padding: rem(7);
@@ -53,14 +56,13 @@
   }
 
   .slick-list {
-    @include small-mobile {
+    @include mobile-down {
       margin-left: calc(69 / 575 * 100%);
-      padding: 0 calc(91 / 575 * 100%) 0 0 !important;
     }
   }
 
   .slick-active {
-    @include small-mobile {
+    @include mobile-down {
       .m-expcard_image {
         &::before {
           height: 0;

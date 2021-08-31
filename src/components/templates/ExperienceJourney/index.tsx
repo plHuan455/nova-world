@@ -1,5 +1,4 @@
-import React, { useState, useRef } from 'react';
-import Slider from 'react-slick';
+import React, { useRef } from 'react';
 
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
@@ -13,7 +12,7 @@ interface ExperienceJourneyProps {
   dataExperienceJourney?: ExperienceCardProps[];
 }
 
-const settingMoblie = {
+const settings = {
   className: 'center',
   centerMode: true,
   infinite: true,
@@ -23,8 +22,9 @@ const settingMoblie = {
   slidesPerRow: 2,
   responsive: [
     {
-      breakpoint: 575,
+      breakpoint: 767,
       settings: {
+        centerPadding: '40',
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: true,
@@ -39,28 +39,23 @@ const settingMoblie = {
 const ExperienceJourney: React.FC<ExperienceJourneyProps> = ({ title, dataExperienceJourney }) => {
   const ref = useRef<HTMLDivElement>(null);
   const animate = useScrollAnimate(ref);
-  const [nav, setNav] = useState<Slider|null>();
   return (
-    <div className="t-expjourney">
+    <div ref={ref} className="t-expjourney">
       <div className={animate ? 't-expjourney_wrap animate animate-fadeInUp' : 't-expjourney_wrap preanimate'}>
         <Container fullScreen>
           <div className="t-expjourney_title">
-            <Heading type="h2" modifiers={['500', 's005', 'center', 'cyanCobaltBlue', 'uppercase']}>
+            <Heading type="h2">
               {title}
               <Divider />
             </Heading>
           </div>
           <div className="t-expjourney_gallery">
             <Carousel
-              asNavFor={nav as Slider}
-              ref={(slider) => {
-                setNav(slider);
-              }}
-              settings={settingMoblie}
+              settings={settings}
             >
               {
-                dataExperienceJourney && dataExperienceJourney?.length > 0
-                && dataExperienceJourney?.map((item, index) => (
+                dataExperienceJourney && dataExperienceJourney.length > 0
+                && dataExperienceJourney.map((item, index) => (
                   <div
                     key={`gallery${index.toString()}`}
                     className="t-expjourney_gallery_item"
@@ -70,7 +65,7 @@ const ExperienceJourney: React.FC<ExperienceJourneyProps> = ({ title, dataExperi
                       title={item.title}
                       location={item.location}
                       stt={index + 1}
-                      href=""
+                      href={item.href}
                     />
                   </div>
                 ))
