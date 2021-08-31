@@ -82,10 +82,16 @@
 
   &-24x24 {
     @include font-base(24, 24);
+    @include small-mobile {
+      @include font-base(18, 18);
+    }
   }
 
   &-48x24 {
     @include font-base(48, 24);
+    @include small-mobile {
+      @include font-base(30, 15);
+    }
   }
 
   &-40x60 {

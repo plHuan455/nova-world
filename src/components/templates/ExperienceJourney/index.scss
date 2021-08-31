@@ -33,17 +33,22 @@
   }
 
   &_gallery {
-    column-gap: rem(35);
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    row-gap: rem(35);
-    width: 100%;
-    @include mobile-down {
-      grid-auto-flow: row;
-      grid-template-columns: repeat(1, 1fr);
-      row-gap: rem(16);
+    &_item {
+      padding: 15px;
+
+      @include tablet-down {
+        padding: 7px;
+      }
     }
+  }
+
+  .slick-next {
+    bottom: rem(-40);
+    top: auto;
+    transform: none;
+  }
+
+  .large.next {
+    left: rem(10);
   }
 }
