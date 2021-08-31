@@ -1,3 +1,18 @@
 .o-banner {
   $root: &;
+
+  &_home {
+    height: 100vh;
+    min-height: 0;
+
+    @include desktop-up {
+      .o-player {
+        height: 100vh;
+      }
+      
+      .a-image {
+        height: 100%;
+      }
+    }
+  }
 }

@@ -1,0 +1,107 @@
+.o-player {
+  $root: &;
+  display: block;
+  overflow: hidden;
+  padding-bottom: 362/653 * 100%;
+  position: relative;
+  width: 100%;
+
+  &_button {
+    border: rem(7) solid $white;
+    border-radius: 50%;
+    cursor: pointer;
+    height: rem(74);
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.4s ease;
+    width: rem(74);
+    z-index: 2;
+
+    &:hover {
+      box-shadow: 0 0 rem(7) rem(4) $spiro-disco-ball;
+    }
+
+    &::before {
+      border-bottom: rem(14) solid transparent;
+      border-left: rem(23) solid $white;
+      border-top: rem(14) solid transparent;
+      content: '';
+      cursor: pointer;
+      height: 0;
+      left: 53%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      z-index: 2;
+    }
+  }
+
+  &-isHomePlayer {
+    #{$root}_button {
+      border: rem(1) solid $white;
+      bottom: rem(40);
+      height: rem(52);
+      left: auto;
+      right: rem(72);
+      top: auto;
+      transform: none;
+      width: rem(52);
+    }
+
+    #{$root}_thumbnail {
+      &::before {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &_video {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    iframe {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  &_thumbnail {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+
+    img {
+      height: 100%;
+      left: 0;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      transition: 0.8s ease;
+      width: 100%;
+    }
+
+    &::before {
+      background-color: rgba($stormcloud, 0.4);
+      content: '';
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 2;
+    }
+  }
+}
