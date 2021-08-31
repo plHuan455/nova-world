@@ -14,12 +14,14 @@
       @include tablet-down {
         background-size: cover;
         bottom: rem(27);
-        left: rem(-40);
-        right: rem(-40);
+        left: rem(-200);
+        right: rem(-200);
         top: rem(-24);
       }
-      @include mobile-down {
+      @include small-mobile {
         background: url('~assets/images/formRegister/bg_border_mobile.png') no-repeat center / 100% 100%;
+        left: rem(-40);
+        right: rem(-40);
       }
     }
   }

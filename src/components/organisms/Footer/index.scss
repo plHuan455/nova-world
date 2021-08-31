@@ -1,0 +1,67 @@
+.o-footer {
+  background: linear-gradient(180deg, #10431f 0%, rgba(36, 85, 163, 0.55) 104.83%),
+    url('~assets/images/footer/bg_footer.png') no-repeat center / cover;
+
+  &_form {
+    margin-top: rem(-126);
+    @include small-mobile {
+      margin-top: rem(-59);
+    }
+  }
+
+  &_top {
+    padding-top: rem(72);
+    @include mobile-down {
+      padding-top: rem(40);
+    }
+  }
+
+  &_branch {
+    max-width: rem(115);
+    @include mobile-down {
+      max-width: rem(90);
+    }
+  }
+
+  &_content {
+    display: flex;
+    flex-wrap: wrap;
+    margin: rem(30) rem(-16) 0;
+    @include tablet-down {
+      margin: rem(30) rem(-10) 0;
+    }
+    @include mobile-down {
+      margin: rem(14) rem(-10) 0;
+    }
+
+    &_left,
+    &_right {
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding: 0 rem(16);
+      @include tablet-down {
+        padding: 0 rem(10);
+      }
+      @include mobile-down {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      .m-address-item {
+        margin-top: rem(10);
+      }
+    }
+  }
+
+  &_bottom {
+    align-items: center;
+    background-color: $cool-black;
+    display: flex;
+    height: rem(32);
+    justify-content: center;
+    margin-top: rem(64);
+    @include mobile-down {
+      margin-top: rem(40);
+    }
+  }
+}

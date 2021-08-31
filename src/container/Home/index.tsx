@@ -26,18 +26,6 @@ const Home: React.FC = () => (
     <section className="s-newshome">
       <NewsHomeContainer />
     </section>
-    <div
-      style={{
-        height: '100vh',
-        background: '#123485',
-      }}
-    />
-    <div
-      style={{
-        height: '100vh',
-        background: '#334524',
-      }}
-    />
   </MainLayout>
 );
 
