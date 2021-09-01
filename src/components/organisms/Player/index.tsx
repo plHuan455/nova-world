@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { forwardRef } from 'react';
 import ReactPlayer from 'react-player';
 
@@ -13,6 +14,7 @@ interface PlayerProps {
   isMuted?: boolean;
   handleClickPlayBtn?: () => void;
   isHomePlayer?: boolean;
+  loop?: boolean;
 }
 
 const Player: React.ForwardRefRenderFunction<ReactPlayer, PlayerProps> = (
@@ -23,14 +25,16 @@ const Player: React.ForwardRefRenderFunction<ReactPlayer, PlayerProps> = (
     isPlay,
     hasControls,
     isMuted,
-    handleClickPlayBtn = () => {},
+    handleClickPlayBtn,
     isHomePlayer,
+    loop,
   },
   ref,
 ) => (
-  <div className={mapModifiers('o-player', isHomePlayer && 'isHomePlayer')}>
+  <div className={mapModifiers('o-player', isHomePlayer && 'isHomePlayer', ratio)}>
     <div className="o-player_video">
       <ReactPlayer
+        loop={loop}
         url={videoSrc}
         width="100%"
         height="100%"
@@ -52,9 +56,10 @@ const Player: React.ForwardRefRenderFunction<ReactPlayer, PlayerProps> = (
             />
           </div>
         )}
-        <div className="o-player_button" onClick={handleClickPlayBtn} />
+        {!isHomePlayer && <div className="o-player_button" onClick={handleClickPlayBtn} />}
       </>
     )}
+    {isHomePlayer && <div className={`o-player_button ${isPlay ? 'pause' : ''}`} onClick={handleClickPlayBtn} />}
   </div>
 );
 

@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Player from '.';
 
@@ -29,8 +29,19 @@ export default {
   },
 } as Meta;
 
-export const normal: Story = ({ videoSrc, videoThumbnail, isHomePlayer }) => (
-  <div style={{ maxWidth: '646px' }}>
-    <Player videoSrc={videoSrc} videoThumbnail={videoThumbnail} ratio="1366x768" isHomePlayer={isHomePlayer} />
-  </div>
-);
+export const normal: Story = ({ videoSrc, videoThumbnail, isHomePlayer }) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [isPlay, setIsPlay] = useState(false);
+  return (
+    <div style={{ maxWidth: '646px' }}>
+      <Player
+        videoSrc={videoSrc}
+        videoThumbnail={videoThumbnail}
+        ratio="1366x768"
+        isHomePlayer={isHomePlayer}
+        isPlay={isPlay}
+        handleClickPlayBtn={() => setIsPlay(!isPlay)}
+      />
+    </div>
+  );
+};

@@ -2,9 +2,12 @@
   $root: &;
   display: block;
   overflow: hidden;
-  padding-bottom: 362/653 * 100%;
   position: relative;
   width: 100%;
+
+  &-1366x768 {
+    padding-bottom: 768 / 1366 * 100%;
+  }
 
   &_button {
     border: rem(7) solid $white;
@@ -15,9 +18,9 @@
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    transition: 0.4s ease;
+    transition: $transition-long ease;
     width: rem(74);
-    z-index: 2;
+    z-index: 3;
 
     &:hover {
       box-shadow: 0 0 rem(7) rem(4) $spiro-disco-ball;
@@ -49,6 +52,32 @@
       top: auto;
       transform: none;
       width: rem(52);
+      @include small-mobile {
+        bottom: rem(20);
+        right: rem(20);
+      }
+
+      &.pause {
+        &::before {
+          background-color: $white;
+          border: 0;
+          height: rem(28);
+          left: 27%;
+          transform: translateY(-50%);
+          width: rem(8);
+        }
+
+        &::after {
+          background-color: $white;
+          content: '';
+          height: rem(28);
+          position: absolute;
+          right: 27%;
+          top: 50%;
+          transform: translateY(-50%);
+          width: rem(8);
+        }
+      }
     }
 
     #{$root}_thumbnail {

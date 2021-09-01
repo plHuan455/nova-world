@@ -14,7 +14,7 @@ import MainLayout from 'components/templates/MainLayout';
 const Home: React.FC = () => (
   <MainLayout isHome>
     <section className="s-banner">
-      <Banner isHomePage thumbnail={HomeBanner} />
+      <Banner isHomePage videoSrc="https://www.youtube.com/watch?v=Ktm_JYmOeOc" thumbnail={HomeBanner} />
     </section>
     <section className="s-introduction">
       <Introduction />

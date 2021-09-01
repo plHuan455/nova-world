@@ -12,7 +12,7 @@ export default {
 } as Meta;
 
 export const BannerHome: Story = () => (
-  <Banner thumbnail={HomeBanner} isHomePage isHomePlayer videoSrc="https://youtu.be/E2Tj_CQDrk4" />
+  <Banner thumbnail={HomeBanner} isHomePage isHomePlayer videoSrc="https://www.youtube.com/watch?v=Ktm_JYmOeOc" />
 );
 
 export const BannerNormal: Story = () => (
