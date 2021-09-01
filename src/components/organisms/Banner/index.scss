@@ -1,3 +1,21 @@
 .o-banner {
-  $root: &;
+  &_home {
+    @include break-min(1367px) {
+      .o-player.o-player-isHomePlayer {
+        height: 100vh;
+        padding-bottom: 0;
+      }
+      
+      .o-player_thumbnail {
+        .a-image {
+          background-position: bottom center;
+
+          &::before {
+            height: 100vh;
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
+  }
 }

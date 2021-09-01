@@ -1,0 +1,183 @@
+.o-player {
+  $root: &;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  &-1366x768 {
+    padding-bottom: 768 / 1366 * 100%;
+  }
+
+  &_button {
+    border: rem(7) solid $white;
+    border-radius: 50%;
+    cursor: pointer;
+    height: rem(52);
+    position: absolute;
+    transition: $transition-long ease;
+    width: rem(52);
+    z-index: 3;
+
+    @include desktop-down {
+      height: rem(48);
+      width: rem(48);
+    }
+
+    @include tablet-down {
+      height: rem(32);
+      width: rem(32);
+    }
+
+    &:hover {
+      box-shadow: 0 0 rem(7) rem(4) $spiro-disco-ball;
+    }
+
+    &::before {
+      border-bottom: rem(14) solid transparent;
+      border-left: rem(23) solid $white;
+      border-top: rem(14) solid transparent;
+      content: '';
+      cursor: pointer;
+      height: 0;
+      left: 53%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      z-index: 2;
+      @include desktop-down {
+        border-bottom-width: rem(8);
+        border-left-width: rem(14);
+        border-top-width: rem(8);
+      }
+      @include tablet-down {
+        border-bottom-width: rem(6);
+        border-left-width: rem(10);
+        border-top-width: rem(6);
+      }
+    }
+
+
+    &.pause {
+      &::before {
+        background-color: $white;
+        border: 0;
+        height: rem(28);
+        left: 27%;
+        transform: translateY(-50%);
+        width: rem(8);
+      }
+
+      &::after {
+        background-color: $white;
+        content: '';
+        height: rem(28);
+        position: absolute;
+        right: 27%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: rem(8);
+      }
+
+      @include desktop-down {
+        &::before {
+          height: rem(20);
+          left: 33%;
+          width: rem(6);
+        }
+
+        &::after {
+          height: rem(20);
+          right: 33%;
+          width: rem(6);
+        }
+      }
+      @include tablet-down {
+        &::before {
+          height: rem(18);
+          left: 33%;
+          width: rem(4);
+        }
+
+        &::after {
+          height: rem(18);
+          right: 33%;
+          width: rem(4);
+        }
+      }
+    }
+  }
+
+  &-isHomePlayer {
+    #{$root}_button {
+      border: rem(1) solid $white;
+      bottom: rem(40);
+      right: rem(72);
+      @include desktop-down {
+        right: rem(48);
+      }
+      @include tablet-down {
+        bottom: rem(32);
+        right: rem(32);
+      }
+      @include mobile-down {
+        bottom: rem(15);
+        right: rem(15);
+      }
+    }
+
+    #{$root}_thumbnail {
+      &::before {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &_video {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    iframe {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  &_thumbnail {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+
+    img {
+      height: 100%;
+      left: 0;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      transition: 0.8s ease;
+      width: 100%;
+    }
+
+    &::before {
+      background-color: rgba($stormcloud, 0.4);
+      content: '';
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 2;
+    }
+  }
+}

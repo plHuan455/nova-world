@@ -11,6 +11,10 @@ export default {
   argTypes: {},
 } as Meta;
 
-export const normal: Story = () => (
+export const BannerHome: Story = () => (
+  <Banner thumbnail={HomeBanner} isHomePage isHomePlayer videoSrc="https://www.youtube.com/watch?v=Ktm_JYmOeOc" />
+);
+
+export const BannerNormal: Story = () => (
   <Banner thumbnail={HomeBanner} />
 );
