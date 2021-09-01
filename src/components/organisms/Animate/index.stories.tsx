@@ -10,5 +10,14 @@ export default {
 } as Meta;
 
 export const normal: Story = () => (
-  <Animate />
+  <Animate
+    type="slideInLeft"
+  >
+    <div
+      style={{
+        height: '100px',
+        backgroundColor: '#55aa41',
+      }}
+    />
+  </Animate>
 );
