@@ -8,7 +8,6 @@ interface LocationCardProps {
   imgSrc: string;
   alt?: string;
   title: string;
-  seemore?: string;
   href: string;
 }
 
@@ -16,7 +15,6 @@ const LocationCard: React.FC<LocationCardProps> = ({
   imgSrc,
   alt,
   title,
-  seemore,
   href,
 }) => (
   <div className="m-locationcard">
@@ -32,7 +30,7 @@ const LocationCard: React.FC<LocationCardProps> = ({
       <Link to={href}>
         <div className="m-locationcard_content_seemore">
           <Text modifiers={['16x19', '400', 'cyanCobaltBlue', 'underline']}>
-            {seemore}
+            Xem thêm
           </Text>
         </div>
       </Link>

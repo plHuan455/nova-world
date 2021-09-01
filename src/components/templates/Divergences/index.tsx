@@ -37,7 +37,7 @@ export const DivergencesCard:React.FC<DivergencesCardType> = ({
       {srcLogo
       && (
       <div className="t-divergences_card_branch">
-        <Image ratio="126x30" imgSrc={srcLogo} />
+        <Image ratio="167x42" imgSrc={srcLogo} />
       </div>
       )}
       <div className="t-divergences_card_title">

@@ -5,8 +5,8 @@ import { Link, NavLink } from 'react-router-dom';
 
 import Container from '../Container';
 
-import LogoNovaWorldBlue from 'assets/images/logo-novaworld-blue.png';
-import LogoNovaWorldWhite from 'assets/images/logo-novaworld-white.png';
+import LogoNovaWorldBlue from 'assets/images/logo/nova-world-blue.png';
+import LogoNovaWorldWhite from 'assets/images/logo/nova-world-white.png';
 import Icon from 'components/atoms/Icon';
 import Image from 'components/atoms/Image';
 import useClickOutside from 'hooks/useClickOutside';

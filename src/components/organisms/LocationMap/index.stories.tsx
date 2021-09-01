@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import LocationMap from '.';
 
-import imgLocationCard from 'assets/images/img_locationcard.png';
+import imgLocationCard from 'assets/images/habana.jpeg';
 
 export default {
   title: 'Components/organisms/LocationMap',
@@ -14,6 +14,20 @@ export default {
 
 export const normal: Story = () => (
   <Router>
-    <LocationMap imgSrc={imgLocationCard} title="Novaworld Hồ Tràm - Morito" seemore="Xem thêm" href="" />
+    <LocationMap data={{
+      tropicana: {
+        imgSrc: imgLocationCard, title: 'Novaworld Hồ Tràm - Morito', href: '',
+      },
+      habana: {
+        imgSrc: imgLocationCard, title: 'Novaworld Hồ Tràm - Morito', href: '',
+      },
+      morito: {
+        imgSrc: imgLocationCard, title: 'Novaworld Hồ Tràm - Morito', href: '',
+      },
+      wonderland: {
+        imgSrc: imgLocationCard, title: 'Novaworld Hồ Tràm - Morito', href: '',
+      },
+    }}
+    />
   </Router>
 );

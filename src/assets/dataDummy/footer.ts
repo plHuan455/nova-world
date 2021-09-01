@@ -3,7 +3,7 @@ import { AddressItemType } from 'components/organisms/Footer';
 export const addressList: AddressItemType[] = [
   {
     name: 'NOVALAND GALLERY',
-    address: '179 Hai Bà Trưng, Phường 6, Quận 3, TP.HCM',
+    address: '179 Hai Bà Trưng, Phường Võ Thị Sáu, Quận 3, TP.HCM',
   },
   {
     name: 'Sàn giao dịch Nguyễn Văn Trỗi',

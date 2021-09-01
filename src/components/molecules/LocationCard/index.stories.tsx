@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import LocationCard from '.';
 
-import imgLocationCard from 'assets/images/img_locationcard.png';
+import imgLocationCard from 'assets/images/habana.jpeg';
 
 export default {
   title: 'Components/molecules/LocationCard',
@@ -18,7 +18,7 @@ export const normal: Story = () => (
       maxWidth: '257px',
     }}
     >
-      <LocationCard imgSrc={imgLocationCard} title="Novaworld Hồ Tràm - Morito" seemore="Xem thêm" href="" />
+      <LocationCard imgSrc={imgLocationCard} title="Novaworld Hồ Tràm - Morito" href="" />
     </div>
   </Router>
 );
