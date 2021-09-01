@@ -5,7 +5,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 import Container from '../Container';
 
-import LogoNovaWorldBlue from 'assets/images/logo/nova-world-blue.png';
+import LogoNovaWorldBlue from 'assets/images/logo/nova-world-blue.svg';
 import LogoNovaWorldWhite from 'assets/images/logo/nova-world-white.png';
 import Icon from 'components/atoms/Icon';
 import Image from 'components/atoms/Image';

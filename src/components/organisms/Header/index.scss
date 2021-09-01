@@ -50,7 +50,8 @@
 
     #{$root}-scroll & {
       .a-image {
-        background-image: url('~assets/images/logo/nova-world-blue.png') !important;
+        background-image: url('~assets/images/logo/nova-world-blue.svg') !important;
+        background-size: contain;
       }
     }
   }
