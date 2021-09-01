@@ -3,7 +3,7 @@ import React from 'react';
 
 import Image from '.';
 
-import LogoNovaWorld from 'assets/images/logo-novaworld-white.png';
+import LogoNovaWorld from 'assets/images/logo/nova-world-white.png';
 
 export default {
   title: 'Components/atoms/Image',

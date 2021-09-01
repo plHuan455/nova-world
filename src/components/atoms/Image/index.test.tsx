@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Image from '.';
 
-import LogoNovaWorld from 'assets/images/logo-novaworld-white.png';
+import LogoNovaWorld from 'assets/images/logo/nova-world-white.png';
 
 describe('<Image />', () => {
   test('renders without crashing', () => {

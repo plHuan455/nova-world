@@ -135,8 +135,6 @@
   }
 
   &_description {
-    @include text-overflow (6);
-
     .a-text {
       @include mobile-down {
         text-align: center;
@@ -232,7 +230,7 @@
       }
 
       &.remove {
-        animation: zoomImage $transition-long ease-in-out;
+        animation: zoomImage 0.8s ease-in-out;
       }
     }
   }

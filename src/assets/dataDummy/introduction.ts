@@ -1,19 +1,26 @@
-import img2 from 'assets/images/img-library-1.jpg';
-import img3 from 'assets/images/img-library-2.jpg';
-import img1 from 'assets/images/img_newscard.png';
+import Habana from 'assets/images/habana.jpeg';
+import Morito from 'assets/images/morito.jpeg';
+import TheTropicana from 'assets/images/the-tropicana.jpg';
+import Wonderland from 'assets/images/wonderland.jpeg';
+
+const description = 'Tổ hợp du lịch nghỉ dưỡng giải trí NovaWorld Ho Tram có quy mô 1.000ha, trải dọc 30km cung đường biển từ Lộc An đến Bình Châu. Cách thành phố Hồ Chí Minh 90 phút di chuyển, dự án NovaWorld Ho Tram bao gồm 10 phân kỳ, khai thác nét đẹp thiên nhiên nguyên sơ cùng địa thế rừng biển liền kề, phát triển sản phẩm second home giá trị và chuỗi tiện ích đẳng cấp, mang trải nghiệm quốc tế đa dạng về miền nhiệt đới Hồ Tràm.';
 
 const cardIntro = [
   {
-    description: 'Dự án chia làm nhiều giai đoạn phát triển, khai thác thế mạnh của thiên nhiên Hồ Tràm nguyên sơ, kết hợp hài hoà giữa địa thế rừng và biển liền kề, tạo nên chuỗi du lịch giải trí đa dạng và trải nghiệm nghỉ dưỡng.',
-    imgSrc: img1,
+    description,
+    imgSrc: Habana,
   },
   {
-    description: 'Kết hợp hài hoà giữa địa thế rừng và biển liền kề, tạo nên chuỗi du lịch giải trí đa dạng và trải nghiệm nghỉ dưỡng.',
-    imgSrc: img2,
+    description,
+    imgSrc: Morito,
   },
   {
-    description: 'Khai thác thế mạnh của thiên nhiên Hồ Tràm nguyên sơ, kết hợp hài hoà giữa địa thế rừng và biển liền kề, tạo nên chuỗi du lịch giải trí đa dạng và trải nghiệm nghỉ dưỡng.',
-    imgSrc: img3,
+    description,
+    imgSrc: Wonderland,
+  },
+  {
+    description,
+    imgSrc: TheTropicana,
   },
 ];
 

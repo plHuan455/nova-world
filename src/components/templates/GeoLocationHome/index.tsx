@@ -6,13 +6,12 @@ import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
 import LocationMap, { LocationMapProps } from 'components/organisms/LocationMap';
 
-interface GeoLocationHomeProps {
+interface GeoLocationHomeProps extends LocationMapProps {
   title: string;
   desc?: string;
-  dataLocationMap: LocationMapProps;
 }
 
-const GeoLocationHome: React.FC<GeoLocationHomeProps> = ({ title = 'VỊ TRÍ ĐỊA LÝ', desc, dataLocationMap }) => (
+const GeoLocationHome: React.FC<GeoLocationHomeProps> = ({ title = 'VỊ TRÍ ĐỊA LÝ', desc, data }) => (
   <div className="t-geolocationhome">
     <Animate
       extendClassName="t-geolocationhome_top"
@@ -36,7 +35,7 @@ const GeoLocationHome: React.FC<GeoLocationHomeProps> = ({ title = 'VỊ TRÍ Đ
       type="fadeInUp"
       extendClassName="t-geolocationhome-map "
     >
-      <LocationMap imgSrc={dataLocationMap.imgSrc} title={dataLocationMap.title} seemore={dataLocationMap.seemore} href="" />
+      <LocationMap data={data} />
     </Animate>
   </div>
 );

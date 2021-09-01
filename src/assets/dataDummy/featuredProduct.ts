@@ -1,20 +1,34 @@
-import image1 from 'assets/images/featuredProduct/image1.png';
+import Hill from 'assets/images/feature-hill.jpg';
+import Hotel from 'assets/images/feature-hotel.jpg';
+import Lagoon from 'assets/images/feature-lagoon.jpg';
+import Sea from 'assets/images/feature-sea.jpg';
+import Shophouse from 'assets/images/feature-shophouse.jpg';
 
 const cardFeatured = [
   {
-    title: 'Villa ven biển',
-    titleSub: 'Novaworld Ho Tram - Tropicana',
-    imgSrc: image1,
+    title: 'Biệt thự biển',
+    titleSub: 'NovaWorld Ho Tram - The Tropicana',
+    imgSrc: Sea,
   },
   {
-    title: 'Villa ven biển 1',
-    titleSub: 'Novaworld Ho Tram - Tropicana 1',
-    imgSrc: image1,
+    title: 'Biệt thự đồi',
+    titleSub: 'NovaWorld Ho Tram - The Tropicana',
+    imgSrc: Hill,
   },
   {
-    title: 'Villa ven biển 2',
-    titleSub: 'Novaworld Ho Tram - Tropicana 2',
-    imgSrc: image1,
+    title: 'Biệt thự lagoon',
+    titleSub: 'NovaWorld Ho Tram - The Tropicana',
+    imgSrc: Lagoon,
+  },
+  {
+    title: 'Shophouse',
+    titleSub: 'NovaWorld Ho Tram - The Tropicana',
+    imgSrc: Shophouse,
+  },
+  {
+    title: 'Boutique Hotel',
+    titleSub: 'NovaWorld Ho Tram - The Tropicana',
+    imgSrc: Hotel,
   },
 ];
 
