@@ -46,9 +46,6 @@
       position: absolute;
       width: 100%;
       z-index: 2;
-      @include mobile-down {
-        bottom: -8%;
-      }
     }
   }
 
@@ -66,7 +63,7 @@
     border-top-right-radius: rem(100);
     bottom: rem(40);
     left: 0;
-    padding: rem(30) rem(121) rem(26) rem(118);
+    padding: rem(30) rem(100) rem(26) rem(100);
     position: absolute;
     width: rem(513);
     z-index: 1;
@@ -130,14 +127,6 @@
           left: auto;
           right: rem(76);
         }
-      }
-    }
-  }
-
-  &_card {
-    .a-image {
-      @include mobile-down {
-        min-height: rem(360);
       }
     }
   }
