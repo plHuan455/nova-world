@@ -11,7 +11,7 @@ const dataDivergences = [
   {
     imgSrc: Tropicana,
     srcLogo: LogoTropicana,
-    title: 'Tropicana',
+    title: 'The Tropicana',
     description: 'Với quy mô hơn 140ha, Tropicana mang phong cách thiết kế miền nhiệt đới, nơi giao hòa giữa rừng & biển. Các tiện ích nổi bật như: Khách sạn M – Gallery, Hồ bơi nước mặn 5000m2, công viên giải trí Tropicana Park, kênh chèo thuyền Kayak, nông trại organic, chuỗi shophouse đa phong cách...Nơi đây với đa dạng các dòng second home, là điểm đến nghỉ dưỡng lý tưởng cho gia đình.',
     link: '/',
   },

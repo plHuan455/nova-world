@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import logoFooter from 'assets/images/footer/logo_footer.png';
+import logoNovaLand from 'assets/images/logo/nova-land.svg';
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
@@ -54,7 +54,7 @@ const Footer: React.FC<FooterProps> = ({
         <Container>
           <div className="o-footer_branch">
             <Link to="/">
-              <Image ratio="115x72" imgSrc={logoFooter} />
+              <Image ratio="335x261" imgSrc={logoNovaLand} />
             </Link>
           </div>
           <div className="o-footer_content">

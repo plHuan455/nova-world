@@ -14,19 +14,19 @@ const dataExperienceJourney:ExperienceCardProps[] = [
   {
     imgSrc: imgExperienceCard2,
     title: 'nghỉ dưỡng cao cấp',
-    location: 'NovaWorld Ho Tram Habana',
+    location: 'NovaWorld Ho Tram',
     href: '',
   },
   {
     imgSrc: imgExperienceCard3,
     title: 'DỊCH VỤ LƯU TRÚ',
-    location: 'NovaWorld Ho Tram Tropicana',
+    location: 'NovaWorld Ho Tram',
     href: '',
   },
   {
     imgSrc: imgExperienceCard4,
     title: 'ẨM THỰC THƯƠNG MẠI',
-    location: 'NovaWorld Ho Tram Habana',
+    location: 'NovaWorld Ho Tram',
     href: '',
   },
 ];
