@@ -1,4 +1,6 @@
 .t-libraryhome {
+  position: relative;
+  z-index: 3;
   $root: &;
 
   &-title {

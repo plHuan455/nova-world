@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
 import ExperienceCard, { ExperienceCardProps } from 'components/molecules/ExperienceCard';
+import Animate from 'components/organisms/Animate';
 import Carousel, { NextArrow } from 'components/organisms/Carousel';
 import Container from 'components/organisms/Container';
-import useScrollAnimate from 'hooks/useScrollAnimation';
 
 interface ExperienceJourneyProps {
   title: string;
@@ -36,24 +36,27 @@ const settings = {
   ],
 };
 
-const ExperienceJourney: React.FC<ExperienceJourneyProps> = ({ title, dataExperienceJourney }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const animate = useScrollAnimate(ref);
-  return (
-    <div ref={ref} className="t-expjourney">
-      <div className={animate ? 't-expjourney_wrap animate animate-fadeInUp' : 't-expjourney_wrap preanimate'}>
-        <Container fullScreen>
-          <div className="t-expjourney_title">
-            <Heading type="h2">
-              {title}
-              <Divider />
-            </Heading>
-          </div>
-          <div className="t-expjourney_gallery">
-            <Carousel
-              settings={settings}
-            >
-              {
+const ExperienceJourney: React.FC<ExperienceJourneyProps> = ({ title, dataExperienceJourney }) => (
+  <div className="t-expjourney">
+    <div className="t-expjourney_wrap">
+      <Container fullScreen>
+        <Animate
+          type="fadeInUp"
+          extendClassName="t-expjourney_title"
+        >
+          <Heading type="h2">
+            {title}
+            <Divider />
+          </Heading>
+        </Animate>
+        <Animate
+          type="slideInRight"
+          extendClassName="t-expjourney_gallery"
+        >
+          <Carousel
+            settings={settings}
+          >
+            {
                 dataExperienceJourney && dataExperienceJourney.length > 0
                 && dataExperienceJourney.map((item, index) => (
                   <div
@@ -70,12 +73,11 @@ const ExperienceJourney: React.FC<ExperienceJourneyProps> = ({ title, dataExperi
                   </div>
                 ))
               }
-            </Carousel>
-          </div>
-        </Container>
-      </div>
+          </Carousel>
+        </Animate>
+      </Container>
     </div>
-  );
-};
+  </div>
+);
 
 export default ExperienceJourney;

@@ -25,14 +25,18 @@
     }
 
     &_marker {
-      animation-duration: 0.7s;
-      animation-name: fadeInBlur;
-
+      // animation-duration: 0.7s;
+      // animation-name: fadeInBlur;
+      cursor: pointer;
       #{$root}_locationcard {
         display: none;
       }
       #{$root}_active {
         display: block;
+        transform: translateY(-200px);
+        @include tablet-down {
+          transform: translateY(-170px);
+        }
       }
     }
 

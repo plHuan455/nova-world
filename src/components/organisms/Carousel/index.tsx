@@ -12,17 +12,18 @@ export interface CarouselProps {
 interface ArrowProps extends CustomArrowProps {
   extendClassName?: string;
   variant?: 'light' | 'green' | 'normal' | 'large';
+  onClick?: () =>void;
 }
 
 export const PrevArrow: React.FC<ArrowProps> = ({
   className,
   variant = 'light',
   extendClassName = '',
-  ...rest
+  onClick,
 }) => (
   <div
     className={`${className} ${extendClassName} ${variant || ''} o-carousel_arrow prev `}
-    {...rest}
+    onClick={onClick}
   />
 );
 
@@ -30,11 +31,11 @@ export const NextArrow: React.FC<ArrowProps> = ({
   className,
   variant = 'light',
   extendClassName = '',
-  ...rest
+  onClick,
 }) => (
   <div
     className={`${className} ${extendClassName} ${variant || ''} o-carousel_arrow next`}
-    {...rest}
+    onClick={onClick}
   />
 );
 

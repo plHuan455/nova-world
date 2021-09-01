@@ -1,9 +1,19 @@
 .t-divergences {
+  background: url('~assets/images/divergences/bg_bottom.png') no-repeat center bottom / contain;
+  padding-bottom: rem(264);
+  @include desktop-down {
+    padding-bottom: rem(190);
+  }
+  @include tablet-down {
+    padding-bottom: rem(140);
+  }
+  @include mobile-down {
+    padding-bottom: rem(120);
+  }
+
   &_heading {
-    display: inline-block;
-    left: 50%;
-    position: relative;
-    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
   }
 
   &_content {

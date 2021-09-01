@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import logoFooter from 'assets/images/footer/logo_footer.png';
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
+import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
 import RegisterProjectForm from 'components/templates/RegisterProjectForm';
 
@@ -43,9 +44,12 @@ const Footer: React.FC<FooterProps> = ({
 
   return (
     <div className="o-footer">
-      <div className="o-footer_form">
+      <Animate
+        extendClassName="o-footer_form"
+        type="fadeInUp"
+      >
         <RegisterProjectForm />
-      </div>
+      </Animate>
       <div className="o-footer_top">
         <Container>
           <div className="o-footer_branch">

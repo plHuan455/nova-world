@@ -4,6 +4,7 @@ import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
+import Animate from 'components/organisms/Animate';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 import Container from 'components/organisms/Container';
 
@@ -37,16 +38,24 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
       <div className="t-introductionhome_bg-circle-top" />
       <div className="t-introductionhome_bg-circle-bottom" />
       <Container>
-        <div className="t-introductionhome_title">
+        <Animate
+          type="fadeInUp"
+          extendClassName="t-introductionhome_title"
+        >
           <Heading type="h2">
             NOVAWORLD HO TRAM
+            <Divider />
           </Heading>
-          <Divider />
-        </div>
+        </Animate>
         {
           data.length > 0 && (
-            <div className="t-introductionhome_content">
-              <div className="t-introductionhome_left">
+            <Animate
+              type="fadeInUp"
+              extendClassName="t-introductionhome_content"
+            >
+              <div
+                className="t-introductionhome_left"
+              >
                 <div className="t-introductionhome_box">
                   {
                     data.map((item, index) => (
@@ -60,7 +69,9 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                   }
                 </div>
               </div>
-              <div className="t-introductionhome_right">
+              <div
+                className="t-introductionhome_right"
+              >
                 <div className="t-introductionhome_right_content">
                   <div className="t-introductionhome_description">
                     <Text modifiers={['cyanCobaltBlue']}>
@@ -102,7 +113,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                   </div>
                 </div>
               </div>
-            </div>
+            </Animate>
           )
         }
       </Container>

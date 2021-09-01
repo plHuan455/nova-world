@@ -1,32 +1,40 @@
 .t-featuredproduct {
+  position: relative;
+
+  &::before {
+    background: url('~assets/images/featuredProduct/bg_cloud.png') no-repeat center / cover;
+    content: '';
+    height: rem(715);
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transform: translateY(-44%);
+    width: 100%;
+    z-index: 2;
+    @include break-max(1366px) {
+      height: 0;
+      padding-bottom: calc(715 / 1366 * 100%);
+    }
+    @include desktop-down {
+      transform: translateY(-37%);
+    }
+    @include mobile-down {
+      transform: translateY(-32%);
+    }
+  }
+
   &_title-main {
-    display: inline-block;
-    left: 50%;
+    display: flex;
+    justify-content: center;
     position: relative;
-    transform: translateX(-50%);
     z-index: 3;
   }
 
   &_wrap {
+    background: linear-gradient(180deg, #e7f0ff 6.95%, rgba(255, 255, 255, 0.746638) 50.27%, rgba(255, 255, 255, 0) 91.56%);
+    margin-top: rem(-5);
     position: relative;
-
-    &::before {
-      background: url('~assets/images/featuredProduct/bg_cloud.png') no-repeat center / cover;
-      content: '';
-      left: 0;
-      padding-bottom: calc(715 / 1366 * 100%);
-      position: absolute;
-      top: 0;
-      transform: translateY(-40%);
-      width: 100%;
-      z-index: 2;
-      @include desktop-down {
-        transform: translateY(-37%);
-      }
-      @include mobile-down {
-        transform: translateY(-32%);
-      }
-    }
 
     &::after {
       background: url('~assets/images/featuredProduct/bg_waves.png') no-repeat center / cover;
@@ -34,6 +42,7 @@
       content: '';
       left: 0;
       padding-bottom: calc(245 / 1366 * 100%);
+      pointer-events: none;
       position: absolute;
       width: 100%;
       z-index: 2;
