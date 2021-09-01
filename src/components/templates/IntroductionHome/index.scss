@@ -39,6 +39,9 @@
     right: 0;
     top: 0;
     width: 12.8%;
+    @include tablet-desktop {
+      width: 9%;
+    }
 
     &::before {
       background: url('~assets/images/introductionHome/bg_circle_top.png') no-repeat top right / contain;
@@ -79,6 +82,9 @@
     max-width: rem(183);
     position: absolute;
     width: 13.4%;
+    @include tablet-desktop {
+      width: 9%;
+    }
 
     &::before {
       background: url('~assets/images/introductionHome/bg_circle_bottom.png') no-repeat bottom left / contain;
