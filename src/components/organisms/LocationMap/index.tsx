@@ -138,43 +138,15 @@ const LocationMap: React.FC<LocationMapProps> = ({
               </g>
               <g className="o-locationmap_map_animate o-locationmap_map_marker" ref={ref}>
                 <g className="o-locationmap_map_marker_item1" onClick={() => SetIsOpen(!isOpen)}>
-                  <foreignObject x="720.57" y="340.572" width="257" height="250" viewBox="0 0 137 24" className={isOpen ? 'o-locationmap_locationcard o-locationmap_active' : 'o-locationmap_locationcard'}>
-                    <LocationCard
-                      imgSrc={tropicana.imgSrc}
-                      title={tropicana.title}
-                      href={tropicana.href}
-                    />
-                  </foreignObject>
                   <rect x="670.57" y="340.572" width="51" height="74" fill="url(#patternMarker2)" />
                 </g>
                 <g onClick={() => SetIsOpenMarker2(!isOpenMarker2)}>
-                  <foreignObject x="670.57" y="370.572" width="257" height="250" viewBox="0 0 137 24" className={isOpenMarker2 ? 'o-locationmap_locationcard o-locationmap_active' : 'o-locationmap_locationcard'}>
-                    <LocationCard
-                      imgSrc={morito.imgSrc}
-                      title={morito.title}
-                      href={morito.href}
-                    />
-                  </foreignObject>
                   <rect x="633.57" y="370.572" width="51" height="74" fill="url(#patternMarker)" />
                 </g>
                 <g onClick={() => SetIsOpenMarker3(!isOpenMarker3)}>
-                  <foreignObject x="620.57" y="391.572" width="257" height="250" viewBox="0 0 137 24" className={isOpenMarker3 ? 'o-locationmap_locationcard o-locationmap_active' : 'o-locationmap_locationcard'}>
-                    <LocationCard
-                      imgSrc={wonderland.imgSrc}
-                      title={wonderland.title}
-                      href={wonderland.href}
-                    />
-                  </foreignObject>
                   <rect x="582.57" y="391.572" width="51" height="74" fill="url(#patternMarker)" />
                 </g>
                 <g onClick={() => SetIsOpenMarker4(!isOpenMarker4)}>
-                  <foreignObject x="582.57" y="390.572" width="257" height="250" viewBox="0 0 137 24" className={isOpenMarker4 ? 'o-locationmap_locationcard o-locationmap_active' : 'o-locationmap_locationcard'}>
-                    <LocationCard
-                      imgSrc={habana.imgSrc}
-                      title={habana.title}
-                      href={habana.href}
-                    />
-                  </foreignObject>
                   <rect x="542.57" y="390.572" width="51" height="74" fill="url(#patternMarker)" />
                 </g>
               </g>
@@ -190,6 +162,34 @@ const LocationMap: React.FC<LocationMapProps> = ({
               <image id="imageMarker2" width="57" height="75" xlinkHref={markerImg2} />
             </defs>
           </svg>
+          <div className={isOpen ? 'o-locationmap_locationcard o-locationmap_active' : 'o-locationmap_locationcard'}>
+            <LocationCard
+              imgSrc={tropicana.imgSrc}
+              title={tropicana.title}
+              href={tropicana.href}
+            />
+          </div>
+          <div className={isOpenMarker2 ? 'o-locationmap_locationcard2 o-locationmap_active' : 'o-locationmap_locationcard2'}>
+            <LocationCard
+              imgSrc={morito.imgSrc}
+              title={morito.title}
+              href={morito.href}
+            />
+          </div>
+          <div className={isOpenMarker3 ? 'o-locationmap_locationcard3 o-locationmap_active' : 'o-locationmap_locationcard3'}>
+            <LocationCard
+              imgSrc={wonderland.imgSrc}
+              title={wonderland.title}
+              href={wonderland.href}
+            />
+          </div>
+          <div className={isOpenMarker4 ? 'o-locationmap_locationcard4 o-locationmap_active' : 'o-locationmap_locationcard4'}>
+            <LocationCard
+              imgSrc={habana.imgSrc}
+              title={habana.title}
+              href={habana.href}
+            />
+          </div>
         </div>
       </div>
     </div>
