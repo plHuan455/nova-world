@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 
 import mapImg from 'assets/images/locationmap/location_map.png';
 import markerImg from 'assets/images/locationmap/location_marker.png';
@@ -30,17 +30,23 @@ const LocationMap: React.FC<LocationMapProps> = ({
   const ref = useRef<SVGGElement>(null);
   const refanimation = useRef<HTMLElement>(null);
   const animate = useScrollAnimate(refanimation);
-  const [isOpen, SetIsOpen] = useState(false);
-  const [isOpenMarker2, SetIsOpenMarker2] = useState(false);
-  const [isOpenMarker3, SetIsOpenMarker3] = useState(false);
-  const [isOpenMarker4, SetIsOpenMarker4] = useState(false);
-  const handleClickOutside = () => {
-    SetIsOpen(false);
-    SetIsOpenMarker2(false);
-    SetIsOpenMarker3(false);
-    SetIsOpenMarker4(false);
-  };
-  useClickOutside(ref, handleClickOutside);
+
+  const [state, setState] = useState<Type[]>([]);
+
+  useClickOutside(ref, () => setState([]));
+
+  const handleClick = useCallback((type: Type) => {
+    if (!state.includes(type)) {
+      setState([...state, type]);
+    }
+  }, [state]);
+
+  const isActive = useCallback((type: Type) => {
+    if (state.includes(type)) return 'active';
+
+    return '';
+  }, [state]);
+
   return (
     <div className="o-locationmap">
       <div className={animate ? 'animate animate-fadeInUp' : 'preanimate'}>
@@ -137,16 +143,16 @@ const LocationMap: React.FC<LocationMapProps> = ({
                 <path d="M474 412.678L489.786 418.002L500.174 431.257L508.016 460.273L506.692 468.519L508.525 478.435L513.312 485.01L519.219 490.229L523.7 497.222H530.524L533.375 499.831L535.82 498.996L535.412 495.97C535.412 495.97 539.079 490.333 539.588 489.603C539.995 488.872 545.902 485.219 545.902 485.219L547.124 484.697L561.586 466.745L564.438 458.603L561.688 452.863L570.141 441.382L575.946 439.503L582.261 441.486L593.056 439.607L597.334 436.998L602.935 426.769L610.37 423.22L626.461 425.412L637.664 424.786L651.617 426.352L671.273 424.577L678.3 424.682L685.531 419.88L688.586 412.574L702.437 401.719L708.141 401.302L716.39 402.032L721.686 400.362L725.963 402.137L735.639 399.736" stroke="#0D6F28" strokeWidth="2" strokeMiterlimit="10" />
               </g>
               <g className="o-locationmap_map_animate o-locationmap_map_marker" ref={ref}>
-                <g className="o-locationmap_map_marker_item1" onClick={() => SetIsOpen(!isOpen)}>
+                <g className="o-locationmap_map_marker_item1" onClick={() => handleClick('tropicana')}>
                   <rect x="670.57" y="340.572" width="51" height="74" fill="url(#patternMarker2)" />
                 </g>
-                <g onClick={() => SetIsOpenMarker2(!isOpenMarker2)}>
+                <g onClick={() => handleClick('morito')}>
                   <rect x="633.57" y="370.572" width="51" height="74" fill="url(#patternMarker)" />
                 </g>
-                <g onClick={() => SetIsOpenMarker3(!isOpenMarker3)}>
+                <g onClick={() => handleClick('wonderland')}>
                   <rect x="582.57" y="391.572" width="51" height="74" fill="url(#patternMarker)" />
                 </g>
-                <g onClick={() => SetIsOpenMarker4(!isOpenMarker4)}>
+                <g onClick={() => handleClick('habana')}>
                   <rect x="542.57" y="390.572" width="51" height="74" fill="url(#patternMarker)" />
                 </g>
               </g>
@@ -162,28 +168,28 @@ const LocationMap: React.FC<LocationMapProps> = ({
               <image id="imageMarker2" width="57" height="75" xlinkHref={markerImg2} />
             </defs>
           </svg>
-          <div className={isOpen ? 'o-locationmap_locationcard o-locationmap_active' : 'o-locationmap_locationcard'}>
+          <div className={`o-locationmap_card o-locationmap_tropicana ${isActive('tropicana')}`}>
             <LocationCard
               imgSrc={tropicana.imgSrc}
               title={tropicana.title}
               href={tropicana.href}
             />
           </div>
-          <div className={isOpenMarker2 ? 'o-locationmap_locationcard2 o-locationmap_active' : 'o-locationmap_locationcard2'}>
+          <div className={`o-locationmap_card o-locationmap_morito ${isActive('morito')}`}>
             <LocationCard
               imgSrc={morito.imgSrc}
               title={morito.title}
               href={morito.href}
             />
           </div>
-          <div className={isOpenMarker3 ? 'o-locationmap_locationcard3 o-locationmap_active' : 'o-locationmap_locationcard3'}>
+          <div className={`o-locationmap_card o-locationmap_wonderland ${isActive('wonderland')}`}>
             <LocationCard
               imgSrc={wonderland.imgSrc}
               title={wonderland.title}
               href={wonderland.href}
             />
           </div>
-          <div className={isOpenMarker4 ? 'o-locationmap_locationcard4 o-locationmap_active' : 'o-locationmap_locationcard4'}>
+          <div className={`o-locationmap_card o-locationmap_habana ${isActive('habana')}`}>
             <LocationCard
               imgSrc={habana.imgSrc}
               title={habana.title}

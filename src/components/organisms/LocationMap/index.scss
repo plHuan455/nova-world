@@ -1,79 +1,58 @@
+@mixin location-card ($top: 0, $left: 0) {
+  left: $left;
+  opacity: 0;
+  position: absolute;
+  top: $top;
+  transition: all $transition ease-in-out;
+  visibility: hidden;
+}
+
 .o-locationmap {
   background-color: $white;
   position: relative;
   $root: &;
 
-  &_locationcard {
-    display: none;
-    left: 53%;
-    position: absolute;
-    top: 57%;
-  }
-
-  &_locationcard {
-    display: none;
-    left: 53%;
-    position: absolute;
-    top: 57%;
-  }
-
-  &_locationcard2 {
-    display: none;
-    left: 49.5%;
-    position: absolute;
-    top: 62%;
-  }
-
-  &_locationcard3 {
-    display: none;
-    left: 45.5%;
-    position: absolute;
-    top: 66%;
-  }
-
-  &_locationcard4 {
-    display: none;
-    left: 42.5%;
-    position: absolute;
-    top: 66%;
-  }
-
-  &_active {
-    display: block;
-
-    @include break-max(1367px) {
-      max-width: 12%;
-
-      .m-locationcard_content {
-        padding: rem(6) rem(8) rem(8);
-
-        &_title {
-          margin-bottom: rem(10);
-        }
-      }
+  &_tropicana {
+    @include location-card(24%, 53%);
+    @include tablet-down {
+      top: 12%; 
     }
+  }
+
+  &_morito {
+    @include location-card(30%, 49.5%);
+    @include tablet-down {
+      top: 16%; 
+    }
+  }
+
+  &_wonderland {
+    @include location-card(32%, 45.5%);
+    @include tablet-down {
+      top: 20%; 
+    }
+  }
+
+  &_habana {
+    @include location-card(33%, 42.5%);
+    @include tablet-down {
+      top: 21%; 
+    }
+  }
+
+  &_card {
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    width: rem(256);
+
     @include desktop-down {
-      .a-text {
-        @include font-base(11, 13);
-      }
+      width: rem(180);
+
     }
-    @include small-mobile {
-      .a-text {
-        @include font-base(4, 6);
-      }
-
-      .m-locationcard {
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      .m-locationcard_content {
-        padding: rem(2);
-
-        &_title {
-          margin-bottom: rem(3);
-        }
-      }
+    @include mobile-down {
+      width: rem(93);
     }
   }
 

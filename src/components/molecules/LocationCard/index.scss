@@ -2,20 +2,37 @@
   background: $white;
   border-radius: 10px;
   box-shadow: 0 rem(9) rem(15) rem(-3) rgba(0, 0, 0, 0.11);
+  overflow: hidden;
+
+  @include mobile-down {
+    border-radius: 4px;
+  }
 
   &_content {
     padding: rem(12) rem(16) rem(16);
-
-    &_title {
-      margin-bottom: rem(16);
-      @include text-overflow(2);
-
-    }
     @include mobile-down {
       padding: rem(4);
 
       &_title {
         margin-bottom: rem(8);
+      }
+    }
+
+    &_title {
+      margin-bottom: rem(16);
+
+      @include desktop-down {
+        .a-text {
+          @include font-base(11, 13);
+        }
+      }
+
+      @include mobile-down {
+        margin-bottom: rem(8);
+
+        .a-text {
+          @include font-base(7, 8);
+        }
       }
     }
   }
