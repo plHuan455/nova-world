@@ -14,10 +14,16 @@
   &_content {
     padding: rem(24) rem(42) rem(32) rem(24);
     position: relative;
+    @include mobile-down {
+      padding: rem(24);
+    }
   }
 
   &_btn {
     margin-top: rem(40);
     max-width: fit-content;
+    @include mobile-down {
+      margin-top: rem(24);
+    }
   }
 }
