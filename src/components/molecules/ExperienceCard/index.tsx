@@ -29,12 +29,12 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
       <div className="m-expcard-wrap">
         <div className="m-expcard_content">
           <div className="m-expcard_content_title">
-            <Text modifiers={['24x24', 's005', '500', 'white', 'uppercase']}>
+            <Text modifiers={['24x32', 's005', '500', 'white', 'uppercase']}>
               {title}
             </Text>
           </div>
           <div className="m-expcard_content_location">
-            <Text modifiers={['20x24', 's005', '400', 'white', 'capitalize']}>
+            <Text modifiers={['20x24', 's005', '400', 'white', 'capitalize', 'sm']}>
               {location}
             </Text>
           </div>

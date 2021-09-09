@@ -56,6 +56,9 @@
     &_location {
       margin-top: rem(5);
       @include text-overflow(2);
+      @include mobile-down {
+        margin-top: 0;
+      }
     }
   }
 }

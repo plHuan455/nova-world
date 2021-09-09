@@ -64,6 +64,15 @@
     @include mobile-down {
       @include font-base(16, 24);
     }
+
+    &#{$root}-sm {
+      @include tablet-down {
+        @include font-base(14, 20);
+      }
+      @include mobile-down {
+        @include font-base(12, 20);
+      }
+    }
   }
 
   &-16x19 {
@@ -80,10 +89,13 @@
     @include font-base(14, 21);
   }
 
-  &-24x24 {
-    @include font-base(24, 24);
-    @include small-mobile {
-      @include font-base(18, 18);
+  &-24x32 {
+    @include font-base(24, 32);
+    @include tablet-down {
+      @include font-base(18, 24);
+    }
+    @include mobile-down {
+      @include font-base(14, 18);
     }
   }
 
