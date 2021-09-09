@@ -1,0 +1,23 @@
+.m-exptextcard {
+  max-width: rem(448);
+  position: relative;
+
+  &::before {
+    background: $linear-gradient7;
+    content: '';
+    height: 100%;
+    opacity: 0.76;
+    position: absolute;
+    width: 100%;
+  }
+
+  &_content {
+    padding: rem(24) rem(42) rem(32) rem(24);
+    position: relative;
+  }
+
+  &_btn {
+    margin-top: rem(40);
+    max-width: fit-content;
+  }
+}
