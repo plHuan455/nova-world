@@ -1,0 +1,29 @@
+@mixin effect() {
+  border-color: $cyan-cobalt-blue;
+
+  .a-text {
+    color: $cyan-cobalt-blue;
+  }
+}
+
+.a-tag {
+  @include reset-button();
+  background-color: $anti-flash-white;
+  border: 1px solid transparent;
+  border-radius: rem(10);
+  font-family: inherit;
+  padding: rem(9) rem(16);
+  transition: $transition ease-in-out;
+
+  .a-text {
+    transition: $transition ease-in-out;
+  }
+
+  &:hover {
+    @include effect();
+  }
+
+  &-active {
+    @include effect();
+  }
+}
