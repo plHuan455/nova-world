@@ -28,6 +28,10 @@
 
   @include style-size-button('normal', 16, 24, 11);
 
+  &-border {
+    border-color: $white;
+  }
+
 
   &:disabled {
     opacity: 0.7;

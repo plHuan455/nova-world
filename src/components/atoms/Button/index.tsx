@@ -8,6 +8,7 @@ interface ButtonProps {
   type?: 'button' | 'submit';
   disabled?: boolean;
   loading?: boolean;
+  isBorderWhite?: boolean;
   handleClick?: () => void;
 }
 
@@ -17,11 +18,12 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   modifiers,
   loading,
+  isBorderWhite,
   handleClick,
 }) => (
   /* eslint-disable react/button-has-type */
   <button
-    className={mapModifiers('a-button', modifiers, loading && 'loading')}
+    className={mapModifiers('a-button', modifiers, loading && 'loading', isBorderWhite && 'border')}
     onClick={handleClick}
     type={type}
     disabled={disabled}
