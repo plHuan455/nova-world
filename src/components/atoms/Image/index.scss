@@ -74,4 +74,8 @@
   &-1366x450 {
     @include aspect-ratio(1366, 450);
   }
+
+  &-354x222 {
+    @include aspect-ratio(354, 222);
+  }
 }
