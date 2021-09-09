@@ -1,0 +1,12 @@
+.o-map {
+  height: 100%;
+  position: relative;
+  width: 100%;
+
+  &_marker {
+    margin-left: rem(4);
+    margin-top: rem(-20);
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+}

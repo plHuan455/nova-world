@@ -17,4 +17,12 @@
   &-loadingWhite {
     @include icon-image('~assets/icons/ic_loading_white.svg');
   }
+
+  &-marker {
+    @include icon-image('~assets/icons/ic_marker.svg', 49, 70);
+    @include mobile-down {
+      height: rem(55);
+      width: rem(34);
+    }
+  }
 }

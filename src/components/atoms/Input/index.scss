@@ -29,20 +29,37 @@
     }
   }
 
+  &-dark {
+    #{$root}_input {
+      background-color: transparent;
+      border-color: $white;
+      color: $white;
+
+      &:focus {
+        border-color: $android-green;
+      }
+      
+      &::placeholder {
+        color: $platinum2-overlay05;
+        font-weight: bold;
+      }
+    }
+  }
+
   &-error {
     position: relative;
 
-    #{$root}_input {
-      border-color: $red;
-      color: $red;
+    // #{$root}_input {
+    //   border-color: $persimmon;
+    //   color: $persimmon;
 
-      &::placeholder {
-        color: $red;
-      }
-    }
+    //   &::placeholder {
+    //     color: $persimmon;
+    //   }
+    // }
 
     #{$root}_message {
-      color: $red;
+      color: $persimmon;
       left: 0;
       margin: 0;
       position: absolute;
@@ -51,4 +68,5 @@
       @include text-overflow(1);
     }
   }
+
 }
