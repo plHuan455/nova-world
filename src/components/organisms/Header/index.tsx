@@ -111,6 +111,7 @@ const Option: React.FC = () => {
         state: {
           keyword: refInputSearch.current?.value || '',
         },
+        search: window.location.search,
       });
     },
     [history, refInputSearch],
