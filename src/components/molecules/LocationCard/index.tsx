@@ -27,7 +27,11 @@ const LocationCard: React.FC<LocationCardProps> = ({
           {title}
         </Text>
       </div>
-      <Link to={href}>
+      <Link to={{
+        pathname: href,
+        search: window.location.search,
+      }}
+      >
         <div className="m-locationcard_content_seemore">
           <Text modifiers={['16x19', '400', 'cyanCobaltBlue', 'underline']}>
             Xem thêm

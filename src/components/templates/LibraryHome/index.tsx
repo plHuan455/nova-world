@@ -38,7 +38,10 @@ const LibraryHome: React.FC<LibraryHomeProps> = ({ data }) => {
       >
         {data?.map((item, index) => (
           <Link
-            to={item.href}
+            to={{
+              pathname: item.href,
+              search: window.location.search,
+            }}
             key={`librarycard${String(index)}`}
             className={mapModifiers('t-libraryhome-link', idx === index && 'active')}
             onMouseEnter={() => setIdx(index)}

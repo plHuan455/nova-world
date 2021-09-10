@@ -57,7 +57,11 @@ export const DivergencesCard:React.FC<DivergencesCardType> = ({
         </Text>
       </div>
       <div className="t-divergences_card_link">
-        <Link to={link}>
+        <Link to={{
+          pathname: link,
+          search: window.location.search,
+        }}
+        >
           <Text modifiers={['cyanCobaltBlue', 'underline', '700']}>
             {textLink}
           </Text>

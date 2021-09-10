@@ -1,7 +1,8 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, {
   useCallback, useMemo, useRef, useState,
 } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 
 import Container from '../Container';
 
@@ -16,6 +17,21 @@ import mapModifiers from 'utils/functions';
 interface HeaderProps {
   isHome?: boolean;
 }
+
+const suggestList = [
+  {
+    title: 'Dịch vụ đẳng cấp quốc tế',
+    link: '/',
+  },
+  {
+    title: 'Nghỉ dưỡng cao cấp',
+    link: '/',
+  },
+  {
+    title: 'Vui chơi giải trí',
+    link: '/',
+  },
+];
 
 const menuList = [
   {
@@ -59,6 +75,120 @@ const language = [
   },
 ];
 
+interface InputSearchProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  handleClickSearch?: () => void;
+}
+
+export const InputSearch = React.forwardRef<HTMLInputElement, InputSearchProps>(({
+  handleClickSearch,
+  ...props
+}, ref) => (
+  <div className="a-input-search">
+    <input
+      ref={ref}
+      type="text"
+      className="a-input-search_input"
+      {...props}
+    />
+    <button onClick={handleClickSearch} type="button" className="a-input-search_button">
+      <Icon iconName="search" />
+    </button>
+  </div>
+));
+
+const Option: React.FC = () => {
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
+  const refInputSearch = useRef<HTMLInputElement|null>(null);
+  const refSuggest = useRef<HTMLUListElement|null>(null);
+  const [inputIsFocus, setInputIsFocus] = useState(false);
+
+  const history = useHistory();
+
+  const handleClickIconSearch = useCallback(
+    () => {
+      history.push({
+        pathname: '/tim-kiem',
+        state: {
+          keyword: refInputSearch.current?.value || '',
+        },
+        search: window.location.search,
+      });
+    },
+    [history, refInputSearch],
+  );
+
+  const handleFocusInputMobile = useCallback(
+    (isFocus:boolean) => {
+      setInputIsFocus(isFocus);
+    },
+    [],
+  );
+
+  const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleClickIconSearch();
+    }
+  }, [handleClickIconSearch]);
+
+  useClickOutside(refSuggest, () => setIsOpenSearch(false));
+
+  return (
+    <ul ref={refSuggest} className="o-header-option">
+      <li
+        className="o-header-option-item first"
+      >
+        <button
+          onClick={() => {
+            if (!isOpenSearch) {
+              refInputSearch.current?.focus();
+            }
+            setIsOpenSearch(!isOpenSearch);
+          }}
+          type="button"
+          className="o-header-option-button"
+        >
+          <Icon iconName="search" />
+        </button>
+        <div
+          className={mapModifiers('o-header-suggest', isOpenSearch && 'expand')}
+        >
+          <div className="o-header-suggest-content">
+            <div className="o-header-suggest-search">
+              <InputSearch
+                onBlur={() => handleFocusInputMobile(false)}
+                onFocus={() => handleFocusInputMobile(true)}
+                ref={refInputSearch}
+                handleClickSearch={handleClickIconSearch}
+                placeholder="Tìm kiếm"
+                onKeyDown={handleKeyDown}
+              />
+            </div>
+            <div className="o-header-suggest-driver" />
+            <ul className={mapModifiers('o-header-suggest-list', inputIsFocus && 'expand')}>
+              {suggestList.map((item, index) => (
+                <li className="o-header-suggest-item" key={`_suggest-item${String(index)}`}>
+                  <Link
+                    className="o-header-suggest-link"
+                    to={{
+                      pathname: item.link,
+                      search: window.location.search,
+                    }}
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li className="o-header-option-item">
+        <Language />
+      </li>
+    </ul>
+  );
+};
+
 const Language: React.FC = () => {
   const ref = useRef(null);
   const [option, setOption] = useState(language[0]);
@@ -76,7 +206,7 @@ const Language: React.FC = () => {
   }, []);
 
   return (
-    <div className="o-header-language">
+    <div ref={ref} className="o-header-language">
       <button
         type="button"
         className="o-header-language-label"
@@ -143,26 +273,6 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
     </ul>
   ), []);
 
-  const option = useMemo(() => (
-    <ul className="o-header-option">
-      <li className="o-header-option-item">
-        <div className="o-header-search">
-          <input
-            type="text"
-            className="o-header-search-input"
-            placeholder="Tìm kiếm"
-          />
-          <button type="button" className="o-header-search-button">
-            <Icon iconName="search" />
-          </button>
-        </div>
-      </li>
-      <li className="o-header-option-item">
-        <Language />
-      </li>
-    </ul>
-  ), []);
-
   useWindowScroll(() => {
     if (window.pageYOffset > 70) {
       setIsScroll(true);
@@ -184,22 +294,36 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
         <div className="o-header-wrap">
           {iconMenu}
           <div className="o-header-logo">
-            <Link to="/">
+            <Link
+              to={{
+                pathname: '/',
+                search: window.location.search,
+              }}
+              aria-label="label"
+            >
               <Image
                 ratio="logo-novaworld"
                 imgSrc={isHome ? LogoNovaWorldWhite : LogoNovaWorldBlue}
                 alt="logo_novaworld"
+                size="contain"
               />
             </Link>
           </div>
           <div className="o-header-menu">
             <div className="o-header-sm">
               <div className="o-header-sm-logo">
-                <Link to="/">
+                <Link
+                  to={{
+                    pathname: '/',
+                    search: window.location.search,
+                  }}
+                  aria-label="label"
+                >
                   <Image
                     ratio="logo-novaworld"
                     imgSrc={LogoNovaWorldBlue}
                     alt="logo_novaworld"
+                    size="contain"
                   />
                 </Link>
               </div>
@@ -207,7 +331,7 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
             </div>
             {nav}
             <div className="o-header-divider" />
-            {option}
+            <Option />
           </div>
         </div>
       </Container>

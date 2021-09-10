@@ -22,8 +22,8 @@
 
 @mixin scroll-bars(
   $size: 12,
-  // $thumbColor: $celestial-blue,
-  // $trackColor: $alice-blue,
+  $thumb-color: $sliver-chalice,
+  $track-color: $platinum1,
   $border-radius-thumb: 5,
   $border-thumb: 2
 ) {
