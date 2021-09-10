@@ -14,16 +14,16 @@
   }
 
   &_left {
-    background: url('~assets/images/contact/bg_address.png'), $dark-green1;
+    background: url('~assets/images/contact/bg_address.png') no-repeat center bottom, $dark-green1;
     flex: 0 0 48.5%;
     max-width: 48.5%;
-    padding: rem(32) 0;
+    padding: rem(42) 0 rem(32);
     width: 100%;
    
     @include tablet-down {
       flex: 0 0 100%;
       max-width: 100%;
-      padding: rem(16) 0;
+      padding: rem(24) 0;
     }
 
     .m-address-item {
@@ -41,7 +41,7 @@
     max-height: rem(460);
     overflow: auto;
     padding: 0 rem(32);
-    // @include scroll-bars(8);
+    @include scroll-bars(8);
     @include tablet-down {
       margin-top: rem(16);
       max-height: 100%;

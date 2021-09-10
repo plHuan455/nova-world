@@ -19,14 +19,14 @@
   }
   
   &_field {
-    margin-top: rem(28);
+    margin-top: rem(32);
 
-    &:first-of-type {
-      margin-top: rem(32);
+    & + & {
+      margin-top: rem(28);
     }
     
     @include mobile-down {
-      margin-top: rem(16);
+      margin-top: rem(24);
     }
 
   }
@@ -38,7 +38,7 @@
     max-width: rem(162);
 
     @include mobile-down {
-      margin-top: rem(16);
+      margin-top: rem(24);
     }
   }
 }
