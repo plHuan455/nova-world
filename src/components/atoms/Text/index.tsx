@@ -11,15 +11,19 @@ export type TextModifiers = (GeneralTextStyle | Sizes | CustomSize)[];
 export interface TextProps {
   modifiers?: TextModifiers;
   type?: 'p' | 'span' | 'div';
+  innerHTML?: string;
 }
 
 const Text: React.FC<TextProps> = ({
   modifiers,
   type = 'p',
   children,
+  innerHTML,
 }) => {
   const Element = type;
-  return (
+  return innerHTML ? (
+    <div className={mapModifiers('a-text', modifiers)} dangerouslySetInnerHTML={{ __html: innerHTML || '' }} />
+  ) : (
     <Element className={mapModifiers('a-text', modifiers)}>
       {children}
     </Element>

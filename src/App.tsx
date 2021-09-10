@@ -8,6 +8,7 @@ import Loading from 'components/atoms/Loading';
 import { MainLayoutProvider } from 'container/MainLayout';
 import Contact from 'pages/Contact';
 import Home from 'pages/Home';
+import NotFound from 'pages/NotFound';
 import Search from 'pages/Search';
 import { store } from 'store';
 
@@ -27,9 +28,12 @@ const routes = [
     path: '/lien-he',
     component: Contact,
   },
+  {
+    key: 'page404',
+    path: '/not-found',
+    component: NotFound,
+  },
 ];
-
-const NotFound = () => <div>Not found</div>;
 
 const App: React.FC = () => (
   <div className="app">
