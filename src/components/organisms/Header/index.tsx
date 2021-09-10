@@ -166,7 +166,13 @@ const Option: React.FC = () => {
             <ul className={mapModifiers('o-header-suggest-list', inputIsFocus && 'expand')}>
               {suggestList.map((item, index) => (
                 <li className="o-header-suggest-item" key={`_suggest-item${String(index)}`}>
-                  <Link className="o-header-suggest-link" to={item.link}>
+                  <Link
+                    className="o-header-suggest-link"
+                    to={{
+                      pathname: item.link,
+                      search: window.location.search,
+                    }}
+                  >
                     {item.title}
                   </Link>
                 </li>
@@ -287,7 +293,13 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
         <div className="o-header-wrap">
           {iconMenu}
           <div className="o-header-logo">
-            <Link to="/">
+            <Link
+              to={{
+                pathname: '/',
+                search: window.location.search,
+              }}
+              aria-label="label"
+            >
               <Image
                 ratio="logo-novaworld"
                 imgSrc={isHome ? LogoNovaWorldWhite : LogoNovaWorldBlue}
@@ -299,7 +311,13 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
           <div className="o-header-menu">
             <div className="o-header-sm">
               <div className="o-header-sm-logo">
-                <Link to="/">
+                <Link
+                  to={{
+                    pathname: '/',
+                    search: window.location.search,
+                  }}
+                  aria-label="label"
+                >
                   <Image
                     ratio="logo-novaworld"
                     imgSrc={LogoNovaWorldBlue}

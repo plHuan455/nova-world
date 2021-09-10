@@ -26,7 +26,11 @@ const NewsCard: React.FC<NewsCardProps> = ({
   ratio,
   href,
 }) => (
-  <Link to={href}>
+  <Link to={{
+    pathname: href,
+    search: window.location.search,
+  }}
+  >
     <div className={mapModifiers('m-newscard', direction)}>
       <div className="m-newscard_image">
         <Image imgSrc={imgSrc} alt={alt || 'thumbnail'} ratio={ratio} />

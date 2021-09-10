@@ -21,7 +21,11 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
   stt,
   href,
 }) => (
-  <Link to={href}>
+  <Link to={{
+    pathname: href,
+    search: window.location.search,
+  }}
+  >
     <div className="m-expcard">
       <div className="m-expcard_image">
         <Image imgSrc={imgSrc} ratio="546x618" alt={alt || 'thumbnail'} />
