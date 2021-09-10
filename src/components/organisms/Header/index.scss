@@ -10,7 +10,7 @@
 
 .o-header {
   $root: &;
-  background: $white;
+  background: $linear-gradient;
   left: 0;
   padding-bottom: rem(17);
   padding-top: rem(17);
@@ -29,11 +29,6 @@
     @include tablet-down {
       justify-content: center;
     }
-  }
-
-
-  &-transparent {
-    background: $linear-gradient;
   }
 
   &-scroll {
@@ -67,7 +62,7 @@
     transform: translateY(-50%);
 
     span {
-      background-color: $cyan-cobalt-blue;
+      background-color: $white;
       display: block;
       height: rem(2);
       margin-bottom: rem(4);
@@ -85,10 +80,6 @@
 
       &:nth-child(3) {
         transform-origin: bottom;
-      }
-
-      #{$root}-transparent & {
-        background-color: $white;
       }
 
       #{$root}-scroll & {
@@ -219,14 +210,9 @@
   &-divider {
     @include tablet-up {
       @include mx(40, 26);
-      background-color: $cyan-cobalt-blue;
+      background-color: $white;
       height: rem(20);
       width: 1px;
-
-
-      #{$root}-transparent & {
-        background-color: $white;
-      }
 
       #{$root}-scroll & {
         background-color: $cyan-cobalt-blue;
@@ -239,15 +225,11 @@
   }
 
   &-link {
-    color: $cyan-cobalt-blue;
+    color: $white;
     @include font-base(14, 20);
 
     &.active {
       font-weight: 700;
-    }
-
-    #{$root}-transparent & {
-      color: $white;
     }
 
     #{$root}-scroll & {
@@ -294,15 +276,11 @@
     &-button {
       @include reset-button();
       @include adjust-flex();
-      background-color: $white-smoke;
+      background-color: $white;
       border-radius: 50%;
       height: rem(28);
       padding: 0;
       width: rem(28);
-
-      #{$root}-transparent & {
-        background-color: $white;
-      }
 
       #{$root}-scroll & {
         background-color: $white-smoke;
@@ -344,15 +322,11 @@
     &-button {
       @include reset-button();
       @include adjust-flex();
-      background-color: $white-smoke;
+      background-color: $white;
       border-radius: 50%;
       height: rem(28);
       padding: 0;
       width: rem(28);
-
-      #{$root}-transparent & {
-        background-color: $white;
-      }
 
       #{$root}-scroll & {
         background-color: $white-smoke;
@@ -378,17 +352,12 @@
     &-label {
       align-items: center;
       background-color: transparent;
-      color: $cyan-cobalt-blue;
+      color: $white;
       display: flex;
       font-weight: 500;
       padding: 0;
       @include font-base(14, 20);
       @include reset-button();
-
-
-      #{$root}-transparent & {
-        color: $white;
-      }
 
       #{$root}-scroll & {
         color: $cyan-cobalt-blue;
@@ -407,7 +376,8 @@
       width: rem(10);
 
       &::before {
-        background-image: url('~assets/icons/ic_dropdown_blue.svg');
+        background-image: url('~assets/icons/ic_dropdown_white.svg');
+
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
@@ -416,11 +386,6 @@
         position: absolute;
         transition: all $transition-long linear;
         width: 100%;
-
-
-        #{$root}-transparent & {
-          background-image: url('~assets/icons/ic_dropdown_white.svg');
-        }
 
         #{$root}-scroll & {
           background-image: url('~assets/icons/ic_dropdown_blue.svg');
