@@ -4,29 +4,12 @@ import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
 import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
+import { AddressItem, AddressItemType } from 'components/organisms/Footer';
 import FormRegister from 'components/organisms/FormRegister';
 import Map, { MapProps } from 'components/organisms/Map';
 
-type InfoAddressDataType = {
-  title?: string;
-  address?: string;
-};
-
-export const InfoAddress: React.FC<InfoAddressDataType> = ({ title, address }) => (
-  <div className="m-info-address">
-    <div className="m-info-address_name">
-      <Text modifiers={['white', 'sm', '700']}>{title}</Text>
-    </div>
-    <div className="m-info-address_address">
-      <Text modifiers={['white', 'sm', '400']}>
-        {address}
-      </Text>
-    </div>
-  </div>
-);
-
 type FormContactUsProps = {
-  dataInfoAddress?: InfoAddressDataType[];
+  dataInfoAddress?: AddressItemType[];
   consultancySystem?: ConsultancySystem;
   dataMap?: MapProps;
   title?: string;
@@ -61,8 +44,8 @@ const FormContactUs: React.FC<FormContactUsProps> = ({
         {dataInfoAddress && (
         <div className="t-form-contact_listAddress">
           {dataInfoAddress.map((val, idx) => (
-            <InfoAddress
-              title={val.title}
+            <AddressItem
+              name={val.name}
               address={val.address}
               key={`item${idx.toString()}`}
             />

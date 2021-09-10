@@ -5,6 +5,7 @@ import React from 'react';
 import FormContactUs from '.';
 
 import * as DUMMY from 'assets/dataDummy/contact';
+import { addressList } from 'assets/dataDummy/footer';
 import Container from 'components/organisms/Container';
 
 export default {
@@ -17,6 +18,7 @@ export const normal: Story = () => (
   <Container>
     <FormContactUs
       {...DUMMY}
+      dataInfoAddress={addressList}
     />
   </Container>
 );

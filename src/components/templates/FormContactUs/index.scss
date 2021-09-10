@@ -1,14 +1,23 @@
 .t-form-contact {
+  &_title {
+    display: flex;
+    justify-content: center;
+  }
+  
   &_top {
     display: flex;
     flex-wrap: wrap;
+    margin-top: rem(56);
+    @include mobile-down {
+      margin-top: rem(30);
+    }
   }
 
   &_left {
-    // background-color: $castleton-green;
+    background: url('~assets/images/contact/bg_address.png'), $dark-green1;
     flex: 0 0 48.5%;
     max-width: 48.5%;
-    padding: rem(42) 0 rem(32);
+    padding: rem(32) 0;
     width: 100%;
    
     @include tablet-down {
@@ -17,22 +26,31 @@
       padding: rem(16) 0;
     }
 
+    .m-address-item {
+      &:first-child {
+        margin-top: 0;
+      }
+      margin-top: rem(10);
+    }
   }
 
+
+
   &_listAddress {
-    margin-top: rem(24);
-    max-height: rem(470);
+    margin-top: rem(32);
+    max-height: rem(460);
     overflow: auto;
     padding: 0 rem(32);
     // @include scroll-bars(8);
     @include tablet-down {
+      margin-top: rem(16);
       max-height: 100%;
       padding: 0 rem(16);
     }
   }
 
   &_right {
-    // background: url('~assets/images/bg_form.png'), $dark-green2;
+    background-color: $dark-green;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -62,5 +80,4 @@
     top: 0;
     width: 100%;
   }
-
 }

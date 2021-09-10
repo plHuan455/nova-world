@@ -12,5 +12,7 @@ export default {
 } as Meta;
 
 export const normal: Story = () => (
-  <FormRegister consultancySystem={consultancySystem} />
+  <div style={{ background: 'c0d2D06' }}>
+    <FormRegister consultancySystem={consultancySystem} />
+  </div>
 );

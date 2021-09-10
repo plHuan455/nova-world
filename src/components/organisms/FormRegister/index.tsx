@@ -145,6 +145,7 @@ const FormRegister: React.FC<FormRegisterProps> = ({
           <Button
             type="submit"
             loading={isLoading}
+            modifiers="android-green"
           >
             {consultancySystem?.btnText}
           </Button>

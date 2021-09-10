@@ -1,7 +1,6 @@
 
 .o-form-register {
   $root: &;
-  background-color: $dark-green;
   padding: rem(42) rem(48);
 
   @include desktop-down {
@@ -22,7 +21,7 @@
   &_field {
     margin-top: rem(28);
 
-    &:first-child {
+    &:first-of-type {
       margin-top: rem(32);
     }
     
