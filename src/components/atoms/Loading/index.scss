@@ -1,0 +1,29 @@
+.a-loading {
+  @include icon-image('~assets/icons/ic_loading_white.svg', 48, 48);
+  background-size: cover;
+  margin: rem(24) auto;
+
+  @include mobile-down {
+    height: rem(36);
+    margin: rem(16) auto;
+    width: rem(36);
+  }
+
+  &-green {
+    @include icon-image('~assets/icons/ic_loading_blue.svg', 48, 48);
+  }
+
+  &-fixed {
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: $z-999;
+  }
+
+  &-small {
+    height: rem(30);
+    margin: 0;
+    width: rem(30);
+  }
+}
