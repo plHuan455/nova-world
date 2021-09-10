@@ -13,7 +13,7 @@ const Search: React.FC = () => {
       <section className="s-banner">
         <Banner thumbnail="https://source.unsplash.com/random" />
       </section>
-      <section className="s-content">
+      <section className="s-content s-wrap">
         <Content />
       </section>
     </>
