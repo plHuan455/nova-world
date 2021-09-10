@@ -456,6 +456,7 @@
   &-suggest {
     background-color: $white;
     border-radius: rem(10);
+    box-shadow: 0 rem(4) rem(4) $black-overlay02;
     max-height: 0;
     min-width: rem(420);
     opacity: 0;
