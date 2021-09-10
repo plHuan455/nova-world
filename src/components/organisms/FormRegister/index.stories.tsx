@@ -12,7 +12,7 @@ export default {
 } as Meta;
 
 export const normal: Story = () => (
-  <div style={{ background: 'c0d2D06' }}>
+  <div style={{ background: 'rgb(12, 45, 6)' }}>
     <FormRegister consultancySystem={consultancySystem} />
   </div>
 );
