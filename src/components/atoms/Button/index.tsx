@@ -4,7 +4,7 @@ import Icon from 'components/atoms/Icon';
 import mapModifiers from 'utils/functions';
 
 interface ButtonProps {
-  modifiers?: 'normal';
+  modifiers?: 'normal' | 'android-green';
   type?: 'button' | 'submit';
   disabled?: boolean;
   loading?: boolean;

@@ -5,13 +5,15 @@ import mapModifiers from 'utils/functions';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
+  modifiers?: ('dark')[];
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(({
   error,
+  modifiers,
   ...rest
 }, ref) => (
-  <div className={mapModifiers('a-input', error && 'error')}>
+  <div className={mapModifiers('a-input', modifiers, error && 'error')}>
     <input
       className="a-input_input"
       ref={ref}

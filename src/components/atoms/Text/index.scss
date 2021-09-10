@@ -56,6 +56,15 @@
     }
   }
 
+  &-20x30 {
+    @include font-base(20, 30);
+
+    @include tablet-down {
+      @include font-base(18, 22);
+    }
+    
+  }
+
   &-20x24 {
     @include font-base(20, 24);
     @include tablet-down {

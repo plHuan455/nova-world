@@ -1,0 +1,83 @@
+.t-form-contact {
+  &_title {
+    display: flex;
+    justify-content: center;
+  }
+  
+  &_top {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: rem(56);
+    @include mobile-down {
+      margin-top: rem(30);
+    }
+  }
+
+  &_left {
+    background: url('~assets/images/contact/bg_address.png') no-repeat center bottom, $dark-green1;
+    flex: 0 0 48.5%;
+    max-width: 48.5%;
+    padding: rem(42) 0 rem(32);
+    width: 100%;
+   
+    @include tablet-down {
+      flex: 0 0 100%;
+      max-width: 100%;
+      padding: rem(24) 0;
+    }
+
+    .m-address-item {
+      &:first-child {
+        margin-top: 0;
+      }
+      margin-top: rem(10);
+    }
+  }
+
+
+
+  &_listAddress {
+    margin-top: rem(32);
+    max-height: rem(460);
+    overflow: auto;
+    padding: 0 rem(32);
+    @include scroll-bars(8);
+    @include tablet-down {
+      margin-top: rem(16);
+      max-height: 100%;
+      padding: 0 rem(16);
+    }
+  }
+
+  &_right {
+    background-color: $dark-green;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex: 0 0 51.5%;
+    max-width: 51.5%;
+    width: 100%;
+    @include tablet-down {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+
+  &_bottom {
+    height: 0;
+    padding-bottom: (633.38 / 1126)* 100%;
+    position: relative;
+
+    @include small-mobile {
+      padding-bottom: 100%;
+    }
+  }
+
+  &_map {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}

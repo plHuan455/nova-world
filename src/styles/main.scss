@@ -50,3 +50,45 @@ ol {
 .overflow-hidden {
   height: 100vh;
 }
+
+.s-wrap {
+  padding-bottom: rem(100);
+  padding-top: rem(56);
+  @include mobile-down {
+    padding-bottom: rem(64);
+    padding-top: rem(32);
+  }
+}
+
+.s-donut {
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    background-image: url('~assets/images/donut.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    content: '';
+    height: rem(824);
+    position: absolute;
+    right: 0;
+    top: -24%;
+    width: rem(824);
+    @include desktop-down {
+      height: rem(500);
+      top: -11%;
+      width: rem(500);
+    }
+    @include tablet-down {
+      height: rem(420);
+      top: -7%;
+      width: rem(420);
+    }
+    @include mobile-down {
+      height: rem(240);
+      top: -3%;
+      width: rem(240);
+    }
+  }
+}

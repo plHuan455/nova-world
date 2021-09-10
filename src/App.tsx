@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Loading from 'components/atoms/Loading';
 import { MainLayoutProvider } from 'container/MainLayout';
+import Contact from 'pages/Contact';
 import Home from 'pages/Home';
 import Search from 'pages/Search';
 import { store } from 'store';
@@ -22,13 +23,9 @@ const routes = [
     key: 'search',
   },
   {
-    path: '/cac-phan-ki',
-    component: () => (
-      <div>
-        Các phân kỳ
-      </div>
-    ),
-    key: 'dummy',
+    key: 'contact',
+    path: '/lien-he',
+    component: Contact,
   },
 ];
 
@@ -40,9 +37,9 @@ const App: React.FC = () => (
       <Suspense fallback={<Loading />}>
         <MainLayoutProvider>
           <Switch>
-            {routes.map((item, index) => (
+            {routes.map((item) => (
               <Route
-                key={`route-${index.toString()}`}
+                key={item.key}
                 exact
                 path={item.path}
                 component={item.component}
