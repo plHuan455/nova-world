@@ -1,0 +1,76 @@
+.o-modal {
+  $root: &;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  margin: rem(32) auto;
+  max-height: calc(100% - 64px);
+  max-width: rem(1024);
+  position: relative;
+
+  @include tablet-down {
+    margin: rem(16) auto;
+    max-height: calc(100% - 32px);
+    padding-left: rem(16);
+    padding-right: rem(16);
+  }
+
+  &-container {
+    background-color: $white;
+    overflow: auto;
+    position: relative;
+    width: 100%;
+
+    @include tablet-down {
+      margin: 0 auto;
+    }
+
+    &-noScrollContainer {
+      overflow: hidden;
+    }
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &-icon {
+    cursor: pointer;
+    position: absolute;
+    right: rem(16);
+    top: rem(16);
+    z-index: 2;
+  }
+
+  &-portal {
+    opacity: 0;
+    position: relative;
+    transition: all $transition linear;
+    z-index: $z-modal;
+
+    &-open {
+      opacity: 1;
+    }
+  }
+
+  &-overlay {
+    background-color: $black-overlay05;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: $z-modal;
+  }
+}
+
+.reactmodal-body-open,
+.reactmodal-html-open {
+  overflow: hidden;
+
+  @include desktop-up {
+    padding-right: rem(15);
+  }
+}
