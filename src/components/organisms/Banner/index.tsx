@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 import Image from 'components/atoms/Image';
 import Player from 'components/organisms/Player';
 import useWindowScroll from 'hooks/useWindowScroll';
+import mapModifiers from 'utils/functions';
 
 interface BannerProps {
   isHomePage?: boolean;
@@ -10,6 +11,7 @@ interface BannerProps {
   isHomePlayer?: boolean;
   thumbnail: string;
   alt?: string;
+  layerDew?: boolean;
 }
 
 const Banner: React.FC<BannerProps> = ({
@@ -17,6 +19,7 @@ const Banner: React.FC<BannerProps> = ({
   thumbnail,
   alt,
   videoSrc,
+  layerDew,
 }) => {
   const [playerPlay, setPlayerPlay] = useState(false);
   const refBannerHome = useRef<HTMLDivElement | null>(null);
@@ -31,7 +34,13 @@ const Banner: React.FC<BannerProps> = ({
   });
 
   return (
-    <div ref={refBannerHome} className="o-banner">
+    <div
+      ref={refBannerHome}
+      className={mapModifiers(
+        'o-banner',
+        (layerDew && !playerPlay) && 'dew',
+      )}
+    >
       {isHomePage ? (
         <div className="o-banner_home">
           <Player
@@ -52,6 +61,10 @@ const Banner: React.FC<BannerProps> = ({
       )}
     </div>
   );
+};
+
+Banner.defaultProps = {
+  layerDew: true,
 };
 
 export default Banner;
