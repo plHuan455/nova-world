@@ -2,44 +2,21 @@
   $root: &;
   background: linear-gradient(180deg, #10431f 0%, rgba(36, 85, 163, 0.55) 104.83%),
     url('~assets/images/footer/bg_footer.png') no-repeat center / cover;
+  margin-top: -1px;
   position: relative;
   z-index: 4;
 
   &_form {
-    // #{$root}-home & {
-    //   margin-top: rem(-126);
-    //   @include small-mobile {
-    //     margin-top: rem(-59);
-    //   }
-    // }
-    // #{$root}-another & {
-    //   .t-registerprojectform {
-    //     transform: translateY(rem(-100));
-    //     @include tablet-down {
-    //       transform: translateY(rem(-60));
-    //     }
-    //     @include mobile-down {
-    //       transform: translateY(rem(-24));
-    //     }
-    //   }
-    // }
     left: 0;
     position: absolute;
-    // #{$root}-home & {
     top: -20%;
     width: 100%;
     @include tablet-down {
       position: relative;
     }
-    // }
   }
 
   &_top {
-    // padding-top: rem(72);
-    // @include mobile-down {
-    //   padding-top: rem(40);
-    // }
-    // #{$root}-home & {
     padding-top: rem(288);
     @include desktop-down {
       padding-top: rem(240);
@@ -50,10 +27,6 @@
     @include mobile-down {
       padding-top: rem(40);
     }
-    // }
-    // #{$root}-another & {
-    // padding-top: 0;
-    // }
   }
 
   &_branch {

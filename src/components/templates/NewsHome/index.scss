@@ -1,6 +1,7 @@
 .t-newshome {
   background: rgb(29, 61, 23) url('~assets/images/bg_newshome.png') no-repeat center / cover;
   background-position-y: inherit;
+  margin-top: -1px;
   position: relative;
 
   &::before {
@@ -15,9 +16,17 @@
   }
 
   &_wrap {
-    padding: rem(100) 0 rem(295);
+    padding: rem(187) 0 rem(295);
+    @include desktop-down {
+      padding-bottom: rem(250);
+      padding-top: rem(120);
+    }
+    @include tablet-down {
+      padding-bottom: rem(140);
+      padding-top: rem(80);
+    }
     @include small-mobile {
-      padding: rem(54) rem(16) rem(133);
+      padding: rem(54) rem(16) rem(60);
     }
   }
 
