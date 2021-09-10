@@ -8,7 +8,7 @@ import Library from './library';
 import Location from './location';
 import NewsHomeContainer from './news';
 
-import HomeBanner from 'assets/images/home-banner.jpg';
+import HomeBanner from 'assets/images/banners/banner_home.png';
 import Banner from 'components/organisms/Banner';
 import useMainLayout from 'hooks/useMainLayout';
 

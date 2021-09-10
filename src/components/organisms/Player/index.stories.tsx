@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import Player from '.';
 
-import videoThumbnailImg from 'assets/images/home-banner.jpg';
+import videoThumbnailImg from 'assets/images/banners/banner_home.png';
 
 export default {
   title: 'Components/organisms/Player',
