@@ -1,13 +1,1 @@
-.t-mainlayout {
-  $root: &;
 
-  &-transparent {
-    #{$root}_body {
-      margin-top: 0;
-    }
-  }
-
-  &_body {
-    margin-top: rem(72);
-  }
-}

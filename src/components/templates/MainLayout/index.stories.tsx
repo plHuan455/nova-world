@@ -7,17 +7,12 @@ import MainLayout from '.';
 export default {
   title: 'Components/templates/MainLayout',
   component: MainLayout,
-  argTypes: {
-    isHome: {
-      control: 'boolean',
-      defaultValue: false,
-    },
-  },
+  argTypes: {},
 } as Meta;
 
-export const normal: Story = ({ isHome }) => (
+export const normal: Story = () => (
   <BrowserRouter>
-    <MainLayout isHome={isHome}>
+    <MainLayout>
       <div style={{
         height: '200vh',
         margin: -20,
