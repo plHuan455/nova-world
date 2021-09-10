@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, {
   useCallback, useMemo, useRef, useState,
@@ -13,10 +14,6 @@ import Image from 'components/atoms/Image';
 import useClickOutside from 'hooks/useClickOutside';
 import useWindowScroll from 'hooks/useWindowScroll';
 import mapModifiers from 'utils/functions';
-
-interface HeaderProps {
-  isHome?: boolean;
-}
 
 const suggestList = [
   {
@@ -234,7 +231,7 @@ const Language: React.FC = () => {
   );
 };
 
-const Header: React.FC<HeaderProps> = ({ isHome }) => {
+const Header: React.FC = () => {
   const [isScroll, setIsScroll] = useState(false);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
@@ -286,7 +283,7 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
       className={mapModifiers(
         'o-header',
         isScroll && 'scroll',
-        isHome && 'transparent',
+        // isHome && 'transparent',
         isOpenMenu && 'open',
       )}
     >
@@ -303,7 +300,8 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
             >
               <Image
                 ratio="logo-novaworld"
-                imgSrc={isHome ? LogoNovaWorldWhite : LogoNovaWorldBlue}
+                // imgSrc={isHome ? LogoNovaWorldWhite : LogoNovaWorldBlue}
+                imgSrc={LogoNovaWorldWhite}
                 alt="logo_novaworld"
                 size="contain"
               />

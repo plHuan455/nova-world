@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
 
-interface CardProps {
+export interface CardProps {
   imgSrc?: string;
   title?: string;
   description?: string;
