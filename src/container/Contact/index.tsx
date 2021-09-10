@@ -7,7 +7,7 @@ import Banner from 'components/organisms/Banner';
 import Container from 'components/organisms/Container';
 import FormContactUs from 'components/templates/FormContactUs';
 import useMainLayout from 'hooks/useMainLayout';
-// TODO: implement layout main
+
 const Contact:React.FC = () => {
   useMainLayout('another');
   return (

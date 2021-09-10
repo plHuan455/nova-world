@@ -11,7 +11,7 @@ const Search: React.FC = () => {
   return (
     <>
       <section className="s-banner">
-        <Banner thumbnail="https://source.unsplash.com/random" />
+        <Banner thumbnail="https://source.unsplash.com/random" layerDew={false} />
       </section>
       <section className="s-content s-wrap">
         <Content />
