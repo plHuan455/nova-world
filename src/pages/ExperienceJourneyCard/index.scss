@@ -25,10 +25,16 @@
   &_description {
     margin: rem(32) auto 0;
     max-width: rem(877);
+    @include mobile-down {
+      margin: rem(20) auto 0;
+    }
   }
 
   &_content {
     margin-top: rem(56);
+    @include mobile-down {
+      margin-top: rem(30);
+    }
   }
 
   .m-experience-journey-card {

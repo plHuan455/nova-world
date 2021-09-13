@@ -13,6 +13,10 @@
   &_content {
     padding: rem(24) rem(42) rem(32) rem(24);
     position: relative;
+    @include tablet-down {
+      padding: rem(24);
+    }
+    @include text-overflow(5);
     @include mobile-down {
       padding: rem(16);
     }

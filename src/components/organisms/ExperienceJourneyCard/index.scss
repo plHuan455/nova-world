@@ -28,8 +28,10 @@
 
   &_title {
     position: absolute;
-    @include mobile-down { 
-      padding: rem(10) 0 rem(0) rem(16);
+    width: fit-content;
+    @include mobile-down {
+      max-width: 100% !important;
+      padding: rem(16) rem(16) rem(0) rem(16);
       position: initial;
     }
   }
@@ -52,29 +54,30 @@
   
   &-right {
     #{$root}_title {
-      left: calc(643 / 1126 * 100%);
+      max-width: calc(821 / 1126 * 100%);
+      right: calc(305 / 1126 *100%);
       top: calc(153 / 521 * 100%);
       @include desktop-down {
-        left: calc(443 / 1126 * 100%);
         top: calc(50 / 521 * 100%);
       }
       @include tablet-down {
-        left: calc(343 / 1126 * 100%);
+        max-width: calc(726 / 1126 * 100%);
+        right: calc(400 / 1126 *100%);
       }
     }
 
     #{$root}_info {
       left: calc(643 / 1126 * 100%);
-      top: calc(153 / 521 * 100% + 56px);
+      top: calc(153 / 521 * 100% + 70px);
       @include desktop-down {
         left: calc(443 / 1126 * 100%);
         max-width: calc(548 / 1126 * 100%);
-        top: calc(50 / 521 * 100% + 56px);
+        top: calc(50 / 521 * 100% + 70px);
       }
       @include tablet-down {
         left: calc(343 / 1126 * 100%);
         max-width: calc(748 / 1126 * 100%);
-        top: calc(50 / 521 * 100% + 40px);
+        top: calc(50 / 521 * 100% + 56px);
       }
     }
   }
@@ -118,9 +121,11 @@
 
     #{$root}_title {
       left: calc(327 / 1126 * 100%);
+      max-width: calc(799 / 1126 * 100%);
       top: calc(197 / 521 * 100%);
       @include desktop-down {
         left: calc(443 / 1126 * 100%);
+        max-width: calc(683 / 1126 * 100%);
         top: calc(100 / 521 * 100%);
       }
     }
