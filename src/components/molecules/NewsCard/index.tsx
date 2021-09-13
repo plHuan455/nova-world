@@ -35,7 +35,6 @@ const NewsCard: React.FC<NewsCardProps> = ({
       <div className="m-newscard_image">
         <Image imgSrc={imgSrc} alt={alt || 'thumbnail'} ratio={ratio} />
       </div>
-      {direction === 'vertical'}
       <div className="m-newscard_content">
         <div className="m-newscard_content_title">
           <Text modifiers={['20x24', 's00015', '500', 'white']}>
