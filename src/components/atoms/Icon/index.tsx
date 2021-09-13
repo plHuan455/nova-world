@@ -6,6 +6,7 @@ export const iconList = {
   search: 'search',
   loadingWhite: 'loadingWhite',
   marker: 'marker',
+  clock: 'clock',
 };
 
 export type IconName = keyof typeof iconList;
