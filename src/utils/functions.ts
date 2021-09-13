@@ -1,3 +1,5 @@
+export const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 function mapModifiers(
   baseClassName: string,
   ...modifiers: (string | string[] | false | undefined)[]
@@ -90,4 +92,9 @@ export function scrollStop(callback: (value: any) => void, time = 2000) {
     },
     false,
   );
+}
+
+export function getImageURL(imgUrl?: string) {
+  if (!BASE_URL || !imgUrl) return '';
+  return BASE_URL + imgUrl;
 }
