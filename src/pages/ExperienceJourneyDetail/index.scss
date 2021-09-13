@@ -1,0 +1,137 @@
+.p-experience-journey-detail {
+  &_wrap-content {
+    position: relative;
+  }
+
+  &_leaf-top {
+    left: 0;
+    max-width: rem(217);
+    position: absolute;
+    top: 50%;
+    width: calc(217/ 1366 * 100%);
+    z-index: -1;
+
+    &::before {
+      background: url('~assets/images/experienceJourneyDetail/bg_leaf_top.png') no-repeat center / contain;
+      content: '';
+      left: 0;
+      padding-bottom: calc(359 / 217 * 100%);
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  &_leaf-bottom {
+    max-width: rem(190);
+    position: absolute;
+    right: 0;
+    top: 65%;
+    width: calc(190 / 1366 * 100%);
+    z-index: -1;
+
+    &::before {
+      background: url('~assets/images/experienceJourneyDetail/bg_leaf_bottom.png') no-repeat center / contain;
+      content: '';
+      padding-bottom: calc(528 / 190 * 100%);
+      position: absolute;
+      right: 0;
+      top: 65%;
+      width: 100%;
+    }
+  }
+
+  &_title {
+    display: flex;
+    justify-content: center;
+  }
+
+  &_tabs {
+    background-color: rgb(41, 167, 209);
+    margin-top: rem(32);
+    @include mobile-down {
+      margin-top: rem(20);
+    }
+  }
+
+  &_panel-sub-title {
+    margin-top: rem(40);
+    @include mobile-down {
+      margin-top: rem(30);
+    }
+  }
+
+  &_panel-title {
+    margin-top: rem(16);
+    @include mobile-down {
+      margin-top: rem(10);
+    }
+  }
+
+  &_panel-publish {
+    align-items: center;
+    display: flex;
+    margin-top: rem(16);
+    @include mobile-down {
+      margin-top: rem(10);
+    }
+
+    .a-icon {
+      margin-right: rem(4);
+    }
+  }
+
+  &_panel-content {
+    margin-bottom: rem(70);
+    margin-top: rem(12);
+    position: relative;
+
+    @include mobile-down {
+      margin-top: rem(40);
+    }
+  }
+
+  &_discover {
+    border-top: 1px solid $sliver-chalice;
+    padding-top: rem(40);
+    @include mobile-down {
+      padding-top: rem(30);
+    }
+  }
+
+  &_discover-carousel {
+    margin-top: rem(32);
+    @include mobile-down {
+      margin-top: rem(20);
+    }
+
+    .slick {
+      &-list {
+        margin: 0 rem(-16);
+        padding-bottom: rem(2);
+      }
+
+      &-slide {
+        padding: 0 rem(16);
+      }
+
+      &-arrow {
+        &.prev {
+          left: rem(-60);
+          @include desktop-down {
+            left: rem(15);
+            top: 30%;
+          }
+        }
+
+        &.next {
+          right: rem(-60);
+          @include desktop-down {
+            right: rem(15);
+            top: 30%;
+          }
+        }
+      }
+    }
+  }
+}

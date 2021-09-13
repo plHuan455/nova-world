@@ -9,6 +9,7 @@ import Loading from 'components/atoms/Loading';
 import { MainLayoutProvider } from 'container/MainLayout';
 import Contact from 'pages/Contact';
 import ExperienceJourney from 'pages/ExperienceJourney';
+import ExperienceJourneyDetail from 'pages/ExperienceJourneyDetail';
 import Home from 'pages/Home';
 import News from 'pages/News';
 import NotFound from 'pages/NotFound';
@@ -52,6 +53,11 @@ const routes = [
     key: 'news',
     path: '/tin-tuc',
     component: News,
+  },
+  {
+    key: 'experienceJourneyDetail',
+    path: '/hanh-trinh-trai-nghiem/chi-tiet',
+    component: ExperienceJourneyDetail,
   },
 ];
 

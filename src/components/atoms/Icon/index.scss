@@ -29,4 +29,8 @@
   &-clock {
     @include icon-image('~assets/icons/ic_clock.svg', 16, 16);
   }
+
+  &-timer {
+    @include icon-image('~assets/icons/ic_timer.svg',16,16);
+  }
 }

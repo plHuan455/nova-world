@@ -5,7 +5,7 @@ import mapModifiers from 'utils/functions';
 type Size = 'xs';
 
 interface HeadingProps {
-  type: 'h1' | 'h2' | 'h6';
+  type: 'h1' | 'h2' | 'h5' | 'h6';
   modifiers?: (Size | GeneralTextStyle)[];
 }
 
