@@ -1,0 +1,174 @@
+@mixin bg-layer($src,$padding-bottom) {
+  position: absolute;
+  z-index: -1;
+  @include mobile-down {
+    display: none;
+  }
+
+  &::before {
+    background: url($src) no-repeat center / contain;
+    content: '';
+    left: 0;
+    padding-bottom: $padding-bottom;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.p-experience-journey {
+  &_title {
+    display: flex;
+    justify-content: center;
+  }
+
+  &_description {
+    margin: rem(32) auto 0;
+    max-width: rem(877);
+    @include mobile-down {
+      margin: rem(20) auto 0;
+    }
+  }
+
+  &_content {
+    margin-top: rem(56);
+    @include mobile-down {
+      margin-top: rem(30);
+    }
+  }
+
+  .m-experience-journey-card {
+    margin-bottom: rem(130);
+    @include desktop-down {
+      margin-bottom: rem(100);
+    }
+    @include tablet-down {
+      margin-bottom: rem(80);
+    }
+
+    &-bottom {
+      margin-bottom: rem(234);
+      @include tablet-down {
+        margin-bottom: rem(170);
+      }
+    }
+    @include mobile-down {
+      margin-bottom: rem(25);
+    }
+  }
+
+  &_card-item {
+    position: relative;
+
+    &:last-child {
+      .m-experience-journey-card {
+        margin-bottom: 0;
+        @include mobile-down {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &_leaf-top {
+    max-width: rem(184);
+    right: 0;
+    top: rem(-56);
+    width: calc(184 / 1366 * 100%);
+    @include bg-layer('~assets/images/pageExperienceJourney/bg_leaf_top.png',calc(321 / 184 * 100%));
+  }
+
+  &_line-top {
+    left: calc(184 / 1366 * 100%);
+    max-width: rem(765);
+    top: -50%;
+    width: calc(651 / 1366 * 100%);
+    @include break-min(1367px) {
+      left: 20%;
+      top: -60%;
+    }
+    @include bg-layer('~assets/images/pageExperienceJourney/bg_line_top.png',calc(651 / 765 * 100%));
+  }
+
+  &_bg-linear {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -2;
+    @include mobile-down {
+      display: none;
+    }
+
+    &::before {
+      background-color: $white;
+      bottom: 0;
+      content: '';
+      left: 0;
+      padding-bottom: calc(1618 / 1366 * 100%);
+      position: absolute;
+      width: 100%;
+      z-index: -2;
+    }
+
+    &::after {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(247, 255, 254, 0.75) 19.05%, #f5ffff 69.93%, #f3ffff 79.45%, #d4ffff 95.77%, rgba(190, 255, 255, 0) 98.52%);
+      bottom: rem(-100);
+      content: '';
+      left: 0;
+      padding-bottom: calc(1618 / 1366 * 100%);
+      position: absolute;
+      width: 100%;
+      z-index: -1;
+    }
+  }
+
+  &_beach {
+    left: 0;
+    max-width: 100%;
+    top: 0%;
+    width: 100%;
+    z-index: -4 !important;
+    @include bg-layer('~assets/images/pageExperienceJourney/bg_beach.png',calc(1027 / 1366 * 100%));
+
+    &::before {
+      transform: translateY(-80%);
+    }
+  }
+
+  &_leaf-middle {
+    max-width: rem(257);
+    right: 0;
+    top: 0;
+    width: calc(257 / 1366 * 100%);
+    @include bg-layer('~assets/images/pageExperienceJourney/bg_leaf_middle.png',calc(422 / 257 * 100%));
+
+    &::before {
+      transform: translateY(-60%);
+    }
+  }
+
+  &_line-bottom {
+    left: calc(470 / 1366 * 100%);
+    max-width: rem(843);
+    top: 50%;
+    width: calc(721 / 1366 * 100%);
+    @include bg-layer('~assets/images/pageExperienceJourney/bg_line_bottom.png',calc(845 / 721 * 100%));
+
+    &::before {
+      transform: translateY(-50%);
+    }
+  }
+
+  &_leaf-bottom {
+    bottom: 0;
+    left: 0;
+    max-width: rem(213);
+    width: calc(213 / 1366 * 100%);
+    @include bg-layer('~assets/images/pageExperienceJourney/bg_leaf_bottom.png',calc(469 / 213 * 100%));
+
+    &::before {
+      transform: translateY(-60%);
+    }
+  }
+}

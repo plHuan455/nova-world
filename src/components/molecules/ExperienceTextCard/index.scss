@@ -1,5 +1,4 @@
 .m-exptextcard {
-  max-width: rem(448);
   position: relative;
 
   &::before {
@@ -14,16 +13,23 @@
   &_content {
     padding: rem(24) rem(42) rem(32) rem(24);
     position: relative;
-    @include mobile-down {
+    @include tablet-down {
       padding: rem(24);
+    }
+    @include text-overflow(5);
+    @include mobile-down {
+      padding: rem(16);
     }
   }
 
   &_btn {
     margin-top: rem(40);
     max-width: fit-content;
+    @include tablet-down {
+      margin-top: rem(16);
+    }
     @include mobile-down {
-      margin-top: rem(24);
+      margin-top: rem(10);
     }
   }
 }

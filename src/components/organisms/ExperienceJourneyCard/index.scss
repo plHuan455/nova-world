@@ -1,0 +1,146 @@
+.m-experience-journey-card {
+  position: relative;
+  $root: &;
+
+  &_image {
+    max-width: calc(840 / 1126 * 100%);
+    width: 100%;
+    @include mobile-down {
+      max-width: 100%;
+    }
+  }
+
+  &_content {
+    @include mobile-down {
+      position: relative;
+  
+      &::before {
+        background: $linear-gradient7;
+        content: '';
+        height: 100%;
+        opacity: 0.76;
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+      }
+    }
+  }
+
+  &_title {
+    position: absolute;
+    width: fit-content;
+    @include mobile-down {
+      max-width: 100% !important;
+      padding: rem(16) rem(16) rem(0) rem(16);
+      position: initial;
+    }
+  }
+
+  &_info {
+    max-width: calc(448 / 1126 * 100%);
+    position: absolute;
+    width: 100%;
+    @include mobile-down {
+      max-width: 100% !important;
+      position: initial;
+
+      .m-exptextcard {
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+  
+  &-right {
+    #{$root}_title {
+      max-width: calc(821 / 1126 * 100%);
+      right: calc(305 / 1126 *100%);
+      top: calc(153 / 521 * 100%);
+      @include desktop-down {
+        top: calc(50 / 521 * 100%);
+      }
+      @include tablet-down {
+        max-width: calc(726 / 1126 * 100%);
+        right: calc(400 / 1126 *100%);
+      }
+    }
+
+    #{$root}_info {
+      left: calc(643 / 1126 * 100%);
+      top: calc(153 / 521 * 100% + 70px);
+      @include desktop-down {
+        left: calc(443 / 1126 * 100%);
+        max-width: calc(548 / 1126 * 100%);
+        top: calc(50 / 521 * 100% + 70px);
+      }
+      @include tablet-down {
+        left: calc(343 / 1126 * 100%);
+        max-width: calc(748 / 1126 * 100%);
+        top: calc(50 / 521 * 100% + 56px);
+      }
+    }
+  }
+
+  &-bottom {
+    #{$root}_image {
+      max-width: 100%;
+    }
+
+    #{$root}_title {
+      left: 50%;
+      top: calc(320 / 617 * 100%);
+      transform: translateX(-50%);
+      @include mobile-down { 
+        transform: translateX(0);
+      }
+    }
+
+    #{$root}_info {
+      left: calc(582 / 1126 * 100%);
+      top: calc(447 / 617 * 100%);
+      @include desktop-down {
+        left: calc(482 / 1126 * 100%);
+        max-width: calc(548 / 1126 * 100%);
+      }
+      @include tablet-down {
+        left: calc(282 / 1126 * 100%);
+        max-width: calc(748 / 1126 * 100%);
+      }
+    }
+  }
+
+  &-left {
+    #{$root}_image {
+      margin-left: auto;
+      max-width: calc(840 / 1126 * 100%);
+      @include mobile-down {
+        max-width: 100%;
+      }
+    }
+
+    #{$root}_title {
+      left: calc(327 / 1126 * 100%);
+      max-width: calc(799 / 1126 * 100%);
+      top: calc(197 / 521 * 100%);
+      @include desktop-down {
+        left: calc(443 / 1126 * 100%);
+        max-width: calc(683 / 1126 * 100%);
+        top: calc(100 / 521 * 100%);
+      }
+    }
+
+    #{$root}_info {
+      left: 0;
+      top: calc(197 / 521 * 100% + 56px);
+      @include desktop-down {
+        max-width: calc(548 / 1126 * 100%);
+        top: calc(100 / 521 * 100% + 56px);
+      }
+      @include tablet-down {
+        max-width: calc(748 / 1126 * 100%);
+        top: calc(100 / 521 * 100% + 40px);
+      }
+    }
+  }
+}
