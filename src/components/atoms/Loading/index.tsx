@@ -3,7 +3,7 @@ import React from 'react';
 import mapModifiers from 'utils/functions';
 
 interface LoadingProps {
-  modifiers?: ('white' | 'green' | 'fixed' | 'small')[];
+  modifiers?: ('white' | 'blue' | 'fixed' | 'small')[];
 }
 
 const Loading: React.FC<LoadingProps> = ({ modifiers }) => (
