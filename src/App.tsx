@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loading from 'components/atoms/Loading';
 import { MainLayoutProvider } from 'container/MainLayout';
 import Contact from 'pages/Contact';
-import ExperienceJourney from 'pages/ExperienceJourneyCard';
+import ExperienceJourney from 'pages/ExperienceJourney';
 import Home from 'pages/Home';
 import NotFound from 'pages/NotFound';
 import Search from 'pages/Search';

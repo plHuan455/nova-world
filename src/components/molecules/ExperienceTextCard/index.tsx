@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Button from 'components/atoms/Button';
 import Text from 'components/atoms/Text';
 
-export interface ExperienceTextCardProps {
+interface ExperienceTextCardProps {
   btnLink?: string;
   btnLabel?: string;
   content?: string;
