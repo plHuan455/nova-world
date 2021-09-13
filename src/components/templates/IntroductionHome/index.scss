@@ -135,6 +135,16 @@
   }
 
   &_description {
+    max-height: rem(290);
+    overflow: auto;
+    @include scroll-bars(8);
+    @include tablet-down {
+      max-height: rem(145);
+    }
+    @include mobile-down {
+      max-height: 100%;
+    }
+
     .a-text {
       @include mobile-down {
         text-align: center;
@@ -143,6 +153,8 @@
   }
 
   &_left {
+    align-items: center;
+    display: flex;
     flex: 0 0 58.4%;
     max-width: 58.4%;
     padding: 0 rem(33);
@@ -206,6 +218,7 @@
     width: 90%;
 
     &-image {
+      cursor: pointer;
       left: 50%;
       position: absolute;
       top: 50%;
