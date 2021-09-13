@@ -123,8 +123,8 @@
     max-width: 41.6%;
     padding: 0 rem(33);
     @include tablet-down {
-      flex: 0 0 55%;
-      max-width: 55%;
+      flex: 0 0 47%;
+      max-width: 47%;
       padding: 0 rem(20);
     }
     @include mobile-down {
@@ -159,8 +159,8 @@
     max-width: 58.4%;
     padding: 0 rem(33);
     @include tablet-down {
-      flex: 0 0 45%;
-      max-width: 45%;
+      flex: 0 0 53%;
+      max-width: 53%;
       padding: 0 rem(20);
     }
     @include mobile-down {
@@ -197,7 +197,10 @@
     }
 
     .slick-list {
-      margin: 0 28% -3px;
+      margin: 0 29% -3px;
+      @include tablet {
+        margin: 0 35% -3px;
+      }
 
       &::before {
         background-color: $green;
