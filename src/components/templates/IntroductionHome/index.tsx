@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import Slider from 'react-slick';
 
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
@@ -19,7 +20,7 @@ const settings = {
   infinite: false,
   dots: false,
   slidesToShow: 1,
-  draggable: false,
+  draggable: true,
   slidesToScroll: 1,
   arrows: true,
   prevArrow: <PrevArrow variant="green" />,
@@ -30,6 +31,15 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
   data,
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const refCarousel = useRef<Slider|null>(null);
+
+  const handleSlide = () => {
+    if (currentSlide < data.length - 1) {
+      refCarousel.current?.slickNext();
+    } else {
+      refCarousel.current?.slickGoTo(0);
+    }
+  };
 
   return (
     <div className="t-introductionhome">
@@ -60,6 +70,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                   {
                     data.map((item, index) => (
                       <div
+                        onClick={handleSlide}
                         key={`item-${index.toString()}`}
                         className={`t-introductionhome_box-image ${index === currentSlide ? 'active' : 'remove'}`}
                       >
@@ -85,6 +96,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                       </Text>
                     </div>
                     <Carousel
+                      ref={refCarousel}
                       settings={{
                         ...settings,
                         afterChange: (current: number) => {
