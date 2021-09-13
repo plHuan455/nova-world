@@ -1,6 +1,6 @@
 import 'App.scss';
 
-import React, { Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -11,6 +11,8 @@ import Home from 'pages/Home';
 import NotFound from 'pages/NotFound';
 import Search from 'pages/Search';
 import { store } from 'store';
+
+const NewsDetail = lazy(() => import('pages/NewsDetail'));
 
 const routes = [
   {
@@ -27,6 +29,11 @@ const routes = [
     key: 'contact',
     path: '/lien-he',
     component: Contact,
+  },
+  {
+    key: 'newsdetail',
+    path: '/tin-tuc/:slug',
+    component: NewsDetail,
   },
   {
     key: 'page404',
