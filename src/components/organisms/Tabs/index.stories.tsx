@@ -27,6 +27,7 @@ export const normal: Story = () => {
             key={`tab-${index.toString()}`}
             active={index === indexActive}
             label={item}
+            labelColor="cyanCobaltBlue"
             handleClick={() => setIndexActive(index)}
           />
         ))}

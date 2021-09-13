@@ -1,0 +1,34 @@
+.t-news {
+  &_title {
+    margin: 0 auto rem(32) auto;
+    width: fit-content;
+  }
+
+  &_list {
+    margin-top: rem(56);
+
+    &_wrapper {
+      @include adjust-flex(flex-start, stretch);
+      flex-wrap: wrap;
+      row-gap: rem(27);
+    }
+
+    &_item {
+      flex: 0 0 calc(100% / 3);
+      padding: 0 rem(16);
+      @include tablet-down {
+        flex: 0 0 calc(100% / 2);
+      }
+      @include mobile-down {
+        flex: 0 0 100%;
+        padding: 0 rem(12);
+      }
+    }
+  }
+
+  &_button {
+    margin: rem(48) auto 0 auto;
+    // margin-top: rem(48);
+    width: rem(193);
+  }
+}

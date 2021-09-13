@@ -9,6 +9,7 @@ import { MainLayoutProvider } from 'container/MainLayout';
 import Contact from 'pages/Contact';
 import ExperienceJourney from 'pages/ExperienceJourney';
 import Home from 'pages/Home';
+import News from 'pages/News';
 import NotFound from 'pages/NotFound';
 import Search from 'pages/Search';
 import { store } from 'store';
@@ -45,6 +46,11 @@ const routes = [
     key: 'experience-journey',
     path: '/hanh-trinh-trai-nghiem',
     component: ExperienceJourney,
+  },
+  {
+    key: 'news',
+    path: '/tin-tuc',
+    component: News,
   },
 ];
 
