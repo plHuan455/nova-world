@@ -1,5 +1,4 @@
 .m-exptextcard {
-  max-width: rem(448);
   position: relative;
 
   &::before {
@@ -14,9 +13,6 @@
   &_content {
     padding: rem(24) rem(42) rem(32) rem(24);
     position: relative;
-    @include tablet-down {
-      margin-top: rem(20);
-    }
     @include mobile-down {
       padding: rem(16);
     }
