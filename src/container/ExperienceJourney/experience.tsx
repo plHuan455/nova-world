@@ -13,41 +13,46 @@ type ExperienceProps = {
 }
 
 const checkPositionCard = (index:number) => {
-  if (index === 1) return 'right';
-  if (index === 2) return 'bottom';
-  if (index === 3) return 'left';
-  return 'right';
+  switch (index) {
+    case 1:
+      return 'right';
+    case 2:
+      return 'bottom';
+    case 3:
+      return 'left';
+
+    default:
+      return 'right';
+  }
 };
 
 const BgLayer:React.FC<{index:number}> = ({ index }) => {
-  if (index === 1) {
-    return (
-      <div className="p-experience-journey_leaf-top" />
-    );
+  switch (index) {
+    case 1:
+      return (
+        <div className="p-experience-journey_leaf-top" />
+      );
+    case 2:
+      return (
+        <>
+          <div className="p-experience-journey_line-top" />
+          <div className="p-experience-journey_bg-linear" />
+        </>
+      );
+    case 3:
+      return (
+        <div className="p-experience-journey_beach" />
+      );
+
+    default:
+      return (
+        <>
+          <div className="p-experience-journey_leaf-middle" />
+          <div className="p-experience-journey_leaf-bottom" />
+          <div className="p-experience-journey_line-bottom" />
+        </>
+      );
   }
-  if (index === 2) {
-    return (
-      <>
-        <div className="p-experience-journey_line-top" />
-        <div className="p-experience-journey_bg-linear" />
-      </>
-    );
-  }
-  if (index === 3) {
-    return (
-      <div className="p-experience-journey_beach" />
-    );
-  }
-  if (index === 4) {
-    return (
-      <>
-        <div className="p-experience-journey_leaf-middle" />
-        <div className="p-experience-journey_leaf-bottom" />
-        <div className="p-experience-journey_line-bottom" />
-      </>
-    );
-  }
-  return null;
 };
 
 const Experience:React.FC<ExperienceProps> = ({
