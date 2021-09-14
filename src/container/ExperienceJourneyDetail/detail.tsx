@@ -18,6 +18,18 @@ interface DetailProps{
   }[]
 }
 
+const responsive = [
+  {
+    breakpoint: 991,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      centerMode: true,
+      infinite: true,
+    },
+  },
+];
+
 const Detail:React.FC<DetailProps> = ({
   labels,
   panel,
@@ -38,10 +50,11 @@ const Detail:React.FC<DetailProps> = ({
           type="fadeInUp"
           extendClassName="p-experience-journey-detail_tabs"
         >
-          <Tabs slidesToShow={labels.length}>
+          <Tabs breakCenterMode="tablet-up" responsive={responsive} slidesToShow={labels.length}>
             {
             labels.map((ele, idx) => (
               <Tab
+                labelColor="cyanCobaltBlue"
                 key={`tab-${idx.toString()}`}
                 active={idx === indexActive}
                 label={ele}
@@ -76,7 +89,7 @@ const Detail:React.FC<DetailProps> = ({
                   </Heading>
                 </div>
                 <div className="p-experience-journey-detail_panel-publish">
-                  <Icon iconName="timer" />
+                  <Icon iconName="clock" />
                   <Text>
                     {item.publishedAt}
                   </Text>

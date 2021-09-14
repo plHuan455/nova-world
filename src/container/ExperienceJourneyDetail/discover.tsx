@@ -13,6 +13,7 @@ const settings = {
   slidesToShow: 3,
   slidesToScroll: 1,
   arrows: true,
+  speed: 300,
   prevArrow: <PrevArrow variant="normal" />,
   nextArrow: <NextArrow variant="normal" />,
   responsive: [
@@ -57,7 +58,7 @@ const Discover:React.FC<DiscoverProps> = ({
       extendClassName="p-experience-journey-detail_discover"
     >
       <div className="p-experience-journey-detail_discover-title">
-        <Heading type="h2" modifiers={['500', 'center', 'uppercase', 'cyanCobaltBlue', 's005']}>
+        <Heading type="h5" modifiers={['500', 'center', 'uppercase', 'cyanCobaltBlue', 's005']}>
           {title}
         </Heading>
       </div>

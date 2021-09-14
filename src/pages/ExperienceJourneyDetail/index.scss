@@ -10,6 +10,9 @@
     top: 50%;
     width: calc(217/ 1366 * 100%);
     z-index: -1;
+    @include mobile-down {
+      display: none;
+    }
 
     &::before {
       background: url('~assets/images/experienceJourneyDetail/bg_leaf_top.png') no-repeat center / contain;
@@ -29,6 +32,9 @@
     top: 65%;
     width: calc(190 / 1366 * 100%);
     z-index: -1;
+    @include mobile-down {
+      display: none;
+    }
 
     &::before {
       background: url('~assets/images/experienceJourneyDetail/bg_leaf_bottom.png') no-repeat center / contain;
@@ -47,7 +53,6 @@
   }
 
   &_tabs {
-    background-color: rgb(41, 167, 209);
     margin-top: rem(32);
     @include mobile-down {
       margin-top: rem(20);
@@ -87,7 +92,7 @@
     position: relative;
 
     @include mobile-down {
-      margin-top: rem(40);
+      margin-top: rem(20);
     }
   }
 
