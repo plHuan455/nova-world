@@ -40,7 +40,7 @@ type BreadcrumbsData = {
   slug: string;
 }
 
-type APIPagingationResponse<T> = {
+type APIPaginationResponse<T> = {
   data: T;
   links: LinkData;
   meta: Meta;
