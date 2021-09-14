@@ -9,7 +9,7 @@ export const consultancySystem = {
 
 export const dataMap = {
   mapMarker: [{ lat: 10.778352104415093, lng: 106.69949898056191 }],
-  mapAPIkey: 'AIzaSyAt4eV8aoSdhKXHQSQvJc7aSEGlcnUVbdo',
+  mapAPIKey: 'AIzaSyAt4eV8aoSdhKXHQSQvJc7aSEGlcnUVbdo',
 };
 
 export const title = 'LIÊN HỆ VỚI CHÚNG TÔI';

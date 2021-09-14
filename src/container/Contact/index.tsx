@@ -19,17 +19,13 @@ const Contact:React.FC = () => {
     addressList.map((item) => ({ name: item.name, address: item.address }))
   ), [addressList]);
 
-  const mapMarkerData = useMemo(
-    () => addressList.map((item) => ({
+  const dataMap = useMemo(() => ({
+    mapMarker: addressList.map((item) => ({
       lat: Number(item.latitude),
       lng: Number(item.longitude),
     })),
-    [addressList],
-  );
-  const dataMap = useMemo(() => ({
-    mapMarker: mapMarkerData,
-    mapAPIkey: 'AIzaSyAt4eV8aoSdhKXHQSQvJc7aSEGlcnUVbdo',
-  }), [mapMarkerData]);
+    mapAPIKey: 'AIzaSyAt4eV8aoSdhKXHQSQvJc7aSEGlcnUVbdo',
+  }), [addressList]);
 
   return (
     <>
