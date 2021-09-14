@@ -1,0 +1,59 @@
+.m-notify {
+  $root: &;
+  background-color: $black-overlay04;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: $transition-long ease;
+  visibility: hidden;
+  width: 100%;
+  z-index: 9998;
+
+  &-show {
+    opacity: 1;
+    visibility: visible;
+    #{$root}_icon {
+      animation: bounceIn 0.8s forwards;
+      transform: scale(1);
+    }
+  }
+
+  &_body {
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+
+  &_icon {
+    background: transparent url('~assets/icons/ic_check_mark.svg') no-repeat
+      center / 100% auto;
+    display: inline-block;
+    height: rem(100);
+    transform: scale(0);
+    transition: $transition-long;
+    width: rem(100);
+  }
+
+  &-warning {
+    #{$root}_body {
+      padding: rem(20);
+    }
+
+    #{$root}_icon {
+      background: transparent url('~assets/icons/ic_warning.svg') no-repeat
+        center / 100% auto;
+    }
+
+    #{$root}_message {
+      .a-text {
+        color: $white;
+      }
+    }
+  }
+}

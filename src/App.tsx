@@ -1,6 +1,7 @@
 import 'App.scss';
 
 import React, { Suspense, lazy } from 'react';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -76,9 +77,23 @@ const App: React.FC = () => (
   </div>
 );
 
+const GoogleReCaptchaWrapper: React.FC = ({ children }) => (
+  <GoogleReCaptchaProvider
+    reCaptchaKey="6LcwgsIZAAAAAHZFFWu3icOSaGK2_SVjZwY-kEjQ"
+    language="vi"
+    scriptProps={{
+      appendTo: 'head',
+    }}
+  >
+    {children}
+  </GoogleReCaptchaProvider>
+);
+
 const AppWrapper: React.FC = () => (
   <Provider store={store}>
-    <App />
+    <GoogleReCaptchaWrapper>
+      <App />
+    </GoogleReCaptchaWrapper>
   </Provider>
 );
 

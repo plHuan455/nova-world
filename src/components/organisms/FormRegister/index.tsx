@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useState } from 'react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { Controller, useForm } from 'react-hook-form';
+import { useLocation } from 'react-router-dom';
 import * as yup from 'yup';
 
 import Button from 'components/atoms/Button';
@@ -9,6 +11,9 @@ import Input, { InputNumber } from 'components/atoms/Input';
 import Text from 'components/atoms/Text';
 import TextArea from 'components/atoms/Textarea';
 import Form from 'components/organisms/Form';
+import { createContactStoreService } from 'services/contact';
+import { useAppDispatch } from 'store/hooks';
+import { openNotify } from 'store/notify';
 
 export type ContactForm = {
   name: string;
@@ -37,7 +42,6 @@ export interface FormRegisterProps {
 const FormRegister: React.FC<FormRegisterProps> = ({
   consultancySystem,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
   const method = useForm<ContactForm>({
     resolver: yupResolver(contactSchema),
     mode: 'onSubmit',
@@ -49,18 +53,36 @@ const FormRegister: React.FC<FormRegisterProps> = ({
     },
   });
 
+  const location = useLocation();
+  const query = new URLSearchParams(location.search || location.hash.replace('#', '?'));
+  const dispatch = useAppDispatch();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
+  const utmParams = {
+    utmSource: query.get('utm_source'),
+    utmMedium: query.get('utm_medium'),
+    utmTerm: query.get('utm_term'),
+    utmCampaign: query.get('utm_campaign'),
+    utmContent: query.get('utm_content'),
+  };
+
   const handleSubmit = async (data: ContactForm) => {
     try {
       setIsLoading(true);
-      await new Promise((res) => {
-        setTimeout(() => {
-          res(data);
-        }, 500);
+      if (!executeRecaptcha) return;
+      const tokenRecaptcha = await executeRecaptcha('submit');
+      await createContactStoreService({
+        ...data,
+        grecaptchaToken: tokenRecaptcha,
+        ...utmParams,
       });
-    } catch (e) {
-      // TODO: error
-    } finally {
+      dispatch(openNotify({ type: 'success', message: 'Đăng ký thành công' }));
       method.reset();
+    } catch (e) {
+      dispatch(openNotify({ type: 'warning', message: 'Đăng ký không thành công' }));
+    } finally {
       setIsLoading(false);
     }
   };

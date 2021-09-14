@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import NotifyContainer from './notify';
+
 import MainLayout from 'components/templates/MainLayout';
 
 export type PageType = 'home' | 'product' | 'another';
@@ -30,6 +32,7 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
       <MainLayout>
         {children}
       </MainLayout>
+      <NotifyContainer />
     </MainLayoutContext.Provider>
   );
 };

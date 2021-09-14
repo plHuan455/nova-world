@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
 import exampleReducer from './example';
+import notifyReducer from './notify';
 
 export const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
   reducer: {
     example: exampleReducer,
+    notify: notifyReducer,
   },
 });
 
