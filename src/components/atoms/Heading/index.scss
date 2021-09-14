@@ -22,6 +22,16 @@
     }
   }
 
+  &-h5 {
+    @include font-base(32,40);
+    @include tablet-down {
+      @include font-base(24, 32);
+    }
+    @include mobile-down {
+      @include font-base(20, 28);
+    }
+  }
+
   &-h6 {
     @include font-base(24,32);
     @include tablet-down {

@@ -9,6 +9,7 @@ interface TabsProps {
   responsive?: ResponsiveObject[];
   tabActive?: number;
   slidesToShow?: number;
+  breakCenterMode?: 'mobile-up' | 'tablet-up';
 }
 
 interface TabProps {
@@ -52,6 +53,7 @@ const Tabs: React.FC<TabsProps> = ({
   children,
   slidesToShow,
   tabActive,
+  breakCenterMode,
 }) => {
   const settings = {
     className: 'slider variable-width',
@@ -75,7 +77,7 @@ const Tabs: React.FC<TabsProps> = ({
   }, [tabActive, sliderRef]);
 
   return (
-    <div className="o-tabs">
+    <div className={mapModifiers('o-tabs', breakCenterMode)}>
       <Slider ref={sliderRef} {...settings}>
         {children}
       </Slider>
@@ -84,6 +86,7 @@ const Tabs: React.FC<TabsProps> = ({
 };
 
 Tabs.defaultProps = {
+  breakCenterMode: 'mobile-up',
   responsive: [
     {
       breakpoint: 767,

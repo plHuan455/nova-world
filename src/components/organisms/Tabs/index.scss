@@ -1,14 +1,25 @@
 .o-tabs {
   $root: &;
 
-  .slick {
-    &-track {
+  &-mobile-up {
+    .slick-track {
       @include mobile-up {
         display: flex;
         justify-content: center;
       }
     }
+  }
 
+  &-tablet-up {
+    .slick-track {
+      @include tablet-up {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  .slick {
     &-list {
       margin: 0 rem(-44);
       @include desktop-down {
