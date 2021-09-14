@@ -26,7 +26,7 @@ const MapContact: React.FC<MapContactProps> = () => (
 const Map: React.FC<MapProps> = ({ mapMarker, mapAPIkey }) => (
   <div className="o-map">
     {
-      mapMarker && (
+      mapMarker && mapMarker.length > 0 && (
       <GoogleMapReact
         bootstrapURLKeys={{
           key: `${mapAPIkey}&libraries=places,geometry`,

@@ -4,6 +4,8 @@ import { useLocation } from 'react-router-dom';
 import NotifyContainer from './notify';
 
 import MainLayout from 'components/templates/MainLayout';
+import { useAppDispatch } from 'store/hooks';
+import { getTradingFloorsAsync } from 'store/trading';
 
 export type PageType = 'home' | 'product' | 'another';
 
@@ -17,7 +19,7 @@ export const MainLayoutContext = createContext<MainLayoutContextProps | undefine
 export const MainLayoutProvider: React.FC = ({ children }) => {
   const location = useLocation();
   const [pageType, setPageType] = useState<PageType>();
-
+  const dispatch = useAppDispatch();
   const context = {
     pageType,
     setPageType,
@@ -26,6 +28,10 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
   useEffect(() => {
     window.scrollTo({ behavior: 'smooth', top: 0 });
   }, [location.pathname]);
+
+  useEffect(() => {
+    dispatch(getTradingFloorsAsync());
+  }, [dispatch]);
 
   return (
     <MainLayoutContext.Provider value={context}>
