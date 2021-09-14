@@ -27,7 +27,7 @@ export const createContactStoreService = async (
     formData.append('utm_data[utm_content]', params.utmContent);
   }
 
-  await axiosInstance.post('contacts/stor', formData);
+  await axiosInstance.post('contacts/store', formData);
 };
 
 export const placeholder = null;
