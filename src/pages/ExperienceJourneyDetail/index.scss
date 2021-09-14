@@ -92,7 +92,14 @@
     position: relative;
 
     @include mobile-down {
+      margin-bottom: rem(32);
       margin-top: rem(20);
+    }
+
+    img,
+    video {
+      height: auto;
+      width: 100%;
     }
   }
 
