@@ -24,9 +24,13 @@ const Card: React.FC<CardProps> = ({
         <Image imgSrc={imgSrc || ''} alt={title} ratio="354x222" />
       </div>
       <div className="m-card_content">
-        <Text modifiers={['500', 'cyanCobaltBlue']}>{title}</Text>
+        <div className="m-card_content_title">
+          <Text modifiers={['500', 'cyanCobaltBlue']}>{title}</Text>
+        </div>
         <div className="m-card_spacer" />
-        <Text modifiers={['400']}>{description}</Text>
+        <div className="m-card_content_desc">
+          <Text modifiers={['400']}>{description}</Text>
+        </div>
       </div>
     </Link>
   </div>

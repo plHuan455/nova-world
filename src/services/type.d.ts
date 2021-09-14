@@ -9,6 +9,21 @@ type SEOData = {
   keywords: string;
 }
 
+type LinkData = {
+  self: string;
+  first: string;
+  prev: string;
+  next: string;
+  last: string;
+}
+
+type Meta = {
+  totalPages: number;
+  limit: number;
+  total: number;
+  page: number;
+};
+
 type ConsultancySystem = {
   title?: string;
   banner?: string;
@@ -24,3 +39,15 @@ type BreadcrumbsData = {
   text: string;
   slug: string;
 }
+
+type APIPagingationResponse<T> = {
+  data: T;
+  links: LinkData;
+  meta: Meta;
+  message: string;
+}
+
+type APIResponse<T> = {
+  data: T;
+  message: string;
+};

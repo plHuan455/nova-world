@@ -13,6 +13,7 @@ interface TabsProps {
 
 interface TabProps {
   label?: string;
+  labelColor?: 'white' | 'cyanCobaltBlue'
   active?: boolean;
   handleClick?: () => void;
 }
@@ -32,14 +33,15 @@ export const Panel: React.FC<PanelProps> = ({
 
 export const Tab: React.FC<TabProps> = ({
   label,
+  labelColor = 'white',
   active,
   handleClick,
 }) => (
   <div
     onClick={handleClick}
-    className={mapModifiers('o-tabs_tab', active && 'active')}
+    className={mapModifiers('o-tabs_tab', active && 'active', labelColor)}
   >
-    <Text modifiers={['20x32', 'sm', 'uppercase', 'white', 's005']}>
+    <Text modifiers={['20x32', 'sm', 'uppercase', labelColor, 's005']}>
       {label}
     </Text>
   </div>
