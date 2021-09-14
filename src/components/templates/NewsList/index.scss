@@ -1,11 +1,20 @@
 .t-news {
   &_title {
-    margin: 0 auto rem(32) auto;
-    width: fit-content;
+    display: flex;
+    justify-content: center;
+    margin-bottom: rem(32);
+
+    @include mobile-down {
+      margin-bottom: rem(24);
+    }
   }
 
   &_list {
     margin-top: rem(56);
+
+    @include mobile-down {
+      margin-top: rem(36);
+    }
 
     &_wrapper {
       @include adjust-flex(flex-start, stretch);

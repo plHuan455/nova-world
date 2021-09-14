@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect, useMemo, useState,
+} from 'react';
 
-// import { listPanel } from 'assets/dataDummy/newsList';
 import { CardProps } from 'components/molecules/Card';
 import Banner from 'components/organisms/Banner';
 import NewsList, { ListPanelType } from 'components/templates/NewsList';
@@ -8,11 +9,12 @@ import useMainLayout from 'hooks/useMainLayout';
 import {
   getNewsCategoriesService,
   getNewsListByCateService,
-} from 'services/News';
-import { CategoriesData, NewsData } from 'services/News/type';
+} from 'services/news';
+import { CategoriesData, NewsData } from 'services/news/type';
 import { getImageURL } from 'utils/functions';
 
 const LIMIT = 3;
+
 const NewsContainer: React.FC = () => {
   useMainLayout('another');
   const [loading, setLoading] = useState(false);
@@ -23,11 +25,15 @@ const NewsContainer: React.FC = () => {
   const [totalPage, setTotalPage] = useState<number>(1);
   const [tabActive, setTabActive] = useState<number>(0);
 
-  const convertCateList = (list: CategoriesData[]) => list.map((item, idx) => ({
-    id: idx,
-    label: item.name,
-    slug: item.slug,
-  }));
+  const convertCateList = useMemo(() => {
+    if (!cateList?.length) return [];
+
+    return cateList.map((item, idx) => ({
+      id: idx,
+      label: item.name,
+      slug: item.slug,
+    }));
+  }, [cateList]);
 
   const convertNewsList = (list: NewsData[]) => list.map((item, idx) => ({
     id: idx,
@@ -36,10 +42,11 @@ const NewsContainer: React.FC = () => {
     description: item.description,
     href: item.slug,
   }));
+
   const convertPanelList = (
     _cateList: CategoriesData[],
     _newsList: CardProps[],
-  ): ListPanelType[] => _cateList.map((item, idx) => ({
+  ): ListPanelType[] => _cateList.map((_, idx) => ({
     id: idx,
     listNews: _newsList,
   }));
@@ -51,13 +58,14 @@ const NewsContainer: React.FC = () => {
         limit: LIMIT,
         page: 1,
       });
+
       const panelData = convertPanelList(cateList, convertNewsList(data));
       setPanelList(panelData);
       setTabActive(tabIdx);
       setTotalPage(meta.totalPages);
       setPage(1);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     } finally {
       setLoading(false);
     }
@@ -97,15 +105,18 @@ const NewsContainer: React.FC = () => {
       const panelData = convertPanelList(cateData.data, convertNewsList(newsData.data));
       setCateList(cateData.data);
       setPanelList(panelData);
+      setTotalPage(newsData.meta.totalPages);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     } finally {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     initPage();
   }, []);
+
   return (
     <>
       <section>
@@ -121,7 +132,7 @@ const NewsContainer: React.FC = () => {
           loadingBtn={loadingBtn}
           handleClickTab={(idx) => handleClickTab(idx)}
           tabActive={tabActive}
-          listLabel={convertCateList(cateList)}
+          listLabel={convertCateList}
           listPanel={panelList}
         />
       </section>

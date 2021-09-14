@@ -67,7 +67,7 @@ const NewsList: React.FC<NewsListProps> = ({
       <div className="t-news_list">
         {fetching ? (
           <div className="t-news_loading">
-            <Loading modifiers={['green']} />
+            <Loading modifiers={['blue']} />
           </div>
         ) : (
           <>
@@ -86,7 +86,8 @@ const NewsList: React.FC<NewsListProps> = ({
                             imgSrc={item.imgSrc}
                             title={item.title}
                             description={item.description}
-                            href={item.href}
+                            // TODO: Update href later
+                            href={`/tin-tuc/${item.href}`}
                           />
                         </div>
                       ))

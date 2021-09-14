@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Heading from 'components/atoms/Heading';
 import Icon from 'components/atoms/Icon';
@@ -20,13 +19,7 @@ const Content: React.FC<ContentProps> = ({
 }) => (
   <Container>
     <Animate type="fadeInUp" extendClassName="p-newsdetail_content">
-      <Link to={{
-        pathname: breadcrumb?.slug,
-        search: window.location.search,
-      }}
-      >
-        <Text modifiers={['400', 'cyanCobaltBlue']}>{breadcrumb?.text}</Text>
-      </Link>
+      <Text modifiers={['400', 'cyanCobaltBlue']}>{breadcrumb?.text}</Text>
       <div className="title">
         <Heading type="h6" modifiers={['500', 'cyanCobaltBlue']}>
           {newsData?.title}
