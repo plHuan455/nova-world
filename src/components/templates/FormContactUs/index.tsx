@@ -67,7 +67,7 @@ const FormContactUs: React.FC<FormContactUsProps> = ({
       extendClassName="t-form-contact_bottom"
     >
       <div className="t-form-contact_map">
-        <Map mapAPIkey={dataMap?.mapAPIkey || ''} mapMarker={dataMap?.mapMarker} />
+        <Map mapAPIKey={dataMap?.mapAPIKey || ''} mapMarker={dataMap?.mapMarker} />
       </div>
     </Animate>
   </div>

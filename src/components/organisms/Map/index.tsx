@@ -10,7 +10,7 @@ export type TypeMapMarker = {
 
 export interface MapProps {
   mapMarker?: TypeMapMarker[];
-  mapAPIkey: string;
+  mapAPIKey: string;
 }
 interface MapContactProps {
   lat?: number;
@@ -23,13 +23,13 @@ const MapContact: React.FC<MapContactProps> = () => (
   </div>
 );
 
-const Map: React.FC<MapProps> = ({ mapMarker, mapAPIkey }) => (
+const Map: React.FC<MapProps> = ({ mapMarker, mapAPIKey }) => (
   <div className="o-map">
     {
-      mapMarker && (
+      mapMarker && mapMarker.length > 0 && (
       <GoogleMapReact
         bootstrapURLKeys={{
-          key: `${mapAPIkey}&libraries=places,geometry`,
+          key: `${mapAPIKey}&libraries=places,geometry`,
         }}
         defaultCenter={{
           lat: mapMarker[0]?.lat,

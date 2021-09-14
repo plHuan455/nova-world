@@ -35,7 +35,7 @@ export const normal: Story = ({ latitude, longtitude, keyMap }) => (
   }}
   >
     <Map
-      mapAPIkey={keyMap}
+      mapAPIKey={keyMap}
       mapMarker={[{ lat: latitude, lng: longtitude }]}
     />
   </div>
