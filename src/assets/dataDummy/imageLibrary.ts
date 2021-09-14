@@ -60,4 +60,19 @@ const imageLibraryData = [
     mediaThumb: 'https://source.unsplash.com/random',
   },
 ];
+
+export const tagsList = [
+  {
+    id: 1,
+    label: 'Wonderland',
+  },
+  {
+    id: 2,
+    label: 'Morito',
+  },
+  {
+    id: 3,
+    label: 'Habana',
+  },
+];
 export default imageLibraryData;
