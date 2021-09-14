@@ -58,3 +58,20 @@ type APIResponse<T> = {
   data: T;
   message: string;
 };
+
+type LocalesItem = {
+  icon?: string;
+  message?: string;
+  active?: boolean;
+  default?: boolean;
+}
+
+type LocalesResponse = {
+  vi: LocalesItem;
+  en: LocalesItem;
+  kr: LocalesItem;
+  jp: LocalesItem;
+  cn: LocalesItem;
+}
+
+type LanguageType = 'VN'|'EN'|'CN'|'JP'|'KR';
