@@ -20,6 +20,22 @@ export const cateList: LibraryCategoryType[] = [
 
 const imageLibraryData = [
   {
+    title: 'Ocean pool - phân kỳ: tropicana',
+    media: 'https://source.unsplash.com/random',
+    mediaThumb: 'https://source.unsplash.com/random',
+  },
+  {
+    title: 'Ocean pool - phân kỳ: Morito',
+    media: 'https://source.unsplash.com/random',
+    mediaThumb: 'https://source.unsplash.com/random',
+  },
+  {
+    title: 'Ocean pool - phân kỳ: Habana',
+    media: 'https://source.unsplash.com/random',
+    mediaThumb: 'https://source.unsplash.com/random',
+  },
+  {
+    title: 'Ocean pool - phân kỳ: tropicana',
     media: 'https://source.unsplash.com/random',
     mediaThumb: 'https://source.unsplash.com/random',
   },
@@ -28,34 +44,32 @@ const imageLibraryData = [
     mediaThumb: 'https://source.unsplash.com/random',
   },
   {
+    title: 'Ocean pool - phân kỳ: tropicana',
+
     media: 'https://source.unsplash.com/random',
     mediaThumb: 'https://source.unsplash.com/random',
   },
   {
+    title: 'Ocean pool - phân kỳ: tropicana',
+
     media: 'https://source.unsplash.com/random',
     mediaThumb: 'https://source.unsplash.com/random',
   },
   {
+    title: 'Ocean pool - phân kỳ: tropicana',
+
     media: 'https://source.unsplash.com/random',
     mediaThumb: 'https://source.unsplash.com/random',
   },
   {
+    title: 'Ocean pool - phân kỳ: tropicana',
+
     media: 'https://source.unsplash.com/random',
     mediaThumb: 'https://source.unsplash.com/random',
   },
   {
-    media: 'https://source.unsplash.com/random',
-    mediaThumb: 'https://source.unsplash.com/random',
-  },
-  {
-    media: 'https://source.unsplash.com/random',
-    mediaThumb: 'https://source.unsplash.com/random',
-  },
-  {
-    media: 'https://source.unsplash.com/random',
-    mediaThumb: 'https://source.unsplash.com/random',
-  },
-  {
+    title: 'Ocean pool - phân kỳ: tropicana',
+
     media: 'https://source.unsplash.com/random',
     mediaThumb: 'https://source.unsplash.com/random',
   },

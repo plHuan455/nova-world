@@ -30,4 +30,7 @@
     @include icon-image('~assets/icons/ic_clock.svg', 16, 16);
   }
   
+  &-arrowPrevArsenic {
+    @include icon-image('~assets/icons/ic_arrow_prev_arsenic.svg', 44, 44);
+  }
 }

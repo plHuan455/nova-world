@@ -9,6 +9,7 @@ export type LibraryItemTypes = {
   media: string;
   mediaThumb: string;
   type?: string;
+  title?: string;
   isPlay?: boolean;
 }
 
