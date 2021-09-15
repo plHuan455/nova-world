@@ -1,6 +1,5 @@
-import { CategoriesData, NewsData, ParamsType } from './type';
-
 import axiosInstance from 'services/common/instance';
+import { CategoriesData, NewsData, ParamsType } from 'services/news/types';
 
 export const getNewsListService = async (): Promise<
   APIPaginationResponse<NewsData[]>
