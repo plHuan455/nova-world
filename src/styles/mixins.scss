@@ -152,6 +152,7 @@ $colors-design: (
   'stormcloud': $stormcloud,
   'androidGreen1': $android-green1,
   'green': $green,
+  'platinum1': $platinum1,
 );
 
 @mixin style-color {
@@ -178,6 +179,7 @@ $colors-design: (
 
 $font-family: (
   'fontICiel': $font-iciel,
+  'fontPlayfair': $font-playfair,
 );
 
 @mixin style-font-family {

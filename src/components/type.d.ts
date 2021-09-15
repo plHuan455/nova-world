@@ -16,6 +16,8 @@ type Ratio =
   | '1366x568'
   | '840x521'
   | '1126x617'
+  | '676x430'
+  | '451x273'
   | 'logo-novaworld';
 
 type FontWeightStyle =
@@ -48,9 +50,10 @@ type ColorStyle =
   | 'dimGray'
   | 'stormcloud'
   | 'androidGreen1'
-  | 'green';
+  | 'green'
+  | 'platinum1';
 
-type FontFamilyStyle = 'fontICiel';
+type FontFamilyStyle = 'fontICiel' | 'fontPlayfair';
 
 type GeneralTextStyle =
   | ColorStyle
