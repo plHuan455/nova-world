@@ -26,7 +26,7 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
   };
 
   useEffect(() => {
-    window.scrollTo({ behavior: 'smooth', top: 0 });
+    window.scrollTo(0, 0);
   }, [location.pathname]);
 
   useEffect(() => {
