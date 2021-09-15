@@ -2,6 +2,7 @@
   $root: &;
   display: block;
   overflow: hidden;
+  padding-bottom: 9/16 * 100%;
   position: relative;
   width: 100%;
 
@@ -14,7 +15,10 @@
     border-radius: 50%;
     cursor: pointer;
     height: rem(52);
+    left: 50%;
     position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
     transition: $transition-long ease;
     width: rem(52);
     z-index: 3;
