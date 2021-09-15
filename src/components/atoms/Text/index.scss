@@ -128,6 +128,32 @@
   &-12x21 {
     @include font-base(12, 21);
   }
+  
+  &-110x120 {
+    @include font-base(110, 120);
+    @include desktop-down {
+      @include font-base(80, 84);
+    }
+    @include tablet-down {
+      @include font-base(64, 64);
+    }
+    @include mobile-down {
+      @include font-base(48, 30);
+    }
+  }
+  
+  &-38x60 {
+    @include font-base(38, 60);
+    @include desktop-down {
+      @include font-base(32, 48);
+    }
+    @include tablet-down {
+      @include font-base(24, 40);
+    }
+    @include mobile-down {
+      @include font-base(20, 30);
+    }
+  }
 
   @include style-letter-spacing();
   @include style-color();
