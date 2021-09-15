@@ -2,9 +2,22 @@ import React, { useRef } from 'react';
 
 import useScrollAnimate from 'hooks/useScrollAnimation';
 
+type AnimateType =
+  | 'zoomIn'
+  | 'move'
+  | 'fadeInBlur'
+  | 'animationFramesLeft'
+  | 'animationFramesRight'
+  | 'beatSmall'
+  | 'fadeInUp'
+  | 'slideInLeft'
+  | 'slideInRight'
+  | 'scaleX'
+  | 'scaleY';
+
 interface AnimateProps {
   extendClassName?: string;
-  type?: 'slideInLeft' | 'slideInRight' | 'fadeInUp';
+  type?: AnimateType;
 }
 
 const Animate: React.FC<AnimateProps> = ({
