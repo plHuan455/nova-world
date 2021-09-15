@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import Divider from 'components/atoms/Divider';
+import Heading from 'components/atoms/Heading';
 import Loading from 'components/atoms/Loading';
 import Text from 'components/atoms/Text';
 import Container from 'components/organisms/Container';
@@ -20,6 +22,7 @@ export type LibraryTagType = {
 };
 
 interface LibraryListProps extends LibraryImagesProps {
+  title?: string;
   activeTab?: number;
   cardIndex?: number;
   cateList: LibraryCategoryType[];
@@ -33,21 +36,28 @@ interface LibraryListProps extends LibraryImagesProps {
 const LibraryList: React.FC<LibraryListProps> = ({
   // activeTab,
   // cardIndex,
+  title = 'thư viện',
   cateList,
   tagsList,
   listImages,
   fetching,
   handleClickImage,
   handleShowMore,
-  // handleClickTabPanel,
+  handleClickTabPanel,
   page = 0,
-  totalPage = 0,
+  totalPage = 2,
 }) => {
   const [indexActive, setIndexActive] = useState(0);
 
   return (
     <div className="t-library">
       <Container>
+        <div className="t-library_title">
+          <Heading type="h2">
+            {title}
+            <Divider />
+          </Heading>
+        </div>
         {cateList && cateList.length > 0 && (
           <div className="t-library_tabs">
             <Tabs>
@@ -57,7 +67,10 @@ const LibraryList: React.FC<LibraryListProps> = ({
                   active={indexActive === i}
                   label={panel.label}
                   labelColor="cyanCobaltBlue"
-                  handleClick={() => setIndexActive(i)}
+                  handleClick={() => {
+                    setIndexActive(i);
+                    if (handleClickTabPanel) handleClickTabPanel(i);
+                  }}
                 />
               ))}
             </Tabs>

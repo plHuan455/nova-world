@@ -1,4 +1,14 @@
 .t-library {
+  &_title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: rem(32);
+
+    @include mobile-down {
+      margin-bottom: rem(24);
+    }
+  }
+
   &_wrapper {
     margin-top: rem(56);
   }

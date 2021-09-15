@@ -13,6 +13,7 @@ export default {
 
 export const normal: Story = () => (
   <LibraryList
+    title="thư viện"
     cateList={cateList}
     tagsList={tagsList}
     listImages={imageLibraryData}
