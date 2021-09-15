@@ -1,9 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect, useRef, useState,
+} from 'react';
 import { useLocation } from 'react-router-dom';
 import Slider from 'react-slick';
 
 import Icon from 'components/atoms/Icon';
 import Image from 'components/atoms/Image';
+import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 import Container from 'components/organisms/Container';
@@ -16,9 +19,9 @@ interface LibraryImageCarouselProps {
 const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
   imageList,
 }) => {
-  const [slideIdx, setSlideIdx] = useState(0);
-  const sliderRef = useRef<Slider>(null);
   const { state } = useLocation<{ index: number }>();
+  const [slideIdx, setSlideIdx] = useState<number>(state.index || 0);
+  const sliderRef = useRef<Slider>(null);
   const settings = {
     dots: false,
     slidesToShow: 1,
@@ -88,14 +91,22 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
         },
       },
     ],
-    afterChange: (i: number) => setSlideIdx(i),
+    afterChange: (i: number) => {
+      setSlideIdx(i);
+    },
   };
 
   useEffect(() => {
     if (sliderRef.current && state && state.index) {
+      // console.log('state.index :>> ', state.index);
       sliderRef.current.slickGoTo(state.index);
+      setSlideIdx(state.index);
     }
-  }, [state]);
+  }, [state, state.index]);
+
+  // useEffect(() => {
+  //   console.log(slideIdx);
+  // }, [slideIdx]);
   return (
     <div className="t-library-carousel">
       <Container fullScreen>
@@ -113,8 +124,9 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
                 />
                 {slideIdx === idx && (
                   <div className="t-library-carousel_item_title">
+                    {/* {console.log(slideIdx, idx)} */}
                     <Text modifiers={['cyanCobaltBlue', '400', 'uppercase']}>
-                      {imageList[slideIdx].title}
+                      {imageList[slideIdx].title || ''}
                     </Text>
                   </div>
                 )}
@@ -124,7 +136,9 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
         </div>
         <div className="t-library-carousel_bottom">
           <div className="t-library-carousel_bottom_nav">
-            <Icon iconName="arrowPrevArsenic" />
+            <Link href="/thu-vien">
+              <Icon iconName="arrowPrevArsenic" />
+            </Link>
             <Text modifiers={['400', 'uppercase', 'cyanCobaltBlue']}>
               Quay lại thư viện
             </Text>
