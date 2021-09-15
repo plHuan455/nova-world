@@ -1,5 +1,6 @@
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import LibraryImageCarousel from '.';
 
@@ -12,5 +13,7 @@ export default {
 } as Meta;
 
 export const normal: Story = () => (
-  <LibraryImageCarousel imageList={imageLibraryData} />
+  <Router>
+    <LibraryImageCarousel imageList={imageLibraryData} />
+  </Router>
 );
