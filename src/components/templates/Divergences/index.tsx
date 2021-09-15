@@ -107,7 +107,7 @@ const Divergences: React.FC<DivergencesProps> = ({
     <div className="t-divergences">
       <Animate
         extendClassName="t-divergences_heading"
-        type="fadeInUp"
+        type="beatSmall"
       >
         <Heading type="h2">
           {title}
@@ -117,7 +117,7 @@ const Divergences: React.FC<DivergencesProps> = ({
       <Container noPaddingRightDesktop>
         <Animate
           extendClassName="t-divergences_content"
-          type="fadeInUp"
+          type="animationFramesRight"
         >
           <div className="t-divergences_left">
             <div className="t-divergences_carousel-left">

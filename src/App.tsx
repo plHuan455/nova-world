@@ -13,6 +13,7 @@ import ExperienceJourneyDetail from 'pages/ExperienceJourneyDetail';
 import Home from 'pages/Home';
 import News from 'pages/News';
 import NotFound from 'pages/NotFound';
+import Product from 'pages/Product';
 import Search from 'pages/Search';
 import { store } from 'store';
 
@@ -58,6 +59,11 @@ const routes = [
     key: 'experienceJourneyDetail',
     path: '/hanh-trinh-trai-nghiem/chi-tiet',
     component: ExperienceJourneyDetail,
+  },
+  {
+    key: 'product',
+    path: '/san-pham-noi-bat',
+    component: Product,
   },
 ];
 

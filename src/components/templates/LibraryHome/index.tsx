@@ -25,7 +25,7 @@ const LibraryHome: React.FC<LibraryHomeProps> = ({ data }) => {
     <div className="t-libraryhome">
       <Animate
         extendClassName="t-libraryhome-title"
-        type="fadeInUp"
+        type="beatSmall"
       >
         <Heading type="h2" modifiers={['cyanCobaltBlue', '500']}>
           THƯ VIỆN
@@ -34,7 +34,7 @@ const LibraryHome: React.FC<LibraryHomeProps> = ({ data }) => {
       </Animate>
       <Animate
         extendClassName="t-libraryhome-content"
-        type="fadeInUp"
+        type="animationFramesLeft"
       >
         {data?.map((item, index) => (
           <Link

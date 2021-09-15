@@ -15,7 +15,7 @@ const GeoLocationHome: React.FC<GeoLocationHomeProps> = ({ title = 'VỊ TRÍ Đ
   <div className="t-geolocationhome">
     <Animate
       extendClassName="t-geolocationhome_top"
-      type="fadeInUp"
+      type="beatSmall"
     >
       <div className="t-geolocationhome_title">
         <Heading type="h2" modifiers={['500', 's005', 'center', 'uppercase', 'cyanCobaltBlue']}>
@@ -32,7 +32,7 @@ const GeoLocationHome: React.FC<GeoLocationHomeProps> = ({ title = 'VỊ TRÍ Đ
       </div>
     </Animate>
     <Animate
-      type="fadeInUp"
+      type="scaleY"
       extendClassName="t-geolocationhome-map "
     >
       <LocationMap data={data} />
