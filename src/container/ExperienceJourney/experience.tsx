@@ -60,7 +60,7 @@ const Experience:React.FC<ExperienceProps> = ({
 }) => (
   <>
     <Container>
-      <Animate type="fadeInUp">
+      <Animate type="beatSmall">
         <div className="p-experience-journey_title">
           <Heading type="h2">
             HÀNH TRÌNH TRẢI NGHIỆM
@@ -88,7 +88,7 @@ const Experience:React.FC<ExperienceProps> = ({
             <BgLayer index={key + 1} />
             <Container>
               <Animate
-                type={key % 2 === 0 ? 'slideInLeft' : 'slideInRight'}
+                type={key % 2 === 0 ? 'scaleY' : 'scaleX'}
               >
                 <ExperienceJourneyCard
                   ratio={key + 1 === 2 ? '1126x617' : '840x521'}

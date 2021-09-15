@@ -26,7 +26,7 @@ const FormContactUs: React.FC<FormContactUsProps> = ({
   <div className="t-form-contact">
     <Animate
       extendClassName="t-form-contact_title"
-      type="fadeInUp"
+      type="beatSmall"
     >
       <Heading type="h2">
         {title}
@@ -63,7 +63,7 @@ const FormContactUs: React.FC<FormContactUsProps> = ({
       </Animate>
     </div>
     <Animate
-      type="fadeInUp"
+      type="scaleY"
       extendClassName="t-form-contact_bottom"
     >
       <div className="t-form-contact_map">

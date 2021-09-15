@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
 
+import Animate from '../Animate';
+
 import Image from 'components/atoms/Image';
 import Player from 'components/organisms/Player';
 import useWindowScroll from 'hooks/useWindowScroll';
@@ -42,7 +44,7 @@ const Banner: React.FC<BannerProps> = ({
       )}
     >
       {isHomePage ? (
-        <div className="o-banner_home">
+        <Animate type="fadeInBlur" extendClassName="o-banner_home">
           <Player
             loop
             ratio="1366x768"
@@ -53,11 +55,11 @@ const Banner: React.FC<BannerProps> = ({
             isHomePlayer
             hasControls={false}
           />
-        </div>
+        </Animate>
       ) : (
-        <div className="o-banner-wrap">
+        <Animate type="fadeInBlur" extendClassName="o-banner-wrap">
           <Image imgSrc={thumbnail} ratio="1366x450" alt={alt || 'image-banner'} />
-        </div>
+        </Animate>
       )}
     </div>
   );

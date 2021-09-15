@@ -6,6 +6,7 @@ import Heading from 'components/atoms/Heading';
 import Loading from 'components/atoms/Loading';
 import Text from 'components/atoms/Text';
 import Card, { CardProps } from 'components/molecules/Card';
+import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
 import Tabs, { Panel, Tab } from 'components/organisms/Tabs';
 
@@ -47,12 +48,12 @@ const NewsList: React.FC<NewsListProps> = ({
 }) => (
   <div className="t-news">
     <Container>
-      <div className="t-news_title">
+      <Animate type="beatSmall" extendClassName="t-news_title">
         <Heading type="h2">
           {title}
           <Divider />
         </Heading>
-      </div>
+      </Animate>
       <Tabs slidesToShow={listLabel.length}>
         {listLabel.map((ele, idx) => (
           <Tab

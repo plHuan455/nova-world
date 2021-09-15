@@ -38,7 +38,7 @@ const FeaturedProduct: React.FC<FeaturedProductProps> = ({
         <div className="t-featuredproduct_wrap">
           <Animate
             extendClassName="t-featuredproduct_title-main"
-            type="fadeInUp"
+            type="beatSmall"
           >
             <Heading type="h2">
               SẢN PHẨM NỔI BẬT
@@ -47,7 +47,7 @@ const FeaturedProduct: React.FC<FeaturedProductProps> = ({
           </Animate>
           <Animate
             extendClassName="t-featuredproduct_content"
-            type="slideInLeft"
+            type="scaleX"
           >
             <div className="t-featuredproduct_carousel">
               <Carousel

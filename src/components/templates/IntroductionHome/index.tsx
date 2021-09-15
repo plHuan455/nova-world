@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import Slider from 'react-slick';
 
 import Divider from 'components/atoms/Divider';
@@ -33,6 +33,16 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
   const [currentSlide, setCurrentSlide] = useState(0);
   const refCarousel = useRef<Slider|null>(null);
 
+  const getRandomInt = useMemo(() => {
+    const result: number[] = [];
+    const min = Math.ceil(-11);
+    const max = Math.floor(11);
+    data.forEach(() => {
+      result.push(Math.floor(Math.random() * (max - min) + min));
+    });
+    return result;
+  }, [data]);
+
   const handleSlide = () => {
     if (currentSlide < data.length - 1) {
       refCarousel.current?.slickNext();
@@ -49,7 +59,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
       <div className="t-introductionhome_bg-circle-bottom" />
       <Container>
         <Animate
-          type="fadeInUp"
+          type="beatSmall"
           extendClassName="t-introductionhome_title"
         >
           <Heading type="h2">
@@ -60,7 +70,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
         {
           data.length > 0 && (
             <Animate
-              type="fadeInUp"
+              type="zoomIn"
               extendClassName="t-introductionhome_content"
             >
               <div
@@ -73,6 +83,9 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                         onClick={handleSlide}
                         key={`item-${index.toString()}`}
                         className={`t-introductionhome_box-image ${index === currentSlide ? 'active' : 'remove'}`}
+                        style={{
+                          transform: `translate(-50%, -50%) rotate(${getRandomInt[index]}deg)`,
+                        }}
                       >
                         <Image imgSrc={item.imgSrc} ratio="551x335" />
                       </div>

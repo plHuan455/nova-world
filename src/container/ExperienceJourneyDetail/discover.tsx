@@ -53,16 +53,13 @@ const Discover:React.FC<DiscoverProps> = ({
   title,
 }) => (
   <Container>
-    <Animate
-      type="fadeInUp"
-      extendClassName="p-experience-journey-detail_discover"
-    >
-      <div className="p-experience-journey-detail_discover-title">
+    <div className="p-experience-journey-detail_discover">
+      <Animate type="zoomIn" extendClassName="p-experience-journey-detail_discover-title">
         <Heading type="h5" modifiers={['500', 'center', 'uppercase', 'cyanCobaltBlue', 's005']}>
           {title}
         </Heading>
-      </div>
-      <div className="p-experience-journey-detail_discover-carousel">
+      </Animate>
+      <Animate type="scaleX" extendClassName="p-experience-journey-detail_discover-carousel">
         <Carousel settings={settings}>
           {listCard.map((item, index) => (
             <Card
@@ -71,8 +68,8 @@ const Discover:React.FC<DiscoverProps> = ({
             />
           ))}
         </Carousel>
-      </div>
-    </Animate>
+      </Animate>
+    </div>
   </Container>
 );
 

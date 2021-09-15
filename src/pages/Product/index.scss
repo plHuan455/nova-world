@@ -259,6 +259,32 @@
   }
 
   &_related-card {
+    $related-card: &;
+
+    &:hover {
+      .thumbnail::after {
+        height: 0;
+        width: 0;
+      }
+    }
+
+    .thumbnail {
+      position: relative;
+
+      &::after {
+        background: linear-gradient(180deg, #10431f -18.49%, #2354a3 100%);
+        content: '';
+        height: 100%;
+        left: 50%;
+        opacity: 0.6;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: all $transition-long ease-in-out;
+        width: 100%;
+      }
+    }
+
     .title {
       margin-top: rem(20);
       @include tablet-down {

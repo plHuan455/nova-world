@@ -40,14 +40,14 @@ const Detail:React.FC<DetailProps> = ({
       <div className="p-experience-journey-detail_leaf-top" />
       <div className="p-experience-journey-detail_leaf-bottom" />
       <Container>
-        <Animate type="fadeInUp" extendClassName="p-experience-journey-detail_title">
+        <Animate type="beatSmall" extendClassName="p-experience-journey-detail_title">
           <Heading type="h2">
             HÀNH TRÌNH TRẢI NGHIỆM
             <Divider />
           </Heading>
         </Animate>
         <Animate
-          type="fadeInUp"
+          type="animationFramesLeft"
           extendClassName="p-experience-journey-detail_tabs"
         >
           <Tabs breakCenterMode="tablet-up" responsive={responsive} slidesToShow={labels.length}>
@@ -65,7 +65,7 @@ const Detail:React.FC<DetailProps> = ({
           </Tabs>
         </Animate>
         <Animate
-          type="fadeInUp"
+          type="zoomIn"
           extendClassName="p-experience-journey-detail_panel-content"
         >
           {

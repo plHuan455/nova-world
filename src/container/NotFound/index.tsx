@@ -6,6 +6,7 @@ import Button from 'components/atoms/Button';
 import Heading from 'components/atoms/Heading';
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
+import Animate from 'components/organisms/Animate';
 import useMainLayout from 'hooks/useMainLayout';
 
 const dummy = {
@@ -36,27 +37,29 @@ const NotFound: React.FC = () => {
           <Image ratio="1366x568" imgSrc={dummy.imgSrc} alt={dummy.title} />
         </div>
         <div className="wrap">
-          <div className="subtitle">
-            <Text modifiers={['20x24', '500', 'white']}>{dummy.subTitle}</Text>
-          </div>
-          <div className="title">
-            <Heading type="h1" modifiers={['700', 'white']}>{dummy.title}</Heading>
-          </div>
-          <div className="description">
-            <Text modifiers={['white', '400', '20x24']} innerHTML={dummy.description} />
-          </div>
-          <div className="button">
-            <Button
-              type="button"
-              modifiers="android-green"
-              handleClick={() => history.push({
-                pathname: dummy.btnLink,
-                search: window.location.search,
-              })}
-            >
-              {dummy.btnLabel}
-            </Button>
-          </div>
+          <Animate type="beatSmall">
+            <div className="subtitle">
+              <Text modifiers={['20x24', '500', 'white']}>{dummy.subTitle}</Text>
+            </div>
+            <div className="title">
+              <Heading type="h1" modifiers={['700', 'white']}>{dummy.title}</Heading>
+            </div>
+            <div className="description">
+              <Text modifiers={['white', '400', '20x24']} innerHTML={dummy.description} />
+            </div>
+            <div className="button">
+              <Button
+                type="button"
+                modifiers="android-green"
+                handleClick={() => history.push({
+                  pathname: dummy.btnLink,
+                  search: window.location.search,
+                })}
+              >
+                {dummy.btnLabel}
+              </Button>
+            </div>
+          </Animate>
         </div>
       </section>
     </>

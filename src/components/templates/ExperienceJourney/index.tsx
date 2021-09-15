@@ -41,7 +41,7 @@ const ExperienceJourney: React.FC<ExperienceJourneyProps> = ({ title, dataExperi
     <div className="t-expjourney_wrap">
       <Container fullScreen>
         <Animate
-          type="fadeInUp"
+          type="beatSmall"
           extendClassName="t-expjourney_title"
         >
           <Heading type="h2">
@@ -50,7 +50,7 @@ const ExperienceJourney: React.FC<ExperienceJourneyProps> = ({ title, dataExperi
           </Heading>
         </Animate>
         <Animate
-          type="slideInRight"
+          type="zoomIn"
           extendClassName="t-expjourney_gallery"
         >
           <Carousel

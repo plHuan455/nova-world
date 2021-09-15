@@ -24,7 +24,7 @@ const NewsHome: React.FC<NewsHomeProps> = ({ title, tabDataNewsHome }) => {
       <div className="t-newshome_wrap">
         <Container>
           <Animate
-            type="fadeInUp"
+            type="beatSmall"
             extendClassName="t-newshome_title"
           >
             <Text modifiers={['40x60', '500', 's005', 'white', 'center', 'uppercase']}>
@@ -32,7 +32,7 @@ const NewsHome: React.FC<NewsHomeProps> = ({ title, tabDataNewsHome }) => {
             </Text>
           </Animate>
           <Animate
-            type="fadeInUp"
+            type="fadeInBlur"
             extendClassName="t-newshome_tabs"
           >
             <Tabs slidesToShow={tabDataNewsHome.length}>
