@@ -79,7 +79,7 @@ const LibraryList: React.FC<LibraryListProps> = ({
           }
           {fetching ? (
             <div className="t-library_loading">
-              <Loading modifiers={['green']} />
+              <Loading modifiers={['blue']} />
             </div>
           ) : (
             <div className="t-library_list">
