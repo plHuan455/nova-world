@@ -10,7 +10,7 @@ import {
   getNewsCategoriesService,
   getNewsListByCateService,
 } from 'services/news';
-import { CategoriesData, NewsData } from 'services/news/type';
+import { CategoriesData, NewsData } from 'services/news/types';
 import { getImageURL } from 'utils/functions';
 
 const LIMIT = 3;
