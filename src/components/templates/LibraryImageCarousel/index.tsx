@@ -18,7 +18,7 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
 }) => {
   const [slideIdx, setSlideIdx] = useState(0);
   const sliderRef = useRef<Slider>(null);
-  const { state } = useLocation<{ sliderIdx: number }>();
+  const { state } = useLocation<{ index: number }>();
   const settings = {
     dots: false,
     slidesToShow: 1,
@@ -92,8 +92,8 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
   };
 
   useEffect(() => {
-    if (sliderRef.current && state && state.sliderIdx) {
-      sliderRef.current.slickGoTo(state.sliderIdx);
+    if (sliderRef.current && state && state.index) {
+      sliderRef.current.slickGoTo(state.index);
     }
   }, [state]);
   return (
