@@ -1,0 +1,282 @@
+.p-product {
+  &_content {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(247, 255, 254, 0.75) 19.05%, #f5ffff 69.93%, #f3ffff 79.45%, #f4ffff 95.77%, rgb(244, 255, 255) 98.52%);
+    padding-top: rem(56);
+
+    @include mobile-down {
+      padding-top: rem(32);
+    }
+
+    .title {
+      display: flex;
+      justify-content: center;
+    }
+
+    .list {
+      margin-top: rem(56);
+      @include mobile-down {
+        margin-top: rem(24);
+      }
+    }
+
+    .item {
+      position: relative;
+      z-index: 2;
+    }
+
+    .line {
+      height: rem(100);
+      position: relative;
+      z-index: 1;
+
+      @include tablet-down {
+        height: rem(60);
+      }
+
+      @include mobile-down {
+        height: rem(32);
+        overflow: hidden;
+      }
+
+      > div {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: rem(216);
+        left: 50%;
+        position: absolute;
+        top: 30%;
+        transform: translate(-50%, -30%);
+        width: rem(721);
+        @include tablet-down {
+          height: rem(166);
+          width: rem(521);
+        }
+        @include mobile-down {
+          height: rem(64);
+          width: 60%;
+        }
+      }
+    }
+
+    .line-reverse {
+      > div {
+        height: rem(448);
+        width: rem(393);
+        @include tablet-down {
+          height: rem(314);
+          width: rem(293);
+        }
+      }
+    }
+  }
+
+  &_card {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: rem(-30);
+    margin-right: rem(-30);
+    @include desktop-down {
+      margin-left: rem(-16);
+      margin-right: rem(-16);
+    }
+    @include tablet-down {
+      margin-left: rem(-12);
+      margin-right: rem(-12);
+    }
+
+    &-reverse {
+      flex-direction: row-reverse;
+      @include mobile-down {
+        .wrapper {
+          justify-content: flex-end;
+          text-align: right;
+        }
+
+        .button {
+          margin-left: auto;
+        }
+      }
+    }
+
+    .thumbnail {
+      flex: 0 0 calc(676 / (1366 - 286) * 100%);
+      max-width: calc(676 / (1366 - 286) * 100%);
+      padding-left: rem(30);
+      padding-right: rem(30);
+      @include desktop-down {
+        padding-left: rem(16);
+        padding-right: rem(16);
+      }
+      @include tablet-down {
+        padding-left: rem(12);
+        padding-right: rem(12);
+      }
+      @include mobile-down {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+
+    .wrapper {
+      align-items: center;
+      display: flex;
+      flex: 0 0 calc(100% - (676 / (1366 - 286)) * 100%);
+      max-width: calc(100% - (676 / (1366 - 286)) * 100%);
+      padding-left: rem(30);
+      padding-right: rem(30);
+      @include desktop-down {
+        padding-left: rem(16);
+        padding-right: rem(16);
+      }
+      @include tablet-down {
+        padding-left: rem(12);
+        padding-right: rem(12);
+      }
+      @include mobile-down {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+
+    .name {
+      margin-top: rem(16);
+      @include tablet-down {
+        margin-top: rem(8);
+      }
+      @include mobile-down {
+        margin-top: rem(18);
+      }
+    }
+
+    .description {
+      margin-top: rem(4);
+      @include mobile-down {
+        margin-top: 0;
+      }
+    }
+
+    .button {
+      margin-top: rem(32);
+      max-width: fit-content;
+      @include tablet-down {
+        margin-top: rem(16);
+      }
+      @include mobile-down {
+        margin-top: rem(8);
+      }
+    }
+  }
+
+  &_waves {
+    background-image: url('~assets/images/featuredProduct/bg_waves_product.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: rem(-100);
+    padding-bottom: 382 / 1366 * 100%;
+    position: relative;
+    @include desktop-down {
+      margin-top: rem(-50);
+    }
+    @include mobile-down {
+      margin-top: 0;
+    }
+  }
+
+  &_related {
+    background-image: url('~assets/images/featuredProduct/bg_related.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: rem(-200);
+    padding-bottom: rem(267);
+    padding-top: rem(262);
+    @include max-desktop {
+      margin-top: rem(-300);
+      padding-bottom: rem(367);
+      padding-top: rem(362);
+    }
+
+    @include tablet-down {
+      padding-bottom: rem(120);
+      padding-top: rem(240);
+    }
+
+    @include mobile-down {
+      margin-top: rem(-80);
+      padding-bottom: rem(80);
+      padding-top: rem(120);
+    }
+
+    .content {
+      margin-top: rem(64);
+      @include desktop-down {
+        margin-top: rem(48);
+      }
+      @include tablet-down {
+        margin-top: rem(32);
+      }
+
+      .slick-list {
+        margin: 0 rem(-16);
+      }
+
+      .slick-slide {
+        padding: 0 rem(16);
+      }
+
+      .slick-arrow {
+        top: 35%;
+      
+        @include break-min(1367px) {
+          top: 40%;
+        }
+        @include mobile-down {
+          top: 40%;
+        }
+      }
+
+      .slick-arrow.prev {
+        left: calc(32 / 1366 * 100%);
+
+        @include desktop-up {
+          left: calc(-96 / 1366 * 100%);
+        }
+      }
+
+      .slick-arrow.next {
+        right: calc(32 / 1366 * 100%);
+
+        @include break-min(1367px) {
+          right: calc(-96 / 1366 * 100%);
+        }
+        @include desktop-up {
+          right: calc(66 / 1366 * 100%);
+        }
+      }
+    }
+  }
+
+  &_related-card {
+    .title {
+      margin-top: rem(20);
+      @include tablet-down {
+        margin-top: rem(12);
+      }
+      @include mobile-down {
+        margin-top: rem(8);
+      }
+    }
+
+    .description {
+      margin-top: rem(10);
+      @include tablet-down {
+        margin-top: rem(6);
+      }
+      @include mobile-down {
+        margin-top: 0;
+      }
+    }
+  }
+}
