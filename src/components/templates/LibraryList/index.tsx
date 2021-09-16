@@ -81,7 +81,7 @@ const LibraryList: React.FC<LibraryListProps> = ({
           />
         );
     }
-  }, [activeTab, listData]);
+  }, [activeTab, listData, tagList]);
   return (
     <div className="t-library">
       <Container>
