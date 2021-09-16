@@ -17,7 +17,6 @@ export const normal: Story = () => (
     cateList={cateList}
     tagList={tagsList}
     listData={imageLibraryData}
-    handleClickImage={(idx) => console.log(idx)}
     handleShowMore={() => console.log('show more')}
     handleClickTabPanel={(idx) => console.log(idx)}
   />

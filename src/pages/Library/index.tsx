@@ -1,10 +1,10 @@
 import React from 'react';
 
-import LibraryContainer from 'container/Library';
+import Screen from 'container/Library';
 
 const Library: React.FC = () => (
   <div className="p-library">
-    <LibraryContainer />
+    <Screen />
   </div>
 );
 

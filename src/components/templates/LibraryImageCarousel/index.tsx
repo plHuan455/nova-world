@@ -1,12 +1,10 @@
 import React, {
   useEffect, useRef, useState,
 } from 'react';
-import { useLocation } from 'react-router-dom';
 import Slider from 'react-slick';
 
 import Icon from 'components/atoms/Icon';
 import Image from 'components/atoms/Image';
-import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 import Container from 'components/organisms/Container';
@@ -14,14 +12,19 @@ import { LibraryItemTypes } from 'components/organisms/LibraryImage';
 
 interface LibraryImageCarouselProps {
   imageList: LibraryItemTypes[];
+  idxActive?: number;
+  handleBack?: () => void;
 }
 
 const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
   imageList,
+  idxActive = 0,
+  handleBack,
 }) => {
-  const { state } = useLocation<{ index: number }>();
-  const [slideIdx, setSlideIdx] = useState<number>(state.index || 0);
+  const [slideIdx, setSlideIdx] = useState<number>(idxActive);
+
   const sliderRef = useRef<Slider>(null);
+
   const settings = {
     dots: false,
     slidesToShow: 1,
@@ -66,30 +69,6 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
           centerPadding: '0',
         },
       },
-      {
-        breakpoint: 850,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: false,
-          focusOnSelect: false,
-          centerPadding: '0',
-          dots: true,
-          arrows: false,
-        },
-      },
-      {
-        breakpoint: 670,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: false,
-          focusOnSelect: false,
-          centerPadding: '0',
-          dots: true,
-          arrows: false,
-        },
-      },
     ],
     afterChange: (i: number) => {
       setSlideIdx(i);
@@ -97,12 +76,11 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
   };
 
   useEffect(() => {
-    // slick to active slide
-    if (sliderRef.current && state && state.index) {
-      sliderRef.current.slickGoTo(state.index);
-      setSlideIdx(state.index);
+    if (sliderRef.current && idxActive) {
+      sliderRef.current.slickGoTo(idxActive);
+      setSlideIdx(idxActive);
     }
-  }, [state, state.index]);
+  }, [idxActive]);
 
   return (
     <div className="t-library-carousel">
@@ -121,7 +99,6 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
                 />
                 {slideIdx === idx && (
                   <div className="t-library-carousel_item_title">
-                    {/* {console.log(slideIdx, idx)} */}
                     <Text modifiers={['cyanCobaltBlue', '400', 'uppercase']}>
                       {imageList[slideIdx].title || ''}
                     </Text>
@@ -131,15 +108,15 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
             ))}
           </Carousel>
         </div>
+      </Container>
+      <Container>
         <div className="t-library-carousel_bottom">
-          <div className="t-library-carousel_bottom_nav">
-            <Link href="/thu-vien">
-              <Icon iconName="arrowPrevArsenic" />
-            </Link>
+          <button type="button" className="t-library-carousel_bottom_nav" onClick={handleBack}>
+            <Icon iconName="arrowPrevArsenic" />
             <Text modifiers={['400', 'uppercase', 'cyanCobaltBlue']}>
               Quay lại thư viện
             </Text>
-          </div>
+          </button>
           <div className="t-library-carousel_bottom_count">
             <Text modifiers={['32x48', 'cyanCobaltBlue', '500']}>
               {slideIdx < 9 ? `0${slideIdx + 1}` : slideIdx + 1}

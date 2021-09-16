@@ -1,12 +1,37 @@
 .t-library-carousel {
+  &_top {
+    .slick-list {
+      margin: 0 rem(-16);
+    }
+
+    .slick-slide {
+      padding: 0 rem(16);
+    }
+
+    .slick-arrow.prev {
+      @include desktop-down {
+        left: calc(16 / 1366 * 100%);
+      }
+    }
+    
+    .slick-arrow.next {
+      @include desktop-down {
+        right: calc(16 / 1366 * 100%);
+      }
+    }
+  }
+
   &_item {
-    margin: 0 auto;
-    max-width: rem(740);
-    width: 100%;
+    .a-image {
+      animation-duration: 1s;
+      animation-name: scaleX;
+      transition: ease-in $transition;
+    }
+
 
     &_title {
-      animation-duration: 1s;
-      animation-name: fadeInUp;
+      animation-duration: 0.5s;
+      animation-name: scaleX;
       margin-top: rem(16);
       transition: ease-in $transition;
       @include tablet-down {
@@ -16,9 +41,12 @@
   }
 
   &_bottom {
-    margin: rem(88) auto 0;
-    max-width: rem(861);
+    margin-top: rem(88);
     @include adjust-flex(space-between, center);
+
+    @include desktop-down {
+      margin-top: rem(64);
+    }
 
     &_nav,
     &_count {
@@ -27,8 +55,14 @@
     }
 
     &_nav {
+      @include reset-button();
+      background-color: transparent;
+
       .a-icon {
         margin-right: rem(21);
+        @include mobile-down {
+          margin-right: rem(12);
+        }
       }
     }
 

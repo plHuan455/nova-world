@@ -1,6 +1,8 @@
 // import LibraryPopup from 'components/templates/LibraryPopup';
 import React from 'react';
 
+import Animate from '../Animate';
+
 import Button from 'components/atoms/Button';
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
@@ -34,7 +36,7 @@ const LibraryImages: React.FC<LibraryImagesProps> = ({
   page = 0,
   totalPage = 0,
 }) => (
-  <div className="o-libraryimages">
+  <Animate type="scaleY" extendClassName="o-libraryimages">
     {listImages?.length > 0 ? (
       <>
         {
@@ -79,6 +81,6 @@ const LibraryImages: React.FC<LibraryImagesProps> = ({
         )}
       </>
     ) : null}
-  </div>
+  </Animate>
 );
 export default LibraryImages;

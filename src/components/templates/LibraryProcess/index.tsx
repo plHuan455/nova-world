@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 
 import Text from 'components/atoms/Text';
+import Animate from 'components/organisms/Animate';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 import Player from 'components/organisms/Player';
-import useScrollAnimate from 'hooks/useScrollAnimation';
 import mapModifiers from 'utils/functions';
 
 export type LibraryProcessListTypes = {
@@ -30,9 +30,6 @@ const LibraryProcess: React.ForwardRefRenderFunction<
     processList[0],
   );
   const [playerPlay, setPlayerPlay] = useState(false);
-
-  const aniRef = useRef<HTMLDivElement>(null);
-  const animate = useScrollAnimate(aniRef);
 
   const renderMilestones = () => {
     const result = processList.map((val) => ({
@@ -73,11 +70,10 @@ const LibraryProcess: React.ForwardRefRenderFunction<
         't-library-process',
         useLibraryProcessPage && 'uselibraryprocesspage',
       )}
-      ref={aniRef}
     >
       {processList.length > 0 ? (
         <>
-          <div className={animate ? 't-library-process_milestones animate animate-fadeInUp' : 't-library-process_milestones preanimate'}>
+          <Animate type="scaleX" extendClassName="t-library-process_milestones">
             <div className="t-library-process_milestones_wrapper">
               <Carousel
                 asNavFor={nav2 as Slider}
@@ -97,8 +93,8 @@ const LibraryProcess: React.ForwardRefRenderFunction<
                   ))}
               </Carousel>
             </div>
-          </div>
-          <div className={animate ? 't-library-process_content animate animate-fadeInUp' : 't-library-process_content preanimate'}>
+          </Animate>
+          <Animate type="scaleY" extendClassName="t-library-process_content">
             <div className="t-library-process_content_wrapper">
               {videoItem && (
                 <div className="t-library-process_content_video">
@@ -139,7 +135,7 @@ const LibraryProcess: React.ForwardRefRenderFunction<
                 </Carousel>
               </div>
             </div>
-          </div>
+          </Animate>
         </>
       ) : (
         <></>

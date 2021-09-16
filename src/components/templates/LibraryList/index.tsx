@@ -1,13 +1,16 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 
+import imageLibraryData from 'assets/dataDummy/imageLibrary';
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
 import Loading from 'components/atoms/Loading';
 import { CardProps } from 'components/molecules/Card';
+import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
 import LibraryImages, { LibraryItemTypes, LibraryTagType } from 'components/organisms/LibraryImage';
 import Tabs, { Tab } from 'components/organisms/Tabs';
 import LibraryEvents from 'components/templates/LibraryEvents';
+import LibraryImageCarousel from 'components/templates/LibraryImageCarousel';
 import LibraryProcess, { LibraryProcessListTypes } from 'components/templates/LibraryProcess';
 
 export type LibraryCategoryType = {
@@ -28,7 +31,7 @@ interface LibraryListProps {
   listData: ListDataType;
   handleClickTabPanel?: (idx: number) => void;
   handleShowMore?: () => void;
-  handleClickImage?: (idx: number) => void;
+  // handleClickImage?: (idx: number) => void;
   handleClickEvent?: (idx: number) => void;
   page?: number;
   totalPage?: number;
@@ -41,14 +44,23 @@ const LibraryList: React.FC<LibraryListProps> = ({
   tagList,
   listData,
   fetching,
-  handleClickImage,
+  // handleClickImage,
   handleClickEvent,
   handleShowMore,
   handleClickTabPanel,
   page = 0,
   totalPage = 2,
 }) => {
-  const [indexActive, setIndexActive] = useState(0);
+  const [tabIdx, setTabIdx] = useState(0);
+  const [showImage, setShowImage] = useState(false);
+
+  const imageRef = useRef<number>(0);
+
+  const handleClickImage = (idx: number) => {
+    setShowImage(true);
+    imageRef.current = idx;
+  };
+
   const renderPanel = useMemo(() => {
     switch (activeTab) {
       case 1:
@@ -82,33 +94,42 @@ const LibraryList: React.FC<LibraryListProps> = ({
         );
     }
   }, [activeTab, listData, tagList]);
-  return (
+
+  return showImage ? (
+    <LibraryImageCarousel
+      imageList={imageLibraryData}
+      idxActive={imageRef.current}
+      handleBack={() => setShowImage(false)}
+    />
+  ) : (
     <div className="t-library">
       <Container>
-        <div className="t-library_title">
+        <Animate type="beatSmall" extendClassName="t-library_title">
           <Heading type="h2">
             {title}
             <Divider />
           </Heading>
-        </div>
-        {cateList && cateList.length > 0 && (
+        </Animate>
+        <Animate type="scaleX">
+          {cateList && cateList.length > 0 && (
           <div className="t-library_tabs">
             <Tabs>
               {cateList?.map((panel, i) => (
                 <Tab
                   key={`panel-${i + 1}`}
-                  active={indexActive === i}
+                  active={tabIdx === i}
                   label={panel.label}
                   labelColor="cyanCobaltBlue"
                   handleClick={() => {
-                    setIndexActive(i);
+                    setTabIdx(i);
                     if (handleClickTabPanel) handleClickTabPanel(i);
                   }}
                 />
               ))}
             </Tabs>
           </div>
-        )}
+          )}
+        </Animate>
         <div className="t-library_wrapper">
           {fetching ? (
             <div className="t-library_loading">
@@ -116,13 +137,6 @@ const LibraryList: React.FC<LibraryListProps> = ({
             </div>
           ) : (
             <div className="t-library_list">
-              {/* <LibraryImages
-                listImages={listImages}
-                handleClickImage={handleClickImage}
-                handleShowMore={handleShowMore}
-                page={page}
-                totalPage={totalPage}
-              /> */}
               {renderPanel}
             </div>
           )}

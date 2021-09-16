@@ -4,6 +4,7 @@ import Button from 'components/atoms/Button';
 import Loading from 'components/atoms/Loading';
 import Text from 'components/atoms/Text';
 import Card, { CardProps } from 'components/molecules/Card';
+import Animate from 'components/organisms/Animate';
 
 interface LibraryEventProps {
   listEvent: CardProps[];
@@ -24,7 +25,7 @@ const LibraryEvent: React.FC<LibraryEventProps> = ({
   handleClick,
   handleShowMore,
 }) => (
-  <div className="t-library-events">
+  <Animate type="scaleY" extendClassName="t-library-events">
     <div className="t-library-events_list">
       {fetching ? (
         <div className="t-library-events_loading">
@@ -65,7 +66,7 @@ const LibraryEvent: React.FC<LibraryEventProps> = ({
       </div>
       )}
     </div>
-  </div>
+  </Animate>
 );
 
 LibraryEvent.defaultProps = {};

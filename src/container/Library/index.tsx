@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import eventList from 'assets/dataDummy/eventLibrary';
 import imageLibraryData, { cateList, tagsList } from 'assets/dataDummy/imageLibrary';
@@ -10,8 +9,8 @@ import LibraryList, { ListDataType } from 'components/templates/LibraryList';
 import useMainLayout from 'hooks/useMainLayout';
 
 const LibraryContainer: React.FC = () => {
-  const history = useHistory();
   useMainLayout('another');
+
   const [popupData, setPopupData] = useState<{isOpen: boolean, eventData: EventCardProps | null}>({
     isOpen: false,
     eventData: null,
@@ -33,6 +32,7 @@ const LibraryContainer: React.FC = () => {
         return setListData(imageLibraryData);
     }
   }, [activeTab]);
+
   return (
     <>
       <section>
@@ -44,10 +44,6 @@ const LibraryContainer: React.FC = () => {
           cateList={cateList}
           tagList={tagsList}
           listData={listData}
-          handleClickImage={(idx) => history.push({
-            pathname: '/thu-vien-hinh-anh',
-            state: { index: idx },
-          })}
           handleClickEvent={handlePopup}
           handleShowMore={() => console.log('show more')}
           handleClickTabPanel={(idx) => setActiveTab(idx)}
