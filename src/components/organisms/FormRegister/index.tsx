@@ -3,7 +3,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useState } from 'react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { Controller, useForm } from 'react-hook-form';
-import { useLocation } from 'react-router-dom';
 import * as yup from 'yup';
 
 import Button from 'components/atoms/Button';
@@ -11,7 +10,9 @@ import Input, { InputNumber } from 'components/atoms/Input';
 import Text from 'components/atoms/Text';
 import TextArea from 'components/atoms/Textarea';
 import Form from 'components/organisms/Form';
+import useQueryParams from 'hooks/useQueryParams';
 import { createContactStoreService } from 'services/contact';
+import { UTMParams } from 'services/contact/type';
 import { useAppDispatch } from 'store/hooks';
 import { openNotify } from 'store/notify';
 
@@ -42,6 +43,7 @@ export interface FormRegisterProps {
 const FormRegister: React.FC<FormRegisterProps> = ({
   consultancySystem,
 }) => {
+  const dispatch = useAppDispatch();
   const method = useForm<ContactForm>({
     resolver: yupResolver(contactSchema),
     mode: 'onSubmit',
@@ -53,20 +55,10 @@ const FormRegister: React.FC<FormRegisterProps> = ({
     },
   });
 
-  const location = useLocation();
-  const query = new URLSearchParams(location.search || location.hash.replace('#', '?'));
-  const dispatch = useAppDispatch();
+  const params = useQueryParams<UTMParams>();
 
   const [isLoading, setIsLoading] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
-
-  const utmParams = {
-    utmSource: query.get('utm_source'),
-    utmMedium: query.get('utm_medium'),
-    utmTerm: query.get('utm_term'),
-    utmCampaign: query.get('utm_campaign'),
-    utmContent: query.get('utm_content'),
-  };
 
   const handleSubmit = async (data: ContactForm) => {
     try {
@@ -76,7 +68,7 @@ const FormRegister: React.FC<FormRegisterProps> = ({
       await createContactStoreService({
         ...data,
         grecaptchaToken: tokenRecaptcha,
-        ...utmParams,
+        ...params,
       });
       dispatch(openNotify({ type: 'success', message: 'Đăng ký thành công' }));
       method.reset();
