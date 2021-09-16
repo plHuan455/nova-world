@@ -1,0 +1,75 @@
+.t-library-carousel {
+  &_top {
+    .slick-list {
+      margin: 0 rem(-16);
+    }
+
+    .slick-slide {
+      padding: 0 rem(16);
+    }
+
+    .slick-arrow.prev {
+      @include desktop-down {
+        left: calc(16 / 1366 * 100%);
+      }
+    }
+    
+    .slick-arrow.next {
+      @include desktop-down {
+        right: calc(16 / 1366 * 100%);
+      }
+    }
+  }
+
+  &_item {
+    .a-image {
+      animation-duration: 1s;
+      animation-name: scaleX;
+      transition: ease-in $transition;
+    }
+
+
+    &_title {
+      animation-duration: 0.5s;
+      animation-name: scaleX;
+      margin-top: rem(16);
+      transition: ease-in $transition;
+      @include tablet-down {
+        text-align: center;
+      }
+    }
+  }
+
+  &_bottom {
+    margin-top: rem(88);
+    @include adjust-flex(space-between, center);
+
+    @include desktop-down {
+      margin-top: rem(64);
+    }
+
+    &_nav,
+    &_count {
+      @include adjust-flex;
+      
+    }
+
+    &_nav {
+      @include reset-button();
+      background-color: transparent;
+
+      .a-icon {
+        margin-right: rem(21);
+        @include mobile-down {
+          margin-right: rem(12);
+        }
+      }
+    }
+
+    &_count {
+      :last-child {
+        padding-top: rem(6);
+      }
+    }
+  }
+}

@@ -17,6 +17,7 @@
 @import 'components/atoms/Tag';
 @import 'components/atoms/Text';
 @import 'components/atoms/Textarea';
+
 @import 'components/molecules/Card';
 @import 'components/molecules/ExperienceCard';
 @import 'components/molecules/ExperienceTextCard';
@@ -37,6 +38,8 @@
 @import 'components/organisms/Modal';
 @import 'components/organisms/Player';
 @import 'components/organisms/Tabs';
+@import 'components/organisms/LibraryImage/';
+
 @import 'components/templates/Divergences';
 @import 'components/templates/ExperienceJourney';
 @import 'components/templates/FeaturedProduct';
@@ -48,6 +51,11 @@
 @import 'components/templates/NewsHome';
 @import 'components/templates/NewsList';
 @import 'components/templates/RegisterProjectForm';
+@import 'components/templates/LibraryList/';
+@import 'components/templates/LibraryImageCarousel/';
+@import 'components/templates/LibraryProcess/';
+@import 'components/templates/LibraryEvents/';
+@import 'components/templates/LibraryEventPopup/';
 /* Components */
 
 /* Pages */

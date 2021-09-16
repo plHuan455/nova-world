@@ -155,6 +155,16 @@
     }
   }
 
+  &-16x48 {
+    @include font-base(16, 48);
+    @include tablet-down {
+      @include font-base(14, 32);
+    }
+    @include mobile-down {
+      @include font-base(14, 24);
+    }
+  }
+
   @include style-letter-spacing();
   @include style-color();
   @include style-font-weight();

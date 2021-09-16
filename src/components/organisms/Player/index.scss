@@ -2,6 +2,7 @@
   $root: &;
   display: block;
   overflow: hidden;
+  padding-bottom: 9/16 * 100%;
   position: relative;
   width: 100%;
 
@@ -10,13 +11,16 @@
   }
 
   &_button {
-    border: rem(7) solid $white;
+    border: rem(5) solid $white;
     border-radius: 50%;
     cursor: pointer;
-    height: rem(52);
+    height: rem(62);
+    left: 50%;
     position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
     transition: $transition-long ease;
-    width: rem(52);
+    width: rem(62);
     z-index: 3;
 
     @include desktop-down {
@@ -113,7 +117,12 @@
     #{$root}_button {
       border: rem(1) solid $white;
       bottom: rem(40);
+      height: rem(52);
+      left: auto;
       right: rem(72);
+      top: auto;
+      transform: none;
+      width: rem(52);
       @include desktop-down {
         right: rem(48);
       }

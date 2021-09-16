@@ -51,12 +51,32 @@
     @include aspect-ratio(546, 618);
   }
 
+  &-547x365 {
+    @include aspect-ratio(547, 365);
+  }
+
+  &-652x367 {
+    @include aspect-ratio(652, 367);
+  }
+
+  &-668x445 {
+    @include aspect-ratio(668, 445);
+  }
+
+  &-274x175 {
+    @include aspect-ratio(274, 175);
+  }
+
   &-257x125 {
     @include aspect-ratio(257, 125);
   }
   
   &-167x42 {
     @include aspect-ratio(167, 42);
+  }
+
+  &-740x414 {
+    @include aspect-ratio(740, 414);
   }
 
   &-762x470 {

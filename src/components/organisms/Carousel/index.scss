@@ -1,4 +1,9 @@
 .o-carousel {
+  .slick-dots {
+    bottom: rem(-20);
+    position: static;
+  }
+
   &_arrow {
     $arrow: &;
     z-index: 1;
@@ -26,6 +31,10 @@
 
         &::before {
           background: $white url('~assets/icons/ic_arrow_prev_black.svg') no-repeat center / 20px auto;
+          @include mobile-down {
+            height: rem(40);
+            width: rem(40);
+          }
         }
       }
 
@@ -34,6 +43,10 @@
 
         &::before {
           background: $white url('~assets/icons/ic_arrow_next_black.svg') no-repeat center / 20px auto;
+          @include mobile-down {
+            height: rem(40);
+            width: rem(40);
+          }
         }
       }
 

@@ -11,6 +11,7 @@ import Contact from 'pages/Contact';
 import ExperienceJourney from 'pages/ExperienceJourney';
 import ExperienceJourneyDetail from 'pages/ExperienceJourneyDetail';
 import Home from 'pages/Home';
+import Library from 'pages/Library';
 import News from 'pages/News';
 import NotFound from 'pages/NotFound';
 import Product from 'pages/Product';
@@ -64,6 +65,12 @@ const routes = [
     key: 'product',
     path: '/san-pham-noi-bat',
     component: Product,
+
+  },
+  {
+    key: 'library',
+    path: '/thu-vien',
+    component: Library,
   },
 ];
 

@@ -18,6 +18,7 @@ type Sizes =
   | '48x24'
   | '40x60'
   | '110x120'
+  | '16x48'
   | '38x60';
 
 export type TextModifiers = (GeneralTextStyle | Sizes | CustomSize)[];

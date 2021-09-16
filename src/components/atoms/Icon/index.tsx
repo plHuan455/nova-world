@@ -5,6 +5,7 @@ import mapModifiers from 'utils/functions';
 export const iconList = {
   search: 'search',
   loadingWhite: 'loadingWhite',
+  arrowPrevArsenic: 'arrowPrevArsenic',
   marker: 'marker',
   clock: 'clock',
 };

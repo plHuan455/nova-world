@@ -5,8 +5,13 @@ type Ratio =
   | '644x323'
   | '450x248'
   | '546x618'
+  | '547x365'
   | '257x125'
+  | '274x175'
   | '167x42'
+  | '740x414'
+  | '652x367'
+  | '668x445'
   | '762x470'
   | '551x335'
   | '1366x768'
@@ -51,7 +56,8 @@ type ColorStyle =
   | 'stormcloud'
   | 'androidGreen1'
   | 'green'
-  | 'platinum1';
+  | 'platinum1'
+  | 'gunMetal';
 
 type FontFamilyStyle = 'fontICiel' | 'fontPlayfair';
 
