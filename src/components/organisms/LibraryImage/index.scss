@@ -11,6 +11,7 @@
     display: grid;
     grid-template-columns: auto auto auto auto;
     grid-template-rows: auto auto;
+    margin-top: rem(40);
     row-gap: rem(15);
 
     @include tablet-down {
@@ -19,6 +20,23 @@
 
     @include tablet-down {
       grid-template-columns: auto;
+    }
+  }
+
+  &_tags {
+    @include adjust-flex(flex-start, center);
+    column-gap: rem(24);
+    @include mobile-down {
+      column-gap: rem(12);
+      overflow-x: auto;
+      @include scroll-bars(9,$cyan-cobalt-blue, $anti-flash-white,10);
+    }
+
+    &_item {
+      background-color: $anti-flash-white;
+      border-radius: rem(10);
+      margin-bottom: rem(5);
+      padding: rem(10) rem(16);
     }
   }
 

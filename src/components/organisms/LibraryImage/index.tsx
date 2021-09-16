@@ -3,18 +3,22 @@ import React from 'react';
 
 import Button from 'components/atoms/Button';
 import Image from 'components/atoms/Image';
+import Text from 'components/atoms/Text';
 import mapModifiers from 'utils/functions';
 
 export type LibraryItemTypes = {
-  media: string;
-  mediaThumb: string;
-  type?: string;
+  imgSrc: string;
   title?: string;
-  isPlay?: boolean;
 }
+
+export type LibraryTagType = {
+  id: number;
+  label: string;
+};
 
 export interface LibraryImagesProps {
   listImages: LibraryItemTypes[];
+  tagsList?: LibraryTagType[];
   handleClickImage?: (index: number) => void;
   handleShowMore?: () => void;
   limitVisible?: number;
@@ -24,75 +28,57 @@ export interface LibraryImagesProps {
 
 const LibraryImages: React.FC<LibraryImagesProps> = ({
   listImages,
+  tagsList,
   handleClickImage,
   handleShowMore,
   page = 0,
   totalPage = 0,
-}) => {
-  // const [activeSlider, setActiveSlider] = useState<{
-  //   index: number;
-  //   data: LibraryItemTypes[];
-  // }>({
-  //   index: 0,
-  //   data: [],
-  // });
-  // const [isOpenPopup, setIsOpenPopup] = useState(false);
-
-  // const handleImagePopup = (data: LibraryItemTypes[], index: number) => {
-  //   setIsOpenPopup(true);
-  //   setActiveSlider({ index, data });
-  // };
-
-  const handleClick = (idx: number) => {
-    if (handleClickImage) {
-      handleClickImage(idx);
-    }
-    // handleImagePopup(listImages, idx);
-  };
-
-  return (
-    <div className="o-libraryimages">
-      {listImages?.length > 0 ? (
-        <>
-          <div className="o-libraryimages_container">
-            {listImages?.map((val, idx) => (
-              <div
-                className="o-libraryimages_item"
-                key={idx.toString()}
-                onClick={() => handleClick(idx)}
-              >
-                <div className={mapModifiers('o-libraryimages_item_wrapper')}>
-                  <Image
-                    imgSrc={val.mediaThumb}
-                    ratio={idx === 0 ? '547x365' : '274x175'}
-                    alt={`item${idx}`}
-                  />
-                </div>
+}) => (
+  <div className="o-libraryimages">
+    {listImages?.length > 0 ? (
+      <>
+        {
+            tagsList && (
+              <div className="o-libraryimages_tags">
+                {
+                  tagsList.length > 0 && tagsList?.map((item, idx) => (
+                    <div key={idx.toString()} className="o-libraryimages_tags_item">
+                      <Text modifiers={['dimGray', '400']}>{item.label}</Text>
+                    </div>
+                  ))
+                }
               </div>
-            ))}
-          </div>
-          {totalPage > 1 && (
-            <div className="o-libraryimages_button">
-              <Button
-                handleClick={handleShowMore}
-                type="button"
-              >
-                {totalPage > page ? 'Xem thêm' : 'Rút gọn'}
-              </Button>
+            )
+          }
+        <div className="o-libraryimages_container">
+          {listImages?.map((val, idx) => (
+            <div
+              className="o-libraryimages_item"
+              key={idx.toString()}
+              onClick={() => handleClickImage && handleClickImage(idx)}
+            >
+              <div className={mapModifiers('o-libraryimages_item_wrapper')}>
+                <Image
+                  imgSrc={val.imgSrc}
+                  ratio={idx === 0 ? '547x365' : '274x175'}
+                  alt={`item${idx}`}
+                />
+              </div>
             </div>
-          )}
-        </>
-      ) : <></>}
-      {/* <div className="t-libraryimages_modal">
-        <LibraryPopup
-          isOpen={isOpenPopup}
-          activeIndex={activeSlider.index}
-          dataLibrary={activeSlider.data as LibraryItemTypes[]}
-          handleClose={() => setIsOpenPopup(false)}
-          type={listImages[0]?.type}
-        />
-      </div> */}
-    </div>
-  );
-};
+          ))}
+        </div>
+        {totalPage > 1 && (
+        <div className="o-libraryimages_button">
+          <Button
+            handleClick={handleShowMore}
+            type="button"
+          >
+            {totalPage > page ? 'Xem thêm' : 'Rút gọn'}
+          </Button>
+        </div>
+        )}
+      </>
+    ) : null}
+  </div>
+);
 export default LibraryImages;

@@ -97,16 +97,13 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
   };
 
   useEffect(() => {
+    // slick to active slide
     if (sliderRef.current && state && state.index) {
-      // console.log('state.index :>> ', state.index);
       sliderRef.current.slickGoTo(state.index);
       setSlideIdx(state.index);
     }
   }, [state, state.index]);
 
-  // useEffect(() => {
-  //   console.log(slideIdx);
-  // }, [slideIdx]);
   return (
     <div className="t-library-carousel">
       <Container fullScreen>
@@ -118,7 +115,7 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
                 className="t-library-carousel_item"
               >
                 <Image
-                  imgSrc={item.mediaThumb}
+                  imgSrc={item.imgSrc}
                   ratio="740x414"
                   alt={`thumb-${idx.toString()}`}
                 />

@@ -1,4 +1,4 @@
-.t-projectprocess {
+.t-library-process {
   $root: &;
 
   &_heading {
@@ -213,7 +213,7 @@
       @include adjust-flex;
       height: 100%;
 
-      #{$root}-useprojectprocesspage & {
+      #{$root}-uselibraryprocesspage & {
         cursor: pointer;
 
         @include tablet-up {

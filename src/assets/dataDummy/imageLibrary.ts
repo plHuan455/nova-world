@@ -21,58 +21,43 @@ export const cateList: LibraryCategoryType[] = [
 const imageLibraryData = [
   {
     title: 'Ocean pool - phân kỳ: tropicana',
-    media: 'https://source.unsplash.com/random',
-    mediaThumb: 'https://source.unsplash.com/random',
+    imgSrc: 'https://source.unsplash.com/random',
   },
   {
     title: 'Ocean pool - phân kỳ: Morito',
-    media: 'https://source.unsplash.com/random',
-    mediaThumb: 'https://source.unsplash.com/random',
+    imgSrc: 'https://source.unsplash.com/random',
   },
   {
     title: 'Ocean pool - phân kỳ: Habana',
-    media: 'https://source.unsplash.com/random',
-    mediaThumb: 'https://source.unsplash.com/random',
+    imgSrc: 'https://source.unsplash.com/random',
   },
   {
     title: 'Ocean pool - phân kỳ: tropicana',
-    media: 'https://source.unsplash.com/random',
-    mediaThumb: 'https://source.unsplash.com/random',
+    imgSrc: 'https://source.unsplash.com/random',
   },
   {
     title: 'Ocean pool - phân kỳ: Morito',
-    media: 'https://source.unsplash.com/random',
-    mediaThumb: 'https://source.unsplash.com/random',
+    imgSrc: 'https://source.unsplash.com/random',
   },
   {
     title: 'Ocean pool - phân kỳ: tropicana',
-
-    media: 'https://source.unsplash.com/random',
-    mediaThumb: 'https://source.unsplash.com/random',
+    imgSrc: 'https://source.unsplash.com/random',
   },
   {
     title: 'Ocean pool - phân kỳ: tropicana',
-
-    media: 'https://source.unsplash.com/random',
-    mediaThumb: 'https://source.unsplash.com/random',
+    imgSrc: 'https://source.unsplash.com/random',
   },
   {
     title: 'Ocean pool - phân kỳ: tropicana',
-
-    media: 'https://source.unsplash.com/random',
-    mediaThumb: 'https://source.unsplash.com/random',
+    imgSrc: 'https://source.unsplash.com/random',
   },
   {
     title: 'Ocean pool - phân kỳ: tropicana',
-
-    media: 'https://source.unsplash.com/random',
-    mediaThumb: 'https://source.unsplash.com/random',
+    imgSrc: 'https://source.unsplash.com/random',
   },
   {
     title: 'Ocean pool - phân kỳ: tropicana',
-
-    media: 'https://source.unsplash.com/random',
-    mediaThumb: 'https://source.unsplash.com/random',
+    imgSrc: 'https://source.unsplash.com/random',
   },
 ];
 

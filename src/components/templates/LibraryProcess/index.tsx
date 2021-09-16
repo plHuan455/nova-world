@@ -3,33 +3,30 @@ import Slider from 'react-slick';
 
 import Text from 'components/atoms/Text';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
-import Container from 'components/organisms/Container';
 import Player from 'components/organisms/Player';
 import useScrollAnimate from 'hooks/useScrollAnimation';
 import mapModifiers from 'utils/functions';
 
-export type ProjectProcessListTypes = {
+export type LibraryProcessListTypes = {
   state: string;
   desc?: string;
   videoThumbnail?: string;
   videoSrc: string;
 };
 
-interface ProjectProcessProps {
-  imgTextureSrc?: string;
-  title?: string;
-  useProjectProcessPage?: boolean;
-  processList: ProjectProcessListTypes[];
+interface LibraryProcessProps {
+  useLibraryProcessPage?: boolean;
+  processList: LibraryProcessListTypes[];
   handleClick?: (index: number) => void;
 }
 
-const ProjectProcess: React.ForwardRefRenderFunction<
+const LibraryProcess: React.ForwardRefRenderFunction<
   HTMLDivElement,
-  ProjectProcessProps
-> = ({ processList, useProjectProcessPage, handleClick }) => {
+  LibraryProcessProps
+> = ({ processList, useLibraryProcessPage, handleClick }) => {
   const [nav1, setNav1] = useState<Slider | null>();
   const [nav2, setNav2] = useState<Slider | null>();
-  const [videoItem, setVideoItem] = useState<ProjectProcessListTypes | null>(
+  const [videoItem, setVideoItem] = useState<LibraryProcessListTypes | null>(
     processList[0],
   );
   const [playerPlay, setPlayerPlay] = useState(false);
@@ -73,15 +70,15 @@ const ProjectProcess: React.ForwardRefRenderFunction<
   return (
     <div
       className={mapModifiers(
-        't-projectprocess',
-        useProjectProcessPage && 'useprojectprocesspage',
+        't-library-process',
+        useLibraryProcessPage && 'uselibraryprocesspage',
       )}
       ref={aniRef}
     >
       {processList.length > 0 ? (
-        <Container>
-          <div className={animate ? 't-projectprocess_milestones animate animate-fadeInUp' : 't-projectprocess_milestones preanimate'}>
-            <div className="t-projectprocess_milestones_wrapper">
+        <>
+          <div className={animate ? 't-library-process_milestones animate animate-fadeInUp' : 't-library-process_milestones preanimate'}>
+            <div className="t-library-process_milestones_wrapper">
               <Carousel
                 asNavFor={nav2 as Slider}
                 ref={(slider) => setNav1(slider)}
@@ -90,7 +87,7 @@ const ProjectProcess: React.ForwardRefRenderFunction<
                 {milestoneArr.length > 0
                   && milestoneArr.map((val, idx) => (
                     <div
-                      className={`t-projectprocess_milestones_item ${
+                      className={`t-library-process_milestones_item ${
                         milestoneArr.length <= 1 ? ' single' : ''
                       }`}
                       key={idx.toString()}
@@ -101,10 +98,10 @@ const ProjectProcess: React.ForwardRefRenderFunction<
               </Carousel>
             </div>
           </div>
-          <div className={animate ? 't-projectprocess_content animate animate-fadeInUp' : 't-projectprocess_content preanimate'}>
-            <div className="t-projectprocess_content_wrapper">
+          <div className={animate ? 't-library-process_content animate animate-fadeInUp' : 't-library-process_content preanimate'}>
+            <div className="t-library-process_content_wrapper">
               {videoItem && (
-                <div className="t-projectprocess_content_video">
+                <div className="t-library-process_content_video">
                   <Player
                     ratio="652x367"
                     isPlay={playerPlay}
@@ -115,7 +112,7 @@ const ProjectProcess: React.ForwardRefRenderFunction<
                   />
                 </div>
               )}
-              <div className="t-projectprocess_content_carousel">
+              <div className="t-library-process_content_carousel">
                 <Carousel
                   settings={contentSettings}
                   asNavFor={nav1 as Slider}
@@ -123,14 +120,14 @@ const ProjectProcess: React.ForwardRefRenderFunction<
                 >
                   {processList.map((val, idx) => (
                     <div
-                      className="t-projectprocess_content_info"
+                      className="t-library-process_content_info"
                       key={idx.toString()}
                       onClick={() => {
                         if (handleClick) handleClick(idx);
                       }}
                     >
-                      <div className="t-projectprocess_content_inner">
-                        <div className="t-projectprocess_content_info-desc">
+                      <div className="t-library-process_content_inner">
+                        <div className="t-library-process_content_info-desc">
                           <Text
                             type="div"
                             innerHTML={val.desc}
@@ -143,7 +140,7 @@ const ProjectProcess: React.ForwardRefRenderFunction<
               </div>
             </div>
           </div>
-        </Container>
+        </>
       ) : (
         <></>
       )}
@@ -151,4 +148,4 @@ const ProjectProcess: React.ForwardRefRenderFunction<
   );
 };
 
-export default ProjectProcess;
+export default LibraryProcess;

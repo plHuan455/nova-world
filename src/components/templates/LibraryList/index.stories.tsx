@@ -15,8 +15,8 @@ export const normal: Story = () => (
   <LibraryList
     title="thư viện"
     cateList={cateList}
-    tagsList={tagsList}
-    listImages={imageLibraryData}
+    tagList={tagsList}
+    listData={imageLibraryData}
     handleClickImage={(idx) => console.log(idx)}
     handleShowMore={() => console.log('show more')}
     handleClickTabPanel={(idx) => console.log(idx)}

@@ -13,23 +13,6 @@
     margin-top: rem(56);
   }
 
-  &_tags {
-    @include adjust-flex(flex-start, center);
-    column-gap: rem(24);
-    @include mobile-down {
-      column-gap: rem(12);
-      overflow-x: auto;
-      @include scroll-bars(9,$cyan-cobalt-blue, $anti-flash-white,10);
-    }
-
-    &_item {
-      background-color: $anti-flash-white;
-      border-radius: rem(10);
-      margin-bottom: rem(5);
-      padding: rem(10) rem(16);
-    }
-  }
-
   &_list {
     margin-top: rem(40);
   }
