@@ -124,11 +124,15 @@
       transform: none;
       width: rem(52);
       @include desktop-down {
+        height: rem(48);
         right: rem(48);
+        width: rem(48);
       }
       @include tablet-down {
         bottom: rem(32);
+        height: rem(32);
         right: rem(32);
+        width: rem(32);
       }
       @include mobile-down {
         bottom: rem(15);
