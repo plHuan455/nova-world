@@ -262,13 +262,22 @@ const Header: React.FC = () => {
     <ul className="o-header-nav">
       {menuList.map((menu, index) => (
         <li className="o-header-nav-item" key={`_nav${String(index)}`}>
-          <NavLink className="o-header-link" to={menu.pathname} exact>
+          <NavLink
+            exact
+            className="o-header-link"
+            to={menu.pathname}
+            onClick={() => {
+              if (isOpenMenu) {
+                setIsOpenMenu(false);
+              }
+            }}
+          >
             {menu.text}
           </NavLink>
         </li>
       ))}
     </ul>
-  ), []);
+  ), [isOpenMenu]);
 
   useWindowScroll(() => {
     if (window.pageYOffset > 70) {
