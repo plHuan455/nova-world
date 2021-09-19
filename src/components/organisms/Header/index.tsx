@@ -93,7 +93,11 @@ export const InputSearch = React.forwardRef<HTMLInputElement, InputSearchProps>(
   </div>
 ));
 
-const Option: React.FC = () => {
+interface OptionProps {
+  toggleMenu?: () => void;
+}
+
+const Option: React.FC<OptionProps> = ({ toggleMenu }) => {
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const refInputSearch = useRef<HTMLInputElement|null>(null);
   const refSuggest = useRef<HTMLUListElement|null>(null);
@@ -110,8 +114,11 @@ const Option: React.FC = () => {
         },
         search: window.location.search,
       });
+      if (toggleMenu) {
+        toggleMenu();
+      }
     },
-    [history, refInputSearch],
+    [history, refInputSearch, toggleMenu],
   );
 
   const handleFocusInputMobile = useCallback(
@@ -338,7 +345,7 @@ const Header: React.FC = () => {
             </div>
             {nav}
             <div className="o-header-divider" />
-            <Option />
+            <Option toggleMenu={() => setIsOpenMenu(false)} />
           </div>
         </div>
       </Container>
