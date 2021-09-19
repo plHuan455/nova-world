@@ -1,6 +1,4 @@
-import { LibraryCategoryType } from 'components/templates/LibraryList';
-
-export const cateList: LibraryCategoryType[] = [
+export const cateList = [
   {
     id: 0,
     label: 'Giới thiệu dự án',

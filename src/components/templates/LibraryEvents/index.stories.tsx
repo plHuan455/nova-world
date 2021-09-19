@@ -17,7 +17,6 @@ export const normal: Story = () => (
     <LibraryEvents
       listEvent={eventList}
       totalPage={2}
-      fetching={false}
     />
   </Router>
 );

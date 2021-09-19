@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 
 import Text from 'components/atoms/Text';
-import Animate from 'components/organisms/Animate';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 import Player from 'components/organisms/Player';
 import mapModifiers from 'utils/functions';
@@ -73,7 +72,7 @@ const LibraryProcess: React.ForwardRefRenderFunction<
     >
       {processList.length > 0 ? (
         <>
-          <Animate type="scaleX" extendClassName="t-library-process_milestones">
+          <div className="t-library-process_milestones">
             <div className="t-library-process_milestones_wrapper">
               <Carousel
                 asNavFor={nav2 as Slider}
@@ -93,8 +92,8 @@ const LibraryProcess: React.ForwardRefRenderFunction<
                   ))}
               </Carousel>
             </div>
-          </Animate>
-          <Animate type="scaleY" extendClassName="t-library-process_content">
+          </div>
+          <div className="t-library-process_content">
             <div className="t-library-process_content_wrapper">
               {videoItem && (
                 <div className="t-library-process_content_video">
@@ -135,7 +134,7 @@ const LibraryProcess: React.ForwardRefRenderFunction<
                 </Carousel>
               </div>
             </div>
-          </Animate>
+          </div>
         </>
       ) : (
         <></>

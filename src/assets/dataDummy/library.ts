@@ -5,22 +5,25 @@ import { LibraryCard } from 'components/templates/LibraryHome';
 
 const card: LibraryCard[] = [
   {
+    id: 0,
     title: 'GIỚI THIỆU DỰ ÁN',
     thumbnail: LibraryImage1,
     alt: 'GIỚI THIỆU DỰ ÁN',
-    href: '',
+    href: 'thu-vien',
   },
   {
+    id: 1,
     title: 'TIẾN ĐỘ',
     thumbnail: LibraryImage2,
     alt: 'TIẾN ĐỘ',
-    href: '',
+    href: 'thu-vien',
   },
   {
+    id: 2,
     title: 'SỰ KIỆN',
     thumbnail: LibraryImage3,
     alt: 'SỰ KIỆN',
-    href: '',
+    href: 'thu-vien',
   },
 ];
 

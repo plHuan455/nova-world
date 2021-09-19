@@ -1,9 +1,12 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, {
+  createContext, useEffect, useMemo, useState,
+} from 'react';
 import { useLocation } from 'react-router-dom';
 
 import NotifyContainer from './notify';
 
 import MainLayout from 'components/templates/MainLayout';
+import useDidMount from 'hooks/useDidMount';
 import { useAppDispatch } from 'store/hooks';
 import { getTradingFloorsAsync } from 'store/trading';
 
@@ -20,18 +23,19 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
   const location = useLocation();
   const [pageType, setPageType] = useState<PageType>();
   const dispatch = useAppDispatch();
-  const context = {
-    pageType,
-    setPageType,
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  useEffect(() => {
+  useDidMount(() => {
     dispatch(getTradingFloorsAsync());
-  }, [dispatch]);
+  });
+
+  const context = useMemo(() => ({
+    pageType,
+    setPageType,
+  }), [pageType, setPageType]);
 
   return (
     <MainLayoutContext.Provider value={context}>

@@ -4,8 +4,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import LibraryImageCarousel from '.';
 
-import imageLibraryData from 'assets/dataDummy/imageLibrary';
-
 export default {
   title: 'Components/templates/LibraryImageCarousel',
   component: LibraryImageCarousel,
@@ -14,6 +12,10 @@ export default {
 
 export const normal: Story = () => (
   <Router>
-    <LibraryImageCarousel imageList={imageLibraryData} />
+    <LibraryImageCarousel imageList={new Array(10).fill({
+      title: 'Ocean pool - phân kỳ: tropicana',
+      imgSrc: 'https://source.unsplash.com/random',
+    })}
+    />
   </Router>
 );

@@ -1,3 +1,10 @@
+type MetaData = {
+  totalPages: number;
+  limit: number;
+  total: number;
+  page: number;
+}
+
 type ErrorCodeResponse = {
   code: string;
   title: string;

@@ -1,11 +1,11 @@
-// import LibraryPopup from 'components/templates/LibraryPopup';
 import React from 'react';
 
 import Animate from '../Animate';
 
 import Button from 'components/atoms/Button';
 import Image from 'components/atoms/Image';
-import Text from 'components/atoms/Text';
+import Loading from 'components/atoms/Loading';
+import Tag from 'components/atoms/Tag';
 import mapModifiers from 'utils/functions';
 
 export type LibraryItemTypes = {
@@ -20,39 +20,53 @@ export type LibraryTagType = {
 
 export interface LibraryImagesProps {
   listImages: LibraryItemTypes[];
+  tagsActive?: number[];
   tagsList?: LibraryTagType[];
-  handleClickImage?: (index: number) => void;
-  handleShowMore?: () => void;
-  limitVisible?: number;
   page?: number;
   totalPage?: number;
+  fetching?: boolean;
+  loading?: boolean;
+  handleClickImage?: (index: number) => void;
+  handleClickTag?: (id: number) => void;
+  handleShowMore?: () => void;
 }
 
 const LibraryImages: React.FC<LibraryImagesProps> = ({
   listImages,
+  tagsActive,
   tagsList,
-  handleClickImage,
-  handleShowMore,
   page = 0,
   totalPage = 0,
+  fetching,
+  loading,
+  handleClickImage,
+  handleClickTag,
+  handleShowMore,
 }) => (
-  <Animate type="scaleY" extendClassName="o-libraryimages">
-    {listImages?.length > 0 ? (
-      <>
-        {
-            tagsList && (
-              <div className="o-libraryimages_tags">
-                {
-                  tagsList.length > 0 && tagsList?.map((item, idx) => (
-                    <div key={idx.toString()} className="o-libraryimages_tags_item">
-                      <Text modifiers={['dimGray', '400']}>{item.label}</Text>
-                    </div>
-                  ))
-                }
-              </div>
-            )
-          }
-        <div className="o-libraryimages_container">
+  <div className="o-libraryimages">
+    <>
+      {tagsList?.length && (
+      <Animate type="slideInLeft" extendClassName="o-libraryimages_tags">
+        <div className="o-libraryimages_tags_wrap">
+          {tagsList?.map((item, idx) => (
+            <div key={idx.toString()} className="o-libraryimages_tags_item">
+              <Tag
+                isActive={tagsActive?.includes(item.id)}
+                handleClick={() => handleClickTag && handleClickTag(item.id)}
+              >
+                {item.label}
+              </Tag>
+            </div>
+          ))}
+        </div>
+      </Animate>
+      )}
+      {fetching ? (
+        <div className="o-libraryimages_loading">
+          <Loading modifiers={['blue']} />
+        </div>
+      ) : (
+        <Animate type="fadeInBlur" extendClassName="o-libraryimages_container">
           {listImages?.map((val, idx) => (
             <div
               className="o-libraryimages_item"
@@ -68,19 +82,20 @@ const LibraryImages: React.FC<LibraryImagesProps> = ({
               </div>
             </div>
           ))}
-        </div>
-        {totalPage > 1 && (
+        </Animate>
+      )}
+      {totalPage > 1 && (
         <div className="o-libraryimages_button">
           <Button
             handleClick={handleShowMore}
             type="button"
+            loading={loading}
           >
             {totalPage > page ? 'Xem thêm' : 'Rút gọn'}
           </Button>
         </div>
-        )}
-      </>
-    ) : null}
-  </Animate>
+      )}
+    </>
+  </div>
 );
 export default LibraryImages;
