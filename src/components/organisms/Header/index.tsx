@@ -5,8 +5,6 @@ import { Link, NavLink, useHistory } from 'react-router-dom';
 
 import Container from '../Container';
 
-import LogoNovaWorldBlue from 'assets/images/logo/nova-world-blue.svg';
-import LogoNovaWorldWhite from 'assets/images/logo/nova-world-white.png';
 import Icon from 'components/atoms/Icon';
 import Image from 'components/atoms/Image';
 import useClickOutside from 'hooks/useClickOutside';
@@ -207,7 +205,8 @@ const Language: React.FC = () => {
   );
 };
 
-interface NavProps extends HeaderProps {
+interface NavProps {
+  menuList: MenuItem[];
   toggleMenu?: () => void;
 }
 
@@ -257,6 +256,7 @@ const Nav: React.FC<NavProps> = ({ menuList, toggleMenu }) => {
                         pathname: s?.link || '',
                       }}
                       target={s.target}
+                      rel="noreferrer"
                     >
                       {s.title}
                     </NavLink>
@@ -271,11 +271,17 @@ const Nav: React.FC<NavProps> = ({ menuList, toggleMenu }) => {
   );
 };
 
-export interface HeaderProps {
+interface HeaderProps {
+  logoWhite: string;
+  logoBlue: string;
   menuList: MenuItem[];
 }
 
-const Header: React.FC<HeaderProps> = ({ menuList }) => {
+const Header: React.FC<HeaderProps> = ({
+  logoWhite,
+  logoBlue,
+  menuList,
+}) => {
   const [isScroll, setIsScroll] = useState(false);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
@@ -334,8 +340,7 @@ const Header: React.FC<HeaderProps> = ({ menuList }) => {
             >
               <Image
                 ratio="logo-novaworld"
-                // imgSrc={isHome ? LogoNovaWorldWhite : LogoNovaWorldBlue}
-                imgSrc={LogoNovaWorldWhite}
+                imgSrc={isScroll ? logoBlue : logoWhite}
                 alt="logo_novaworld"
                 size="contain"
               />
@@ -353,7 +358,7 @@ const Header: React.FC<HeaderProps> = ({ menuList }) => {
                 >
                   <Image
                     ratio="logo-novaworld"
-                    imgSrc={LogoNovaWorldBlue}
+                    imgSrc={logoBlue}
                     alt="logo_novaworld"
                     size="contain"
                   />

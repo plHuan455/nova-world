@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Footer from '.';
 
 import { addressList, copyRight } from 'assets/dataDummy/footer';
+import logoNovaLand from 'assets/images/logo/nova-land.svg';
 
 export default {
   title: 'Components/organisms/Footer',
@@ -18,6 +19,10 @@ export const normal: Story = () => (
       height: '200px',
     }}
     />
-    <Footer addressList={addressList} copyRight={copyRight} />
+    <Footer
+      logo={logoNovaLand}
+      addressList={addressList}
+      copyRight={copyRight}
+    />
   </BrowserRouter>
 );

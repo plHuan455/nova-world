@@ -1,7 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import logoNovaLand from 'assets/images/logo/nova-land.svg';
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
@@ -17,6 +16,7 @@ export type AddressItemType = {
 interface FooterProps {
   addressList: AddressItemType[];
   copyRight?: string;
+  logo?: string;
 }
 
 export const AddressItem: React.FC<AddressItemType> = ({
@@ -36,6 +36,7 @@ export const AddressItem: React.FC<AddressItemType> = ({
 const Footer: React.FC<FooterProps> = ({
   addressList,
   copyRight,
+  logo,
 }) => {
   const mainLayoutContext = useContext(MainLayoutContext);
 
@@ -67,7 +68,7 @@ const Footer: React.FC<FooterProps> = ({
                 }}
                 aria-label="logo-novaland"
               >
-                <Image ratio="335x261" imgSrc={logoNovaLand} />
+                <Image ratio="335x261" imgSrc={logo || ''} />
               </Link>
             </div>
             <div className="o-footer_content">

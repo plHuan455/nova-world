@@ -13,8 +13,12 @@ const Contact:React.FC<BasePageData<ContactPage>> = ({
   blocks,
   seoData,
 }) => {
+  const {
+    trading: { data: addressList },
+    systems: { data: dataSystems },
+  } = useAppSelector((state) => state);
+
   const { banner } = useMainLayout({ isHome: false, banners });
-  const addressList = useAppSelector((state) => state.trading.data);
 
   const { title, col1, col2 } = useMemo(() => getBlockData('section1', blocks), [blocks]) as ContactBlock;
 
@@ -27,8 +31,8 @@ const Contact:React.FC<BasePageData<ContactPage>> = ({
       lat: Number(item.latitude),
       lng: Number(item.longitude),
     })),
-    mapAPIKey: 'AIzaSyAt4eV8aoSdhKXHQSQvJc7aSEGlcnUVbdo',
-  }), [addressList]);
+    mapAPIKey: dataSystems?.googleMapKey || '',
+  }), [addressList, dataSystems]);
 
   return (
     <>
