@@ -18,6 +18,8 @@ const NewsDetail: React.FC = () => {
 
   const { status, data } = useCallService(() => getNewsDetail(slug), [slug]);
 
+  console.log(data);
+
   if (status === 'pending') {
     return <Loading modifiers={['blue']} />;
   }

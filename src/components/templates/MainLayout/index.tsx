@@ -3,7 +3,6 @@ import React, { useMemo } from 'react';
 import { copyRight } from 'assets/dataDummy/footer';
 import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
-import SmoothScroll from 'components/organisms/SmoothScroll';
 import { useAppSelector } from 'store/hooks';
 
 const MainLayout: React.FC = ({ children }) => {
@@ -18,12 +17,10 @@ const MainLayout: React.FC = ({ children }) => {
   return (
     <div className="t-mainlayout">
       <Header />
-      <SmoothScroll>
-        <div className="t-mainlayout_body">
-          {children}
-        </div>
-        <Footer addressList={dataInfoAddress} copyRight={copyRight} />
-      </SmoothScroll>
+      <div className="t-mainlayout_body">
+        {children}
+      </div>
+      <Footer addressList={dataInfoAddress} copyRight={copyRight} />
     </div>
   );
 };
