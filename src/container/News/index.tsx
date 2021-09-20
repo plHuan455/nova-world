@@ -5,6 +5,7 @@ import React, {
 import { CardProps } from 'components/molecules/Card';
 import Banner from 'components/organisms/Banner';
 import NewsList, { ListPanelType } from 'components/templates/NewsList';
+import useIsMounted from 'hooks/useIsMounted';
 import useMainLayout from 'hooks/useMainLayout';
 import {
   getNewsCategoriesService,
@@ -17,6 +18,9 @@ const LIMIT = 3;
 
 const NewsContainer: React.FC = () => {
   useMainLayout('another');
+
+  const isMounted = useIsMounted();
+
   const [loading, setLoading] = useState(false);
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [cateList, setCateList] = useState<CategoriesData[]>([]);
@@ -53,27 +57,27 @@ const NewsContainer: React.FC = () => {
 
   const handleClickTab = async (tabIdx: number) => {
     try {
-      setLoading(true);
+      if (isMounted()) setLoading(true);
       const { data, meta } = await getNewsListByCateService(cateList[tabIdx].slug, {
         limit: LIMIT,
         page: 1,
       });
 
       const panelData = convertPanelList(cateList, convertNewsList(data));
-      setPanelList(panelData);
-      setTabActive(tabIdx);
-      setTotalPage(meta.totalPages);
-      setPage(1);
+      if (isMounted()) setPanelList(panelData);
+      if (isMounted()) setTabActive(tabIdx);
+      if (isMounted()) setTotalPage(meta.totalPages);
+      if (isMounted()) setPage(1);
     } catch (error) {
       throw new Error(error);
     } finally {
-      setLoading(false);
+      if (isMounted()) setLoading(false);
     }
   };
 
   const handleShowMore = async () => {
     if (totalPage > page) {
-      setLoadingBtn(true);
+      if (isMounted()) setLoadingBtn(true);
       const increasePage = page + 1;
       const currentTabSlug = cateList[tabActive].slug;
       const { data, meta } = await getNewsListByCateService(
@@ -84,32 +88,32 @@ const NewsContainer: React.FC = () => {
         },
       );
       const newsListConcat = panelList[tabActive].listNews.concat(convertNewsList(data));
-      setPanelList(convertPanelList(cateList, newsListConcat));
-      setTotalPage(meta.totalPages);
-      setPage(increasePage);
-      setLoadingBtn(false);
+      if (isMounted()) setPanelList(convertPanelList(cateList, newsListConcat));
+      if (isMounted()) setTotalPage(meta.totalPages);
+      if (isMounted()) setPage(increasePage);
+      if (isMounted()) setLoadingBtn(false);
     } else {
       const newsListConcat = panelList[tabActive].listNews.slice(0, LIMIT);
-      setPanelList(convertPanelList(cateList, newsListConcat));
-      setPage(1);
+      if (isMounted()) setPanelList(convertPanelList(cateList, newsListConcat));
+      if (isMounted()) setPage(1);
     }
   };
   const initPage = async () => {
     try {
-      setLoading(true);
+      if (isMounted()) setLoading(true);
       const cateData = await getNewsCategoriesService();
       const newsData = await getNewsListByCateService(cateData.data[0].slug, {
         limit: LIMIT,
         page: 1,
       });
       const panelData = convertPanelList(cateData.data, convertNewsList(newsData.data));
-      setCateList(cateData.data);
-      setPanelList(panelData);
-      setTotalPage(newsData.meta.totalPages);
+      if (isMounted()) setCateList(cateData.data);
+      if (isMounted()) setPanelList(panelData);
+      if (isMounted()) setTotalPage(newsData.meta.totalPages);
     } catch (error) {
       throw new Error(error);
     } finally {
-      setLoading(false);
+      if (isMounted()) setLoading(false);
     }
   };
 

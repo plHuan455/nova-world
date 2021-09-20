@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useMemo, useState } from 'react';
 
 import Loading from 'components/atoms/Loading';
@@ -6,6 +8,7 @@ import LibraryImages, {
 } from 'components/organisms/LibraryImage';
 import useCallService from 'hooks/useCallService';
 import useDebounce from 'hooks/useDebounce';
+import useIsMounted from 'hooks/useIsMounted';
 import getLibraryCategoriesListService, {
   getLibraryList,
 } from 'services/libraries';
@@ -20,6 +23,8 @@ export interface ImagesProps {
 }
 
 const Images: React.FC<ImagesProps> = ({ handleClick }) => {
+  const isMounted = useIsMounted();
+
   const [tagsActive, setTagsActive] = useState<number[]>([]);
   const [data, setData] = useState<LibraryListItemData[]>([]);
   const [meta, setMeta] = useState<MetaData>();
@@ -95,21 +100,21 @@ const Images: React.FC<ImagesProps> = ({ handleClick }) => {
   useEffect(() => {
     (async () => {
       try {
-        setFetching(true);
-        setMeta(undefined);
+        if (isMounted()) setFetching(true);
+        if (isMounted()) setMeta(undefined);
         const res = await getLibraryList({
           category_ids: tagsActive.toString() || undefined,
           page: INIT,
           limit: LIMIT,
         });
-        setMeta(res.meta);
-        setData(res.data);
+        if (isMounted()) setMeta(res.meta);
+        if (isMounted()) setData(res.data);
 
         return null;
       } catch (error) {
         return error;
       } finally {
-        setFetching(false);
+        if (isMounted()) setFetching(false);
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
