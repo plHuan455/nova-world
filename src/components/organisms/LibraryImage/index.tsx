@@ -76,7 +76,8 @@ const LibraryImages: React.FC<LibraryImagesProps> = ({
               <div className={mapModifiers('o-libraryimages_item_wrapper')}>
                 <Image
                   imgSrc={val.imgSrc}
-                  ratio={idx === 0 ? '547x365' : '274x175'}
+                  // ratio={idx === 0 ? '547x365' : '274x175'}
+                  ratio="16x9"
                   alt={`item${idx}`}
                 />
               </div>

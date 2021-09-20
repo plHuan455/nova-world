@@ -21,7 +21,7 @@ const Card: React.FC<CardProps> = ({
     }}
     >
       <div className="m-card_thumbnail">
-        <Image imgSrc={imgSrc || ''} alt={title} ratio="354x222" />
+        <Image imgSrc={imgSrc || ''} alt={title} ratio="16x9" />
       </div>
       <div className="m-card_content">
         <div className="m-card_content_title">
