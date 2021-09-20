@@ -27,7 +27,7 @@ const ExperienceJourneyCard: React.FC<ExperienceJourneyCardProps> = ({
 }) => (
   <div className={mapModifiers('m-experience-journey-card', position)}>
     <div className="m-experience-journey-card_image">
-      <Image imgSrc={imgSrc || ''} ratio={ratio} />
+      <Image imgSrc={imgSrc || ''} ratio={ratio} size="contain" />
     </div>
     <div className="m-experience-journey-card_content">
       <div className="m-experience-journey-card_title">
