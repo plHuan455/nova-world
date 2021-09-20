@@ -3,8 +3,6 @@ import React from 'react';
 
 import LibraryImage from '.';
 
-import imageLibraryData from 'assets/dataDummy/imageLibrary';
-
 export default {
   title: 'Components/organisms/LibraryImage',
   component: LibraryImage,
@@ -12,5 +10,12 @@ export default {
 } as Meta;
 
 export const normal: Story = () => (
-  <LibraryImage listImages={imageLibraryData} totalPage={3} page={1} />
+  <LibraryImage
+    listImages={new Array(10).fill({
+      title: 'Ocean pool - phân kỳ: tropicana',
+      imgSrc: 'https://source.unsplash.com/random',
+    })}
+    totalPage={3}
+    page={1}
+  />
 );

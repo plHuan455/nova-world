@@ -49,11 +49,6 @@
       #{$root}-card::before {
         height: 0;
         width: 0;
-
-        @include mobile-down {
-          height: 100%;
-          width: 100%;
-        }
       }
     }
 

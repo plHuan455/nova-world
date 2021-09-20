@@ -11,7 +11,7 @@
     display: grid;
     grid-template-columns: auto auto auto auto;
     grid-template-rows: auto auto;
-    margin-top: rem(40);
+    margin-top: rem(24);
     row-gap: rem(15);
 
     @include tablet-down {
@@ -24,19 +24,23 @@
   }
 
   &_tags {
-    @include adjust-flex(flex-start, center);
-    column-gap: rem(24);
-    @include mobile-down {
-      column-gap: rem(12);
-      overflow-x: auto;
-      @include scroll-bars(9,$cyan-cobalt-blue, $anti-flash-white,10);
-    }
+    overflow-x: auto;
+    padding-bottom: rem(16);
+    position: relative;
+    @include scroll-bars(9,$cyan-cobalt-blue, $anti-flash-white,10);
+    
 
-    &_item {
-      background-color: $anti-flash-white;
-      border-radius: rem(10);
-      margin-bottom: rem(5);
-      padding: rem(10) rem(16);
+    &_wrap {
+      column-gap: rem(24);
+      display: flex;
+      flex-wrap: nowrap;
+
+      @include tablet-down {
+        column-gap: rem(16);
+      }
+      @include mobile-down {
+        column-gap: rem(12);
+      }
     }
   }
 
@@ -84,24 +88,6 @@
           transform: scale(1.14);
         }
       }
-
-      // &-video {
-      //   &::after {
-      //     border-color: transparent transparent transparent $white;
-      //     border-style: solid;
-      //     border-width: 18px 0 18px 30px;
-      //     content: '';
-      //     display: block;
-      //     height: 0;
-      //     left: 50%;
-      //     position: absolute;
-      //     top: 50%;
-      //     transform: translate3d(-50%, -50%, 0);
-      //     transition: $transition-long ease;
-      //     width: 0;
-      //     z-index: $z-2;
-      //   }
-      // }
     }
   }
 

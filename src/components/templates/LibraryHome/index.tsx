@@ -8,6 +8,7 @@ import Animate from 'components/organisms/Animate';
 import mapModifiers from 'utils/functions';
 
 export interface LibraryCard {
+  id: number;
   title: string;
   thumbnail: string;
   alt?: string;
@@ -40,6 +41,7 @@ const LibraryHome: React.FC<LibraryHomeProps> = ({ data }) => {
           <Link
             to={{
               pathname: item.href,
+              state: { id: item.id },
               search: window.location.search,
             }}
             key={`librarycard${String(index)}`}

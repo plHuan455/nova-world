@@ -1,0 +1,41 @@
+.p-library {
+  $root: &;
+
+  &_title {
+    display: flex;
+    justify-content: center;
+  }
+
+  &_tabs {
+    animation-duration: 1s;
+    animation-name: scaleX;
+    margin-top: rem(32);
+    
+    @include mobile-down {
+      margin-top: rem(24);
+    }
+  }
+
+  &_wrapper {
+    margin-top: rem(56);
+  }
+
+  &_container {
+    &-active {
+      #{$root}_imagesdetail {
+        display: block;
+      }
+      #{$root}_content {
+        display: none;
+      }
+    }
+  }
+
+  &_content {
+    display: block;
+  }
+
+  &_imagesdetail {
+    display: none;
+  }
+}

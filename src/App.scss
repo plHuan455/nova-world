@@ -38,7 +38,7 @@
 @import 'components/organisms/Modal';
 @import 'components/organisms/Player';
 @import 'components/organisms/Tabs';
-@import 'components/organisms/LibraryImage/';
+@import 'components/organisms/LibraryImage';
 
 @import 'components/templates/Divergences';
 @import 'components/templates/ExperienceJourney';
@@ -51,11 +51,10 @@
 @import 'components/templates/NewsHome';
 @import 'components/templates/NewsList';
 @import 'components/templates/RegisterProjectForm';
-@import 'components/templates/LibraryList/';
-@import 'components/templates/LibraryImageCarousel/';
-@import 'components/templates/LibraryProcess/';
-@import 'components/templates/LibraryEvents/';
-@import 'components/templates/LibraryEventPopup/';
+@import 'components/templates/LibraryImageCarousel';
+@import 'components/templates/LibraryProcess';
+@import 'components/templates/LibraryEvents';
+@import 'components/templates/LibraryEventPopup';
 /* Components */
 
 /* Pages */
@@ -66,3 +65,4 @@
 @import 'pages/ExperienceJourney';
 @import 'pages/ExperienceJourneyDetail';
 @import 'pages/Product';
+@import 'pages/Library';

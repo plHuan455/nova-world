@@ -6,6 +6,8 @@
   }
 
   &_milestones {
+    animation-duration: 1s;
+    animation-name: scaleX;
     margin-bottom: rem(32);
     position: relative;
 
@@ -172,6 +174,8 @@
   }
 
   &_content {
+    animation-duration: 1s;
+    animation-name: scaleY;
     position: relative;
     z-index: 2;
 
