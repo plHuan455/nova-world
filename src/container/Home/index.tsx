@@ -1,16 +1,16 @@
 import React from 'react';
 
-import DivergencesHome from './divergences';
-import ExperienceJourneyHome from './experiencejourney';
-import FeaturedProductHome from './featuredproduct';
-import Introduction from './introduction';
-import Library from './library';
-import Location from './location';
-import NewsHomeContainer from './news';
-
 import HomeBanner from 'assets/images/banners/banner_home.png';
 import Banner from 'components/organisms/Banner';
 import useMainLayout from 'hooks/useMainLayout';
+
+const DivergencesHome = React.lazy(() => import('./divergences'));
+const ExperienceJourneyHome = React.lazy(() => import('./experiencejourney'));
+const FeaturedProductHome = React.lazy(() => import('./featuredproduct'));
+const Introduction = React.lazy(() => import('./introduction'));
+const Library = React.lazy(() => import('./library'));
+const Location = React.lazy(() => import('./location'));
+const NewsHomeContainer = React.lazy(() => import('./news'));
 
 const Home: React.FC = () => {
   useMainLayout('home');

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { forwardRef } from 'react';
-import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player/lazy';
 
 import Image from 'components/atoms/Image';
 import mapModifiers from 'utils/functions';
@@ -47,6 +47,7 @@ const Player: React.ForwardRefRenderFunction<ReactPlayer, PlayerProps> = (
           playing={isPlay}
           ref={ref}
           onEnded={onEnded}
+          fallback={<></>}
         />
       )}
     </div>

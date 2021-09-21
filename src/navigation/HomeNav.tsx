@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useCallback, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import Loading from 'components/atoms/Loading';
 import Player from 'components/organisms/Player';
 import useCallService from 'hooks/useCallService';
 import { TemplateCode } from 'navigation';
@@ -9,6 +8,8 @@ import { getStaticHomeService } from 'services/navigation';
 import { BasePageData } from 'services/navigation/types';
 import { useAppSelector } from 'store/hooks';
 import { getSlugByTemplateCode } from 'utils/language';
+
+const NotFound = React.lazy(() => import('pages/NotFound'));
 
 const HomeNav: React.FC = () => {
   const { staticSlug } = useAppSelector((state) => state.menu);
@@ -31,9 +32,7 @@ const HomeNav: React.FC = () => {
 
   switch (homeData.status) {
     case 'pending': {
-      document.body.style.overflow = 'hidden';
-      document.body.style.height = '100vh';
-      return <Loading />;
+      return <RenderVideos />;
     }
     case 'rejected': {
       const error = homeData.error && homeData.error.length > 0
@@ -41,22 +40,24 @@ const HomeNav: React.FC = () => {
         : undefined;
       if (error?.code.toString() === '404') {
         return (
-          <Redirect to={`/${getSlugByTemplateCode('ERROR_404', staticSlug)}`} />
+          <Redirect to={`/${getSlugByTemplateCode('page404', staticSlug)}`} />
         );
       }
       return <div>Error</div>;
     }
     default: {
-      document.body.style.overflow = '';
-      document.body.style.height = '';
-
       const Component = TemplateCode.find(
         (template) => template.code === homeData.data?.pageData.templateCode,
       )?.component;
 
-      return React.createElement<BasePageData<any>>(
-        Component as FunctionComponent,
-        homeData.data,
+      if (Component) {
+        return React.createElement<BasePageData<any>>(
+          Component as FunctionComponent,
+          homeData.data,
+        );
+      }
+      return React.createElement(
+        NotFound,
       );
     }
   }
