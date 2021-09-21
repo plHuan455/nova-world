@@ -12,7 +12,7 @@ import { getSlugByTemplateCode } from 'utils/language';
 const PageNav: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const { staticSlug } = useAppSelector((state) => state.menu);
-  const pageData = useCallService(() => getPageService(slug), []);
+  const pageData = useCallService(() => getPageService(slug), [slug]);
 
   switch (pageData.status) {
     case 'pending': {
