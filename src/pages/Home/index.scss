@@ -1,0 +1,14 @@
+.p-home {
+  &_loading {
+    align-items: center;
+    background-color: $white;
+    bottom: 0;
+    display: flex;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: $transition-long ease;
+    z-index: $z-999;
+  }
+}

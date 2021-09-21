@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
 import journeys from './journeys';
+import locales from './locales';
 import menu from './menu';
 import notify from './notify';
 import trading from './trading';
@@ -12,6 +13,7 @@ export const store = configureStore({
     trading,
     journeys,
     menu,
+    locales,
   },
 });
 

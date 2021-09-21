@@ -15,6 +15,7 @@ interface PlayerProps {
   handleClickPlayBtn?: () => void;
   isHomePlayer?: boolean;
   loop?: boolean;
+  onEnded?: () => void;
 }
 
 const Player: React.ForwardRefRenderFunction<ReactPlayer, PlayerProps> = (
@@ -28,6 +29,7 @@ const Player: React.ForwardRefRenderFunction<ReactPlayer, PlayerProps> = (
     handleClickPlayBtn,
     isHomePlayer,
     loop,
+    onEnded,
   },
   ref,
 ) => (
@@ -44,6 +46,7 @@ const Player: React.ForwardRefRenderFunction<ReactPlayer, PlayerProps> = (
           muted={isMuted}
           playing={isPlay}
           ref={ref}
+          onEnded={onEnded}
         />
       )}
     </div>

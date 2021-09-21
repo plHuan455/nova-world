@@ -8,6 +8,7 @@ import NotifyContainer from './notify';
 import MainLayout from 'components/templates/MainLayout';
 import useDidMount from 'hooks/useDidMount';
 import { useAppDispatch } from 'store/hooks';
+import { getSystemsLocalesAsync } from 'store/locales';
 import { getHeaderMenuAsync, getStaticSlugAsync } from 'store/menu';
 import { getTradingFloorsAsync } from 'store/trading';
 
@@ -30,6 +31,7 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
   }, [location.pathname]);
 
   useDidMount(() => {
+    dispatch(getSystemsLocalesAsync());
     dispatch(getHeaderMenuAsync());
     dispatch(getStaticSlugAsync());
     dispatch(getTradingFloorsAsync());

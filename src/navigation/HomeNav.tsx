@@ -1,7 +1,8 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useCallback, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import Loading from 'components/atoms/Loading';
+import Player from 'components/organisms/Player';
 import useCallService from 'hooks/useCallService';
 import { TemplateCode } from 'navigation';
 import { getStaticHomeService } from 'services/navigation';
@@ -11,8 +12,22 @@ import { getSlugByTemplateCode } from 'utils/language';
 
 const HomeNav: React.FC = () => {
   const { staticSlug } = useAppSelector((state) => state.menu);
-
+  const [videoLoading, setVideoLoading] = useState('pending');
   const homeData = useCallService(() => getStaticHomeService(), []);
+
+  const RenderVideos = useCallback(() => (
+    <div className="p-home_loading">
+      <Player
+        ratio="652x367"
+        isPlay
+        isMuted
+        videoSrc="https://nova-world-cms.3forcom.net/storage/upload/media/video-loading17f9e3ab.mp4"
+        onEnded={() => setVideoLoading('fullfilled')}
+      />
+    </div>
+  ), []);
+
+  if (videoLoading === 'pending') return <RenderVideos />;
 
   switch (homeData.status) {
     case 'pending': {
