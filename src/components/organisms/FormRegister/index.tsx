@@ -72,7 +72,7 @@ const FormRegister: React.FC<FormRegisterProps> = ({
       });
       dispatch(openNotify({ type: 'success', message: 'Đăng ký thành công' }));
       method.reset();
-    } catch (e) {
+    } catch {
       dispatch(openNotify({ type: 'warning', message: 'Đăng ký không thành công' }));
     } finally {
       setIsLoading(false);

@@ -247,6 +247,7 @@ const Header: React.FC = () => {
     <button
       type="button"
       className="o-header-hamburger"
+      aria-label="hamburger"
       onClick={() => setIsOpenMenu(true)}
     >
       <span />
@@ -259,6 +260,7 @@ const Header: React.FC = () => {
     <button
       type="button"
       className="o-header-sm-close"
+      aria-label="close"
       onClick={() => setIsOpenMenu(false)}
     >
       <span />

@@ -72,7 +72,7 @@ const Images: React.FC<ImagesProps> = ({ handleClick }) => {
     }
   };
 
-  const handleShowMore = useDebounce(async () => {
+  const handleShowMore = useDebounce(async (): Promise<void> => {
     try {
       if (meta && meta.page < meta.totalPages) {
         setLoading(true);
@@ -87,16 +87,15 @@ const Images: React.FC<ImagesProps> = ({ handleClick }) => {
         setMeta((prev) => (prev ? { ...prev, page: 1 } : undefined));
         setData((prev) => prev.slice(0, LIMIT));
       }
-      return null;
-    } catch (error) {
-      return error;
+    } catch {
+      // empty
     } finally {
       setLoading(false);
     }
   }, 500);
 
   useEffect(() => {
-    (async () => {
+    (async (): Promise<void> => {
       try {
         if (isMounted()) setFetching(true);
         if (isMounted()) setMeta(undefined);
@@ -107,10 +106,8 @@ const Images: React.FC<ImagesProps> = ({ handleClick }) => {
         });
         if (isMounted()) setMeta(res.meta);
         if (isMounted()) setData(res.data);
-
-        return null;
-      } catch (error) {
-        return error;
+      } catch {
+        // empty
       } finally {
         if (isMounted()) setFetching(false);
       }
