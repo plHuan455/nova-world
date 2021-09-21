@@ -1,12 +1,14 @@
 import React from 'react';
 
-import Contact from 'pages/Contact';
-import ExperienceJourney from 'pages/ExperienceJourney';
-import Home from 'pages/Home';
-import Library from 'pages/Library';
-import News from 'pages/News';
-import Search from 'pages/Search';
 import { BasePageData } from 'services/navigation/types';
+
+const Home = React.lazy(() => import('pages/Home'));
+const Contact = React.lazy(() => import('pages/Contact'));
+const ExperienceJourney = React.lazy(() => import('pages/ExperienceJourney'));
+const Library = React.lazy(() => import('pages/Library'));
+const News = React.lazy(() => import('pages/News'));
+const Search = React.lazy(() => import('pages/Search'));
+const NotFound = React.lazy(() => import('pages/NotFound'));
 
 export type TemplateCodeType = {
   code: string;
@@ -37,5 +39,9 @@ export const TemplateCode: TemplateCodeType[] = [
   {
     code: 'contact',
     component: Contact,
+  },
+  {
+    code: 'page404',
+    component: NotFound,
   },
 ];
