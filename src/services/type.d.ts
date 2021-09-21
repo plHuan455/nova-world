@@ -75,3 +75,29 @@ type LocalesResponse = {
 }
 
 type LanguageType = 'VN'|'EN'|'CN'|'JP'|'KR';
+
+type Translation = {
+  locale: string;
+  title: string;
+  slug: string;
+  description: string;
+}
+
+type BlockComponents<T> = {
+  code: string;
+  blocks: T;
+}
+
+type BannerData = {
+  imageDesktop: string;
+  imageMobile: string;
+  imageTablet: string;
+  link: string;
+  subTitle: string;
+  title: string;
+}
+
+type BannersData = {
+  data: BannerData;
+  type: string;
+}

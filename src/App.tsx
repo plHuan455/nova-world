@@ -17,6 +17,7 @@ import NotFound from 'pages/NotFound';
 import Product from 'pages/Product';
 import Search from 'pages/Search';
 import { store } from 'store';
+import { useAppSelector } from 'store/hooks';
 
 const NewsDetail = lazy(() => import('pages/NewsDetail'));
 
@@ -74,27 +75,43 @@ const routes = [
   },
 ];
 
-const App: React.FC = () => (
-  <div className="app">
-    <Router>
-      <Suspense fallback={<Loading />}>
-        <MainLayoutProvider>
-          <Switch>
-            {routes.map((item) => (
-              <Route
-                key={item.key}
-                exact
-                path={item.path}
-                component={item.component}
-              />
-            ))}
-            <Route path="*" component={NotFound} />
-          </Switch>
-        </MainLayoutProvider>
-      </Suspense>
-    </Router>
-  </div>
-);
+const PageNav = lazy(() => import('navigations/PageNav'));
+const HomeNav = lazy(() => import('navigations/HomeNav'));
+
+const App: React.FC = () => {
+  const {
+    menu: { staticSlug },
+    locales: { listLocales },
+  } = useAppSelector((state) => state);
+
+  const routesList = useMemo(() => ({
+    home: convertHomeRoute(listLocales),
+    newsDetail: convertRoute(listLocales, `/${getSlugByTemplateCode('news', staticSlug)}/:slug`),
+    pages: convertRoute(listLocales, '/:slug'),
+  }), [staticSlug, listLocales]);
+
+  return (
+    <div className="app">
+      <Router>
+        <Suspense fallback={<Loading />}>
+          <MainLayoutProvider>
+            <Switch>
+              {routes.map((item) => (
+                <Route
+                  key={item.key}
+                  exact
+                  path={item.path}
+                  component={item.component}
+                />
+              ))}
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </MainLayoutProvider>
+        </Suspense>
+      </Router>
+    </div>
+  );
+};
 
 const GoogleReCaptchaWrapper: React.FC = ({ children }) => (
   <GoogleReCaptchaProvider
