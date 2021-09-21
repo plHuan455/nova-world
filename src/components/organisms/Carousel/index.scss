@@ -4,6 +4,12 @@
     position: static;
   }
 
+  .slick-slide {
+    &[aria-hidden='true'] {
+      visibility: hidden;
+    }
+  }
+
   &_arrow {
     $arrow: &;
     z-index: 1;

@@ -103,6 +103,11 @@
     @include tablet-down {
       @include font-base(18, 24);
     }
+    &#{$root}-lg {
+      @include mobile-down {
+        @include font-base(18, 24);
+      }
+    }
     @include mobile-down {
       @include font-base(14, 18);
     }

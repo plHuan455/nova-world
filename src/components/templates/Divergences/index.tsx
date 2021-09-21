@@ -41,9 +41,9 @@ export const DivergencesCard:React.FC<DivergencesCardType> = ({
       </div>
       )}
       <div className="t-divergences_card_title">
-        <Heading type="h6" modifiers={['500', 'cyanCobaltBlue', 'uppercase']}>
+        <Text modifiers={['500', 'cyanCobaltBlue', 'uppercase', '24x32', 'lg']}>
           {title}
-        </Heading>
+        </Text>
         <div className="t-divergences_card_part">
           <Text modifiers={['32x48', 'cyanCobaltBlue', 'uppercase', '500']}>
             {firstNumber}
