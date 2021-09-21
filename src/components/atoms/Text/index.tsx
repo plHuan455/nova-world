@@ -3,7 +3,7 @@ import React from 'react';
 
 import mapModifiers from 'utils/functions';
 
-type CustomSize = 'xs' | 'sm' | 'md';
+type CustomSize = 'xs' | 'sm' | 'md' | 'lg';
 
 type Sizes =
   | '48x56'

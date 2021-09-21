@@ -15,12 +15,12 @@ const Search: React.FC = () => {
   const refInputSearch = useRef<HTMLInputElement>(null);
 
   const handleClickSearch = useCallback(() => {
-    console.log(refInputSearch.current?.value);
+    // console.log(refInputSearch.current?.value);
   }, []);
 
   const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      console.log(refInputSearch.current?.value);
+      // console.log(refInputSearch.current?.value);
     }
   }, []);
 

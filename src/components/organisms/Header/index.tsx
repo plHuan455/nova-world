@@ -87,7 +87,7 @@ export const InputSearch = React.forwardRef<HTMLInputElement, InputSearchProps>(
       className="a-input-search_input"
       {...props}
     />
-    <button onClick={handleClickSearch} type="button" className="a-input-search_button">
+    <button onClick={handleClickSearch} type="button" className="a-input-search_button" aria-label="submit-search">
       <Icon iconName="search" />
     </button>
   </div>
@@ -150,6 +150,7 @@ const Option: React.FC<OptionProps> = ({ toggleMenu }) => {
           }}
           type="button"
           className="o-header-option-button"
+          aria-label="dropdown-search"
         >
           <Icon iconName="search" />
         </button>

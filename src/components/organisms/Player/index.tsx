@@ -33,17 +33,19 @@ const Player: React.ForwardRefRenderFunction<ReactPlayer, PlayerProps> = (
 ) => (
   <div className={mapModifiers('o-player', isHomePlayer && 'isHomePlayer', ratio)}>
     <div className="o-player_video">
-      <ReactPlayer
-        loop={loop}
-        url={videoSrc}
-        width="100%"
-        height="100%"
-        playsinline
-        controls={hasControls}
-        muted={isMuted}
-        playing={isPlay}
-        ref={ref}
-      />
+      {videoSrc && (
+        <ReactPlayer
+          loop={loop}
+          url={videoSrc}
+          width="100%"
+          height="100%"
+          playsinline
+          controls={hasControls}
+          muted={isMuted}
+          playing={isPlay}
+          ref={ref}
+        />
+      )}
     </div>
     {!isPlay && (
       <>

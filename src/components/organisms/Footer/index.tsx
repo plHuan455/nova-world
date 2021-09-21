@@ -61,10 +61,12 @@ const Footer: React.FC<FooterProps> = ({
         <div className="o-footer_top">
           <Container>
             <div className="o-footer_branch">
-              <Link to={{
-                pathname: '/',
-                search: window.location.search,
-              }}
+              <Link
+                to={{
+                  pathname: '/',
+                  search: window.location.search,
+                }}
+                aria-label="logo-novaland"
               >
                 <Image ratio="335x261" imgSrc={logoNovaLand} />
               </Link>

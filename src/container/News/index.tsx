@@ -119,6 +119,7 @@ const NewsContainer: React.FC = () => {
 
   useEffect(() => {
     initPage();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
