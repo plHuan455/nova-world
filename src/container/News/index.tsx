@@ -68,8 +68,8 @@ const NewsContainer: React.FC = () => {
       if (isMounted()) setTabActive(tabIdx);
       if (isMounted()) setTotalPage(meta.totalPages);
       if (isMounted()) setPage(1);
-    } catch (error) {
-      throw new Error(error);
+    } catch {
+      // empty
     } finally {
       if (isMounted()) setLoading(false);
     }
@@ -110,8 +110,8 @@ const NewsContainer: React.FC = () => {
       if (isMounted()) setCateList(cateData.data);
       if (isMounted()) setPanelList(panelData);
       if (isMounted()) setTotalPage(newsData.meta.totalPages);
-    } catch (error) {
-      throw new Error(error);
+    } catch {
+      // empty
     } finally {
       if (isMounted()) setLoading(false);
     }
