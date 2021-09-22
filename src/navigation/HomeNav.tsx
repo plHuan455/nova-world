@@ -32,6 +32,8 @@ const HomeNav: React.FC = () => {
 
   switch (homeData.status) {
     case 'pending': {
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100vh';
       return <RenderVideos />;
     }
     case 'rejected': {
@@ -46,6 +48,8 @@ const HomeNav: React.FC = () => {
       return <div>Error</div>;
     }
     default: {
+      document.body.style.overflow = '';
+      document.body.style.height = '';
       const Component = TemplateCode.find(
         (template) => template.code === homeData.data?.pageData.templateCode,
       )?.component;

@@ -18,6 +18,8 @@ const PageNav: React.FC = () => {
 
   switch (pageData.status) {
     case 'pending': {
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100vh';
       return <Loading modifiers={['blue']} />;
     }
     case 'rejected': {
@@ -32,6 +34,8 @@ const PageNav: React.FC = () => {
       return <div>Error</div>;
     }
     default: {
+      document.body.style.overflow = '';
+      document.body.style.height = '';
       const Component = TemplateCode.find(
         (template) => template.code === pageData.data?.pageData.templateCode,
       )?.component;
