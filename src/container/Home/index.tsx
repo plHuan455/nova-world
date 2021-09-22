@@ -2,7 +2,6 @@ import React from 'react';
 
 import Banner from 'components/organisms/Banner';
 import HelmetComponent from 'container/MainLayout/helmet';
-import useBannerResize from 'hooks/useBannerResize';
 import useMainLayout from 'hooks/useMainLayout';
 import { HomeBlock } from 'services/home/types';
 import { getBlockData } from 'utils/functions';
@@ -17,18 +16,16 @@ const NewsHomeContainer = React.lazy(() => import('./news'));
 
 const Home: React.FC<BasePageData<HomeBlock>> = ({
   blocks,
-  // pageData,
   seoData,
   banners,
 }) => {
-  useMainLayout({ type: 'home' });
-  const infoBanner = useBannerResize(banners);
+  const { banner } = useMainLayout({ type: 'home', banners });
 
   return (
     <>
       <HelmetComponent seoData={seoData} />
       <section className="s-banner">
-        <Banner isHomePage videoSrc="https://www.youtube.com/watch?v=Ktm_JYmOeOc" thumbnail={infoBanner?.image || ''} />
+        <Banner isHomePage videoSrc="https://www.youtube.com/watch?v=Ktm_JYmOeOc" thumbnail={banner} />
       </section>
       <section className="s-introduction">
         <Introduction
