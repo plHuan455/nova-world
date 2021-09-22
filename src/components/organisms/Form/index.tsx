@@ -13,7 +13,6 @@ class Form<T> extends React.Component<FormInterface<T>> {
 
     return (
       <div className="o-form">
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <FormProvider {...method}>
           <form onSubmit={method.handleSubmit(submitForm)} noValidate>
             {children}

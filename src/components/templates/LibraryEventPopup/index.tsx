@@ -1,13 +1,12 @@
 import React from 'react';
-// import Slider from 'react-slick';
-// import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 
 import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
+import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 import Modal from 'components/organisms/Modal';
 
 export interface EventCardProps {
-  imgSrc: string;
+  imgSrc: string[];
   alt?: string;
   title: string;
   description?: string;
@@ -27,6 +26,16 @@ const EventPopup: React.FC<EventPopupProps> = ({
 
 }) => {
   if (!eventData) return null;
+
+  const settings = {
+    infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+  };
+
   return (
     <div className="t-eventpopup">
       <Modal
@@ -36,9 +45,13 @@ const EventPopup: React.FC<EventPopupProps> = ({
       >
         <div className="t-eventpopup_wrapper">
           <div className="t-eventpopup_left">
-            <div className="t-eventpopup_left_main">
-              <Image imgSrc={eventData.imgSrc} size="cover" ratio="668x445" />
-            </div>
+            <Carousel settings={settings}>
+              {eventData.imgSrc.map((e, idx) => (
+                <div className="t-eventpopup_left_main" key={`_eventsPopupImage${String(idx)}`}>
+                  <Image imgSrc={e} size="cover" ratio="668x445" />
+                </div>
+              ))}
+            </Carousel>
           </div>
           <div className="t-eventpopup_right">
             <div className="t-eventpopup_content">

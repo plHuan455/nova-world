@@ -5,7 +5,6 @@ import Player from 'components/organisms/Player';
 import useCallService from 'hooks/useCallService';
 import { TemplateCode } from 'navigation';
 import { getStaticHomeService } from 'services/navigation';
-import { BasePageData } from 'services/navigation/types';
 import { useAppSelector } from 'store/hooks';
 import { getSlugByTemplateCode } from 'utils/language';
 

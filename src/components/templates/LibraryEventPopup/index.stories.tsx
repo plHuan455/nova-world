@@ -18,7 +18,7 @@ export default {
 } as Meta;
 
 const eventData = {
-  imgSrc: 'https://source.unsplash.com/random',
+  imgSrc: ['https://source.unsplash.com/random'],
   title: 'CỔNG VÀO KHU THƯƠNG MẠI 5',
   images: [],
   description: 'Ưu thế đó cộng hưởng cùng vẻ đẹp thiên nhiên rừng – biển nguyên sơ, và bầu không khí trong lành miền nhiệt đới đang tạo nên Wonderland – vùng đất diệu kỳ và đẳng cấp khác biệt!',

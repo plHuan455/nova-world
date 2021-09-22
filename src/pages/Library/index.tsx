@@ -2,9 +2,9 @@ import React from 'react';
 
 import Screen from 'container/Library';
 
-const Library: React.FC = () => (
+const Library: React.FC<BasePageData<LibraryPage>> = (props) => (
   <div className="p-library">
-    <Screen />
+    <Screen {...props} />
   </div>
 );
 

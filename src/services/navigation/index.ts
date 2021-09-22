@@ -1,5 +1,4 @@
 import axiosInstance from 'services/common/instance';
-import { BasePageData } from 'services/navigation/types';
 
 export const getStaticHomeService = async (): Promise<BasePageData<any>> => {
   const response = await axiosInstance.get('pages/static/home-page');

@@ -77,8 +77,7 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
 
   useEffect(() => {
     if (sliderRef.current && idxActive) {
-      sliderRef.current.slickGoTo(idxActive);
-      setSlideIdx(idxActive);
+      sliderRef.current.slickGoTo(idxActive, true);
     }
   }, [idxActive]);
 
@@ -97,13 +96,11 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
                   ratio="740x414"
                   alt={`thumb-${idx.toString()}`}
                 />
-                {slideIdx === idx && (
-                  <div className="t-library-carousel_item_title">
-                    <Text modifiers={['cyanCobaltBlue', '400', 'uppercase']}>
-                      {imageList[slideIdx].title || ''}
-                    </Text>
-                  </div>
-                )}
+                <div className="t-library-carousel_item_title">
+                  <Text modifiers={['cyanCobaltBlue', '400', 'uppercase']}>
+                    {item.title || ''}
+                  </Text>
+                </div>
               </div>
             ))}
           </Carousel>

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
