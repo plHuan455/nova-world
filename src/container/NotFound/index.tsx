@@ -28,7 +28,7 @@ const dummy = {
 // }
 
 const NotFound: React.FC = () => {
-  useMainLayout('another');
+  useMainLayout({ type: 'another' });
   const history = useHistory();
   return (
     <>

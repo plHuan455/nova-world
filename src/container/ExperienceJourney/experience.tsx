@@ -10,6 +10,8 @@ import ExperienceJourneyCard, { ExperienceJourneyCardProps } from 'components/or
 import useScrollInfinite from 'hooks/useScrollInfinite';
 
 type ExperienceProps = {
+  title: string;
+  description: string;
   data:ExperienceJourneyCardProps[];
   handleLoadMore?: () => void;
   loading?: boolean;
@@ -64,9 +66,11 @@ const fnLoop = (key:number) => {
 };
 
 const Experience:React.FC<ExperienceProps> = ({
+  title,
+  description,
   data,
-  handleLoadMore,
   loading,
+  handleLoadMore,
 }) => {
   const { setNode } = useScrollInfinite(handleLoadMore);
   return (
@@ -75,18 +79,12 @@ const Experience:React.FC<ExperienceProps> = ({
         <Animate type="beatSmall">
           <div className="p-experience-journey_title">
             <Heading type="h2">
-              HÀNH TRÌNH TRẢI NGHIỆM
+              {title}
               <Divider />
             </Heading>
           </div>
           <div className="p-experience-journey_description">
-            <Text modifiers={['center']}>
-              Khai thác thế mạnh của thiên nhiên Hồ Tràm nguyên sơ,
-              kết hợp hài hoà địa thế liền kề của rừng và biển,
-              tạo nên trải nghiệm du lịch giải trí nghỉ dưỡng đa dạng,
-              mới lạ, và đặc sắc cho du khách,
-              đồng thời hưởng trọn vẹn các tiện ích liền kề độc đáo và giá trị.
-            </Text>
+            <Text modifiers={['center']} innerHTML={description} />
           </div>
         </Animate>
       </Container>

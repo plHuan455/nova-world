@@ -7,7 +7,7 @@ import Banner from 'components/organisms/Banner';
 import useMainLayout from 'hooks/useMainLayout';
 
 const Screen: React.FC = () => {
-  useMainLayout('product');
+  useMainLayout({ type: 'product' });
   return (
     <>
       <section className="s-banner">

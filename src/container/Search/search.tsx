@@ -9,8 +9,12 @@ import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
 import { InputSearch } from 'components/organisms/Header';
 
-const Search: React.FC = () => {
-  const { state: { keyword } } = useLocation<{keyword?: string}>();
+interface SearchProps {
+  title: string;
+}
+
+const Search: React.FC<SearchProps> = ({ title }) => {
+  const { state } = useLocation<{keyword?: string}>();
   const refInputSearch = useRef<HTMLInputElement>(null);
 
   const handleClickSearch = useCallback(() => {
@@ -34,14 +38,14 @@ const Search: React.FC = () => {
     <Container>
       <Animate type="fadeInUp" extendClassName="title">
         <Heading type="h2">
-          TÌM kIẾM
+          {title}
           <Divider />
         </Heading>
       </Animate>
       <Animate type="fadeInUp">
         <div className="input">
           <InputSearch
-            defaultValue={keyword}
+            defaultValue={state?.keyword}
             handleClickSearch={handleClickSearch}
             onKeyDown={handleKeyDown}
             ref={refInputSearch}

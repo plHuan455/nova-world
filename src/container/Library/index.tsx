@@ -5,7 +5,6 @@ import Content from './content';
 
 import Banner from 'components/organisms/Banner';
 import HelmetComponent from 'container/MainLayout/helmet';
-import useBanner from 'hooks/useBanner';
 import useMainLayout from 'hooks/useMainLayout';
 import { getBlockData } from 'utils/functions';
 
@@ -14,8 +13,7 @@ const LibraryContainer: React.FC<BasePageData<LibraryPage>> = ({
   blocks,
   seoData,
 }) => {
-  useMainLayout('another');
-  const thumbnail = useBanner(banners);
+  const { banner } = useMainLayout({ type: 'another', banners });
   const { state } = useLocation<{ id?: number }>();
 
   const { title } = useMemo(() => getBlockData('section1', blocks), [blocks]) as LibraryBlock;
@@ -24,7 +22,7 @@ const LibraryContainer: React.FC<BasePageData<LibraryPage>> = ({
     <>
       <HelmetComponent seoData={seoData} />
       <section>
-        <Banner thumbnail={thumbnail} />
+        <Banner thumbnail={banner} />
       </section>
       <section className="p-library_section s-wrap s-donut">
         <Content
