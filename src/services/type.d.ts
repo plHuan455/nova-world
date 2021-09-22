@@ -134,4 +134,20 @@ type LibraryBlock = {
   title: string;
 }
 
+type ContactBlock = {
+  title: string;
+  col1: {
+    title: string;
+  }
+  col2: {
+    contentPlaceholder: string;
+    emailPlaceholder: string;
+    namePlaceholder: string;
+    phonePlaceholder: string;
+    title: string;
+  }
+}
+
 type LibraryPage = LibraryBlock;
+
+type ContactPage = ContactBlock;

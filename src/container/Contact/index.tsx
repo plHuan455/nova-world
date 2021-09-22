@@ -1,18 +1,24 @@
 import React, { useMemo } from 'react';
 
-import * as DUMMY from 'assets/dataDummy/contact';
 import Banner from 'components/organisms/Banner';
 import Container from 'components/organisms/Container';
 import FormContactUs from 'components/templates/FormContactUs';
+import HelmetComponent from 'container/MainLayout/helmet';
+import useBanner from 'hooks/useBanner';
 import useMainLayout from 'hooks/useMainLayout';
 import { useAppSelector } from 'store/hooks';
+import { getBlockData } from 'utils/functions';
 
-const Contact:React.FC = () => {
+const Contact:React.FC<BasePageData<ContactPage>> = ({
+  banners,
+  blocks,
+  seoData,
+}) => {
   useMainLayout('another');
+  const thumbnail = useBanner(banners);
+  const addressList = useAppSelector((state) => state.trading.data);
 
-  const {
-    trading: { data: addressList },
-  } = useAppSelector((state) => state);
+  const { title, col1, col2 } = useMemo(() => getBlockData('section1', blocks), [blocks]) as ContactBlock;
 
   const dataInfoAddress = useMemo(() => (
     addressList.map((item) => ({ name: item.name, address: item.address }))
@@ -28,13 +34,19 @@ const Contact:React.FC = () => {
 
   return (
     <>
+      <HelmetComponent seoData={seoData} />
       <section className="s-banner">
-        <Banner thumbnail="https://source.unsplash.com/random" />
+        <Banner thumbnail={thumbnail} />
       </section>
       <section className="s-wrap s-donut">
         <Container>
           <FormContactUs
-            {...DUMMY}
+            title={title}
+            titleAddress={col1.title}
+            consultancySystem={{
+              ...col2,
+              btnText: 'đăng ký', // TODO: Update after BE
+            }}
             dataInfoAddress={dataInfoAddress}
             dataMap={dataMap}
           />
