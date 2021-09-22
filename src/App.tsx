@@ -32,7 +32,7 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <Router>
-        <Suspense fallback={<Loading modifiers={['blue']} />}>
+        <Suspense fallback={<Loading />}>
           <MainLayoutProvider>
             <Switch>
               <Route exact path={routesList.home}>

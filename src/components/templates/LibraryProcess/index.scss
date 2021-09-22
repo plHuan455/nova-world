@@ -32,6 +32,8 @@
 
     .slick {
       &-arrow {
+        border: 1px solid $arsenic;
+        border-radius: 50%;
         top: calc(50% + 5px);
 
         @include tablet-down {
