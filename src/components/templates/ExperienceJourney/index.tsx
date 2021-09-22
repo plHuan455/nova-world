@@ -8,7 +8,7 @@ import Carousel, { NextArrow } from 'components/organisms/Carousel';
 import Container from 'components/organisms/Container';
 
 interface ExperienceJourneyProps {
-  title: string;
+  title?: string;
   dataExperienceJourney?: ExperienceCardProps[];
 }
 

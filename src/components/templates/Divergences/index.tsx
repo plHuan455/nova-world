@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
@@ -19,6 +20,7 @@ type DivergencesCardType = {
   link?: string;
   textLink?: string;
   imgSrc?:string;
+  target?:string;
 }
 
 export const DivergencesCard:React.FC<DivergencesCardType> = ({
@@ -28,7 +30,8 @@ export const DivergencesCard:React.FC<DivergencesCardType> = ({
   numberTotal = 0,
   description,
   link = '/',
-  textLink = 'Khám phá ngay',
+  textLink,
+  target,
 }) => {
   const firstNumber = useMemo(() => (numberPart > 10 ? numberPart : `0${numberPart || ''}`), [numberPart]);
   const secondNumber = useMemo(() => (numberTotal > 10 ? numberTotal : `0${numberTotal || ''}`), [numberTotal]);
@@ -57,10 +60,12 @@ export const DivergencesCard:React.FC<DivergencesCardType> = ({
         </Text>
       </div>
       <div className="t-divergences_card_link">
-        <Link to={{
-          pathname: link,
-          search: window.location.search,
-        }}
+        <Link
+          to={{
+            pathname: link,
+            search: window.location.search,
+          }}
+          target={target || '_blank'}
         >
           <Text modifiers={['cyanCobaltBlue', 'underline', '700']}>
             {textLink}
@@ -132,12 +137,7 @@ const Divergences: React.FC<DivergencesProps> = ({
                   data.map((item, index) => (
                     <DivergencesCard
                       key={`item-left-${index.toString()}`}
-                      srcLogo={item.srcLogo}
-                      title={item.title}
-                      numberPart={index + 1}
-                      numberTotal={data.length}
-                      description={item.description}
-                      link={item.link}
+                      {...item}
                     />
                   ))
                 }

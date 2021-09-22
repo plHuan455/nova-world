@@ -2,10 +2,17 @@ import React from 'react';
 
 import dataExperienceJourney from 'assets/dataDummy/experiencejourney';
 import ExperienceJourney from 'components/templates/ExperienceJourney';
+import { HomeBlock } from 'services/home/types';
 
-const ExperienceJourneyHome: React.FC = () => (
+type ExperienceJourneyHomeProps = {
+  data?: HomeBlock
+}
+
+const ExperienceJourneyHome: React.FC<ExperienceJourneyHomeProps> = ({
+  data,
+}) => (
   <ExperienceJourney
-    title="HÀNH TRÌNH TRẢI NGHIỆM"
+    title={data?.title}
     dataExperienceJourney={dataExperienceJourney}
   />
 );

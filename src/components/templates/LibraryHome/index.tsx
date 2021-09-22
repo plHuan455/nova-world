@@ -17,9 +17,10 @@ export interface LibraryCard {
 
 export interface LibraryHomeProps {
   data?: LibraryCard[];
+  title?: string;
 }
 
-const LibraryHome: React.FC<LibraryHomeProps> = ({ data }) => {
+const LibraryHome: React.FC<LibraryHomeProps> = ({ data, title }) => {
   const [idx, setIdx] = useState(0);
 
   return (
@@ -29,7 +30,7 @@ const LibraryHome: React.FC<LibraryHomeProps> = ({ data }) => {
         type="beatSmall"
       >
         <Heading type="h2" modifiers={['cyanCobaltBlue', '500']}>
-          THƯ VIỆN
+          {title}
           <Divider />
         </Heading>
       </Animate>

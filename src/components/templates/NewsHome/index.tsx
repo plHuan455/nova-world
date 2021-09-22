@@ -12,7 +12,7 @@ export interface NewsHomeTabProps {
 }
 
 interface NewsHomeProps {
-  title: string;
+  title?: string;
   tabDataNewsHome: NewsHomeTabProps[];
 }
 

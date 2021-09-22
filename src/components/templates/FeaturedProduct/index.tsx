@@ -16,6 +16,7 @@ type FeaturedProductCardType = {
 
 interface FeaturedProductProps {
   data: FeaturedProductCardType[];
+  title?: string;
 }
 
 const settings = {
@@ -30,6 +31,7 @@ const settings = {
 
 const FeaturedProduct: React.FC<FeaturedProductProps> = ({
   data,
+  title,
 }) => {
   const [slideCurrent, setSlideCurrent] = useState(0);
   return (
@@ -41,7 +43,7 @@ const FeaturedProduct: React.FC<FeaturedProductProps> = ({
             type="beatSmall"
           >
             <Heading type="h2">
-              SẢN PHẨM NỔI BẬT
+              {title}
               <Divider />
             </Heading>
           </Animate>

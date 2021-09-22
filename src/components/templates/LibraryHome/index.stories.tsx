@@ -14,6 +14,6 @@ export default {
 
 export const normal: Story = () => (
   <BrowserRouter>
-    <LibraryHome data={libraryDummy.card} />
+    <LibraryHome title="THƯ VIỆN" data={libraryDummy.card} />
   </BrowserRouter>
 );

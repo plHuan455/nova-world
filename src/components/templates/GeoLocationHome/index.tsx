@@ -7,11 +7,11 @@ import Animate from 'components/organisms/Animate';
 import LocationMap, { LocationMapProps } from 'components/organisms/LocationMap';
 
 interface GeoLocationHomeProps extends LocationMapProps {
-  title: string;
+  title?: string;
   desc?: string;
 }
 
-const GeoLocationHome: React.FC<GeoLocationHomeProps> = ({ title = 'VỊ TRÍ ĐỊA LÝ', desc, data }) => (
+const GeoLocationHome: React.FC<GeoLocationHomeProps> = ({ title, desc, data }) => (
   <div className="t-geolocationhome">
     <Animate
       extendClassName="t-geolocationhome_top"
