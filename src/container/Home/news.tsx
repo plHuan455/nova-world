@@ -14,7 +14,10 @@ type NewsHomeContainerProps = {
 const NewsHomeContainer: React.FC<NewsHomeContainerProps> = ({
   data,
 }) => {
-  const { news: { categories } } = useAppSelector((state) => state);
+  const {
+    news: { categories },
+    menu: { prefix },
+  } = useAppSelector((state) => state);
 
   const dispatch = useAppDispatch();
 
@@ -34,11 +37,11 @@ const NewsHomeContainer: React.FC<NewsHomeContainerProps> = ({
         ratio: index === 0 ? '644x323' : '450x248' as Ratio,
         title: card.title,
         desc: card.description,
-        updatedate: 'Cập nhật lúc 10:00 - 03/08/2021',
-        href: card.slug,
+        updatedate: `Cập nhật lúc ${card.publishedAt}`,
+        href: prefix?.newsDetail + card.slug,
       })),
     }));
-  }, [categories]);
+  }, [categories, prefix?.newsDetail]);
 
   return (
     <NewsHome title={data?.title} tabDataNewsHome={tabDataNewsHome} />

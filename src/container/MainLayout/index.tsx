@@ -1,3 +1,4 @@
+import i18n from 'i18next';
 import React, {
   createContext, useEffect, useMemo, useState,
 } from 'react';
@@ -7,10 +8,11 @@ import NotifyContainer from './notify';
 
 import MainLayout from 'components/templates/MainLayout';
 import useDidMount from 'hooks/useDidMount';
-import { useAppDispatch } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getSystemsLocalesAsync } from 'store/locales';
-import { getHeaderMenuAsync, getStaticSlugAsync } from 'store/menu';
+import { getHeaderMenuAsync, getStaticSlugAsync, setPrefixAction } from 'store/menu';
 import { getTradingFloorsAsync } from 'store/trading';
+import { getPrefixCardDetail } from 'utils/language';
 
 export type PageType = 'home' | 'product' | 'another';
 
@@ -23,6 +25,7 @@ export const MainLayoutContext = createContext<MainLayoutContextProps | undefine
 
 export const MainLayoutProvider: React.FC = ({ children }) => {
   const location = useLocation();
+  const { menu: { staticSlug } } = useAppSelector((state) => state);
   const [pageType, setPageType] = useState<PageType>();
   const dispatch = useAppDispatch();
 
@@ -36,6 +39,15 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
     dispatch(getStaticSlugAsync());
     dispatch(getTradingFloorsAsync());
   });
+
+  useEffect(() => {
+    if (staticSlug) {
+      dispatch(setPrefixAction({
+        newsDetail: getPrefixCardDetail('news', staticSlug, i18n.language),
+        journeysDetail: getPrefixCardDetail('journey', staticSlug, i18n.language),
+      }));
+    }
+  }, [dispatch, staticSlug]);
 
   const context = useMemo(() => ({
     pageType,

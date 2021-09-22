@@ -67,7 +67,7 @@ const NewsHome: React.FC<NewsHomeProps> = ({ title, tabDataNewsHome }) => {
                               title={ele.dataNewsHome[0].title}
                               desc={ele.dataNewsHome[0].desc}
                               updatedate={ele.dataNewsHome[0].updatedate}
-                              href=""
+                              href={ele.dataNewsHome[0].href}
                             />
                           </div>
                           <div className="t-newshome_left">
@@ -80,7 +80,7 @@ const NewsHome: React.FC<NewsHomeProps> = ({ title, tabDataNewsHome }) => {
                                     imgSrc={item.imgSrc}
                                     ratio={item.ratio}
                                     title={item.title}
-                                    href=""
+                                    href={item.href}
                                   />
                                 )
                               ))

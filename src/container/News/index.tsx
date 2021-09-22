@@ -6,13 +6,15 @@ import { CardProps } from 'components/molecules/Card';
 import Banner from 'components/organisms/Banner';
 import NewsList, { ListPanelType } from 'components/templates/NewsList';
 import HelmetComponent from 'container/MainLayout/helmet';
+import useDidMount from 'hooks/useDidMount';
 import useIsMounted from 'hooks/useIsMounted';
 import useMainLayout from 'hooks/useMainLayout';
 import {
-  getNewsCategoriesService,
   getNewsListByCateService,
 } from 'services/news';
 import { CategoriesData, NewsData } from 'services/news/types';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { getListCategoriesAsync } from 'store/news';
 import { getBlockData, getImageURL } from 'utils/functions';
 
 const LIMIT = 3;
@@ -24,6 +26,12 @@ const NewsContainer: React.FC<BasePageData<NewsPage>> = ({
 }) => {
   const { banner } = useMainLayout({ type: 'another', banners });
   const isMounted = useIsMounted();
+  const {
+    news: { categories },
+    menu: { prefix },
+  } = useAppSelector((state) => state);
+
+  const dispatch = useAppDispatch();
 
   const { title } = useMemo(() => getBlockData('section1', blocks), [blocks]) as NewsBlock;
 
@@ -50,7 +58,7 @@ const NewsContainer: React.FC<BasePageData<NewsPage>> = ({
     imgSrc: getImageURL(item.thumbnail),
     title: item.title,
     description: item.description,
-    href: item.slug,
+    href: prefix?.newsDetail + item.slug,
   }));
 
   const convertPanelList = (
@@ -105,10 +113,9 @@ const NewsContainer: React.FC<BasePageData<NewsPage>> = ({
     }
   };
 
-  const initPage = async () => {
+  const initPage = async (cateData: APIResponse<CategoriesData[]>) => {
     try {
       if (isMounted()) setLoading(true);
-      const cateData = await getNewsCategoriesService();
       const newsData = await getNewsListByCateService(cateData.data[0].slug, {
         limit: LIMIT,
         page: 1,
@@ -124,10 +131,18 @@ const NewsContainer: React.FC<BasePageData<NewsPage>> = ({
     }
   };
 
+  useDidMount(() => {
+    if (!categories) {
+      dispatch(getListCategoriesAsync({}));
+    }
+  });
+
   useEffect(() => {
-    initPage();
+    if (categories) {
+      initPage(categories);
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [categories]);
 
   return (
     <>
