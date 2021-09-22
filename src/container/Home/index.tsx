@@ -13,7 +13,7 @@ const Location = React.lazy(() => import('./location'));
 const NewsHomeContainer = React.lazy(() => import('./news'));
 
 const Home: React.FC = () => {
-  useMainLayout('home');
+  useMainLayout({ type: 'home' });
   return (
     <>
       <section className="s-banner">

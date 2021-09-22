@@ -35,7 +35,7 @@ interface NewsListProps {
 }
 
 const NewsList: React.FC<NewsListProps> = ({
-  title = 'tin tức',
+  title,
   listLabel,
   listPanel,
   fetching,
@@ -115,7 +115,5 @@ const NewsList: React.FC<NewsListProps> = ({
     </Container>
   </div>
 );
-
-NewsList.defaultProps = {};
 
 export default NewsList;

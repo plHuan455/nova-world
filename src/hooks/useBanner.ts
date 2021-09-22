@@ -4,7 +4,7 @@ import useWindowResize from './useWindowResize';
 
 import { getImageURL } from 'utils/functions';
 
-const useBanner = (banners: BannersData[]): string => {
+const useBanner = (banners: BannersData[]): {imgSrc: string} => {
   const [imgSrc, setImgSrc] = useState('');
 
   const setBannerImageByWindowSize = () => {
@@ -19,7 +19,7 @@ const useBanner = (banners: BannersData[]): string => {
 
   useWindowResize(setBannerImageByWindowSize);
 
-  return imgSrc;
+  return { imgSrc };
 };
 
 export default useBanner;

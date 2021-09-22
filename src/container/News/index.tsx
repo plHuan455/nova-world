@@ -5,6 +5,7 @@ import React, {
 import { CardProps } from 'components/molecules/Card';
 import Banner from 'components/organisms/Banner';
 import NewsList, { ListPanelType } from 'components/templates/NewsList';
+import HelmetComponent from 'container/MainLayout/helmet';
 import useIsMounted from 'hooks/useIsMounted';
 import useMainLayout from 'hooks/useMainLayout';
 import {
@@ -12,14 +13,19 @@ import {
   getNewsListByCateService,
 } from 'services/news';
 import { CategoriesData, NewsData } from 'services/news/types';
-import { getImageURL } from 'utils/functions';
+import { getBlockData, getImageURL } from 'utils/functions';
 
 const LIMIT = 3;
 
-const NewsContainer: React.FC = () => {
-  useMainLayout('another');
-
+const NewsContainer: React.FC<BasePageData<NewsPage>> = ({
+  banners,
+  blocks,
+  seoData,
+}) => {
+  const { banner } = useMainLayout({ type: 'another', banners });
   const isMounted = useIsMounted();
+
+  const { title } = useMemo(() => getBlockData('section1', blocks), [blocks]) as NewsBlock;
 
   const [loading, setLoading] = useState(false);
   const [loadingBtn, setLoadingBtn] = useState(false);
@@ -98,6 +104,7 @@ const NewsContainer: React.FC = () => {
       if (isMounted()) setPage(1);
     }
   };
+
   const initPage = async () => {
     try {
       if (isMounted()) setLoading(true);
@@ -124,12 +131,13 @@ const NewsContainer: React.FC = () => {
 
   return (
     <>
+      <HelmetComponent seoData={seoData} />
       <section>
-        <Banner thumbnail="https://source.unsplash.com/random" />
+        <Banner thumbnail={banner} />
       </section>
       <section className="p-news_list-section s-wrap s-donut">
         <NewsList
-          title="Tin tức"
+          title={title}
           handleShowMore={handleShowMore}
           totalPage={totalPage}
           page={page}

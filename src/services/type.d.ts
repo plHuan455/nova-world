@@ -148,6 +148,27 @@ type ContactBlock = {
   }
 }
 
+type NewsBlock = {
+  title: string;
+  btnLabel: string;
+}
+
+type SearchBlock = {
+  title: string;
+};
+
+type JourneysBlock = {
+  title: string;
+  description: string;
+}
+
+// Region Page Type
 type LibraryPage = LibraryBlock;
 
 type ContactPage = ContactBlock;
+
+type NewsPage = NewsBlock;
+
+type SearchPage = SearchBlock;
+
+type JourneysPage = JourneysBlock;
