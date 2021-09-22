@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
 

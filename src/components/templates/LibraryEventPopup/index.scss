@@ -31,6 +31,21 @@
       }
     }
 
+    .o-carousel {
+      @include tablet-up {
+        .slick-list {
+          max-height: rem(445);
+        }
+      }
+
+      .slick-prev {
+        left: calc(44 / 1366 * 100%);
+      }
+  
+      .slick-next {
+        right: calc(44 / 1366 * 100%);
+      }
+    }
   }
 
   &_content {

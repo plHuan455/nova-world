@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
 import Line1 from 'assets/images/featuredProduct/line_1.png';

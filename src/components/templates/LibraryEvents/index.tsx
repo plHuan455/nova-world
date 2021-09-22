@@ -1,32 +1,38 @@
 import React from 'react';
 
 import Button from 'components/atoms/Button';
-import Text from 'components/atoms/Text';
+import Loading from 'components/atoms/Loading';
 import Card, { CardProps } from 'components/molecules/Card';
 import Animate from 'components/organisms/Animate';
 
 interface LibraryEventProps {
   listEvent: CardProps[];
-  loadingBtn?: boolean;
-  handleClick?: (idx: number) => void;
-  handleShowMore?: () => void;
   totalPage?: number;
   page?: number;
+  fetching?: boolean;
+  loading?: boolean;
+  handleClick?: (idx: number) => void;
+  handleShowMore?: () => void;
 }
 
 const LibraryEvent: React.FC<LibraryEventProps> = ({
   listEvent,
-  loadingBtn,
   totalPage = 1,
   page = 1,
+  fetching,
+  loading,
   handleClick,
   handleShowMore,
 }) => (
   <Animate type="scaleY" extendClassName="t-library-events">
     <div className="t-library-events_list">
-      <div className="t-library-events_list_wrapper">
-        {listEvent.length > 0 ? (
-          listEvent.map((item, idx) => (
+      {fetching ? (
+        <div className="t-library-events_loading">
+          <Loading modifiers={['blue']} />
+        </div>
+      ) : (
+        <div className="t-library-events_list_wrapper">
+          {listEvent?.map((item, idx) => (
             <div
               className="t-library-events_list_item"
               key={idx.toString()}
@@ -38,23 +44,19 @@ const LibraryEvent: React.FC<LibraryEventProps> = ({
                 description={item.description}
               />
             </div>
-          ))
-        ) : (
-          <div className="t-library-events_list_empty">
-            <Text>Không có sự kiện</Text>
-          </div>
-        )}
-      </div>
+          ))}
+        </div>
+      )}
       {totalPage > 1 && (
-      <div className="t-library-events_button">
-        <Button
-          loading={loadingBtn}
-          handleClick={handleShowMore}
-          type="button"
-        >
-          {totalPage > page ? 'Xem thêm' : 'Rút gọn'}
-        </Button>
-      </div>
+        <div className="t-library-events_button">
+          <Button
+            loading={loading}
+            handleClick={handleShowMore}
+            type="button"
+          >
+            {totalPage > page ? 'Xem thêm' : 'Rút gọn'}
+          </Button>
+        </div>
       )}
     </div>
   </Animate>

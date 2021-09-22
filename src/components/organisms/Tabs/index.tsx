@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useRef } from 'react';
 import Slider, { ResponsiveObject } from 'react-slick';
 

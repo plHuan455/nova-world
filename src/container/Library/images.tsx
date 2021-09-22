@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import Loading from 'components/atoms/Loading';
 import LibraryImages, {
   LibraryItemTypes,
 } from 'components/organisms/LibraryImage';
@@ -14,7 +13,7 @@ import { LibraryListItemData } from 'services/libraries/type';
 import { getImageURL } from 'utils/functions';
 
 const INIT = 1;
-const LIMIT = 5;
+const LIMIT = 9;
 
 export interface ImagesProps {
   handleClick?: (idx: number, data: LibraryListItemData[]) => void;
@@ -79,13 +78,13 @@ const Images: React.FC<ImagesProps> = ({ handleClick }) => {
         const res = await getLibraryList({
           category_ids: tagsActive.toString() || undefined,
           page: meta.page + 1,
-          limit: LIMIT - 1,
+          limit: LIMIT,
         });
         setData([...data, ...res.data]);
         setMeta(res.meta);
       } else {
-        setMeta((prev) => (prev ? { ...prev, page: 1 } : undefined));
-        setData((prev) => prev.slice(0, LIMIT));
+        setMeta(meta ? { ...meta, page: 1 } : undefined);
+        setData(data.slice(0, LIMIT));
       }
     } catch {
       // empty
@@ -112,16 +111,7 @@ const Images: React.FC<ImagesProps> = ({ handleClick }) => {
         if (isMounted()) setFetching(false);
       }
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tagsActive]);
-
-  if (category.status === 'pending') {
-    return (
-      <div className="p-library_loading">
-        <Loading modifiers={['blue']} />
-      </div>
-    );
-  }
+  }, [tagsActive, isMounted]);
 
   return (
     <LibraryImages

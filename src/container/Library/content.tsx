@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useMemo, useRef, useState } from 'react';
 
 import Events from './events';
@@ -9,7 +7,6 @@ import Process from './process';
 import libraryDummy from 'assets/dataDummy/library';
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
-import Loading from 'components/atoms/Loading';
 import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
 import Tabs, { Tab } from 'components/organisms/Tabs';

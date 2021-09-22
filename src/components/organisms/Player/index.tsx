@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { forwardRef } from 'react';
 import ReactPlayer from 'react-player/lazy';
 

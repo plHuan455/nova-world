@@ -98,3 +98,11 @@ export function getImageURL(imgUrl?: string) {
   if (!BASE_URL || !imgUrl) return '';
   return BASE_URL + imgUrl;
 }
+
+export function getBlockData<T>(
+  _code: string,
+  listBlock?: BlockComponents<T>[],
+): T | undefined {
+  if (!listBlock) return undefined;
+  return listBlock.find((item) => item.code === _code)?.blocks;
+}

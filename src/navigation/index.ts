@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { BasePageData } from 'services/navigation/types';
-
 const Home = React.lazy(() => import('pages/Home'));
 const Contact = React.lazy(() => import('pages/Contact'));
 const ExperienceJourney = React.lazy(() => import('pages/ExperienceJourney'));

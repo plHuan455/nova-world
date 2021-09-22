@@ -101,3 +101,37 @@ type BannersData = {
   data: BannerData;
   type: string;
 }
+
+type PageData = {
+  id: number;
+  templateCode: string;
+  code: string;
+  active: boolean;
+  isHome: boolean;
+  groupCode?: any;
+  name: string;
+  status: number;
+  parentId?: any;
+  bannerId: number;
+  createdAt: Date;
+  updatedAt: Date;
+  locale: string;
+  title: string;
+  slug: string;
+  description?: any;
+  translations: Translation[];
+}
+
+type BasePageData<T> = {
+  pageData: PageData;
+  blocks: BlockComponents<T>[];
+  banners: BannersData[];
+  seoData: SEOData;
+  breadcrumbs: BreadcrumbsData[];
+}
+
+type LibraryBlock = {
+  title: string;
+}
+
+type LibraryPage = LibraryBlock;

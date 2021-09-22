@@ -38,4 +38,10 @@
   &_imagesdetail {
     display: none;
   }
+
+  .slick-slide {
+    &[aria-hidden='true'] {
+      visibility: visible;
+    }
+  }
 }

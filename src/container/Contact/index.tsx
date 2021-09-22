@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useMemo } from 'react';
 
 import * as DUMMY from 'assets/dataDummy/contact';

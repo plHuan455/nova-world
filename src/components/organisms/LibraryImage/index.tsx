@@ -45,7 +45,7 @@ const LibraryImages: React.FC<LibraryImagesProps> = ({
 }) => (
   <div className="o-libraryimages">
     <>
-      {tagsList?.length && (
+      {!!tagsList?.length && (
       <Animate type="slideInLeft" extendClassName="o-libraryimages_tags">
         <div className="o-libraryimages_tags_wrap">
           {tagsList?.map((item, idx) => (
