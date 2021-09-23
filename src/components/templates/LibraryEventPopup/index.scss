@@ -13,8 +13,8 @@
   }
 
   &_left {
-    flex: 0 0 calc(668 / 1024 * 100%);
-    max-width: calc(668 / 1024 * 100%);
+    flex: 0 0 calc(624 / 1024 * 100%);
+    max-width: calc(624 / 1024 * 100%);
     position: relative;
     @include tablet-down {
       flex: 0 0 100%;
@@ -34,7 +34,7 @@
     .o-carousel {
       @include tablet-up {
         .slick-list {
-          max-height: rem(445);
+          max-height: rem(351);
         }
       }
 
@@ -74,7 +74,7 @@
   }
 
   &_right {
-    flex: 0 0 calc(356 / 1024 * 100%);
+    flex: 0 0 calc(400 / 1024 * 100%);
     @include tablet-down {
       flex: 0 0 100%;
     }

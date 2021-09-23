@@ -48,7 +48,7 @@ const EventPopup: React.FC<EventPopupProps> = ({
             <Carousel settings={settings}>
               {eventData.imgSrc.map((e, idx) => (
                 <div className="t-eventpopup_left_main" key={`_eventsPopupImage${String(idx)}`}>
-                  <Image imgSrc={e} size="cover" ratio="668x445" />
+                  <Image imgSrc={e} size="cover" ratio="16x9" />
                 </div>
               ))}
             </Carousel>
