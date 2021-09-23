@@ -1,10 +1,13 @@
 import React from 'react';
 
+import MainLayout from 'components/templates/MainLayout';
 import Screen from 'container/NotFound';
 
-const NotFound: React.FC = () => (
+const NotFound: React.FC<BasePageData<NotFoundPage>> = (props) => (
   <div className="p-notfound">
-    <Screen />
+    <MainLayout>
+      <Screen {...props} />
+    </MainLayout>
   </div>
 );
 

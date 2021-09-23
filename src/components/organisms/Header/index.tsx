@@ -11,6 +11,7 @@ import Icon from 'components/atoms/Icon';
 import Image from 'components/atoms/Image';
 import useClickOutside from 'hooks/useClickOutside';
 import useWindowScroll from 'hooks/useWindowScroll';
+import { MenuItem } from 'services/menus/types';
 import mapModifiers from 'utils/functions';
 
 const suggestList = [
@@ -25,37 +26,6 @@ const suggestList = [
   {
     title: 'Vui chơi giải trí',
     link: '/',
-  },
-];
-
-const menuList = [
-  {
-    pathname: '/',
-    text: 'Trang chủ',
-  },
-  {
-    pathname: '/cac-phan-ki',
-    text: 'Các phân kì',
-  },
-  {
-    pathname: '/san-pham-noi-bat',
-    text: 'Sản phẩm nổi bật',
-  },
-  {
-    pathname: '/hanh-trinh-trai-nghiem',
-    text: 'Hành trình trải nghiệm',
-  },
-  {
-    pathname: '/thu-vien',
-    text: 'Thư viện',
-  },
-  {
-    pathname: '/tin-tuc',
-    text: 'Tin tức',
-  },
-  {
-    pathname: '/lien-he',
-    text: 'Liên hệ',
   },
 ];
 
@@ -237,7 +207,75 @@ const Language: React.FC = () => {
   );
 };
 
-const Header: React.FC = () => {
+interface NavProps extends HeaderProps {
+  toggleMenu?: () => void;
+}
+
+const Nav: React.FC<NavProps> = ({ menuList, toggleMenu }) => {
+  const ref = useRef(null);
+  const [isOpenMenuChild, setIsOpenMenuChild] = useState<number>(); // Menu Id
+
+  useClickOutside(ref, (): void => setIsOpenMenuChild(undefined));
+
+  return (
+    <ul className="o-header-nav" ref={ref}>
+      {menuList.map((menu, index) => {
+        const isChild = !!menu?.subMenu?.length;
+        const isOpen = isOpenMenuChild === menu.id;
+        return (
+          <li className={`o-header-nav-item ${isChild ? 'o-header-nav-child' : ''} ${isOpen ? 'o-header-nav-show' : ''}`} key={`_nav${String(index)}`}>
+            {isChild ? (
+              <p className="o-header-link" onClick={() => setIsOpenMenuChild(isOpen ? undefined : menu.id)}>
+                {menu.title}
+              </p>
+            ) : (
+              <NavLink
+                exact
+                className="o-header-link"
+                to={{
+                  pathname: isChild ? menu.reference?.slug : undefined,
+                  search: window.location.search,
+                }}
+                target={menu.target}
+                onClick={() => {
+                  if (toggleMenu) {
+                    toggleMenu();
+                  }
+                }}
+              >
+                {menu.title}
+              </NavLink>
+            )}
+            {isChild && (
+              <ul className="o-header-nav-sub">
+                {menu.subMenu?.map((s, i) => (
+                  <li className="o-header-nav-subitem" key={`_navsub${String(i)}`}>
+                    <NavLink
+                      exact
+                      className="o-header-nav-sublink"
+                      to={{
+                        pathname: s?.link || '',
+                      }}
+                      target={s.target}
+                    >
+                      {s.title}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
+export interface HeaderProps {
+  menuList: MenuItem[];
+}
+
+const Header: React.FC<HeaderProps> = ({ menuList }) => {
   const [isScroll, setIsScroll] = useState(false);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
@@ -265,27 +303,6 @@ const Header: React.FC = () => {
       <span />
     </button>
   ), []);
-
-  const nav = useMemo(() => (
-    <ul className="o-header-nav">
-      {menuList.map((menu, index) => (
-        <li className="o-header-nav-item" key={`_nav${String(index)}`}>
-          <NavLink
-            exact
-            className="o-header-link"
-            to={menu.pathname}
-            onClick={() => {
-              if (isOpenMenu) {
-                setIsOpenMenu(false);
-              }
-            }}
-          >
-            {menu.text}
-          </NavLink>
-        </li>
-      ))}
-    </ul>
-  ), [isOpenMenu]);
 
   useWindowScroll(() => {
     if (window.pageYOffset > 70) {
@@ -344,7 +361,10 @@ const Header: React.FC = () => {
               </div>
               {IconCloseMenu}
             </div>
-            {nav}
+            <Nav
+              menuList={menuList}
+              toggleMenu={() => setIsOpenMenu(false)}
+            />
             <div className="o-header-divider" />
             <Option toggleMenu={() => setIsOpenMenu(false)} />
           </div>

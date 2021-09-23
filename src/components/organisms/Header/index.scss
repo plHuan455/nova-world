@@ -182,6 +182,7 @@
     @include tablet-down {
       display: block;
       order: 3;
+      width: 100%;
     }
 
     &-item {
@@ -205,6 +206,95 @@
       }
     }
 
+    &-child {
+      position: relative;
+
+      #{$root}-link {
+        align-items: center;
+        display: flex;
+
+        @include tablet-down {
+          justify-content: space-between;
+          width: 100%;
+        }
+  
+        &::after {
+          background-image: url('~assets/icons/ic_dropdown_white.svg');
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          content: '';
+          display: block;
+          height: rem(5);
+          margin-left: rem(6);
+          transition: all $transition-long linear;
+          width: rem(10);
+  
+          #{$root}-scroll & {
+            background-image: url('~assets/icons/ic_dropdown_blue.svg');
+          }
+  
+          #{$root}-open & {
+            background-image: url('~assets/icons/ic_dropdown_blue.svg');
+          }
+        }
+      }
+    }
+    
+    &-sub {
+      max-height: 0;
+      opacity: 0;
+      transition: $transition linear;
+      visibility: hidden;
+      @include list-style-none();
+      @include tablet-up {
+        backdrop-filter: blur(rem(113));
+        background-color: $white;
+        border-radius: rem(5);
+        box-shadow: 0 rem(4) rem(16) $black-overlay01;
+        margin-top: rem(12);
+        position: absolute;
+        right: 0;
+        top: 100%;
+        width: rem(220);
+      }
+    }
+
+    &-show {
+      #{$root}-link::after {
+        transform: rotate(180deg);
+      }
+      #{$root}-nav-sub {
+        max-height: rem(176);
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    &-subitem {
+      @include tablet-down {
+        padding-left: rem(16);
+        padding-top: rem(24);
+
+        &:last-of-type {
+          padding-bottom: rem(24);
+        }
+      }
+    }
+    
+    &-sublink {
+      color: $cyan-cobalt-blue;
+      @include font-base(14, 20);
+      @include tablet-up {
+        display: block;
+        padding: rem(12) rem(16);
+        width: 100%;
+
+        &:hover {
+          font-weight: 700;
+        }
+      }
+    }
   }
 
   &-divider {
@@ -377,7 +467,6 @@
 
       &::before {
         background-image: url('~assets/icons/ic_dropdown_white.svg');
-
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;

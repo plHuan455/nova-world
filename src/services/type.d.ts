@@ -162,6 +162,13 @@ type JourneysBlock = {
   description: string;
 }
 
+type NotFoundBlock = {
+  btnLabel: string;
+  description: string;
+  subTitle: string;
+  title: string;
+}
+
 // Region Page Type
 type LibraryPage = LibraryBlock;
 
@@ -172,3 +179,5 @@ type NewsPage = NewsBlock;
 type SearchPage = SearchBlock;
 
 type JourneysPage = JourneysBlock;
+
+type NotFoundPage = NotFoundBlock;

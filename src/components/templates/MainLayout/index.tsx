@@ -8,15 +8,18 @@ import { useAppSelector } from 'store/hooks';
 const MainLayout: React.FC = ({ children }) => {
   const {
     trading: { data: addressList },
+    menu: { header },
   } = useAppSelector((state) => state);
 
   const dataInfoAddress = useMemo(() => (
     addressList.map((item) => ({ name: item.name, address: item.address }))
   ), [addressList]);
 
+  // console.log(header);
+
   return (
     <div className="t-mainlayout">
-      <Header />
+      <Header menuList={header || []} />
       <div className="t-mainlayout_body">
         {children}
       </div>

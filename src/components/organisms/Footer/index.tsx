@@ -8,7 +8,6 @@ import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
 import RegisterProjectForm from 'components/templates/RegisterProjectForm';
 import { MainLayoutContext } from 'container/MainLayout';
-import mapModifiers from 'utils/functions';
 
 export type AddressItemType = {
   name?: string,
@@ -48,10 +47,10 @@ const Footer: React.FC<FooterProps> = ({
 
   return (
     <>
-      {mainLayoutContext?.pageType === 'another' && (
+      {!mainLayoutContext?.isHome && (
         <div className="o-footeroverlay" />
       )}
-      <div className={mapModifiers('o-footer', mainLayoutContext?.pageType)}>
+      <div className="o-footer">
         <Animate
           extendClassName="o-footer_form"
           type="fadeInUp"

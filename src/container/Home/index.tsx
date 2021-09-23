@@ -19,7 +19,7 @@ const Home: React.FC<BasePageData<HomeBlock>> = ({
   seoData,
   banners,
 }) => {
-  const { banner } = useMainLayout({ type: 'home', banners });
+  const { banner } = useMainLayout({ isHome: true, banners });
 
   return (
     <>

@@ -13,7 +13,7 @@ const Contact:React.FC<BasePageData<ContactPage>> = ({
   blocks,
   seoData,
 }) => {
-  const { banner } = useMainLayout({ type: 'another', banners });
+  const { banner } = useMainLayout({ isHome: false, banners });
   const addressList = useAppSelector((state) => state.trading.data);
 
   const { title, col1, col2 } = useMemo(() => getBlockData('section1', blocks), [blocks]) as ContactBlock;

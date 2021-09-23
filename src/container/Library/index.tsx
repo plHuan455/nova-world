@@ -13,7 +13,7 @@ const LibraryContainer: React.FC<BasePageData<LibraryPage>> = ({
   blocks,
   seoData,
 }) => {
-  const { banner } = useMainLayout({ type: 'another', banners });
+  const { banner } = useMainLayout({ isHome: false, banners });
   const { state } = useLocation<{ id?: number }>();
 
   const { title } = useMemo(() => getBlockData('section1', blocks), [blocks]) as LibraryBlock;

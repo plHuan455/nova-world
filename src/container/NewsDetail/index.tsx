@@ -13,7 +13,7 @@ import useMainLayout from 'hooks/useMainLayout';
 import getNewsDetail from 'services/newsDetail';
 
 const NewsDetail: React.FC = () => {
-  useMainLayout({ type: 'another' });
+  useMainLayout({ isHome: false });
   const { slug } = useParams<{slug?: string}>();
 
   const { status, data } = useCallService(() => getNewsDetail(slug), [slug]);

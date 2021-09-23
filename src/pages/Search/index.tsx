@@ -1,10 +1,13 @@
 import React from 'react';
 
+import MainLayout from 'components/templates/MainLayout';
 import Screen from 'container/Search';
 
 const Search: React.FC<BasePageData<SearchPage>> = (props) => (
   <div className="p-search">
-    <Screen {...props} />
+    <MainLayout>
+      <Screen {...props} />
+    </MainLayout>
   </div>
 );
 

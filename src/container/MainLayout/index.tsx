@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 
 import NotifyContainer from './notify';
 
-import MainLayout from 'components/templates/MainLayout';
 import useDidMount from 'hooks/useDidMount';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getSystemsLocalesAsync } from 'store/locales';
@@ -14,11 +13,9 @@ import { getHeaderMenuAsync, getStaticSlugAsync, setPrefixAction } from 'store/m
 import { getTradingFloorsAsync } from 'store/trading';
 import { getPrefixCardDetail } from 'utils/language';
 
-export type PageType = 'home' | 'product' | 'another';
-
 export interface MainLayoutContextProps {
-  pageType?: PageType;
-  setPageType?: React.Dispatch<React.SetStateAction<PageType | undefined>>;
+  isHome?: boolean;
+  setIsHome?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const MainLayoutContext = createContext<MainLayoutContextProps | undefined>(undefined);
@@ -26,7 +23,7 @@ export const MainLayoutContext = createContext<MainLayoutContextProps | undefine
 export const MainLayoutProvider: React.FC = ({ children }) => {
   const location = useLocation();
   const { menu: { staticSlug } } = useAppSelector((state) => state);
-  const [pageType, setPageType] = useState<PageType>();
+  const [isHome, setIsHome] = useState<boolean>(true);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -50,15 +47,13 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
   }, [dispatch, staticSlug]);
 
   const context = useMemo(() => ({
-    pageType,
-    setPageType,
-  }), [pageType, setPageType]);
+    isHome,
+    setIsHome,
+  }), [isHome, setIsHome]);
 
   return (
     <MainLayoutContext.Provider value={context}>
-      <MainLayout>
-        {children}
-      </MainLayout>
+      {children}
       <NotifyContainer />
     </MainLayoutContext.Provider>
   );

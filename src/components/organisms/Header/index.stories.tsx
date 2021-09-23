@@ -12,6 +12,6 @@ export default {
 
 export const normal: Story = () => (
   <BrowserRouter>
-    <Header />
+    <Header menuList={[]} />
   </BrowserRouter>
 );
