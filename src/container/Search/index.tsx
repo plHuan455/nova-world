@@ -12,7 +12,7 @@ const Search: React.FC<BasePageData<SearchPage>> = ({
   blocks,
   seoData,
 }) => {
-  const { banner } = useMainLayout({ type: 'another', banners });
+  const { banner } = useMainLayout({ isHome: false, banners });
   const { title } = useMemo(() => getBlockData('section1', blocks), [blocks]) as SearchBlock;
 
   return (

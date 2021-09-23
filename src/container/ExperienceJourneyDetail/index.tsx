@@ -27,7 +27,7 @@ const dummyCard = Array(3).fill({
 });
 
 const ExperienceJourneyDetail:React.FC = () => {
-  useMainLayout({ type: 'another' });
+  useMainLayout({ isHome: false });
   return (
     <>
       <section className="s-banner">

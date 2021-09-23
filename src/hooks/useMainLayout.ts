@@ -1,12 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 
+import useDidMount from './useDidMount';
 import useWindowResize from './useWindowResize';
 
-import { MainLayoutContext, PageType } from 'container/MainLayout';
+import { MainLayoutContext } from 'container/MainLayout';
 import { getImageURL } from 'utils/functions';
 
 interface UseMainLayoutParams {
-  type: PageType;
+  isHome: boolean;
   banners?: BannersData[];
 }
 interface UseMainLayoutResponse {
@@ -14,7 +15,7 @@ interface UseMainLayoutResponse {
 }
 
 const useMainLayout = ({
-  type,
+  isHome,
   banners,
 }: UseMainLayoutParams): UseMainLayoutResponse => {
   const mainLayoutContext = useContext(MainLayoutContext);
@@ -32,12 +33,11 @@ const useMainLayout = ({
 
   useWindowResize(setBannerImageByWindowSize);
 
-  useEffect(() => {
-    if (mainLayoutContext?.setPageType) {
-      mainLayoutContext.setPageType(type);
+  useDidMount(() => {
+    if (mainLayoutContext?.setIsHome) {
+      mainLayoutContext.setIsHome(isHome);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   return { banner };
 };

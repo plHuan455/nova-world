@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 
 import Loading from 'components/atoms/Loading';
+import MainLayout from 'components/templates/MainLayout';
 import useCallService from 'hooks/useCallService';
 import { TemplateCode } from 'navigation';
 import { getPageService } from 'services/navigation';
@@ -19,7 +20,17 @@ const PageNav: React.FC = () => {
     case 'pending': {
       document.body.style.overflow = 'hidden';
       document.body.style.height = '100vh';
-      return <Loading modifiers={['blue']} />;
+      return (
+        <MainLayout>
+          <div style={{
+            paddingTop: 68,
+            paddingBottom: '100vh',
+          }}
+          >
+            <Loading modifiers={['blue']} />
+          </div>
+        </MainLayout>
+      );
     }
     case 'rejected': {
       const error = pageData.error && pageData.error.length > 0

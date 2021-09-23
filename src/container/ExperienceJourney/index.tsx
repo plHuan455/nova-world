@@ -20,7 +20,7 @@ const ExperienceJourney: React.FC<BasePageData<JourneysPage>> = ({
   blocks,
   seoData,
 }) => {
-  const { banner } = useMainLayout({ type: 'another', banners });
+  const { banner } = useMainLayout({ isHome: false, banners });
   const dispatch = useAppDispatch();
   const { data, meta, loading } = useAppSelector((state) => state.journeys);
 

@@ -24,7 +24,7 @@ const NewsContainer: React.FC<BasePageData<NewsPage>> = ({
   blocks,
   seoData,
 }) => {
-  const { banner } = useMainLayout({ type: 'another', banners });
+  const { banner } = useMainLayout({ isHome: false, banners });
   const isMounted = useIsMounted();
   const {
     news: { categories, loading: loadingGetCategories },
