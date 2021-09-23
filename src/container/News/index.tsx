@@ -27,7 +27,7 @@ const NewsContainer: React.FC<BasePageData<NewsPage>> = ({
   const { banner } = useMainLayout({ type: 'another', banners });
   const isMounted = useIsMounted();
   const {
-    news: { categories },
+    news: { categories, loading: loadingGetCategories },
     menu: { prefix },
   } = useAppSelector((state) => state);
 
@@ -156,7 +156,7 @@ const NewsContainer: React.FC<BasePageData<NewsPage>> = ({
           handleShowMore={handleShowMore}
           totalPage={totalPage}
           page={page}
-          fetching={loading}
+          fetching={loading || loadingGetCategories}
           loadingBtn={loadingBtn}
           handleClickTab={(idx) => handleClickTab(idx)}
           tabActive={tabActive}

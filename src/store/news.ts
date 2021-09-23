@@ -5,6 +5,7 @@ import { CategoriesData, ParamsType } from 'services/news/types';
 
 interface InitStateType {
   categories?: APIResponse<CategoriesData[]>;
+  loading?: boolean;
 }
 
 const initialState: InitStateType = {};
@@ -25,8 +26,15 @@ export const newsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
+    builder.addCase(getListCategoriesAsync.pending, ($state) => {
+      $state.loading = true;
+    });
     builder.addCase(getListCategoriesAsync.fulfilled, ($state, action) => {
       $state.categories = action.payload;
+      $state.loading = false;
+    });
+    builder.addCase(getListCategoriesAsync.rejected, ($state) => {
+      $state.loading = false;
     });
   },
 });

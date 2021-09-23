@@ -77,14 +77,17 @@ const tabDataNewsHome: NewsHomeTabProps[] = [
   {
     titleTab: 'TIN DỰ ÁN',
     dataNewsHome: newsHomeDataProject,
+    slug: '/',
   },
   {
     titleTab: 'TIN THỊ TRƯỜNG',
     dataNewsHome: newsHomeDataMarket,
+    slug: '/',
   },
   {
     titleTab: 'TIN TẬP ĐOÀN',
     dataNewsHome: newsHomeDataCorporation,
+    slug: '/',
   },
 ];
 
