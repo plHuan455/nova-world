@@ -1,8 +1,10 @@
 import React from 'react';
 
-import HomeBanner from 'assets/images/banners/banner_home.png';
 import Banner from 'components/organisms/Banner';
+import HelmetComponent from 'container/MainLayout/helmet';
 import useMainLayout from 'hooks/useMainLayout';
+import { HomeBlock } from 'services/home/types';
+import { getBlockData } from 'utils/functions';
 
 const DivergencesHome = React.lazy(() => import('./divergences'));
 const ExperienceJourneyHome = React.lazy(() => import('./experiencejourney'));
@@ -12,33 +14,53 @@ const Library = React.lazy(() => import('./library'));
 const Location = React.lazy(() => import('./location'));
 const NewsHomeContainer = React.lazy(() => import('./news'));
 
-const Home: React.FC = () => {
-  useMainLayout({ type: 'home' });
+const Home: React.FC<BasePageData<HomeBlock>> = ({
+  blocks,
+  seoData,
+  banners,
+}) => {
+  const { banner } = useMainLayout({ type: 'home', banners });
+
   return (
     <>
+      <HelmetComponent seoData={seoData} />
       <section className="s-banner">
-        <Banner isHomePage videoSrc="https://www.youtube.com/watch?v=Ktm_JYmOeOc" thumbnail={HomeBanner} />
+        <Banner isHomePage videoSrc="https://www.youtube.com/watch?v=Ktm_JYmOeOc" thumbnail={banner} />
       </section>
       <section className="s-introduction">
-        <Introduction />
+        <Introduction
+          data={getBlockData('section1', blocks)}
+        />
       </section>
       <section className="s-divergences">
-        <DivergencesHome />
+        <DivergencesHome
+          data={getBlockData('section2', blocks)}
+        />
       </section>
       <section className="s-location">
-        <Location />
+        <Location
+          data={getBlockData('section3', blocks)}
+        />
       </section>
       <section className="t-featured">
-        <FeaturedProductHome />
+        <FeaturedProductHome
+          data={getBlockData('section4', blocks)}
+        />
       </section>
       <section className="s-experience">
-        <ExperienceJourneyHome />
+        <ExperienceJourneyHome
+          data={getBlockData('section5', blocks)}
+        />
       </section>
       <section className="s-library">
-        <Library />
+        <Library
+          data={getBlockData('section6', blocks)}
+        />
       </section>
       <section className="s-news">
-        <NewsHomeContainer />
+        <NewsHomeContainer
+          data={getBlockData('section7', blocks)}
+        />
       </section>
     </>
   );

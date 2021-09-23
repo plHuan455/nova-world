@@ -13,7 +13,8 @@ interface IntroductionHomeProps {
   data: {
     imgSrc: string;
     description: string;
-  }[]
+  }[];
+  title?: string;
 }
 
 const settings = {
@@ -29,6 +30,7 @@ const settings = {
 
 const IntroductionHome: React.FC<IntroductionHomeProps> = ({
   data,
+  title,
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const refCarousel = useRef<Slider|null>(null);
@@ -63,7 +65,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
           extendClassName="t-introductionhome_title"
         >
           <Heading type="h2">
-            NOVAWORLD HO TRAM
+            {title}
             <Divider />
           </Heading>
         </Animate>

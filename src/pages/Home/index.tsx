@@ -1,10 +1,11 @@
 import React from 'react';
 
 import Screen from 'container/Home';
+import { HomeBlock } from 'services/home/types';
 
-const Home: React.FC = () => (
+const Home: React.FC<BasePageData<HomeBlock>> = (props) => (
   <div className="p-home">
-    <Screen />
+    <Screen {...props} />
   </div>
 );
 

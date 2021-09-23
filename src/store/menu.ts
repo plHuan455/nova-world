@@ -1,18 +1,20 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getMenusService, getStaticSlugService } from 'services/menus';
 import { MenuItem, StaticSlug } from 'services/menus/types';
 import groupMenus from 'utils/menu';
 
+type PrefixType = {
+  newsDetail?: string;
+  journeysDetail?: string;
+}
 interface MenuState {
   header?: MenuItem[];
   staticSlug?: StaticSlug[];
+  prefix?: PrefixType;
 }
 
-const initialState: MenuState = {
-  header: undefined,
-  staticSlug: undefined,
-};
+const initialState: MenuState = {};
 
 export const getHeaderMenuAsync = createAsyncThunk(
   'menu/getMenu',
@@ -41,7 +43,11 @@ export const getStaticSlugAsync = createAsyncThunk(
 export const menuSlice = createSlice({
   name: 'menu',
   initialState,
-  reducers: {},
+  reducers: {
+    setPrefixAction: ($state, action:PayloadAction<PrefixType>) => {
+      $state.prefix = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(getHeaderMenuAsync.fulfilled, ($state, action) => {
       $state.header = groupMenus(action.payload);
@@ -51,5 +57,7 @@ export const menuSlice = createSlice({
     });
   },
 });
+
+export const { setPrefixAction } = menuSlice.actions;
 
 export default menuSlice.reducer;

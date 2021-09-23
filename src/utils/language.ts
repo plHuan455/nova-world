@@ -76,3 +76,13 @@ export const getSlugByTemplateCode = (
   }
   return '';
 };
+
+export const getPrefixCardDetail = (
+  templateCode: string,
+  staticSlug?: StaticSlug[],
+  lang?: string,
+):string => {
+  const prefixLanguage = getLangURL(lang);
+  const prefixTemplate = getSlugByTemplateCode(templateCode, staticSlug);
+  return `${prefixLanguage}/${prefixTemplate}/`;
+};

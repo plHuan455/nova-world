@@ -87,8 +87,7 @@ const NewsList: React.FC<NewsListProps> = ({
                             imgSrc={item.imgSrc}
                             title={item.title}
                             description={item.description}
-                            // TODO: Update href later
-                            href={`/tin-tuc/${item.href}`}
+                            href={item.href}
                           />
                         </div>
                       ))

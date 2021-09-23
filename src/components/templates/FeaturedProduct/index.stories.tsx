@@ -16,6 +16,6 @@ export const normal: Story = () => (
     padding: '150px 0',
   }}
   >
-    <FeaturedProduct data={dummyData.cardFeatured} />
+    <FeaturedProduct title="SẢN PHẨM NỔI BẬT" data={dummyData.cardFeatured} />
   </div>
 );

@@ -17,6 +17,9 @@ export const normal: Story = () => (
       paddingBottom: '300px',
     }}
   >
-    <IntroductionHome data={dataIntro.cardIntro} />
+    <IntroductionHome
+      title="NOVAWORLD HO TRAM"
+      data={dataIntro.cardIntro}
+    />
   </div>
 );
