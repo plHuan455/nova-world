@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 
-import LogoNovaWorldWhite from 'assets/images/logo/nova-world-white.png';
 import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
 import { useAppSelector } from 'store/hooks';
@@ -24,10 +23,10 @@ const MainLayout: React.FC = ({ children }) => {
   }), [dataInfoAddress, dataSystems?.footer.copyright, dataSystems?.footer.logo]);
 
   const headerProps = useMemo(() => ({
-    logoWhite: LogoNovaWorldWhite,
-    logoBlue: getImageURL(dataSystems?.header.logo),
+    logoWhite: getImageURL(dataSystems?.header?.logoTransparent),
+    logoBlue: getImageURL(dataSystems?.header?.logo),
     menuList: header || [],
-  }), [dataSystems?.header.logo, header]);
+  }), [dataSystems, header]);
 
   return (
     <div className="t-mainlayout">

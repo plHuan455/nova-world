@@ -1,5 +1,6 @@
 export type HeaderSystems = {
   logo?: string;
+  logoTransparent?: string;
 }
 
 export type FooterSystems = {
