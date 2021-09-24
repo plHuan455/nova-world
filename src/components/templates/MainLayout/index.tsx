@@ -21,7 +21,8 @@ const MainLayout: React.FC = ({ children }) => {
     addressList: dataInfoAddress,
     copyRight: dataSystems?.footer.copyright,
     logo: getImageURL(dataSystems?.footer.logo),
-  }), [dataInfoAddress, dataSystems?.footer.copyright, dataSystems?.footer.logo]);
+    consultancySystem: dataSystems?.consultancy,
+  }), [dataInfoAddress, dataSystems]);
 
   const headerProps = useMemo(() => ({
     logoWhite: getImageURL(dataSystems?.header?.logoTransparent),

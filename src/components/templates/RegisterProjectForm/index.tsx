@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useCallback } from 'react';
+import React, { useState } from 'react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { Controller, useForm } from 'react-hook-form';
 
 import Button from 'components/atoms/Button';
@@ -8,30 +9,45 @@ import Text from 'components/atoms/Text';
 import TextArea from 'components/atoms/Textarea';
 import Container from 'components/organisms/Container';
 import Form from 'components/organisms/Form';
+import { ContactForm } from 'components/organisms/FormRegister';
+import { createConsultancyService } from 'services/consultancies';
+import { useAppDispatch } from 'store/hooks';
+import { openNotify } from 'store/notify';
 import registerSchema from 'utils/schemas';
 
-interface FormRegister {
-  name: string;
-  content: string;
-  phone: string;
-  email: string;
-}
-
 interface RegisterProjectFormProps {
+  consultancySystem?: ConsultancySystem;
 }
 
-const RegisterProjectForm: React.FC<RegisterProjectFormProps> = () => {
-  const method = useForm<FormRegister>({
+const RegisterProjectForm: React.FC<RegisterProjectFormProps> = ({
+  consultancySystem,
+}) => {
+  const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
+  const method = useForm<ContactForm>({
     resolver: yupResolver(registerSchema),
     mode: 'onSubmit',
   });
-  const handleSubmit = useCallback(
-    (data: FormRegister) => {
-      // eslint-disable-next-line no-console
-      console.log(data);
-    },
-    [],
-  );
+
+  const handleSubmit = async (data: ContactForm) => {
+    try {
+      setIsLoading(true);
+      if (!executeRecaptcha) return;
+      const tokenRecaptcha = await executeRecaptcha('submit');
+      await createConsultancyService({
+        ...data,
+        grecaptchaToken: tokenRecaptcha,
+      });
+      dispatch(openNotify({ type: 'success', message: 'Đăng ký thành công' }));
+    } catch (error) {
+      dispatch(openNotify({ type: 'warning', message: 'Đăng ký không thành công' }));
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="t-registerprojectform">
       <Container>
@@ -50,7 +66,7 @@ const RegisterProjectForm: React.FC<RegisterProjectFormProps> = () => {
                         render={({ field, fieldState }) => (
                           <Input
                             {...field}
-                            placeholder="Họ & Tên"
+                            placeholder={consultancySystem?.namePlaceholder}
                             error={fieldState.error?.message}
                           />
                         )}
@@ -62,7 +78,7 @@ const RegisterProjectForm: React.FC<RegisterProjectFormProps> = () => {
                         render={({ field, fieldState }) => (
                           <InputNumber
                             {...field}
-                            placeholder="Điện thoại"
+                            placeholder={consultancySystem?.phonePlaceholder}
                             error={fieldState.error?.message}
                           />
                         )}
@@ -74,7 +90,7 @@ const RegisterProjectForm: React.FC<RegisterProjectFormProps> = () => {
                         render={({ field, fieldState }) => (
                           <Input
                             {...field}
-                            placeholder="Email"
+                            placeholder={consultancySystem?.emailPlaceholder}
                             error={fieldState.error?.message}
                           />
                         )}
@@ -87,7 +103,7 @@ const RegisterProjectForm: React.FC<RegisterProjectFormProps> = () => {
                       render={({ field, fieldState }) => (
                         <TextArea
                           {...field}
-                          placeholder="Nội dung"
+                          placeholder={consultancySystem?.contentPlaceholder}
                           error={fieldState.error?.message}
                         />
                       )}
@@ -95,8 +111,8 @@ const RegisterProjectForm: React.FC<RegisterProjectFormProps> = () => {
                   </div>
                 </div>
                 <div className="t-registerprojectform_btn">
-                  <Button type="submit">
-                    ĐĂNG KÝ
+                  <Button type="submit" loading={isLoading}>
+                    {consultancySystem?.btnText}
                   </Button>
                 </div>
               </Form>

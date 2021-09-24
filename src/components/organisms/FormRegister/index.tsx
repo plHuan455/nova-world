@@ -2,7 +2,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useState } from 'react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { Controller, useForm } from 'react-hook-form';
-import * as yup from 'yup';
 
 import Button from 'components/atoms/Button';
 import Input, { InputNumber } from 'components/atoms/Input';
@@ -14,6 +13,7 @@ import { createContactStoreService } from 'services/contact';
 import { UTMParams } from 'services/contact/type';
 import { useAppDispatch } from 'store/hooks';
 import { openNotify } from 'store/notify';
+import registerSchema from 'utils/schemas';
 
 export type ContactForm = {
   name: string;
@@ -21,19 +21,6 @@ export type ContactForm = {
   phone: string;
   content: string;
 };
-
-export const contactSchema = yup.object().shape({
-  name: yup.string().required('Thông tin bắt buộc'),
-  email: yup
-    .string()
-    .email('Email không hợp lệ')
-    .required('Thông tin bắt buộc'),
-  phone: yup
-    .string()
-    .required('Thông tin bắt buộc')
-    .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/, 'Số điện thoại không hợp lệ'),
-  content: yup.string().required('Thông tin bắt buộc'),
-});
 
 export interface FormRegisterProps {
   consultancySystem?: ConsultancySystem;
@@ -44,14 +31,8 @@ const FormRegister: React.FC<FormRegisterProps> = ({
 }) => {
   const dispatch = useAppDispatch();
   const method = useForm<ContactForm>({
-    resolver: yupResolver(contactSchema),
+    resolver: yupResolver(registerSchema),
     mode: 'onSubmit',
-    defaultValues: {
-      name: '',
-      phone: '',
-      email: '',
-      content: '',
-    },
   });
 
   const params = useQueryParams<UTMParams>();

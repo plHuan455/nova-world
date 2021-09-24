@@ -1,12 +1,16 @@
 import * as yup from 'yup';
 
-const phoneRegExp = /^\d+$/;
-
 const registerSchema = yup.object().shape({
-  name: yup.string().required('Vui lòng nhập tên'),
-  content: yup.string().required('Vui lòng nhập nội dung'),
-  email: yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
-  phone: yup.string().required('Vui lòng nhập số điện thoại').matches(phoneRegExp, 'Số điện thoại không hợp lệ'),
+  name: yup.string().required('Thông tin bắt buộc'),
+  email: yup
+    .string()
+    .email('Email không hợp lệ')
+    .required('Thông tin bắt buộc'),
+  phone: yup
+    .string()
+    .required('Thông tin bắt buộc')
+    .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/, 'Số điện thoại không hợp lệ'),
+  content: yup.string().required('Thông tin bắt buộc'),
 });
 
 export default registerSchema;
