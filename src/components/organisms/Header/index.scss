@@ -207,6 +207,7 @@
     }
 
     &-child {
+      cursor: pointer;
       position: relative;
 
       #{$root}-link {
