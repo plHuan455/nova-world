@@ -5,6 +5,7 @@ import locales from './locales';
 import menu from './menu';
 import news from './news';
 import notify from './notify';
+import systems from './systems';
 import trading from './trading';
 
 export const store = configureStore({
@@ -16,6 +17,7 @@ export const store = configureStore({
     menu,
     locales,
     news,
+    systems,
   },
 });
 

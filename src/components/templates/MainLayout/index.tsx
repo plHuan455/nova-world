@@ -1,29 +1,42 @@
 import React, { useMemo } from 'react';
 
-import { copyRight } from 'assets/dataDummy/footer';
 import Footer from 'components/organisms/Footer';
 import Header from 'components/organisms/Header';
 import { useAppSelector } from 'store/hooks';
+import { getImageURL } from 'utils/functions';
 
 const MainLayout: React.FC = ({ children }) => {
   const {
     trading: { data: addressList },
     menu: { header },
+    systems: { data: dataSystems },
   } = useAppSelector((state) => state);
 
   const dataInfoAddress = useMemo(() => (
     addressList.map((item) => ({ name: item.name, address: item.address }))
   ), [addressList]);
 
-  // console.log(header);
+  const footerProps = useMemo(() => ({
+    addressList: dataInfoAddress,
+    copyRight: dataSystems?.footer.copyright,
+    logo: getImageURL(dataSystems?.footer.logo),
+  }), [dataInfoAddress, dataSystems?.footer.copyright, dataSystems?.footer.logo]);
+
+  const headerProps = useMemo(() => ({
+    logoWhite: getImageURL(dataSystems?.header?.logoTransparent),
+    logoBlue: getImageURL(dataSystems?.header?.logo),
+    menuList: header || [],
+  }), [dataSystems, header]);
 
   return (
     <div className="t-mainlayout">
-      <Header menuList={header || []} />
+      <Header
+        {...headerProps}
+      />
       <div className="t-mainlayout_body">
         {children}
       </div>
-      <Footer addressList={dataInfoAddress} copyRight={copyRight} />
+      <Footer {...footerProps} />
     </div>
   );
 };

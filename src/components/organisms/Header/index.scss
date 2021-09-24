@@ -43,12 +43,12 @@
       transition: $transition-long ease;
     }
 
-    #{$root}-scroll & {
-      .a-image {
-        background-image: url('~assets/images/logo/nova-world-blue.svg') !important;
-        background-size: contain;
-      }
-    }
+    // #{$root}-scroll & {
+    //   .a-image {
+    //     background-image: url('~assets/images/logo/nova-world-blue.svg') !important;
+    //     background-size: contain;
+    //   }
+    // }
   }
 
   &-hamburger {
@@ -207,6 +207,7 @@
     }
 
     &-child {
+      cursor: pointer;
       position: relative;
 
       #{$root}-link {
