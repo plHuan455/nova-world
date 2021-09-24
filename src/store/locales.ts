@@ -2,13 +2,19 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 import getSystemsLocales from 'services/locales';
 
+type PageTranslation = {
+  isDetail?: boolean;
+  translation?: Translation[]
+}
 interface LocalesState {
   listLocales?: LocalesResponse;
   activeLang?: keyof LocalesResponse;
-  pageTranslation?: Translation[];
+  pageTranslation: PageTranslation;
 }
 
-const initialState: LocalesState = {};
+const initialState: LocalesState = {
+  pageTranslation: {},
+};
 
 export const getSystemsLocalesAsync = createAsyncThunk(
   'locales/getLocales',
@@ -25,8 +31,9 @@ export const localesSlice = createSlice({
   name: 'locales',
   initialState,
   reducers: {
-    setPageTranslation($state, action: PayloadAction<Translation[] | undefined>) {
-      $state.pageTranslation = action.payload;
+    setPageTranslation($state, action: PayloadAction<PageTranslation | undefined>) {
+      $state.pageTranslation.translation = action.payload?.translation;
+      $state.pageTranslation.isDetail = action.payload?.isDetail;
     },
   },
   extraReducers(builder) {

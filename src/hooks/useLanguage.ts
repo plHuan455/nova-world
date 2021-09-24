@@ -14,13 +14,21 @@ const useLanguage = () => {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const {
-    locales: { listLocales, pageTranslation },
+    locales: {
+      listLocales,
+      pageTranslation: { translation, isDetail },
+    },
   } = useAppSelector((state) => state);
 
   const handleChangeLanguage = (lang: keyof LocalesResponse) => {
-    if (!pageTranslation) return;
-    if (checkActiveLang(lang, listLocales)) {
-      const transData = pageTranslation.find(
+    // Page chi tiết của tin-tuc , hành trình trải nghiệm
+    if (checkActiveLang(lang, listLocales) && isDetail) {
+      window.location.href = window.location.origin + getLangURL(lang);
+      return;
+    }
+    // Page home , page child
+    if (translation && checkActiveLang(lang, listLocales)) {
+      const transData = translation.find(
         (ele) => ele.locale === lang,
       );
       const slugByTrans = transData?.slug !== '/' ? `/${transData?.slug}` : '';

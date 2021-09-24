@@ -8,7 +8,9 @@ import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
 import HelmetComponent from 'container/MainLayout/helmet';
 import useMainLayout from 'hooks/useMainLayout';
+import i18n from 'i18n';
 import { getBlockData } from 'utils/functions';
+import { getHomeLangURL } from 'utils/language';
 
 const NotFound: React.FC<BasePageData<NotFoundPage>> = ({
   banners,
@@ -43,7 +45,7 @@ const NotFound: React.FC<BasePageData<NotFoundPage>> = ({
                 type="button"
                 modifiers="android-green"
                 handleClick={() => history.push({
-                  pathname: '/', // TODO: Check later
+                  pathname: getHomeLangURL(i18n.language),
                   search: window.location.search,
                 })}
               >

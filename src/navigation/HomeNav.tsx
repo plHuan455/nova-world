@@ -4,12 +4,13 @@ import React, {
 import { Redirect } from 'react-router-dom';
 
 import useCallService from 'hooks/useCallService';
+import i18n from 'i18n';
 import { TemplateCode } from 'navigation';
 import { getStaticHomeService } from 'services/navigation';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { setPageTranslation } from 'store/locales';
 import { getImageURL } from 'utils/functions';
-import { getSlugByTemplateCode } from 'utils/language';
+import { getLangURL, getSlugByTemplateCode } from 'utils/language';
 
 const NotFound = React.lazy(() => import('pages/NotFound'));
 const Player = React.lazy(() => import('components/organisms/Player'));
@@ -23,7 +24,10 @@ const HomeNav: React.FC = () => {
 
   useEffect(() => {
     if (homeData) {
-      dispatch(setPageTranslation(homeData.data?.pageData.translations));
+      dispatch(setPageTranslation({
+        translation: homeData.data?.pageData.translations,
+        isDetail: false,
+      }));
     }
   }, [dispatch, homeData]);
 
@@ -53,7 +57,7 @@ const HomeNav: React.FC = () => {
         : undefined;
       if (error?.code.toString() === '404') {
         return (
-          <Redirect to={`/${getSlugByTemplateCode('page404', staticSlug)}`} />
+          <Redirect to={`${getLangURL(i18n.language)}/${getSlugByTemplateCode('page404', staticSlug)}`} />
         );
       }
       return <div>Error</div>;
