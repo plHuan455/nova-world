@@ -1,10 +1,11 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 import getSystemsLocales from 'services/locales';
 
 interface LocalesState {
   listLocales?: LocalesResponse;
   activeLang?: keyof LocalesResponse;
+  pageTranslation?: Translation[];
 }
 
 const initialState: LocalesState = {};
@@ -23,12 +24,18 @@ export const getSystemsLocalesAsync = createAsyncThunk(
 export const localesSlice = createSlice({
   name: 'locales',
   initialState,
-  reducers: {},
+  reducers: {
+    setPageTranslation($state, action: PayloadAction<Translation[] | undefined>) {
+      $state.pageTranslation = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(getSystemsLocalesAsync.fulfilled, ($state, action) => {
       $state.listLocales = action.payload;
     });
   },
 });
+
+export const { setPageTranslation } = localesSlice.actions;
 
 export default localesSlice.reducer;

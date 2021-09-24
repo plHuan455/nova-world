@@ -7,8 +7,11 @@ import Container from '../Container';
 
 import Icon from 'components/atoms/Icon';
 import Image from 'components/atoms/Image';
+import { LIST_LANGUAGE } from 'constants/language';
 import useClickOutside from 'hooks/useClickOutside';
+import useLanguage from 'hooks/useLanguage';
 import useWindowScroll from 'hooks/useWindowScroll';
+import i18n from 'i18n';
 import { MenuItem } from 'services/menus/types';
 import mapModifiers from 'utils/functions';
 
@@ -24,17 +27,6 @@ const suggestList = [
   {
     title: 'Vui chơi giải trí',
     link: '/',
-  },
-];
-
-const language = [
-  {
-    label: 'VN',
-    value: 'vi',
-  },
-  {
-    label: 'EN',
-    value: 'en',
   },
 ];
 
@@ -161,20 +153,20 @@ const Option: React.FC<OptionProps> = ({ toggleMenu }) => {
 };
 
 const Language: React.FC = () => {
-  const ref = useRef(null);
-  const [option, setOption] = useState(language[0]);
-  const [show, setShow] = useState(false);
+  const { handleChangeLanguage } = useLanguage();
 
+  const ref = useRef(null);
+  const [show, setShow] = useState(false);
   useClickOutside(ref, (): void => setShow(false));
 
   const handleClick = useCallback(() => {
     setShow(!show);
   }, [show]);
 
-  const handleClickOption = useCallback((l) => {
-    setOption(l);
+  const handleChange = useCallback((l) => {
+    handleChangeLanguage(l);
     setShow(false);
-  }, []);
+  }, [handleChangeLanguage]);
 
   return (
     <div ref={ref} className="o-header-language">
@@ -183,18 +175,18 @@ const Language: React.FC = () => {
         className="o-header-language-label"
         onClick={handleClick}
       >
-        {option.label}
+        {LIST_LANGUAGE.find((item) => item.value === i18n.language)?.label}
         <div className={`o-header-language-dropdown ${show ? 'active' : ''}`} />
       </button>
       <ul className={`o-header-language-list ${show ? 'show' : ''}`}>
-        {language.map((l, i) => (
+        {LIST_LANGUAGE.map((l, i) => (
           <li className="o-header-language-item" key={`_language${String(i)}`}>
             <button
               type="button"
               className={`o-header-language-button ${
-                l.value === option.value ? 'active' : ''
+                l.value === i18n.language ? 'active' : ''
               }`}
-              onClick={() => handleClickOption(l)}
+              onClick={() => handleChange(l.value)}
             >
               {l.label}
             </button>

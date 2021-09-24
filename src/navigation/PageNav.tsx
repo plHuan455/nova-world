@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 
 import Loading from 'components/atoms/Loading';
@@ -6,15 +6,23 @@ import MainLayout from 'components/templates/MainLayout';
 import useCallService from 'hooks/useCallService';
 import { TemplateCode } from 'navigation';
 import { getPageService } from 'services/navigation';
-import { useAppSelector } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setPageTranslation } from 'store/locales';
 import { getSlugByTemplateCode } from 'utils/language';
 
 const NotFound = React.lazy(() => import('pages/NotFound'));
 
 const PageNav: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { slug } = useParams<{ slug: string }>();
   const { staticSlug } = useAppSelector((state) => state.menu);
   const pageData = useCallService(() => getPageService(slug), [slug]);
+
+  useEffect(() => {
+    if (pageData) {
+      dispatch(setPageTranslation(pageData.data?.pageData.translations));
+    }
+  }, [dispatch, pageData]);
 
   switch (pageData.status) {
     case 'pending': {
