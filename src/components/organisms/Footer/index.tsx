@@ -17,6 +17,7 @@ interface FooterProps {
   addressList: AddressItemType[];
   copyRight?: string;
   logo?: string;
+  consultancySystem?: ConsultancySystem;
 }
 
 export const AddressItem: React.FC<AddressItemType> = ({
@@ -37,6 +38,7 @@ const Footer: React.FC<FooterProps> = ({
   addressList,
   copyRight,
   logo,
+  consultancySystem,
 }) => {
   const mainLayoutContext = useContext(MainLayoutContext);
 
@@ -56,7 +58,7 @@ const Footer: React.FC<FooterProps> = ({
           extendClassName="o-footer_form"
           type="fadeInUp"
         >
-          <RegisterProjectForm />
+          <RegisterProjectForm consultancySystem={consultancySystem} />
         </Animate>
         <div className="o-footer_top">
           <Container>
