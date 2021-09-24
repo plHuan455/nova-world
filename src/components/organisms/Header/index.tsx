@@ -232,7 +232,7 @@ const Nav: React.FC<NavProps> = ({ menuList, toggleMenu }) => {
                 exact
                 className="o-header-link"
                 to={{
-                  pathname: isChild ? menu.reference?.slug : undefined,
+                  pathname: menu.reference?.slug,
                   search: window.location.search,
                 }}
                 target={menu.target}
