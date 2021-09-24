@@ -1,11 +1,9 @@
 import React from 'react';
 
-import dataIntro from 'assets/dataDummy/introduction';
 import IntroductionHome from 'components/templates/IntroductionHome';
-import { HomeBlock } from 'services/home/types';
 
 type IntroductionProps = {
-  data?:HomeBlock;
+  data?: HomeBlockSection1;
 }
 
 const Introduction: React.FC<IntroductionProps> = ({
@@ -13,7 +11,8 @@ const Introduction: React.FC<IntroductionProps> = ({
 }) => (
   <IntroductionHome
     title={data?.title}
-    data={dataIntro.cardIntro}
+    description={data?.description}
+    image={data?.image || []}
   />
 );
 

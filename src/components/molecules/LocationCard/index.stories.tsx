@@ -18,7 +18,7 @@ export const normal: Story = () => (
       maxWidth: '257px',
     }}
     >
-      <LocationCard imgSrc={imgLocationCard} title="Novaworld Hồ Tràm - Morito" href="" />
+      <LocationCard imgSrc={imgLocationCard} title="Novaworld Hồ Tràm - Morito" href="" text="Xem thêm" />
     </div>
   </Router>
 );

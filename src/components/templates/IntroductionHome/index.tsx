@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from 'react';
-import Slider from 'react-slick';
+import Slider, { Settings } from 'react-slick';
 
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
@@ -8,16 +8,17 @@ import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 import Container from 'components/organisms/Container';
+import { getImageURL } from 'utils/functions';
 
 interface IntroductionHomeProps {
-  data: {
-    imgSrc: string;
-    description: string;
-  }[];
   title?: string;
+  description?: string;
+  image: {
+    image: string;
+  }[];
 }
 
-const settings = {
+const settings: Settings = {
   infinite: false,
   dots: false,
   slidesToShow: 1,
@@ -26,11 +27,13 @@ const settings = {
   arrows: true,
   prevArrow: <PrevArrow variant="green" />,
   nextArrow: <NextArrow variant="green" />,
+  lazyLoad: 'ondemand',
 };
 
 const IntroductionHome: React.FC<IntroductionHomeProps> = ({
-  data,
   title,
+  description,
+  image,
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const refCarousel = useRef<Slider|null>(null);
@@ -39,14 +42,14 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
     const result: number[] = [];
     const min = Math.ceil(-11);
     const max = Math.floor(11);
-    data.forEach(() => {
+    image.forEach(() => {
       result.push(Math.floor(Math.random() * (max - min) + min));
     });
     return result;
-  }, [data]);
+  }, [image]);
 
   const handleSlide = () => {
-    if (currentSlide < data.length - 1) {
+    if (currentSlide < image.length - 1) {
       refCarousel.current?.slickNext();
     } else {
       refCarousel.current?.slickGoTo(0);
@@ -70,7 +73,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
           </Heading>
         </Animate>
         {
-          data.length > 0 && (
+          image.length > 0 && (
             <Animate
               type="zoomIn"
               extendClassName="t-introductionhome_content"
@@ -80,8 +83,8 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
               >
                 <div className="t-introductionhome_box">
                   {
-                    data.map((item, index) => (
-                      <div
+                    image.map((item, index) => (
+                      <image
                         onClick={handleSlide}
                         key={`item-${index.toString()}`}
                         className={`t-introductionhome_box-image ${index === currentSlide ? 'active' : 'remove'}`}
@@ -89,8 +92,8 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                           transform: `translate(-50%, -50%) rotate(${getRandomInt[index]}deg)`,
                         }}
                       >
-                        <Image imgSrc={item.imgSrc} ratio="551x335" />
-                      </div>
+                        <Image imgSrc={getImageURL(item.image)} ratio="551x335" />
+                      </image>
                     ))
                   }
                 </div>
@@ -101,7 +104,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                 <div className="t-introductionhome_right_content">
                   <div className="t-introductionhome_description">
                     <Text modifiers={['cyanCobaltBlue']}>
-                      {data.length - 1 >= currentSlide ? data[currentSlide].description : ''}
+                      {description}
                     </Text>
                   </div>
                   <div className="t-introductionhome_carousel">
@@ -120,7 +123,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                       }}
                     >
                       {
-                        data.map((_, index) => (
+                        image.map((_, index) => (
                           <div
                             key={`position-item-${index.toString()}`}
                             className="t-introductionhome_position-item"
@@ -134,7 +137,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                     </Carousel>
                     <div className="t-introductionhome_number-total">
                       <Text modifiers={['20x32', 'sm', 'green', 's005']}>
-                        {`0${data.length}`}
+                        {`0${image.length}`}
                       </Text>
                     </div>
                   </div>

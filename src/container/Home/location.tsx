@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
-import dataLocation from 'assets/dataDummy/location';
 import GeoLocationHome from 'components/templates/GeoLocationHome';
-import { HomeBlock } from 'services/home/types';
+import { getImageURL } from 'utils/functions';
 
 type LocationProps = {
-  data?:HomeBlock;
+  data?: HomeBlockSection3;
 }
 
 const Location:React.FC<LocationProps> = ({
   data,
-}) => (
-  <GeoLocationHome
-    data={dataLocation}
-    title={data?.title}
-    desc={data?.description}
-  />
-);
+}) => {
+  const convertData = useMemo(() => {
+    if (!data?.item.length) return [];
+
+    return data.item.map((e) => ({
+      ...e,
+      thumbnail: getImageURL(e.thumbnail),
+    }));
+  }, [data]);
+
+  return (
+    <GeoLocationHome
+      item={convertData}
+      title={data?.title}
+      desc={data?.description}
+    />
+  );
+};
 
 export default Location;

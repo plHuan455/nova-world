@@ -1,17 +1,19 @@
 import React, { FunctionComponent, useCallback, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import Player from 'components/organisms/Player';
 import useCallService from 'hooks/useCallService';
 import { TemplateCode } from 'navigation';
 import { getStaticHomeService } from 'services/navigation';
 import { useAppSelector } from 'store/hooks';
+import { getImageURL } from 'utils/functions';
 import { getSlugByTemplateCode } from 'utils/language';
 
 const NotFound = React.lazy(() => import('pages/NotFound'));
+const Player = React.lazy(() => import('components/organisms/Player'));
 
 const HomeNav: React.FC = () => {
   const { staticSlug } = useAppSelector((state) => state.menu);
+  const videoAnimation = useAppSelector((state) => state.systems.data?.videoAnimation);
   const [videoLoading, setVideoLoading] = useState('pending');
   const homeData = useCallService(() => getStaticHomeService(), []);
 
@@ -21,11 +23,11 @@ const HomeNav: React.FC = () => {
         ratio="652x367"
         isPlay
         isMuted
-        videoSrc="https://nova-world-cms.3forcom.net/storage/upload/media/video-loading17f9e3ab.mp4"
+        videoSrc={getImageURL(videoAnimation)}
         onEnded={() => setVideoLoading('fullfilled')}
       />
     </div>
-  ), []);
+  ), [videoAnimation]);
 
   if (videoLoading === 'pending') return <RenderVideos />;
 

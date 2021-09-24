@@ -7,41 +7,39 @@ import LocationCard from 'components/molecules/LocationCard';
 import useClickOutside from 'hooks/useClickOutside';
 import useScrollAnimate from 'hooks/useScrollAnimation';
 
-type Type = 'habana' | 'morito' | 'wonderland' | 'tropicana';
-
 export interface LocationMapCard {
-  imgSrc: string;
+  key: string; // 'Habana' | 'Morito' | 'Wonderland' | 'Tropicana'
   title: string;
-  href: string;
+  thumbnail: string;
+  link: {
+    target: string;
+    text: string;
+    url: string;
+  };
 }
 
 export interface LocationMapProps {
-  data: Record<Type, LocationMapCard>
+  item: LocationMapCard[];
 }
 
 const LocationMap: React.FC<LocationMapProps> = ({
-  data: {
-    habana,
-    morito,
-    wonderland,
-    tropicana,
-  },
+  item,
 }) => {
   const ref = useRef<SVGGElement>(null);
   const refanimation = useRef<HTMLElement>(null);
   const animate = useScrollAnimate(refanimation);
 
-  const [state, setState] = useState<Type[]>([]);
+  const [state, setState] = useState<string[]>([]);
 
   useClickOutside(ref, () => setState([]));
 
-  const handleClick = useCallback((type: Type) => {
+  const handleClick = useCallback((type: string) => {
     if (!state.includes(type)) {
       setState([...state, type]);
     }
   }, [state]);
 
-  const isActive = useCallback((type: Type) => {
+  const isActive = useCallback((type: string) => {
     if (state.includes(type)) return 'active';
 
     return '';
@@ -143,16 +141,16 @@ const LocationMap: React.FC<LocationMapProps> = ({
                 <path d="M474 412.678L489.786 418.002L500.174 431.257L508.016 460.273L506.692 468.519L508.525 478.435L513.312 485.01L519.219 490.229L523.7 497.222H530.524L533.375 499.831L535.82 498.996L535.412 495.97C535.412 495.97 539.079 490.333 539.588 489.603C539.995 488.872 545.902 485.219 545.902 485.219L547.124 484.697L561.586 466.745L564.438 458.603L561.688 452.863L570.141 441.382L575.946 439.503L582.261 441.486L593.056 439.607L597.334 436.998L602.935 426.769L610.37 423.22L626.461 425.412L637.664 424.786L651.617 426.352L671.273 424.577L678.3 424.682L685.531 419.88L688.586 412.574L702.437 401.719L708.141 401.302L716.39 402.032L721.686 400.362L725.963 402.137L735.639 399.736" stroke="#0D6F28" strokeWidth="2" strokeMiterlimit="10" />
               </g>
               <g className="o-locationmap_map_animate o-locationmap_map_marker" ref={ref}>
-                <g className="o-locationmap_map_marker_item1" onClick={() => handleClick('tropicana')}>
+                <g className="o-locationmap_map_marker_item1" onClick={() => handleClick('Tropicana')}>
                   <rect x="670.57" y="340.572" width="51" height="74" fill="url(#patternMarker2)" />
                 </g>
-                <g onClick={() => handleClick('morito')}>
+                <g onClick={() => handleClick('Morito')}>
                   <rect x="633.57" y="370.572" width="51" height="74" fill="url(#patternMarker)" />
                 </g>
-                <g onClick={() => handleClick('wonderland')}>
+                <g onClick={() => handleClick('Wonderland')}>
                   <rect x="582.57" y="391.572" width="51" height="74" fill="url(#patternMarker)" />
                 </g>
-                <g onClick={() => handleClick('habana')}>
+                <g onClick={() => handleClick('Habana')}>
                   <rect x="542.57" y="390.572" width="51" height="74" fill="url(#patternMarker)" />
                 </g>
               </g>
@@ -168,34 +166,18 @@ const LocationMap: React.FC<LocationMapProps> = ({
               <image id="imageMarker2" width="57" height="75" xlinkHref={markerImg2} />
             </defs>
           </svg>
-          <div className={`o-locationmap_card o-locationmap_tropicana ${isActive('tropicana')}`}>
-            <LocationCard
-              imgSrc={tropicana.imgSrc}
-              title={tropicana.title}
-              href={tropicana.href}
-            />
-          </div>
-          <div className={`o-locationmap_card o-locationmap_morito ${isActive('morito')}`}>
-            <LocationCard
-              imgSrc={morito.imgSrc}
-              title={morito.title}
-              href={morito.href}
-            />
-          </div>
-          <div className={`o-locationmap_card o-locationmap_wonderland ${isActive('wonderland')}`}>
-            <LocationCard
-              imgSrc={wonderland.imgSrc}
-              title={wonderland.title}
-              href={wonderland.href}
-            />
-          </div>
-          <div className={`o-locationmap_card o-locationmap_habana ${isActive('habana')}`}>
-            <LocationCard
-              imgSrc={habana.imgSrc}
-              title={habana.title}
-              href={habana.href}
-            />
-          </div>
+          {item.map((e, i) => (
+            <div className={`o-locationmap_card o-locationmap_${e.key.toLowerCase()} ${isActive(e.key)}`} key={`_locationcard${String(i)}`}>
+              <LocationCard
+                imgSrc={e.thumbnail}
+                alt={e.key}
+                title={e.title}
+                href={e.link.url}
+                target={e.link.target}
+                text={e.link.text}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

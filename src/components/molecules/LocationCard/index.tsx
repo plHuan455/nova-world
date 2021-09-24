@@ -9,6 +9,8 @@ interface LocationCardProps {
   alt?: string;
   title: string;
   href: string;
+  target?: string;
+  text?: string;
 }
 
 const LocationCard: React.FC<LocationCardProps> = ({
@@ -16,6 +18,8 @@ const LocationCard: React.FC<LocationCardProps> = ({
   alt,
   title,
   href,
+  target,
+  text,
 }) => (
   <div className="m-locationcard">
     <div className="m-locationcard_image">
@@ -27,14 +31,16 @@ const LocationCard: React.FC<LocationCardProps> = ({
           {title}
         </Text>
       </div>
-      <Link to={{
-        pathname: href,
-        search: window.location.search,
-      }}
+      <Link
+        to={{
+          pathname: href,
+          search: window.location.search,
+        }}
+        target={target}
       >
         <div className="m-locationcard_content_seemore">
           <Text modifiers={['16x19', '400', 'cyanCobaltBlue', 'underline']}>
-            Xem thêm
+            {text}
           </Text>
         </div>
       </Link>

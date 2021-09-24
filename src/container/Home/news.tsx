@@ -4,14 +4,13 @@ import React, {
 
 import NewsHome, { NewsHomeTabProps } from 'components/templates/NewsHome';
 import useDidMount from 'hooks/useDidMount';
-import { HomeBlock } from 'services/home/types';
 import { getNewsListByCateService } from 'services/news';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getListCategoriesAsync } from 'store/news';
 import { getImageURL } from 'utils/functions';
 
 type NewsHomeContainerProps = {
-  data?:HomeBlock;
+  data?: HomeBlockSection7;
 }
 
 const LIMIT = 3;

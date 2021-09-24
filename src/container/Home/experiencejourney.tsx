@@ -2,13 +2,12 @@ import React, { useMemo } from 'react';
 
 import ExperienceJourney from 'components/templates/ExperienceJourney';
 import useDidMount from 'hooks/useDidMount';
-import { HomeBlock } from 'services/home/types';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getJourneysAsync } from 'store/journeys';
 import { getImageURL } from 'utils/functions';
 
 type ExperienceJourneyHomeProps = {
-  data?: HomeBlock
+  data?: HomeBlockSection5
 }
 
 const PAGE = {
@@ -36,7 +35,7 @@ const ExperienceJourneyHome: React.FC<ExperienceJourneyHomeProps> = ({
 
   return (
     <ExperienceJourney
-      title={data?.title}
+      title={data?.title || ''}
       dataExperienceJourney={dataJourneys}
     />
   );

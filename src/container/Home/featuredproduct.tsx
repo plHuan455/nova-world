@@ -1,31 +1,19 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
+import dummyData from 'assets/dataDummy/featuredProduct';
 import FeaturedProduct from 'components/templates/FeaturedProduct';
-import { HomeBlock } from 'services/home/types';
-import { getImageURL } from 'utils/functions';
+// import { getImageURL } from 'utils/functions';
 
 type FeaturedProductProps = {
-  data?:HomeBlock;
+  data?: HomeBlockSection4;
 }
 
 const FeaturedProductHome:React.FC<FeaturedProductProps> = ({
   data,
-}) => {
-  const listCard = useMemo(() => {
-    if (!data || !data.item) return [];
-    return data.item.map((item) => ({
-      imgSrc: getImageURL(item.image),
-      title: item.title || '',
-      titleSub: item.description || '',
-    }));
-  }, [data]);
-
-  return (
-    <FeaturedProduct
-      title={data?.title}
-      data={listCard}
-    />
-  );
-};
-
+}) => (
+  <FeaturedProduct
+    title={data?.title || ''}
+    data={dummyData.cardFeatured}
+  />
+);
 export default FeaturedProductHome;
