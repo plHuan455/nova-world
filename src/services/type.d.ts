@@ -169,6 +169,65 @@ type NotFoundBlock = {
   title: string;
 }
 
+type HomeBlockSection1 = {
+  title: string;
+  description: string;
+  image: {
+    image: string;
+  }[];
+}
+
+type HomeBlockSection2 = {
+  title: string;
+  item: {
+    description: string;
+    icon: string;
+    image: string;
+    title: string;
+    link: {
+      url: string;
+      text: string;
+      target: string;
+    }
+  }[];
+}
+
+type HomeBlockSection3 = {
+  title: string;
+  description: string;
+  item: {
+    key: string;
+    thumbnail: string;
+    title: string;
+    link: {
+      url: string;
+      text: string;
+      target: string;
+    }
+  }[];
+}
+
+type HomeBlockSection4 = {
+  title: string;
+}
+
+type HomeBlockSection5 = HomeBlockSection4;
+
+type HomeBlockSection6 = {
+  title: string;
+  item: {
+    image: string;
+    title: string;
+  }[];
+};
+
+type HomeBlockSection7 = HomeBlockSection4;
+
+type HomeBlockBanner = {
+  video?: string;
+  videoLink: string;
+}
+
 // Region Page Type
 type LibraryPage = LibraryBlock;
 
@@ -181,3 +240,13 @@ type SearchPage = SearchBlock;
 type JourneysPage = JourneysBlock;
 
 type NotFoundPage = NotFoundBlock;
+
+type HomePage =
+  | HomeBlockSection1
+  | HomeBlockSection2
+  | HomeBlockSection3
+  | HomeBlockSection4
+  | HomeBlockSection5
+  | HomeBlockSection6
+  | HomeBlockSection7
+  | HomeBlockBanner;

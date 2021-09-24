@@ -17,4 +17,7 @@ export type SystemsData = {
   googleAnalytics?: string;
   googleMapKey?: string;
   googleTagManager?: string;
+  videoAnimation: string;
+  openGraphImage?: string;
+  consultancy: ConsultancySystem;
 }

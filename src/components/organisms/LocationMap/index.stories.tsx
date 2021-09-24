@@ -14,20 +14,48 @@ export default {
 
 export const normal: Story = () => (
   <Router>
-    <LocationMap data={{
-      tropicana: {
-        imgSrc: imgLocationCard, title: 'Novaworld Hồ Tràm - Morito', href: '',
+    <LocationMap item={[
+      {
+        title: 'Novaworld Hồ Tràm - Morito',
+        key: 'Habana',
+        thumbnail: imgLocationCard,
+        link: {
+          target: '',
+          text: 'Xem thêm',
+          url: '',
+        },
       },
-      habana: {
-        imgSrc: imgLocationCard, title: 'Novaworld Hồ Tràm - Morito', href: '',
+      {
+        key: 'Habana',
+        thumbnail: imgLocationCard,
+        title: 'Novaworld Hồ Tràm - Morito',
+        link: {
+          target: '',
+          text: 'Xem thêm',
+          url: '',
+        },
       },
-      morito: {
-        imgSrc: imgLocationCard, title: 'Novaworld Hồ Tràm - Morito', href: '',
+      {
+        key: 'Morito',
+        thumbnail: imgLocationCard,
+        title: 'Novaworld Hồ Tràm - Morito',
+        link: {
+          target: '',
+          text: 'Xem thêm',
+          url: '',
+        },
       },
-      wonderland: {
-        imgSrc: imgLocationCard, title: 'Novaworld Hồ Tràm - Morito', href: '',
+      {
+        key: 'Wonderland',
+        thumbnail: imgLocationCard,
+        title: 'Novaworld Hồ Tràm - Morito',
+        link: {
+          target: '',
+          text: 'Xem thêm',
+          url: '',
+        },
       },
-    }}
+    ]}
     />
   </Router>
 );

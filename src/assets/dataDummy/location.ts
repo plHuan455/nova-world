@@ -3,27 +3,47 @@ import Morito from 'assets/images/morito.jpeg';
 import Tropicana from 'assets/images/the-tropicana.jpg';
 import Wonderland from 'assets/images/wonderland.jpeg';
 
-const location = {
-  habana: {
-    imgSrc: Habana,
+const location = [
+  {
     title: 'Habana Island',
-    href: '/',
+    thumbnail: Habana,
+    key: 'Habana',
+    link: {
+      url: '',
+      text: '',
+      target: '',
+    },
   },
-  morito: {
-    imgSrc: Morito,
+  {
     title: 'Morito',
-    href: '/',
+    thumbnail: Morito,
+    key: 'Morito',
+    link: {
+      url: '',
+      text: '',
+      target: '',
+    },
   },
-  wonderland: {
-    imgSrc: Wonderland,
+  {
     title: 'Wonderland',
-    href: '/',
+    thumbnail: Wonderland,
+    key: 'Tropicana',
+    link: {
+      url: '',
+      text: '',
+      target: '',
+    },
   },
-  tropicana: {
-    imgSrc: Tropicana,
+  {
     title: 'The Tropicana',
-    href: '/',
+    thumbnail: Tropicana,
+    key: 'Wonderland',
+    link: {
+      url: '',
+      text: '',
+      target: '',
+    },
   },
-};
+];
 
 export default location;

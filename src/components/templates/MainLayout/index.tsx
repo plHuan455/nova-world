@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
 
-import Footer from 'components/organisms/Footer';
-import Header from 'components/organisms/Header';
 import { useAppSelector } from 'store/hooks';
 import { getImageURL } from 'utils/functions';
+
+const Header = React.lazy(() => import('components/organisms/Header'));
+const Footer = React.lazy(() => import('components/organisms/Footer'));
 
 const MainLayout: React.FC = ({ children }) => {
   const {

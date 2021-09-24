@@ -11,7 +11,7 @@ interface GeoLocationHomeProps extends LocationMapProps {
   desc?: string;
 }
 
-const GeoLocationHome: React.FC<GeoLocationHomeProps> = ({ title, desc, data }) => (
+const GeoLocationHome: React.FC<GeoLocationHomeProps> = ({ title, desc, item }) => (
   <div className="t-geolocationhome">
     <Animate
       extendClassName="t-geolocationhome_top"
@@ -35,7 +35,7 @@ const GeoLocationHome: React.FC<GeoLocationHomeProps> = ({ title, desc, data }) 
       type="scaleY"
       extendClassName="t-geolocationhome-map "
     >
-      <LocationMap data={data} />
+      <LocationMap item={item} />
     </Animate>
   </div>
 );

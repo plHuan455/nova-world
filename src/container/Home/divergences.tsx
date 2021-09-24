@@ -1,11 +1,10 @@
 import React, { useMemo } from 'react';
 
 import Divergences from 'components/templates/Divergences';
-import { HomeBlock } from 'services/home/types';
 import { getImageURL } from 'utils/functions';
 
 type DivergencesHomeProps = {
-  data?:HomeBlock;
+  data?: HomeBlockSection2;
 }
 
 const DivergencesHome: React.FC<DivergencesHomeProps> = ({
@@ -14,7 +13,7 @@ const DivergencesHome: React.FC<DivergencesHomeProps> = ({
   const listCard = useMemo(() => {
     if (!data || !data.item) return [];
     return data.item.map((item, index) => ({
-      srcLogo: undefined,
+      srcLogo: getImageURL(item.icon),
       title: item.title,
       numberPart: index + 1,
       numberTotal: data.item?.length || 0,
