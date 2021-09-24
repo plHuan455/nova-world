@@ -7,6 +7,8 @@ import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
 import RegisterProjectForm from 'components/templates/RegisterProjectForm';
 import { MainLayoutContext } from 'container/MainLayout';
+import i18n from 'i18n';
+import { getHomeLangURL } from 'utils/language';
 
 export type AddressItemType = {
   name?: string,
@@ -65,7 +67,7 @@ const Footer: React.FC<FooterProps> = ({
             <div className="o-footer_branch">
               <Link
                 to={{
-                  pathname: '/',
+                  pathname: getHomeLangURL(i18n.language),
                   search: window.location.search,
                 }}
                 aria-label="logo-novaland"

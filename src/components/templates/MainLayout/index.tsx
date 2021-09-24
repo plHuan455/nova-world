@@ -1,7 +1,9 @@
 import React, { useMemo } from 'react';
 
+import useLanguage from 'hooks/useLanguage';
 import { useAppSelector } from 'store/hooks';
 import { getImageURL } from 'utils/functions';
+import { getSlugByTemplateCode } from 'utils/language';
 
 const Header = React.lazy(() => import('components/organisms/Header'));
 const Footer = React.lazy(() => import('components/organisms/Footer'));
@@ -9,9 +11,11 @@ const Footer = React.lazy(() => import('components/organisms/Footer'));
 const MainLayout: React.FC = ({ children }) => {
   const {
     trading: { data: addressList },
-    menu: { header },
+    menu: { header, staticSlug },
     systems: { data: dataSystems },
   } = useAppSelector((state) => state);
+
+  const { handleChangeLanguage } = useLanguage();
 
   const dataInfoAddress = useMemo(() => (
     addressList.map((item) => ({ name: item.name, address: item.address }))
@@ -28,7 +32,9 @@ const MainLayout: React.FC = ({ children }) => {
     logoWhite: getImageURL(dataSystems?.header?.logoTransparent),
     logoBlue: getImageURL(dataSystems?.header?.logo),
     menuList: header || [],
-  }), [dataSystems, header]);
+    handleChangeLanguage,
+    slugSearch: `/${getSlugByTemplateCode('search', staticSlug)}`,
+  }), [dataSystems, header, handleChangeLanguage, staticSlug]);
 
   return (
     <div className="t-mainlayout">

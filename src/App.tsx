@@ -4,12 +4,17 @@ import React, { Suspense, lazy, useMemo } from 'react';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Redirect, Route, Switch,
+} from 'react-router-dom';
 
 import { MainLayoutProvider } from 'container/MainLayout';
+import i18n from 'i18n';
 import { store } from 'store';
 import { useAppSelector } from 'store/hooks';
-import { convertHomeRoute, convertRoute, getSlugByTemplateCode } from 'utils/language';
+import {
+  convertHomeRoute, convertRoute, getLangURL, getSlugByTemplateCode,
+} from 'utils/language';
 
 const NewsDetail = lazy(() => import('pages/NewsDetail'));
 const PageNav = lazy(() => import('navigation/PageNav'));
@@ -27,6 +32,7 @@ const App: React.FC = () => {
     newsDetail: convertRoute(listLocales, `/${getSlugByTemplateCode('news', staticSlug)}/:slug`),
     journeyDetail: convertRoute(listLocales, `/${getSlugByTemplateCode('journey', staticSlug)}/:slug`),
     pages: convertRoute(listLocales, '/:slug'),
+    notFound: `${getLangURL(i18n.language)}/${getSlugByTemplateCode('page404', staticSlug)}`,
   }), [staticSlug, listLocales]);
 
   return (
@@ -53,6 +59,10 @@ const App: React.FC = () => {
               <Route exact path={routesList.pages}>
                 <PageNav />
               </Route>
+              {
+                listLocales && staticSlug
+                && <Redirect from="*" to={routesList.notFound} />
+              }
             </Switch>
           </MainLayoutProvider>
         </Suspense>

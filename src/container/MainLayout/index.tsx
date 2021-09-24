@@ -14,7 +14,9 @@ import { getSystemsLocalesAsync } from 'store/locales';
 import { getHeaderMenuAsync, getStaticSlugAsync, setPrefixAction } from 'store/menu';
 import { getSystemsAsync } from 'store/systems';
 import { getTradingFloorsAsync } from 'store/trading';
-import { getPrefixCardDetail } from 'utils/language';
+import {
+  checkActiveLang, findLanguageDefault, getLangURL, getPrefixCardDetail,
+} from 'utils/language';
 
 export interface MainLayoutContextProps {
   isHome?: boolean;
@@ -25,7 +27,10 @@ export const MainLayoutContext = createContext<MainLayoutContextProps | undefine
 
 export const MainLayoutProvider: React.FC = ({ children }) => {
   const location = useLocation();
-  const { menu: { staticSlug } } = useAppSelector((state) => state);
+  const {
+    menu: { staticSlug },
+    locales: { listLocales },
+  } = useAppSelector((state) => state);
   const [isHome, setIsHome] = useState<boolean>(true);
   const dispatch = useAppDispatch();
 
@@ -52,6 +57,17 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
       }));
     }
   }, [dispatch, staticSlug]);
+
+  useEffect(() => {
+    // language dont active
+    if (listLocales
+      && !checkActiveLang(i18n.language as keyof LocalesResponse, listLocales)
+    ) {
+      const pathName = getLangURL(findLanguageDefault(listLocales));
+      window.location.href = window.location.origin + pathName;
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listLocales]);
 
   const context = useMemo(() => ({
     isHome,

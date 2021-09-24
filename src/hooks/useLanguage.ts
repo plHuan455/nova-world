@@ -1,17 +1,11 @@
-import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-
-import i18n from 'i18n';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { openNotify } from 'store/notify';
 import {
   checkActiveLang,
-  findLanguageDefault,
   getLangURL,
 } from 'utils/language';
 
 const useLanguage = () => {
-  const history = useHistory();
   const dispatch = useAppDispatch();
   const {
     locales: {
@@ -21,7 +15,7 @@ const useLanguage = () => {
   } = useAppSelector((state) => state);
 
   const handleChangeLanguage = (lang: keyof LocalesResponse) => {
-    // Page chi tiết của tin-tuc , hành trình trải nghiệm
+    // Page Detail news , detail ExperienceJourney
     if (checkActiveLang(lang, listLocales) && isDetail) {
       window.location.href = window.location.origin + getLangURL(lang);
       return;
@@ -36,20 +30,10 @@ const useLanguage = () => {
       window.location.href = window.location.origin + pathName;
       return;
     }
+    // language dont active
     const messageError = listLocales ? listLocales[lang]?.message : 'Error';
     dispatch(openNotify({ type: 'warning', message: messageError }));
   };
-
-  useEffect(() => {
-    if (listLocales
-      && !checkActiveLang(i18n.language as keyof LocalesResponse, listLocales)
-    ) {
-      i18n.changeLanguage(findLanguageDefault(listLocales), () => {
-        history.push(`${getLangURL(findLanguageDefault(listLocales))}`);
-      });
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [listLocales]);
 
   return {
     handleChangeLanguage,

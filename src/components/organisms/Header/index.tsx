@@ -9,11 +9,11 @@ import Icon from 'components/atoms/Icon';
 import Image from 'components/atoms/Image';
 import { LIST_LANGUAGE } from 'constants/language';
 import useClickOutside from 'hooks/useClickOutside';
-import useLanguage from 'hooks/useLanguage';
 import useWindowScroll from 'hooks/useWindowScroll';
 import i18n from 'i18n';
 import { MenuItem } from 'services/menus/types';
 import mapModifiers from 'utils/functions';
+import { getHomeLangURL, getSlugItemMenuHeader } from 'utils/language';
 
 const suggestList = [
   {
@@ -53,9 +53,11 @@ export const InputSearch = React.forwardRef<HTMLInputElement, InputSearchProps>(
 
 interface OptionProps {
   toggleMenu?: () => void;
+  handleChangeLanguage?: (lang:keyof LocalesResponse) => void;
+  slugSearch?: string;
 }
 
-const Option: React.FC<OptionProps> = ({ toggleMenu }) => {
+const Option: React.FC<OptionProps> = ({ toggleMenu, handleChangeLanguage, slugSearch }) => {
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const refInputSearch = useRef<HTMLInputElement|null>(null);
   const refSuggest = useRef<HTMLUListElement|null>(null);
@@ -66,7 +68,7 @@ const Option: React.FC<OptionProps> = ({ toggleMenu }) => {
   const handleClickIconSearch = useCallback(
     () => {
       history.push({
-        pathname: '/tim-kiem',
+        pathname: slugSearch,
         state: {
           keyword: refInputSearch.current?.value || '',
         },
@@ -146,15 +148,19 @@ const Option: React.FC<OptionProps> = ({ toggleMenu }) => {
         </div>
       </li>
       <li className="o-header-option-item">
-        <Language />
+        <Language handleChangeLanguage={handleChangeLanguage} />
       </li>
     </ul>
   );
 };
 
-const Language: React.FC = () => {
-  const { handleChangeLanguage } = useLanguage();
+interface LanguageProps {
+  handleChangeLanguage?: (lang:keyof LocalesResponse) => void;
+}
 
+const Language: React.FC<LanguageProps> = ({
+  handleChangeLanguage,
+}) => {
   const ref = useRef(null);
   const [show, setShow] = useState(false);
   useClickOutside(ref, (): void => setShow(false));
@@ -164,8 +170,10 @@ const Language: React.FC = () => {
   }, [show]);
 
   const handleChange = useCallback((l) => {
-    handleChangeLanguage(l);
     setShow(false);
+    if (handleChangeLanguage) {
+      handleChangeLanguage(l);
+    }
   }, [handleChangeLanguage]);
 
   return (
@@ -224,7 +232,7 @@ const Nav: React.FC<NavProps> = ({ menuList, toggleMenu }) => {
                 exact
                 className="o-header-link"
                 to={{
-                  pathname: menu.reference?.slug,
+                  pathname: getSlugItemMenuHeader(menu, i18n.language),
                   search: window.location.search,
                 }}
                 target={menu.target}
@@ -267,12 +275,16 @@ interface HeaderProps {
   logoWhite: string;
   logoBlue: string;
   menuList: MenuItem[];
+  slugSearch?: string;
+  handleChangeLanguage?: (lang:keyof LocalesResponse) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
   logoWhite,
   logoBlue,
   menuList,
+  slugSearch,
+  handleChangeLanguage,
 }) => {
   const [isScroll, setIsScroll] = useState(false);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -325,7 +337,7 @@ const Header: React.FC<HeaderProps> = ({
           <div className="o-header-logo">
             <Link
               to={{
-                pathname: '/',
+                pathname: getHomeLangURL(i18n.language),
                 search: window.location.search,
               }}
               aria-label="label"
@@ -363,7 +375,11 @@ const Header: React.FC<HeaderProps> = ({
               toggleMenu={() => setIsOpenMenu(false)}
             />
             <div className="o-header-divider" />
-            <Option toggleMenu={() => setIsOpenMenu(false)} />
+            <Option
+              handleChangeLanguage={handleChangeLanguage}
+              toggleMenu={() => setIsOpenMenu(false)}
+              slugSearch={slugSearch}
+            />
           </div>
         </div>
       </Container>

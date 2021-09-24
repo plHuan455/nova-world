@@ -1,4 +1,4 @@
-import { StaticSlug } from 'services/menus/types';
+import { MenuItem, StaticSlug } from 'services/menus/types';
 
 export const checkActiveLang = (
   activeLang: keyof LocalesResponse,
@@ -85,4 +85,14 @@ export const getPrefixCardDetail = (
   const prefixLanguage = getLangURL(lang);
   const prefixTemplate = getSlugByTemplateCode(templateCode, staticSlug);
   return `${prefixLanguage}/${prefixTemplate}/`;
+};
+
+export const getSlugItemMenuHeader = (item:MenuItem, language:string) => {
+  if (item.reference?.slug === '/' && language === 'vi') {
+    return '/';
+  }
+  if (item.reference?.slug === '/' && language !== 'vi') {
+    return getLangURL(language);
+  }
+  return `${getLangURL(language)}/${item.reference?.slug}`;
 };
