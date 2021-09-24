@@ -10,6 +10,9 @@ export type JourneysItem = {
   thumbnail: string;
   translation: Translation;
   slug?: string;
+  buttonLable: string;
+  subtitle: string;
+  thumnailHome: string;
 }
 
 export type Translation = {

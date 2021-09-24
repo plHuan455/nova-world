@@ -22,7 +22,10 @@ const ExperienceJourney: React.FC<BasePageData<JourneysPage>> = ({
 }) => {
   const { banner } = useMainLayout({ isHome: false, banners });
   const dispatch = useAppDispatch();
-  const { data, meta, loading } = useAppSelector((state) => state.journeys);
+  const {
+    journeys: { data, meta, loading },
+    menu: { prefix },
+  } = useAppSelector((state) => state);
 
   const { title, description } = useMemo(() => getBlockData('section1', blocks), [blocks]) as JourneysBlock;
 
@@ -30,10 +33,9 @@ const ExperienceJourney: React.FC<BasePageData<JourneysPage>> = ({
     imgSrc: getImageURL(item.thumbnail),
     title: item.title,
     content: item.description,
-    // TODO : Update btn label and link
-    btnLabel: 'Khám phá ngay',
-    btnLink: 'hanh-trinh-trai-nghiem/chi-tiet',
-  })), [data]);
+    btnLabel: item.buttonLable,
+    btnLink: prefix?.journeysDetail + item.slug,
+  })), [data, prefix]);
 
   useDidMount(() => {
     if (data.length <= 0) {

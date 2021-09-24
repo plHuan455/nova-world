@@ -18,8 +18,13 @@ const PAGE = {
 const ExperienceJourneyHome: React.FC<ExperienceJourneyHomeProps> = ({
   data,
 }) => {
-  const { journeys } = useAppSelector((state) => state);
+  const {
+    journeys,
+    menu: { prefix },
+  } = useAppSelector((state) => state);
+
   const dispatch = useAppDispatch();
+
   useDidMount(() => {
     if (journeys.data.length <= 0) {
       dispatch(getJourneysAsync({ page: PAGE.PAGE_INITIAL, limit: PAGE.LIMIT }));
@@ -27,11 +32,11 @@ const ExperienceJourneyHome: React.FC<ExperienceJourneyHomeProps> = ({
   });
 
   const dataJourneys = useMemo(() => journeys.data.map((item) => ({
-    imgSrc: getImageURL(item.thumbnail),
+    imgSrc: getImageURL(item.thumnailHome),
     title: item.title,
-    location: 'NovaWorld Ho Tram',
-    href: '/',
-  })), [journeys.data]);
+    location: item.subtitle,
+    href: prefix?.journeysDetail + item.slug,
+  })), [journeys.data, prefix]);
 
   return (
     <ExperienceJourney
