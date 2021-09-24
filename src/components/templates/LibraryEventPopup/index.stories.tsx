@@ -27,7 +27,7 @@ const eventData = {
 export const normal: Story = ({ isOpen }) => (
   <LibraryEventPopup
     isOpen={isOpen}
-    handleClose={() => console.log('close')}
+    handleClose={() => {}}
     eventData={eventData}
   />
 );
