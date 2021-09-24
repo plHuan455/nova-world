@@ -2,6 +2,7 @@ import 'App.scss';
 
 import React, { Suspense, lazy, useMemo } from 'react';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -75,9 +76,11 @@ const GoogleReCaptchaWrapper: React.FC = ({ children }) => (
 
 const AppWrapper: React.FC = () => (
   <Provider store={store}>
-    <GoogleReCaptchaWrapper>
-      <App />
-    </GoogleReCaptchaWrapper>
+    <HelmetProvider>
+      <GoogleReCaptchaWrapper>
+        <App />
+      </GoogleReCaptchaWrapper>
+    </HelmetProvider>
   </Provider>
 );
 
