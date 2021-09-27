@@ -240,7 +240,7 @@
       .slick-arrow.prev {
         left: calc(32 / 1366 * 100%);
 
-        @include desktop-up {
+        @include break-min(1367px) {
           left: calc(-96 / 1366 * 100%);
         }
       }
@@ -250,9 +250,6 @@
 
         @include break-min(1367px) {
           right: calc(-96 / 1366 * 100%);
-        }
-        @include desktop-up {
-          right: calc(66 / 1366 * 100%);
         }
       }
     }
