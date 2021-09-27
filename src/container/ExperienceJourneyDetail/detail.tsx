@@ -6,7 +6,7 @@ import Icon from 'components/atoms/Icon';
 import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
-import Tabs, { Panel, Tab } from 'components/organisms/Tabs';
+import { Panel, Tab, TabsScroll } from 'components/organisms/Tabs';
 
 interface DetailProps{
   labels:string[];
@@ -17,18 +17,6 @@ interface DetailProps{
     subTitle?:string;
   }[]
 }
-
-const responsive = [
-  {
-    breakpoint: 991,
-    settings: {
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      centerMode: true,
-      infinite: true,
-    },
-  },
-];
 
 const Detail:React.FC<DetailProps> = ({
   labels,
@@ -50,7 +38,7 @@ const Detail:React.FC<DetailProps> = ({
           type="animationFramesLeft"
           extendClassName="p-experience-journey-detail_tabs"
         >
-          <Tabs breakCenterMode="tablet-up" responsive={responsive} slidesToShow={labels.length}>
+          <TabsScroll variableMutate={indexActive}>
             {
             labels.map((ele, idx) => (
               <Tab
@@ -62,7 +50,7 @@ const Detail:React.FC<DetailProps> = ({
               />
             ))
           }
-          </Tabs>
+          </TabsScroll>
         </Animate>
         <Animate
           type="zoomIn"
