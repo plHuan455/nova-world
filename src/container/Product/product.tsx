@@ -9,6 +9,7 @@ import Image from 'components/atoms/Image';
 import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
+import useScrollInfinite from 'hooks/useScrollInfinite';
 import mapModifiers from 'utils/functions';
 
 export interface ProductCardProps {
@@ -23,7 +24,9 @@ export interface ProductCardProps {
 }
 
 export interface ProductProps {
-
+  title?: string;
+  data?: ProductCardProps[];
+  handleLoadMore?: () => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -74,41 +77,46 @@ const ProductCard: React.FC<ProductCardProps> = ({
   </div>
 );
 
-const Product: React.FC<ProductProps> = () => {
-  const dummy = new Array(5).fill({
-    imgSrc: 'https://source.unsplash.com/random',
-    title: 'VILLA VIEW BIỂN',
-    description: 'NovaWorld Ho Tram - Tropicana',
-    btnLabel: 'Khám phá ngay',
-  });
+const Product: React.FC<ProductProps> = ({
+  title,
+  data = [],
+  handleLoadMore,
+}) => {
+  const { setNode } = useScrollInfinite(handleLoadMore);
+
   return (
     <>
       <div className="p-product_content">
         <Container>
           <Animate type="beatSmall" extendClassName="title">
             <Heading type="h2">
-              SẢN PHẨM NỔI BẬT
+              {title}
               <Divider />
             </Heading>
           </Animate>
           <div className="list">
-            {dummy.map((item, index) => {
+            {data.map((item, index) => {
               const isReverse = index % 2 === 1;
               return (
-                <React.Fragment key={`_productcard${String(index)}`}>
-                  <div className="item">
-                    <ProductCard
-                      {...item}
-                      isReverse={isReverse}
-                      index={index}
-                    />
-                  </div>
-                  {index !== dummy.length - 1 && (
-                  <Animate type="scaleY" extendClassName={mapModifiers('line', isReverse && 'reverse')}>
-                    <div style={{ backgroundImage: `url(${isReverse ? Line2 : Line1})` }} />
-                  </Animate>
-                  )}
-                </React.Fragment>
+                <div
+                  ref={index + 1 === data.length ? (node) => setNode(node) : undefined}
+                  key={`_productcard${String(index)}`}
+                >
+                  <>
+                    <div className="item">
+                      <ProductCard
+                        {...item}
+                        isReverse={isReverse}
+                        index={index}
+                      />
+                    </div>
+                    {index !== data.length - 1 && (
+                      <Animate type="scaleY" extendClassName={mapModifiers('line', isReverse && 'reverse')}>
+                        <div style={{ backgroundImage: `url(${isReverse ? Line2 : Line1})` }} />
+                      </Animate>
+                    )}
+                  </>
+                </div>
               );
             })}
           </div>
@@ -118,5 +126,4 @@ const Product: React.FC<ProductProps> = () => {
     </>
   );
 };
-
 export default Product;

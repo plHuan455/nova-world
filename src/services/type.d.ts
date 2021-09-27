@@ -237,6 +237,8 @@ type NewsPage = NewsBlock;
 
 type SearchPage = SearchBlock;
 
+type ProductPage = SearchBlock;
+
 type JourneysPage = JourneysBlock;
 
 type NotFoundPage = NotFoundBlock;

@@ -8,7 +8,7 @@ import Animate from 'components/organisms/Animate';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 import Container from 'components/organisms/Container';
 
-interface RelatedCardProps {
+export interface RelatedCardProps {
   imgSrc: string;
   title?: string;
   description?: string;
@@ -78,35 +78,35 @@ const RelatedCard: React.FC<RelatedCardProps> = ({
   </Link>
 );
 
-const Related: React.FC = () => {
-  const dummy = new Array(5).fill({
-    imgSrc: 'https://source.unsplash.com/random',
-    title: 'Shophouse trục đường ven biển',
-    description: 'NovaWorld Ho Tram - Tropicana',
-  });
-  return (
-    <div className="p-product_related">
-      <Container>
-        <Animate type="zoomIn" extendClassName="title">
-          <Heading type="h2" modifiers={['500', 'white', 'center']}>
-            NHỮNG SẢN PHẨM KHÁC
-          </Heading>
-        </Animate>
-      </Container>
-      <Container noPaddingRightDesktop>
-        <Animate type="scaleX" extendClassName="content">
-          <Carousel settings={settings}>
-            {dummy.map((item, index) => (
-              <RelatedCard
-                key={`_relatedcard${String(index)}`}
-                {...item}
-              />
-            ))}
-          </Carousel>
-        </Animate>
-      </Container>
-    </div>
-  );
-};
+interface RelatedProps {
+  title?: string;
+  data?: RelatedCardProps[];
+}
 
+const Related: React.FC<RelatedProps> = ({
+  title,
+  data = [],
+}) => (
+  <div className="p-product_related">
+    <Container>
+      <Animate type="zoomIn" extendClassName="title">
+        <Heading type="h2" modifiers={['500', 'white', 'center']}>
+          {title}
+        </Heading>
+      </Animate>
+    </Container>
+    <Container noPaddingRightDesktop>
+      <Animate type="scaleX" extendClassName="content">
+        <Carousel settings={settings}>
+          {data.map((item, index) => (
+            <RelatedCard
+              key={`_relatedcard${String(index)}`}
+              {...item}
+            />
+          ))}
+        </Carousel>
+      </Animate>
+    </Container>
+  </div>
+);
 export default Related;
