@@ -32,13 +32,13 @@ const NotFound: React.FC<BasePageData<NotFoundPage>> = ({
         <div className="wrap">
           <Animate type="beatSmall">
             <div className="subtitle">
-              <Text modifiers={['20x24', '500', 'white']}>{data.title}</Text>
+              <Text modifiers={['20x24', '500', 'white']}>{data?.title}</Text>
             </div>
             <div className="title">
-              <Heading type="h1" modifiers={['700', 'white']}>{data.subTitle}</Heading>
+              <Heading type="h1" modifiers={['700', 'white']}>{data?.subTitle}</Heading>
             </div>
             <div className="description">
-              <Text modifiers={['white', '400', '20x24']} innerHTML={data.description} />
+              <Text modifiers={['white', '400', '20x24']} innerHTML={data?.description} />
             </div>
             <div className="button">
               <Button
@@ -49,7 +49,7 @@ const NotFound: React.FC<BasePageData<NotFoundPage>> = ({
                   search: window.location.search,
                 })}
               >
-                {data.btnLabel}
+                {data?.btnLabel}
               </Button>
             </div>
           </Animate>

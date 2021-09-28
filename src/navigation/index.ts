@@ -7,6 +7,7 @@ const Library = React.lazy(() => import('pages/Library'));
 const News = React.lazy(() => import('pages/News'));
 const Search = React.lazy(() => import('pages/Search'));
 const NotFound = React.lazy(() => import('pages/NotFound'));
+const Product = React.lazy(() => import('pages/Product'));
 
 export type TemplateCodeType = {
   code: string;
@@ -41,5 +42,9 @@ export const TemplateCode: TemplateCodeType[] = [
   {
     code: 'page404',
     component: NotFound,
+  },
+  {
+    code: 'featured_product',
+    component: Product,
   },
 ];

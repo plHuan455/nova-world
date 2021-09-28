@@ -5,15 +5,15 @@ import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import {
-  BrowserRouter as Router, Redirect, Route, Switch,
+  BrowserRouter as Router, Route, Switch,
 } from 'react-router-dom';
 
+import Loading from 'components/atoms/Loading';
 import { MainLayoutProvider } from 'container/MainLayout';
-import i18n from 'i18n';
 import { store } from 'store';
 import { useAppSelector } from 'store/hooks';
 import {
-  convertHomeRoute, convertRoute, getLangURL, getSlugByTemplateCode,
+  convertHomeRoute, convertRoute, getSlugByTemplateCode,
 } from 'utils/language';
 
 const NewsDetail = lazy(() => import('pages/NewsDetail'));
@@ -32,13 +32,12 @@ const App: React.FC = () => {
     newsDetail: convertRoute(listLocales, `/${getSlugByTemplateCode('news', staticSlug)}/:slug`),
     journeyDetail: convertRoute(listLocales, `/${getSlugByTemplateCode('journey', staticSlug)}/:slug`),
     pages: convertRoute(listLocales, '/:slug'),
-    notFound: `${getLangURL(i18n.language)}/${getSlugByTemplateCode('page404', staticSlug)}`,
   }), [staticSlug, listLocales]);
 
   return (
     <div className="app">
       <Router>
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loading modifiers={['blue', 'fixed']} />}>
           <MainLayoutProvider>
             <Switch>
               <Route exact path={routesList.home}>
@@ -59,10 +58,6 @@ const App: React.FC = () => {
               <Route exact path={routesList.pages}>
                 <PageNav />
               </Route>
-              {
-                listLocales && staticSlug
-                && <Redirect from="*" to={routesList.notFound} />
-              }
             </Switch>
           </MainLayoutProvider>
         </Suspense>
