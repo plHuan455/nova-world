@@ -39,7 +39,7 @@ const PageNav: React.FC = () => {
             paddingBottom: '100vh',
           }}
           >
-            <Loading modifiers={['blue']} />
+            <Loading modifiers={['blue', 'fixed']} />
           </div>
         </MainLayout>
       );
