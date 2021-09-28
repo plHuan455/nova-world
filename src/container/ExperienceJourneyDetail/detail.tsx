@@ -15,12 +15,14 @@ interface DetailProps{
     content?:string;
     publishedAt?:string;
     subTitle?:string;
-  }[]
+  }[];
+  title?: string;
 }
 
 const Detail:React.FC<DetailProps> = ({
   labels,
   panel,
+  title,
 }) => {
   const [indexActive, setIndexActive] = useState(0);
   return (
@@ -30,7 +32,7 @@ const Detail:React.FC<DetailProps> = ({
       <Container>
         <Animate type="beatSmall" extendClassName="p-experience-journey-detail_title">
           <Heading type="h2">
-            HÀNH TRÌNH TRẢI NGHIỆM
+            {title}
             <Divider />
           </Heading>
         </Animate>

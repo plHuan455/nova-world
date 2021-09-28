@@ -32,16 +32,16 @@ export type DivergencesItem = {
   displayOrder: number;
   journeyId: number;
   status: number;
-  thumbnail: string;
+  thumbnail?: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   locale: string;
-  slug: string;
-  name: string;
+  slug?: string;
+  name?: string;
   title: string;
-  description: string;
-  content: string;
+  description?: string;
+  content?: string;
   translations: {
     id: number;
     journeyDivergenceId: number;

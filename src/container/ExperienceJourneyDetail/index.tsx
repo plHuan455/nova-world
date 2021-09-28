@@ -36,7 +36,7 @@ const ExperienceJourneyDetail:React.FC = () => {
   const [divergences, setDivergences] = useState<DivergencesItem[]>();
   const [loading, setLoading] = useState(false);
 
-  const discover = useCallService(() => getJourneysService({ page: 1, limit: 3 }));
+  const discover = useCallService(() => getJourneysService());
 
   useEffect(() => {
     const fetchInit = async () => {
@@ -54,33 +54,36 @@ const ExperienceJourneyDetail:React.FC = () => {
     fetchInit();
   }, [slug]);
 
-  const dataLabels = divergences?.map((item) => (item.name));
+  const dataLabels = divergences?.map((item) => (item?.name || ''));
 
   const dataPanel = divergences?.map((item) => ({
-    title: item.title,
-    content: item.content,
+    title: item?.title || '',
+    content: item?.content || '',
     publishedAt: item?.publishedAt || '',
     subTitle: detail?.title || '',
   }));
 
-  const listCard = discover.data?.data.map((item) => ({
-    imgSrc: getImageURL(item.thumbnail),
-    title: item.title,
-    description: item.description,
-    href: (prefix?.journeysDetail && item.slug) ? prefix?.journeysDetail + item.slug : '',
-  }));
+  const listCard = discover.data?.data
+    .filter((item) => item.id !== detail?.id)
+    .map((item) => ({
+      imgSrc: getImageURL(item.thumbnail),
+      title: item.title,
+      description: item.description,
+      href: (prefix?.journeysDetail && item.slug) ? prefix?.journeysDetail + item.slug : '',
+    }));
 
   if (loading) {
-    return <Loading modifiers={['blue']} />;
+    return <Loading modifiers={['blue', 'page']} />;
   }
 
   return (
     <>
+      {/* TODO: update banner and title */}
       <section className="s-banner">
         <Banner thumbnail="https://source.unsplash.com/random" layerDew={false} />
       </section>
       <section className="s-wrap s-donut">
-        <Detail panel={dataPanel || []} labels={dataLabels || []} />
+        <Detail title="HÀNH TRÌNH TRẢI NGHIỆM" panel={dataPanel || []} labels={dataLabels || []} />
         <Discover title="KHÁM PHÁ THÊM" listCard={listCard || []} />
       </section>
     </>
