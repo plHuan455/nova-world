@@ -47,7 +47,7 @@ const Contact:React.FC<BasePageData<ContactPage>> = ({
             titleAddress={col1.title}
             consultancySystem={{
               ...col2,
-              btnText: 'đăng ký', // TODO: Update after BE
+              btnText: col2?.btnLabel,
             }}
             dataInfoAddress={dataInfoAddress}
             dataMap={dataMap}

@@ -54,7 +54,7 @@ const RegisterProjectForm: React.FC<RegisterProjectFormProps> = ({
         <div className="t-registerprojectform_wrap">
           <div className="t-registerprojectform_content">
             <Text modifiers={['20x32', 'sm', 'cyanCobaltBlue', 'center', 'uppercase', '700']}>
-              ĐĂNG KÝ TƯ VẤN THÔNG TIN DỰ ÁN
+              {consultancySystem?.title}
             </Text>
             <div className="t-registerprojectform_form">
               <Form method={method} submitForm={handleSubmit}>

@@ -145,6 +145,7 @@ type ContactBlock = {
     namePlaceholder: string;
     phonePlaceholder: string;
     title: string;
+    btnLabel?: string;
   }
 }
 
