@@ -18,6 +18,7 @@ const Location:React.FC<LocationProps> = ({
       thumbnail: getImageURL(e.thumbnail),
     }));
   }, [data]);
+  console.log(convertData);
 
   return (
     <GeoLocationHome
