@@ -8,7 +8,6 @@ import {
   BrowserRouter as Router, Route, Switch,
 } from 'react-router-dom';
 
-import Loading from 'components/atoms/Loading';
 import { MainLayoutProvider } from 'container/MainLayout';
 import { store } from 'store';
 import { useAppSelector } from 'store/hooks';
@@ -37,7 +36,7 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <Router>
-        <Suspense fallback={<Loading modifiers={['blue', 'fixed']} />}>
+        <Suspense fallback>
           <MainLayoutProvider>
             <Switch>
               <Route exact path={routesList.home}>
