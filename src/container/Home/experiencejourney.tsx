@@ -32,8 +32,8 @@ const ExperienceJourneyHome: React.FC<ExperienceJourneyHomeProps> = ({
   });
 
   const dataJourneys = useMemo(() => journeys.data.map((item) => {
-    const groupImg = item?.thumbnail
-      ? [item.thumbnail, ...(item?.images || [])]
+    const groupImg = item?.thumnailHome
+      ? [item.thumnailHome, ...(item?.images || [])]
       : (item?.images || []);
     return ({
       listImg: groupImg.map((img) => getImageURL(img)),
