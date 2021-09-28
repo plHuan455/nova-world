@@ -5,14 +5,15 @@ export type JourneysItem = {
   createdAt: string;
   updatedAt: string;
   locale: string;
-  title: string;
-  description: string;
-  thumbnail: string;
+  title?: string;
+  description?: string;
+  thumbnail?: string;
   translation: Translation;
   slug?: string;
-  buttonLable: string;
-  subtitle: string;
-  thumnailHome: string;
+  buttonLable?: string;
+  subtitle?: string;
+  thumnailHome?: string;
+  images?: Array<string>;
 }
 
 export type Translation = {

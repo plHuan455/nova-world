@@ -20,7 +20,7 @@ export const normal: Story = () => (
       }}
     >
       <ExperienceCard
-        imgSrc={imgExperianceCard}
+        listImg={[imgExperianceCard]}
         title="Vui chơi giải trí"
         location="Novaworld Ho Tram Wonderland"
         stt={1}

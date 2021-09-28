@@ -6,25 +6,25 @@ import { ExperienceCardProps } from 'components/molecules/ExperienceCard';
 
 const dataExperienceJourney:ExperienceCardProps[] = [
   {
-    imgSrc: imgExperienceCard,
+    listImg: [imgExperienceCard],
     title: 'Vui chơi giải trí',
     location: 'NovaWorld Ho Tram',
     href: '',
   },
   {
-    imgSrc: imgExperienceCard2,
+    listImg: [imgExperienceCard2],
     title: 'nghỉ dưỡng cao cấp',
     location: 'NovaWorld Ho Tram',
     href: '',
   },
   {
-    imgSrc: imgExperienceCard3,
+    listImg: [imgExperienceCard3],
     title: 'DỊCH VỤ LƯU TRÚ',
     location: 'NovaWorld Ho Tram',
     href: '',
   },
   {
-    imgSrc: imgExperienceCard4,
+    listImg: [imgExperienceCard4],
     title: 'ẨM THỰC THƯƠNG MẠI',
     location: 'NovaWorld Ho Tram',
     href: '',

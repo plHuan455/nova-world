@@ -31,12 +31,17 @@ const ExperienceJourneyHome: React.FC<ExperienceJourneyHomeProps> = ({
     }
   });
 
-  const dataJourneys = useMemo(() => journeys.data.map((item) => ({
-    imgSrc: getImageURL(item.thumnailHome),
-    title: item.title,
-    location: item.subtitle,
-    href: prefix?.journeysDetail + item.slug,
-  })), [journeys.data, prefix]);
+  const dataJourneys = useMemo(() => journeys.data.map((item) => {
+    const groupImg = item?.thumbnail
+      ? [item.thumbnail, ...(item?.images || [])]
+      : (item?.images || []);
+    return ({
+      listImg: groupImg.map((img) => getImageURL(img)),
+      title: item?.title || '',
+      location: item?.subtitle || '',
+      href: (prefix?.journeysDetail && item.slug) ? prefix.journeysDetail + item.slug : '',
+    });
+  }), [journeys.data, prefix]);
 
   return (
     <ExperienceJourney

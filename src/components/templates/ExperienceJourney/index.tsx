@@ -64,7 +64,7 @@ const ExperienceJourney: React.FC<ExperienceJourneyProps> = ({ title, dataExperi
                     className="t-expjourney_gallery_item"
                   >
                     <ExperienceCard
-                      imgSrc={item.imgSrc}
+                      listImg={item.listImg}
                       title={item.title}
                       location={item.location}
                       stt={index + 1}

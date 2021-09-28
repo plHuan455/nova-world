@@ -30,11 +30,11 @@ const ExperienceJourney: React.FC<BasePageData<JourneysPage>> = ({
   const { title, description } = useMemo(() => getBlockData('section1', blocks), [blocks]) as JourneysBlock;
 
   const dataJourneys = useMemo(() => data.map((item) => ({
-    imgSrc: getImageURL(item.thumbnail),
-    title: item.title,
-    content: item.description,
-    btnLabel: item.buttonLable,
-    btnLink: prefix?.journeysDetail + item.slug,
+    imgSrc: getImageURL(item?.thumbnail),
+    title: item?.title || '',
+    content: item?.description || '',
+    btnLabel: item?.buttonLable || '',
+    btnLink: (prefix?.journeysDetail && item?.slug) ? prefix.journeysDetail + item.slug : '',
   })), [data, prefix]);
 
   useDidMount(() => {
