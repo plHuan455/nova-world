@@ -4,7 +4,6 @@ import Events from './events';
 import Images from './images';
 import Process from './process';
 
-import libraryDummy from 'assets/dataDummy/library';
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
 import Animate from 'components/organisms/Animate';
@@ -17,11 +16,13 @@ import mapModifiers, { getImageURL } from 'utils/functions';
 export interface ContentProps {
   title?: string;
   activeTab?: number;
+  listLabel?: Array<{title?:string}>;
 }
 
 const Content: React.FC<ContentProps> = ({
   title,
   activeTab,
+  listLabel,
 }) => {
   const [idxTabActive, setIdxTabActive] = useState<number>(activeTab || 0);
 
@@ -58,11 +59,11 @@ const Content: React.FC<ContentProps> = ({
           </Animate>
           <div className="p-library_tabs">
             <Tabs>
-              {libraryDummy.card.map((tab, i) => (
+              {listLabel?.map((tab, i) => (
                 <Tab
                   key={`_tab-${i + 1}`}
                   active={idxTabActive === i}
-                  label={tab.title}
+                  label={tab?.title}
                   labelColor="cyanCobaltBlue"
                   handleClick={() => {
                     setIdxTabActive(i);

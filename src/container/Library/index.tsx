@@ -16,7 +16,7 @@ const LibraryContainer: React.FC<BasePageData<LibraryPage>> = ({
   const { banner } = useMainLayout({ isHome: false, banners });
   const { state } = useLocation<{ id?: number }>();
 
-  const { title } = useMemo(() => getBlockData('section1', blocks), [blocks]) as LibraryBlock;
+  const blockLibrary = useMemo(() => getBlockData<LibraryBlock>('section1', blocks), [blocks]);
 
   return (
     <>
@@ -26,8 +26,9 @@ const LibraryContainer: React.FC<BasePageData<LibraryPage>> = ({
       </section>
       <section className="p-library_section s-wrap s-donut">
         <Content
-          title={title}
+          title={blockLibrary?.title}
           activeTab={state?.id}
+          listLabel={blockLibrary?.tab}
         />
       </section>
     </>
