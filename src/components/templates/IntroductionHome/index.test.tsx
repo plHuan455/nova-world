@@ -6,7 +6,7 @@ import IntroductionHome from '.';
 describe('<IntroductionHome />', () => {
   test('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<IntroductionHome data={[]} />, div);
+    ReactDOM.render(<IntroductionHome image={[]} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });

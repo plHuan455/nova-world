@@ -8,20 +8,7 @@ describe('<GeoLocationHome />', () => {
     const div = document.createElement('div');
     ReactDOM.render(<GeoLocationHome
       title=""
-      data={{
-        tropicana: {
-          imgSrc: '', title: 'Novaworld Hồ Tràm - Morito', href: '',
-        },
-        habana: {
-          imgSrc: '', title: 'Novaworld Hồ Tràm - Morito', href: '',
-        },
-        morito: {
-          imgSrc: '', title: 'Novaworld Hồ Tràm - Morito', href: '',
-        },
-        wonderland: {
-          imgSrc: '', title: 'Novaworld Hồ Tràm - Morito', href: '',
-        },
-      }}
+      item={[]}
     />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
