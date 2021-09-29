@@ -25,6 +25,9 @@
       margin-top: rem(14);
       padding: rem(40) 0 rem(87);
     }
+    @include mobile-down {
+      margin-left: calc(69 / 575 * 100%);
+    }
   }
 
   &_title {
@@ -53,13 +56,7 @@
   }
 
   .large.next {
-    left: rem(10);
-  }
-
-  .slick-list {
-    @include mobile-down {
-      margin-left: calc(69 / 575 * 100%);
-    }
+    left: rem(-37);
   }
 
   .slick-active {

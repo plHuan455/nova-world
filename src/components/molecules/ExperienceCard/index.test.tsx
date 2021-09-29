@@ -6,7 +6,7 @@ import ExperienceCard from '.';
 describe('<ExperienceCard />', () => {
   test('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<ExperienceCard href="" imgSrc="" title="" />, div);
+    ReactDOM.render(<ExperienceCard href="" listImg={[]} title="" />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });

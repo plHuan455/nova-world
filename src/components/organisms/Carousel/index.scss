@@ -1,14 +1,47 @@
 .o-carousel {
-  .slick-dots {
-    bottom: rem(-20);
-    position: static;
-  }
+  $root: &;
 
-  .slick-slide {
-    &[aria-hidden='true'] {
-      visibility: hidden;
+  &_dots {
+    bottom: rem(24);
+
+    li {
+      height: auto;
+      margin: 0 rem(8);
+      width: auto;
+      &.slick-active #{$root}_dots_main::before {
+        height: rem(14);
+        width: rem(14);
+      }
+    }
+
+    &_main {
+      background-color: $white;
+      border-radius: 50%;
+      display: block;
+      height: rem(8);
+      position: relative;
+      width: rem(8);
+  
+      &::before {
+        border: 1px solid $white;
+        border-radius: 50%;
+        content: '';
+        height: rem(5);
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: 0.4s linear;
+        width: rem(5);
+      }
     }
   }
+
+  // .slick-slide {
+  //   &[aria-hidden='true'] {
+  //     visibility: hidden;
+  //   }
+  // }
 
   &_arrow {
     $arrow: &;

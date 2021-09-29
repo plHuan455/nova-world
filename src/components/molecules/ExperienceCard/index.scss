@@ -1,6 +1,40 @@
 .m-expcard {
   $root: &;
+  cursor: pointer;
   position: relative;
+
+  .o-carousel_dots {
+    align-items: center;
+    display: flex !important;
+    flex-wrap: nowrap;
+    left: 50%;
+    max-width: rem(75);
+    min-height: rem(20);
+    overflow: auto;
+    transform: translateX(-50%);
+    width: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    @include mobile-down {
+      bottom: rem(10);
+    }
+  }
+
+  .slick-slide {
+    margin-bottom: -5px;
+    outline: none;
+  }
+
+  &:hover {
+    #{$root}_image {
+      &::before {
+        height: 0;
+        width: 0;
+      }
+    }
+  }
 
   &_image {
     position: relative;
@@ -22,14 +56,6 @@
     }
   }
 
-  &:hover {
-    #{$root}_image {
-      &::before {
-        height: 0;
-        width: 0;
-      }
-    }
-  }
 
   &-wrap {
     bottom: 0;
@@ -39,6 +65,7 @@
     justify-content: space-between;
     left: 0;
     padding: rem(24);
+    pointer-events: none;
     position: absolute;
     top: 0;
     width: 100%;
