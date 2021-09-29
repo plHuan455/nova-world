@@ -1,4 +1,4 @@
-import { JourneysItem, JourneysParams } from './types';
+import { DivergencesItem, JourneysItem, JourneysParams } from './types';
 
 import axiosInstance from 'services/common/instance';
 
@@ -9,4 +9,16 @@ export const getJourneysService = async (
   return res.data;
 };
 
-export const remove = '';
+export const getJourneyDetailService = async (
+  slug?: string,
+): Promise<JourneysItem> => {
+  const res = await axiosInstance.get(`journeys/detail/${slug}`);
+  return res.data.data;
+};
+
+export const getJourneyDivergencesService = async (
+  id: number,
+): Promise<DivergencesItem[]> => {
+  const res = await axiosInstance.get(`journey-divergences/journey/${id}`);
+  return res.data.data;
+};

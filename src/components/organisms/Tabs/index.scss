@@ -89,3 +89,30 @@
     }
   }
 }
+
+.o-tabs-scroll {
+  display: inline-flex;
+  left: 50%;
+  max-width: 100%;
+  overflow: auto;
+  position: relative;
+  transform: translateX(-50%);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .o-tabs_tab {
+    white-space: nowrap;
+  }
+
+  .o-tabs_tab + .o-tabs_tab {
+    margin-left: rem(100);
+    @include desktop-down {
+      margin-left: rem(60);
+    }
+    @include tablet-down {
+      margin-left: rem(20);
+    }
+  }
+}

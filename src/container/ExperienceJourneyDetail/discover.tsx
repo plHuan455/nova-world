@@ -7,7 +7,7 @@ import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 import Container from 'components/organisms/Container';
 
 const settings = {
-  infinite: true,
+  infinite: false,
   dots: false,
   slidesToShow: 3,
   slidesToScroll: 1,

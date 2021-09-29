@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import Slider, { ResponsiveObject } from 'react-slick';
 
 import Text from 'components/atoms/Text';
-import mapModifiers from 'utils/functions';
+import mapModifiers, { handleScrollCenter } from 'utils/functions';
 
 interface TabsProps {
   responsive?: ResponsiveObject[];
@@ -46,6 +46,28 @@ export const Tab: React.FC<TabProps> = ({
     </Text>
   </div>
 );
+
+type TabsScrollProps = {
+  variableMutate?: string|number;
+}
+
+export const TabsScroll:React.FC<TabsScrollProps> = ({
+  children,
+  variableMutate,
+}) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useLayoutEffect(() => {
+    handleScrollCenter(ref, '.o-tabs_tab-active');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [variableMutate]);
+
+  return (
+    <div ref={ref} className={mapModifiers('o-tabs-scroll')}>
+      {children}
+    </div>
+  );
+};
 
 const Tabs: React.FC<TabsProps> = ({
   responsive,

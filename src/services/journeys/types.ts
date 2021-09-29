@@ -9,6 +9,7 @@ export type JourneysItem = {
   description: string;
   thumbnail: string;
   translation: Translation;
+  slug?: string;
 }
 
 export type Translation = {
@@ -24,4 +25,31 @@ export type JourneysParams = {
   page?: number;
   limit?: number;
   keyword?: number;
+}
+
+export type DivergencesItem = {
+  id: number;
+  displayOrder: number;
+  journeyId: number;
+  status: number;
+  thumbnail?: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  slug?: string;
+  name?: string;
+  title: string;
+  description?: string;
+  content?: string;
+  translations: {
+    id: number;
+    journeyDivergenceId: number;
+    locale: string;
+    slug: string;
+    name: string;
+    title: string;
+    description: string;
+    content: string;
+  }
 }
