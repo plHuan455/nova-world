@@ -7,10 +7,10 @@ import Banner from 'components/organisms/Banner';
 import HelmetComponent from 'container/MainLayout/helmet';
 import useDidMount from 'hooks/useDidMount';
 import useMainLayout from 'hooks/useMainLayout';
-// import useScrollInfinite from 'hooks/useScrollInfinite';
 import getProductService from 'services/product';
 import { ProductData } from 'services/product/type';
 import { getBlockData, getImageURL } from 'utils/functions';
+import useCallService from 'hooks/useCallService';
 
 const PAGE = {
   PAGE_INITIAL: 1,
@@ -29,15 +29,18 @@ const Screen: React.FC<BasePageData<ProductPage>> = ({
   const [dataProduct, setDataProduct] = useState<ProductCardProps[]>([]);
   const [dataRelatedList, setDataRelatedList] = useState<RelatedCardProps[]>([]);
 
+  const dataRelated = useCallService(()=>getProductService({is_featured: '0',}));
+  const listCardRelated=useMemo(()=>())
   const formatData = (data: ProductData[]) => data.map((item) => (
     {
       index: item.id,
-      imgSrc: getImageURL(item.thumbnail),
-      title: item.title,
-      description: item.subTitle,
+      imgSrc: getImageURL(item?.thumbnail),
+      title: item?.title || '',
+      description: item?.subTitle || '',
+      // TODO : Update btn label
       btnLabel: 'Khám phá ngay',
-      btnLink: item.link,
-      target: item.linkTarget,
+      btnLink: item?.link || '',
+      target: item?.linkTarget || '',
     }
   ));
 

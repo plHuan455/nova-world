@@ -1,4 +1,8 @@
 .p-product {
+  .o-footeroverlay {
+    display: none;
+  }
+
   &_content {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(247, 255, 254, 0.75) 19.05%, #f5ffff 69.93%, #f3ffff 79.45%, #f4ffff 95.77%, rgb(244, 255, 255) 98.52%);
     padding-top: rem(56);

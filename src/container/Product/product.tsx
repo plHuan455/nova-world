@@ -62,12 +62,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
         <div className="button">
           <Button
-            type="button"
-            handleClick={() => {
-              if (btnLink) {
-                window.open(btnLink, target);
-              }
-            }}
+            useLink
+            href={btnLink}
+            target={target}
           >
             {btnLabel}
           </Button>
