@@ -20,7 +20,7 @@ const NotFound: React.FC<BasePageData<NotFoundPage>> = ({
   const { banner } = useMainLayout({ isHome: false, banners });
   const history = useHistory();
 
-  const data = useMemo(() => getBlockData('section1', blocks), [blocks]) as NotFoundBlock;
+  const data = useMemo(() => getBlockData<NotFoundBlock>('section1', blocks), [blocks]);
 
   return (
     <>

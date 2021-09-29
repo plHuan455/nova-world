@@ -73,6 +73,11 @@
         }
       }
     }
+
+    .a-loading {
+      position: relative;
+      z-index: 1;
+    }
   }
 
   &_card {

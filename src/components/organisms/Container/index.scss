@@ -25,6 +25,12 @@
     }
   }
 
+  &-noPaddingRightDesktopLarge {
+    @include break(992px,1366px) {
+      padding-right: 0;
+    }
+  }
+
   &-fullscreen {
     padding-left: 0;
     padding-right: 0;

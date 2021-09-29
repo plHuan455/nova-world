@@ -36,8 +36,8 @@ const Screen: React.FC<BasePageData<ProductPage>> = ({
   seoData,
 }) => {
   const { banner } = useMainLayout({ isHome: false, banners });
-  const block1 = useMemo(() => getBlockData('section1', blocks), [blocks]) as SearchBlock;
-  const block2 = useMemo(() => getBlockData('section2', blocks), [blocks]) as SearchBlock;
+  const block1 = useMemo(() => getBlockData<SearchBlock>('section1', blocks), [blocks]);
+  const block2 = useMemo(() => getBlockData<SearchBlock>('section2', blocks), [blocks]);
 
   const [metaProduct, setMetaProduct] = useState<MetaData>();
   const [dataProduct, setDataProduct] = useState<ProductCardProps[]>([]);
@@ -89,9 +89,9 @@ const Screen: React.FC<BasePageData<ProductPage>> = ({
           loading={loading}
           handleLoadMore={handleLoadMore}
           data={dataProduct}
-          title={block1.title}
+          title={block1?.title}
         />
-        <Related data={listCardRelated || []} title={block2.title} />
+        <Related data={listCardRelated || []} title={block2?.title} />
       </section>
     </>
   );
