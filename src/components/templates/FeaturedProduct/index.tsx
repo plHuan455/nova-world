@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
 import Image from 'components/atoms/Image';
+import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
@@ -12,6 +13,8 @@ type FeaturedProductCardType = {
   imgSrc: string;
   title: string;
   titleSub: string;
+  href: string;
+  target?: string;
 }
 
 interface FeaturedProductProps {
@@ -65,7 +68,9 @@ const FeaturedProduct: React.FC<FeaturedProductProps> = ({
                     key={`card-${index.toString()}`}
                     className="t-featuredproduct_card"
                   >
-                    <Image imgSrc={item.imgSrc} ratio="1366x768" />
+                    <Link href={item.href} target={item.target}>
+                      <Image imgSrc={item.imgSrc} ratio="1366x768" />
+                    </Link>
                   </div>
                 ))}
               </Carousel>

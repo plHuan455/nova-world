@@ -9,26 +9,31 @@ const cardFeatured = [
     title: 'Biệt thự biển',
     titleSub: 'NovaWorld Ho Tram - The Tropicana',
     imgSrc: Sea,
+    href: '/',
   },
   {
     title: 'Biệt thự đồi',
     titleSub: 'NovaWorld Ho Tram - The Tropicana',
     imgSrc: Hill,
+    href: '/',
   },
   {
     title: 'Biệt thự lagoon',
     titleSub: 'NovaWorld Ho Tram - The Tropicana',
     imgSrc: Lagoon,
+    href: '/',
   },
   {
     title: 'Shophouse',
     titleSub: 'NovaWorld Ho Tram - The Tropicana',
     imgSrc: Shophouse,
+    href: '/',
   },
   {
     title: 'Boutique Hotel',
     titleSub: 'NovaWorld Ho Tram - The Tropicana',
     imgSrc: Hotel,
+    href: '/',
   },
 ];
 
