@@ -157,6 +157,10 @@ type SearchBlock = {
   title: string;
 };
 
+type ProductBlock = {
+  title?: string;
+};
+
 type JourneysBlock = {
   title: string;
   description: string;
@@ -237,7 +241,7 @@ type NewsPage = NewsBlock;
 
 type SearchPage = SearchBlock;
 
-type ProductPage = SearchBlock;
+type ProductPage = ProductBlock;
 
 type JourneysPage = JourneysBlock;
 

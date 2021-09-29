@@ -36,8 +36,8 @@ const Screen: React.FC<BasePageData<ProductPage>> = ({
   seoData,
 }) => {
   const { banner } = useMainLayout({ isHome: false, banners });
-  const block1 = useMemo(() => getBlockData<SearchBlock>('section1', blocks), [blocks]);
-  const block2 = useMemo(() => getBlockData<SearchBlock>('section2', blocks), [blocks]);
+  const block1 = useMemo(() => getBlockData<ProductBlock>('section1', blocks), [blocks]);
+  const block2 = useMemo(() => getBlockData<ProductBlock>('section2', blocks), [blocks]);
 
   const [metaProduct, setMetaProduct] = useState<MetaData>();
   const [dataProduct, setDataProduct] = useState<ProductCardProps[]>([]);
