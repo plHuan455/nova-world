@@ -1,20 +1,32 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 
 import Loading from 'components/atoms/Loading';
 import MainLayout from 'components/templates/MainLayout';
 import useCallService from 'hooks/useCallService';
+import i18n from 'i18n';
 import { TemplateCode } from 'navigation';
 import { getPageService } from 'services/navigation';
-import { useAppSelector } from 'store/hooks';
-import { getSlugByTemplateCode } from 'utils/language';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setPageTranslation } from 'store/locales';
+import { getLangURL, getSlugByTemplateCode } from 'utils/language';
 
 const NotFound = React.lazy(() => import('pages/NotFound'));
 
 const PageNav: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { slug } = useParams<{ slug: string }>();
   const { staticSlug } = useAppSelector((state) => state.menu);
   const pageData = useCallService(() => getPageService(slug), [slug]);
+
+  useEffect(() => {
+    if (pageData) {
+      dispatch(setPageTranslation({
+        translation: pageData.data?.pageData.translations,
+        isDetail: false,
+      }));
+    }
+  }, [dispatch, pageData]);
 
   switch (pageData.status) {
     case 'pending': {
@@ -27,7 +39,7 @@ const PageNav: React.FC = () => {
             paddingBottom: '100vh',
           }}
           >
-            <Loading modifiers={['blue']} />
+            <Loading modifiers={['blue', 'fixed']} />
           </div>
         </MainLayout>
       );
@@ -38,7 +50,7 @@ const PageNav: React.FC = () => {
         : undefined;
       if (error?.code.toString() === '404') {
         return (
-          <Redirect to={`/${getSlugByTemplateCode('page404', staticSlug)}`} />
+          <Redirect to={`${getLangURL(i18n.language)}/${getSlugByTemplateCode('page404', staticSlug)}`} />
         );
       }
       return <div>Error</div>;

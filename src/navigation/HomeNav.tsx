@@ -1,21 +1,35 @@
-import React, { FunctionComponent, useCallback, useState } from 'react';
+import React, {
+  FunctionComponent, useCallback, useEffect, useState,
+} from 'react';
 import { Redirect } from 'react-router-dom';
 
 import useCallService from 'hooks/useCallService';
+import i18n from 'i18n';
 import { TemplateCode } from 'navigation';
 import { getStaticHomeService } from 'services/navigation';
-import { useAppSelector } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setPageTranslation } from 'store/locales';
 import { getImageURL } from 'utils/functions';
-import { getSlugByTemplateCode } from 'utils/language';
+import { getLangURL, getSlugByTemplateCode } from 'utils/language';
 
 const NotFound = React.lazy(() => import('pages/NotFound'));
 const Player = React.lazy(() => import('components/organisms/Player'));
 
 const HomeNav: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { staticSlug } = useAppSelector((state) => state.menu);
   const videoAnimation = useAppSelector((state) => state.systems.data?.videoAnimation);
   const [videoLoading, setVideoLoading] = useState('pending');
   const homeData = useCallService(() => getStaticHomeService(), []);
+
+  useEffect(() => {
+    if (homeData) {
+      dispatch(setPageTranslation({
+        translation: homeData.data?.pageData.translations,
+        isDetail: false,
+      }));
+    }
+  }, [dispatch, homeData]);
 
   const RenderVideos = useCallback(() => (
     <div className="p-home_loading">
@@ -43,7 +57,7 @@ const HomeNav: React.FC = () => {
         : undefined;
       if (error?.code.toString() === '404') {
         return (
-          <Redirect to={`/${getSlugByTemplateCode('page404', staticSlug)}`} />
+          <Redirect to={`${getLangURL(i18n.language)}/${getSlugByTemplateCode('page404', staticSlug)}`} />
         );
       }
       return <div>Error</div>;

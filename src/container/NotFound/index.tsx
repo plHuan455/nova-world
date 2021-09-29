@@ -8,7 +8,9 @@ import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
 import HelmetComponent from 'container/MainLayout/helmet';
 import useMainLayout from 'hooks/useMainLayout';
+import i18n from 'i18n';
 import { getBlockData } from 'utils/functions';
+import { getHomeLangURL } from 'utils/language';
 
 const NotFound: React.FC<BasePageData<NotFoundPage>> = ({
   banners,
@@ -30,24 +32,24 @@ const NotFound: React.FC<BasePageData<NotFoundPage>> = ({
         <div className="wrap">
           <Animate type="beatSmall">
             <div className="subtitle">
-              <Text modifiers={['20x24', '500', 'white']}>{data.title}</Text>
+              <Text modifiers={['20x24', '500', 'white']}>{data?.title}</Text>
             </div>
             <div className="title">
-              <Heading type="h1" modifiers={['700', 'white']}>{data.subTitle}</Heading>
+              <Heading type="h1" modifiers={['700', 'white']}>{data?.subTitle}</Heading>
             </div>
             <div className="description">
-              <Text modifiers={['white', '400', '20x24']} innerHTML={data.description} />
+              <Text modifiers={['white', '400', '20x24']} innerHTML={data?.description} />
             </div>
             <div className="button">
               <Button
                 type="button"
                 modifiers="android-green"
                 handleClick={() => history.push({
-                  pathname: '/', // TODO: Check later
+                  pathname: getHomeLangURL(i18n.language),
                   search: window.location.search,
                 })}
               >
-                {data.btnLabel}
+                {data?.btnLabel}
               </Button>
             </div>
           </Animate>

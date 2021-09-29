@@ -4,12 +4,16 @@ import React, { Suspense, lazy, useMemo } from 'react';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Route, Switch,
+} from 'react-router-dom';
 
 import { MainLayoutProvider } from 'container/MainLayout';
 import { store } from 'store';
 import { useAppSelector } from 'store/hooks';
-import { convertHomeRoute, convertRoute, getSlugByTemplateCode } from 'utils/language';
+import {
+  convertHomeRoute, convertRoute, getSlugByTemplateCode,
+} from 'utils/language';
 
 const NewsDetail = lazy(() => import('pages/NewsDetail'));
 const PageNav = lazy(() => import('navigation/PageNav'));
@@ -32,7 +36,7 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <Router>
-        <Suspense fallback={null}>
+        <Suspense fallback>
           <MainLayoutProvider>
             <Switch>
               <Route exact path={routesList.home}>

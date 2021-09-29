@@ -4,7 +4,10 @@ import Detail from './detail';
 import Discover from './discover';
 
 import Banner from 'components/organisms/Banner';
+import useDidMount from 'hooks/useDidMount';
 import useMainLayout from 'hooks/useMainLayout';
+import { useAppDispatch } from 'store/hooks';
+import { setPageTranslation } from 'store/locales';
 
 const dummyLabels = [
   'phân kỳ: wonderland',
@@ -28,6 +31,14 @@ const dummyCard = Array(3).fill({
 
 const ExperienceJourneyDetail:React.FC = () => {
   useMainLayout({ isHome: false });
+  const dispatch = useAppDispatch();
+
+  useDidMount(() => {
+    dispatch(setPageTranslation({
+      isDetail: true,
+    }));
+  });
+
   return (
     <>
       <section className="s-banner">

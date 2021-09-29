@@ -84,7 +84,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                 <div className="t-introductionhome_box">
                   {
                     image.map((item, index) => (
-                      <image
+                      <div
                         onClick={handleSlide}
                         key={`item-${index.toString()}`}
                         className={`t-introductionhome_box-image ${index === currentSlide ? 'active' : 'remove'}`}
@@ -93,7 +93,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                         }}
                       >
                         <Image imgSrc={getImageURL(item.image)} ratio="551x335" />
-                      </image>
+                      </div>
                     ))
                   }
                 </div>
@@ -137,7 +137,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                     </Carousel>
                     <div className="t-introductionhome_number-total">
                       <Text modifiers={['20x32', 'sm', 'green', 's005']}>
-                        {`0${image.length}`}
+                        {image.length >= 10 ? image.length : `0${image.length}`}
                       </Text>
                     </div>
                   </div>
