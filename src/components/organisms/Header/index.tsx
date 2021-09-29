@@ -78,7 +78,7 @@ const Option: React.FC<OptionProps> = ({ toggleMenu, handleChangeLanguage, slugS
         toggleMenu();
       }
     },
-    [history, refInputSearch, toggleMenu],
+    [history, refInputSearch, toggleMenu, slugSearch],
   );
 
   const handleFocusInputMobile = useCallback(
