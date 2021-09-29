@@ -6,6 +6,7 @@ import Button from 'components/atoms/Button';
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
 import Image from 'components/atoms/Image';
+import Loading from 'components/atoms/Loading';
 import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
@@ -27,6 +28,7 @@ export interface ProductProps {
   title?: string;
   data?: ProductCardProps[];
   handleLoadMore?: () => void;
+  loading?: boolean;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -78,6 +80,7 @@ const Product: React.FC<ProductProps> = ({
   title,
   data = [],
   handleLoadMore,
+  loading,
 }) => {
   const { setNode } = useScrollInfinite(handleLoadMore);
 
@@ -116,6 +119,7 @@ const Product: React.FC<ProductProps> = ({
                 </div>
               );
             })}
+            { loading && <Loading modifiers={['blue']} />}
           </div>
         </Container>
       </div>
