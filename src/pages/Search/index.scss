@@ -32,6 +32,11 @@
       flex: 0 0 calc(100% / 3);
       max-width: calc(100% / 3);
       padding: 0 rem(16) rem(24);
+
+      .m-card {
+        height: 100%;
+      }
+      
       @include tablet-down {
         flex: 0 0 50%;
         max-width: 50%;

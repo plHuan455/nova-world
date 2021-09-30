@@ -13,7 +13,7 @@ const Search: React.FC<BasePageData<SearchPage>> = ({
   seoData,
 }) => {
   const { banner } = useMainLayout({ isHome: false, banners });
-  const { title } = useMemo(() => getBlockData('section1', blocks), [blocks]) as SearchBlock;
+  const searchBlock = useMemo(() => getBlockData<SearchBlock>('section1', blocks), [blocks]);
 
   return (
     <>
@@ -22,7 +22,7 @@ const Search: React.FC<BasePageData<SearchPage>> = ({
         <Banner thumbnail={banner} layerDew={false} />
       </section>
       <section className="s-content s-wrap">
-        <Content title={title} />
+        <Content title={searchBlock?.title || ''} />
       </section>
     </>
   );

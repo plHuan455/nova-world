@@ -14,7 +14,9 @@ import { InputSearch } from 'components/organisms/Header';
 import useScrollInfinite from 'hooks/useScrollInfinite';
 import { getSearchService } from 'services/search';
 import { SearchItem } from 'services/search/type';
+import { useAppSelector } from 'store/hooks';
 import { getImageURL } from 'utils/functions';
+import { fnCustomUrlDetail } from 'utils/language';
 
 interface SearchProps {
   title: string;
@@ -22,10 +24,14 @@ interface SearchProps {
 
 const PAGE = {
   PAGE_INITIAL: 1,
-  LIMIT: 3,
+  LIMIT: 12,
 };
 
 const Search: React.FC<SearchProps> = ({ title }) => {
+  const {
+    menu: { prefix },
+  } = useAppSelector((state) => state);
+
   const { state } = useLocation<{keyword?: string}>();
   const refInputSearch = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState('');
@@ -34,11 +40,10 @@ const Search: React.FC<SearchProps> = ({ title }) => {
   const [dataSearch, setDataSearch] = useState<SearchItem[]>([]);
 
   const [keyWord, setKeyWord] = useState('');
-  console.log(meta, loading);
+
   const fetchCardList = useCallback(async (page, keyword) => {
     try {
       setLoading(true);
-      setKeyWord(keyword);
       const res = await getSearchService({
         limit: PAGE.LIMIT,
         page,
@@ -49,12 +54,30 @@ const Search: React.FC<SearchProps> = ({ title }) => {
       } else {
         setDataSearch([...dataSearch, ...res.data]);
       }
+      setKeyWord(keyword);
       setMeta(res.meta);
       setLoading(false);
     } catch (error) {
       setLoading(false);
     }
   }, [dataSearch]);
+
+  useEffect(() => {
+    setValue(state?.keyword || '');
+  }, [state]);
+
+  const listCard = useMemo(() => dataSearch.map((item) => ({
+    imgSrc: getImageURL(item?.thumbnail),
+    title: item?.title,
+    description: item?.description,
+    href: item?.type === 'news' ? fnCustomUrlDetail(prefix?.newsDetail, item?.slug) : item?.link,
+    target: item?.linkTarget,
+  })), [dataSearch, prefix?.newsDetail]);
+
+  useEffect(() => {
+    fetchCardList(1, state?.keyword);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state?.keyword]);
 
   const handleClickSearch = useCallback(() => {
     fetchCardList(1, value);
@@ -66,23 +89,6 @@ const Search: React.FC<SearchProps> = ({ title }) => {
     }
   }, [fetchCardList, value]);
 
-  useEffect(() => {
-    setValue(state?.keyword || '');
-  }, [state]);
-
-  const listCard = useMemo(() => dataSearch.map((item) => ({
-    imgSrc: getImageURL(item?.thumbnail),
-    title: item?.title,
-    description: item?.description,
-    href: item?.slug,
-  })), [dataSearch]);
-
-  useEffect(() => {
-    fetchCardList(1, state?.keyword);
-    setKeyWord(state?.keyword || '');
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state?.keyword]);
-
   const handleLoadMore = useCallback(() => {
     if (meta && meta.page < meta.totalPages) {
       fetchCardList(meta.page + 1, value);
@@ -90,6 +96,7 @@ const Search: React.FC<SearchProps> = ({ title }) => {
   }, [fetchCardList, meta, value]);
 
   const { setNode } = useScrollInfinite(handleLoadMore);
+
   return (
     <Container>
       <Animate type="fadeInUp" extendClassName="title">
@@ -111,7 +118,7 @@ const Search: React.FC<SearchProps> = ({ title }) => {
         <div className="description">
           <Text type="p">
             <>
-              <strong>{listCard.length}</strong>
+              <strong>{meta?.total || 0}</strong>
               {' '}
               kết quả tìm thấy cho
               {' '}
