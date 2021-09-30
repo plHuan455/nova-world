@@ -5,10 +5,17 @@ interface LinkProps {
   target?: string;
   href: string;
   extendsClass?: string;
+  search?: string;
+  state?: unknown;
 }
 
 const Link: React.FC<LinkProps> = ({
-  children, target, href, extendsClass,
+  children,
+  target,
+  href,
+  extendsClass,
+  search,
+  state,
 }) => {
   if (href.includes('http')) {
     return (
@@ -21,7 +28,8 @@ const Link: React.FC<LinkProps> = ({
     <RouterLink
       to={{
         pathname: href,
-        search: window.location.search,
+        search: search || window.location.search,
+        state,
       }}
       target={target}
       className={extendsClass}
