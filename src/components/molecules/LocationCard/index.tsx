@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Image from 'components/atoms/Image';
+import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
 
 interface LocationCardProps {
@@ -30,7 +31,7 @@ const LocationCard: React.FC<LocationCardProps> = ({
           {title}
         </Text>
       </div>
-      <a
+      <Link
         href={href}
         target={target}
       >
@@ -39,7 +40,7 @@ const LocationCard: React.FC<LocationCardProps> = ({
             {text}
           </Text>
         </div>
-      </a>
+      </Link>
     </div>
   </div>
 );
