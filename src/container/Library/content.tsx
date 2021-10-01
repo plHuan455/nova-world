@@ -42,7 +42,7 @@ const Content: React.FC<ContentProps> = ({
     if (!imagesList.length) return [];
     return imagesList.map((e) => ({
       title: e.title,
-      imgSrc: getImageURL(e.media),
+      imgSrc: getImageURL(e?.translation?.media || e?.translation?.mediaThumb),
     }));
   }, [imagesList]);
 

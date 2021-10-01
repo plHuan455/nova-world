@@ -47,14 +47,14 @@ const Images: React.FC<ImagesProps> = ({ handleClick }) => {
         tagsActive.forEach((tagId) => {
           if (item.categories.some((cate) => cate.id === tagId)) {
             result.push({
-              imgSrc: getImageURL(item.media),
+              imgSrc: getImageURL(item?.translation?.mediaThumb || item?.translation?.media),
               title: item.title,
             });
           }
         });
       } else {
         result.push({
-          imgSrc: getImageURL(item.media),
+          imgSrc: getImageURL(item?.translation?.mediaThumb || item?.translation?.media),
           title: item.title,
         });
       }
