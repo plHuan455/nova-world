@@ -78,10 +78,10 @@ const ExperienceJourneyDetail:React.FC = () => {
 
   return (
     <>
-      {/* TODO: update banner and title */}
       <section className="s-banner">
-        <Banner thumbnail="https://source.unsplash.com/random" layerDew={false} />
+        <Banner thumbnail={getImageURL(detail?.banner)} layerDew={false} />
       </section>
+      {/* TODO: update banner and title */}
       <section className="s-wrap s-donut">
         <Detail title="HÀNH TRÌNH TRẢI NGHIỆM" panel={dataPanel || []} labels={dataLabels || []} />
         <Discover title="KHÁM PHÁ THÊM" listCard={listCard || []} />
