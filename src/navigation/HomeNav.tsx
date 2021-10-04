@@ -21,7 +21,7 @@ const HomeNav: React.FC = () => {
   const videoAnimation = useAppSelector((state) => state.systems.data?.videoAnimation);
   const [videoLoading, setVideoLoading] = useState('pending');
 
-  const homeData = usePreview<any>(() => getStaticHomeService(), []);
+  const homeData = usePreview<BasePageData<any>>(() => getStaticHomeService(), []);
 
   useEffect(() => {
     if (homeData?.data) {
