@@ -85,6 +85,7 @@ const AppWrapper: React.FC = () => (
       <GoogleReCaptchaWrapper>
         <App />
       </GoogleReCaptchaWrapper>
+      <div id="fb-customer-chat" className="fb-customerchat" />
     </HelmetProvider>
   </Provider>
 );
