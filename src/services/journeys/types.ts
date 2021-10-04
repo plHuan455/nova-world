@@ -14,6 +14,7 @@ export type JourneysItem = {
   subtitle?: string;
   thumnailHome?: string;
   images?: Array<string>;
+  banner?: string;
 }
 
 export type Translation = {

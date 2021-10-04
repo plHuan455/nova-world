@@ -71,6 +71,7 @@ ol {
     background-size: cover;
     content: '';
     height: rem(824);
+    pointer-events: none;
     position: absolute;
     right: 0;
     top: -24%;
