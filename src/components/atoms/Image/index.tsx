@@ -18,7 +18,7 @@ const Image: React.FC<ImageProps> = ({
     className={mapModifiers('a-image', ratio, size)}
     style={{ backgroundImage: `url(${imgSrc})` }}
   >
-    <img src={imgSrc} alt={alt} />
+    <img src={imgSrc} alt={alt} loading="lazy" />
   </div>
 );
 
