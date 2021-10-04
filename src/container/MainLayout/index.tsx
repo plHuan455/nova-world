@@ -30,7 +30,7 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
   const {
     menu: { staticSlug },
     locales: { listLocales },
-    systems,
+    systems: { data: dataSystems },
   } = useAppSelector((state) => state);
   const [isHome, setIsHome] = useState<boolean>(true);
   const dispatch = useAppDispatch();
@@ -71,13 +71,14 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
   }, [listLocales]);
 
   useEffect(() => {
-    if (systems?.data?.footScripts) {
+    if (dataSystems?.footScripts) {
       const script = document.createElement('script');
-      script.innerHTML = systems.data.footScripts;
+      script.innerHTML = dataSystems.footScripts;
       script.async = true;
+
       document.body.appendChild(script);
     }
-  }, [systems]);
+  }, [dataSystems]);
 
   const context = useMemo(() => ({
     isHome,
