@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 
-const useSearchDebounce = (callback: ()=>void, deps: any, timeout = 150): void => {
-  const timeoutId = useRef<NodeJS.Timeout>();
+const useSearchDebounce = (callback: Function, deps: Array<any>, timeout = 150): void => {
+  const timeoutId = useRef<number>();
 
   useEffect(() => {
     if (timeoutId.current) {
