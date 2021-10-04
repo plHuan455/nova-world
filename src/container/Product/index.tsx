@@ -7,6 +7,7 @@ import Banner from 'components/organisms/Banner';
 import HelmetComponent from 'container/MainLayout/helmet';
 import useCallService from 'hooks/useCallService';
 import useDidMount from 'hooks/useDidMount';
+import useIsMounted from 'hooks/useIsMounted';
 import useMainLayout from 'hooks/useMainLayout';
 import getProductService from 'services/product';
 import { ProductData } from 'services/product/type';
@@ -35,6 +36,8 @@ const Screen: React.FC<BasePageData<ProductPage>> = ({
   blocks,
   seoData,
 }) => {
+  const isMounted = useIsMounted();
+
   const { banner } = useMainLayout({ isHome: false, banners });
   const block1 = useMemo(() => getBlockData<ProductBlock>('section1', blocks), [blocks]);
   const block2 = useMemo(() => getBlockData<ProductBlock>('section2', blocks), [blocks]);
@@ -44,6 +47,7 @@ const Screen: React.FC<BasePageData<ProductPage>> = ({
   const [loading, setLoading] = useState(false);
 
   const dataRelated = useCallService(() => getProductService({ is_featured: '0' }));
+
   const listCardRelated = useMemo(() => dataRelated.data?.data.map((item) => ({
     imgSrc: getImageURL(item.thumbnail),
     title: item.title,
@@ -54,25 +58,27 @@ const Screen: React.FC<BasePageData<ProductPage>> = ({
 
   const fetchProductCard = useCallback(async (page) => {
     try {
-      setLoading(true);
+      if (isMounted()) setLoading(true);
       const res = await getProductService({
         page,
         limit: PAGE.LIMIT,
         is_featured: '1',
       });
-      setMetaProduct(res.meta);
-      setDataProduct([...dataProduct, ...formatData(res.data)]);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
+      if (isMounted()) setMetaProduct(res.meta);
+      if (isMounted()) setDataProduct([...dataProduct, ...formatData(res.data)]);
+      if (isMounted()) setLoading(false);
+    } catch {
+      // empty
+    } finally {
+      if (isMounted()) setLoading(false);
     }
-  }, [dataProduct]);
+  }, [dataProduct, isMounted]);
 
-  useDidMount(async () => {
+  useDidMount(() => {
     fetchProductCard(PAGE.PAGE_INITIAL);
   });
 
-  const handleLoadMore = useCallback(async () => {
+  const handleLoadMore = useCallback(() => {
     if (metaProduct && metaProduct.page < metaProduct.totalPages) {
       fetchProductCard(metaProduct.page + 1);
     }
