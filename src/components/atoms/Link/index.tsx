@@ -33,6 +33,7 @@ const Link: React.FC<LinkProps> = ({
       }}
       target={target}
       className={extendsClass}
+      aria-label="label"
     >
       {children}
     </RouterLink>
