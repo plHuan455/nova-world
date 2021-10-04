@@ -29,19 +29,16 @@ const LocationMap: React.FC<LocationMapProps> = ({
   const refanimation = useRef<HTMLElement>(null);
   const animate = useScrollAnimate(refanimation);
 
-  const [state, setState] = useState<string[]>([]);
+  const [state, setState] = useState<string>();
 
-  useClickOutside(ref, () => setState([]));
+  useClickOutside(ref, () => setState(undefined));
 
   const handleClick = useCallback((type: string) => {
-    if (!state.includes(type)) {
-      setState([...state, type]);
-    }
-  }, [state]);
+    setState(type);
+  }, []);
 
   const isActive = useCallback((type: string) => {
-    if (state.includes(type)) return 'active';
-
+    if (type === state) return 'active';
     return '';
   }, [state]);
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Image from 'components/atoms/Image';
+import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
 
 interface LocationCardProps {
@@ -32,10 +32,7 @@ const LocationCard: React.FC<LocationCardProps> = ({
         </Text>
       </div>
       <Link
-        to={{
-          pathname: href,
-          search: window.location.search,
-        }}
+        href={href}
         target={target}
       >
         <div className="m-locationcard_content_seemore">
