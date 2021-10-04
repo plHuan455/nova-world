@@ -1,5 +1,5 @@
 import React, {
-  useCallback, useEffect, useMemo, useRef, useState,
+  useCallback, useMemo, useRef, useState,
 } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ import Image from 'components/atoms/Image';
 import Link from 'components/atoms/Link';
 import { LIST_LANGUAGE } from 'constants/language';
 import useClickOutside from 'hooks/useClickOutside';
+import useIsMounted from 'hooks/useIsMounted';
 import useSearchDebounce from 'hooks/useSearchDebounce';
 import useWindowScroll from 'hooks/useWindowScroll';
 import i18n from 'i18n';
@@ -51,12 +52,16 @@ const Option: React.FC<OptionProps> = ({
   handleChangeLanguage,
   slugSearch,
 }) => {
-  const [isOpenSearch, setIsOpenSearch] = useState(false);
+  const isMounted = useIsMounted();
+  const history = useHistory();
+
   const refInputSearch = useRef<HTMLInputElement|null>(null);
   const refSuggest = useRef<HTMLUListElement|null>(null);
+
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [inputIsFocus, setInputIsFocus] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const history = useHistory();
+  const [suggestList, setSuggestList] = useState<SuggestItem[]>([]);
 
   const handleClickIconSearch = useCallback(
     () => {
@@ -87,30 +92,27 @@ const Option: React.FC<OptionProps> = ({
     }
   }, [handleClickIconSearch]);
 
-  useClickOutside(refSuggest, () => setIsOpenSearch(false));
-
-  const [suggestList, setSuggestList] = useState<SuggestItem[]>([]);
-
-  const fetchSuggest = useCallback(async (keyword?: string) => {
-    try {
-      const res = await getSuggestService({ keyword, limit: 10 });
-      setSuggestList(res);
-    } catch (error) {
-      setSuggestList([]);
-    }
-  }, []);
-
-  const handleOnChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  }, [setSearchTerm]);
-
-  useEffect(() => {
+  useClickOutside(refSuggest, () => {
+    setIsOpenSearch(false);
     if (refInputSearch.current) {
       refInputSearch.current.value = '';
     }
     setSuggestList([]);
     setSearchTerm('');
-  }, [isOpenSearch]);
+  });
+
+  const fetchSuggest = useCallback(async (keyword?: string) => {
+    try {
+      const res = await getSuggestService({ keyword, limit: 10 });
+      if (isMounted()) setSuggestList(res);
+    } catch {
+      if (isMounted()) setSuggestList([]);
+    }
+  }, [isMounted]);
+
+  const handleOnChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  }, [setSearchTerm]);
 
   useSearchDebounce(
     () => {
@@ -118,7 +120,7 @@ const Option: React.FC<OptionProps> = ({
         fetchSuggest(searchTerm);
       }
     },
-    [searchTerm, inputIsFocus],
+    [searchTerm, inputIsFocus], 500,
   );
 
   return (
@@ -154,22 +156,26 @@ const Option: React.FC<OptionProps> = ({
                 onKeyDown={handleKeyDown}
               />
             </div>
-            <div className="o-header-suggest-driver" />
-            <ul className={mapModifiers('o-header-suggest-list', inputIsFocus && 'expand')}>
-              {suggestList?.map((item, index) => (
-                <li className="o-header-suggest-item" key={`_suggest-item${String(index)}`}>
-                  <Link
-                    extendsClass="o-header-suggest-link"
-                    href={slugSearch || ''}
-                    state={{
-                      keyword: item.name || '',
-                    }}
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {suggestList.length > 0 && (
+              <>
+                <div className="o-header-suggest-driver" />
+                <ul className={mapModifiers('o-header-suggest-list', inputIsFocus && 'expand')}>
+                  {suggestList?.map((item, index) => (
+                    <li className="o-header-suggest-item" key={`_suggest-item${String(index)}`}>
+                      <Link
+                        extendsClass="o-header-suggest-link"
+                        href={slugSearch || ''}
+                        state={{
+                          keyword: item.name || '',
+                        }}
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
         </div>
       </li>

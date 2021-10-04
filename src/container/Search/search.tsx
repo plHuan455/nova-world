@@ -11,6 +11,7 @@ import Card from 'components/molecules/Card';
 import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
 import { InputSearch } from 'components/organisms/Header';
+import useIsMounted from 'hooks/useIsMounted';
 import useScrollInfinite from 'hooks/useScrollInfinite';
 import { getSearchService } from 'services/search';
 import { SearchItem } from 'services/search/type';
@@ -32,39 +33,42 @@ const Search: React.FC<SearchProps> = ({ title }) => {
     menu: { prefix },
   } = useAppSelector((state) => state);
 
+  const isMounted = useIsMounted();
+
   const { state } = useLocation<{keyword?: string}>();
   const refInputSearch = useRef<HTMLInputElement>(null);
+  const refKeyword = useRef<string>('');
+
   const [value, setValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [meta, setMeta] = useState<Meta>();
   const [dataSearch, setDataSearch] = useState<SearchItem[]>([]);
 
-  const [keyWord, setKeyWord] = useState('');
-
   const fetchCardList = useCallback(async (page, keyword) => {
     try {
-      setLoading(true);
+      if (isMounted()) setLoading(true);
       const res = await getSearchService({
         limit: PAGE.LIMIT,
         page,
         keyword,
       });
       if (page === 1) {
-        setDataSearch(res.data);
-      } else {
-        setDataSearch([...dataSearch, ...res.data]);
-      }
-      setKeyWord(keyword);
-      setMeta(res.meta);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
+        if (isMounted()) setDataSearch(res.data);
+      } else if (isMounted()) setDataSearch([...dataSearch, ...res.data]);
+      // setKeyWord(keyword);
+      refKeyword.current = keyword;
+      if (isMounted()) setMeta(res.meta);
+      if (isMounted()) setLoading(false);
+    } catch {
+      // empty
+    } finally {
+      if (isMounted()) setLoading(false);
     }
-  }, [dataSearch]);
+  }, [dataSearch, isMounted]);
 
   useEffect(() => {
-    setValue(state?.keyword || '');
-  }, [state]);
+    if (isMounted()) setValue(state?.keyword || '');
+  }, [state, isMounted]);
 
   const listCard = useMemo(() => dataSearch.map((item) => ({
     imgSrc: getImageURL(item?.thumbnail),
@@ -122,7 +126,7 @@ const Search: React.FC<SearchProps> = ({ title }) => {
               {' '}
               kết quả tìm thấy cho
               {' '}
-              <strong>{`“${keyWord}”`}</strong>
+              <strong>{`“${refKeyword.current}”`}</strong>
             </>
           </Text>
         </div>
