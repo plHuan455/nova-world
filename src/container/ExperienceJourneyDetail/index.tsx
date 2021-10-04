@@ -6,6 +6,7 @@ import Discover from './discover';
 
 import Loading from 'components/atoms/Loading';
 import Banner from 'components/organisms/Banner';
+import HelmetComponent from 'container/MainLayout/helmet';
 import useCallService from 'hooks/useCallService';
 import useDidMount from 'hooks/useDidMount';
 import useMainLayout from 'hooks/useMainLayout';
@@ -79,6 +80,7 @@ const ExperienceJourneyDetail:React.FC = () => {
 
   return (
     <>
+      <HelmetComponent seoData={{ imgSrc: detail?.thumbnail }} />
       <section className="s-banner">
         <Banner thumbnail={getImageURL(detail?.banner)} layerDew={false} />
       </section>

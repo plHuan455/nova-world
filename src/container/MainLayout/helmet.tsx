@@ -1,23 +1,35 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
+
+import { useAppSelector } from 'store/hooks';
+import { getImageURL } from 'utils/functions';
 
 interface Props {
   seoData?: SEOData;
-  imgSrc?: string;
 }
 
-const HelmetComponent: React.FC<Props> = ({ seoData, imgSrc }) => (
-  <Helmet>
-    <title>{seoData?.title || 'NovaWorld Ho Tram'}</title>
-    <meta name="description" content={seoData?.description || ''} />
-    <meta property="og:url" content={window.location.href} />
-    <meta property="og:title" content={seoData?.title || ''} />
-    <meta property="og:description" content={seoData?.description || ''} />
-    { imgSrc && <meta property="og:image" content={imgSrc} />}
-    <meta name="twitter:title" content={seoData?.title || ''} />
-    <meta name="twitter:description" content={seoData?.description || ''} />
-    { imgSrc && <meta name="twitter:image" content={imgSrc} />}
-  </Helmet>
-);
+const HelmetComponent: React.FC<Props> = ({ seoData }) => {
+  const system = useAppSelector((state) => state.systems?.data);
+  const imgSeo = useMemo(
+    () => getImageURL(seoData?.imgSrc || system?.openGraphImage),
+    [system, seoData],
+  );
+  const desSeo = useMemo(() => seoData?.description || system?.seo?.description || '', [system, seoData]);
+  const titleSeo = useMemo(() => seoData?.title || system?.seo?.title || 'NovaWorld Ho Tram', [system, seoData]);
+
+  return (
+    <Helmet>
+      <title>{seoData?.title}</title>
+      <meta name="description" content={desSeo} />
+      <meta property="og:url" content={window.location.href} />
+      <meta property="og:title" content={titleSeo} />
+      <meta property="og:description" content={desSeo} />
+      { imgSeo && <meta property="og:image" content={imgSeo} />}
+      <meta name="twitter:title" content={titleSeo} />
+      <meta name="twitter:description" content={desSeo} />
+      { imgSeo && <meta name="twitter:image" content={imgSeo} />}
+    </Helmet>
+  );
+};
 
 export default HelmetComponent;

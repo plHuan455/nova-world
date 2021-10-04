@@ -11,9 +11,10 @@ type ErrorCodeResponse = {
 }
 
 type SEOData = {
-  title: string;
-  description: string;
-  keywords: string;
+  title?: string;
+  description?: string;
+  keywords?: string;
+  imgSrc?: string;
 }
 
 type LinkData = {
@@ -120,6 +121,7 @@ type PageData = {
   slug: string;
   description?: any;
   translations: Translation[];
+  image?: string;
 }
 
 type BasePageData<T> = {
