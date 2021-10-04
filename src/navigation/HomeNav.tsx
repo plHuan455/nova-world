@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import useCallService from 'hooks/useCallService';
+import usePreview from 'hooks/usePreview';
 import i18n from 'i18n';
 import { TemplateCode } from 'navigation';
 import { getStaticHomeService } from 'services/navigation';
@@ -20,10 +20,11 @@ const HomeNav: React.FC = () => {
   const { staticSlug } = useAppSelector((state) => state.menu);
   const videoAnimation = useAppSelector((state) => state.systems.data?.videoAnimation);
   const [videoLoading, setVideoLoading] = useState('pending');
-  const homeData = useCallService(() => getStaticHomeService(), []);
+
+  const homeData = usePreview<any>(() => getStaticHomeService(), []);
 
   useEffect(() => {
-    if (homeData) {
+    if (homeData?.data) {
       dispatch(setPageTranslation({
         translation: homeData.data?.pageData.translations,
         isDetail: false,
@@ -52,7 +53,7 @@ const HomeNav: React.FC = () => {
       return <RenderVideos />;
     }
     case 'rejected': {
-      const error = homeData.error && homeData.error.length > 0
+      const error = homeData?.error && Array.isArray(homeData.error) && homeData.error.length > 0
         ? homeData.error[0]
         : undefined;
       if (error?.code.toString() === '404') {

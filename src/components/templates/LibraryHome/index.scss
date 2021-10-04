@@ -9,6 +9,7 @@
     content: '';
     left: 0;
     padding-bottom: 695 / 1366 * 100%;
+    pointer-events: none;
     position: absolute;
     width: 100%;
     @include desktop-down {

@@ -15,7 +15,7 @@ const Library: React.FC<LibraryHomeProps> = ({
   const staticSlug = useAppSelector((state) => state.menu.staticSlug);
 
   const convertData = useMemo(() => {
-    if (!data?.item.length) return [];
+    if (!data?.item) return [];
 
     return data.item.map((e, i) => ({
       id: i,

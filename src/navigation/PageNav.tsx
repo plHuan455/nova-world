@@ -3,7 +3,7 @@ import { Redirect, useParams } from 'react-router-dom';
 
 import Loading from 'components/atoms/Loading';
 import MainLayout from 'components/templates/MainLayout';
-import useCallService from 'hooks/useCallService';
+import usePreview from 'hooks/usePreview';
 import i18n from 'i18n';
 import { TemplateCode } from 'navigation';
 import { getPageService } from 'services/navigation';
@@ -17,7 +17,8 @@ const PageNav: React.FC = () => {
   const dispatch = useAppDispatch();
   const { slug } = useParams<{ slug: string }>();
   const { staticSlug } = useAppSelector((state) => state.menu);
-  const pageData = useCallService(() => getPageService(slug), [slug]);
+
+  const pageData = usePreview<any>(() => getPageService(slug), [slug]);
 
   useEffect(() => {
     if (pageData) {
@@ -45,7 +46,7 @@ const PageNav: React.FC = () => {
       );
     }
     case 'rejected': {
-      const error = pageData.error && pageData.error.length > 0
+      const error = pageData?.error && Array.isArray(pageData.error) && pageData.error.length > 0
         ? pageData.error[0]
         : undefined;
       if (error?.code.toString() === '404') {
