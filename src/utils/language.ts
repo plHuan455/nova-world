@@ -96,3 +96,5 @@ export const getSlugItemMenuHeader = (item:MenuItem, language:string) => {
   }
   return `${getLangURL(language)}/${item.reference?.slug}`;
 };
+
+export const fnCustomUrlDetail = (prefix?:string, slug?:string) => ((prefix && slug) ? prefix + slug : '');

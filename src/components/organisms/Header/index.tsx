@@ -1,34 +1,24 @@
 import React, {
   useCallback, useMemo, useRef, useState,
 } from 'react';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import Container from '../Container';
 
 import Icon from 'components/atoms/Icon';
 import Image from 'components/atoms/Image';
+import Link from 'components/atoms/Link';
 import { LIST_LANGUAGE } from 'constants/language';
 import useClickOutside from 'hooks/useClickOutside';
+import useIsMounted from 'hooks/useIsMounted';
+import useSearchDebounce from 'hooks/useSearchDebounce';
 import useWindowScroll from 'hooks/useWindowScroll';
 import i18n from 'i18n';
 import { MenuItem } from 'services/menus/types';
+import { getSuggestService } from 'services/search';
+import { SuggestItem } from 'services/search/type';
 import mapModifiers from 'utils/functions';
 import { getHomeLangURL, getSlugItemMenuHeader } from 'utils/language';
-
-const suggestList = [
-  {
-    title: 'Dịch vụ đẳng cấp quốc tế',
-    link: '/',
-  },
-  {
-    title: 'Nghỉ dưỡng cao cấp',
-    link: '/',
-  },
-  {
-    title: 'Vui chơi giải trí',
-    link: '/',
-  },
-];
 
 interface InputSearchProps extends React.InputHTMLAttributes<HTMLInputElement> {
   handleClickSearch?: () => void;
@@ -57,13 +47,21 @@ interface OptionProps {
   slugSearch?: string;
 }
 
-const Option: React.FC<OptionProps> = ({ toggleMenu, handleChangeLanguage, slugSearch }) => {
-  const [isOpenSearch, setIsOpenSearch] = useState(false);
+const Option: React.FC<OptionProps> = ({
+  toggleMenu,
+  handleChangeLanguage,
+  slugSearch,
+}) => {
+  const isMounted = useIsMounted();
+  const history = useHistory();
+
   const refInputSearch = useRef<HTMLInputElement|null>(null);
   const refSuggest = useRef<HTMLUListElement|null>(null);
-  const [inputIsFocus, setInputIsFocus] = useState(false);
 
-  const history = useHistory();
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
+  const [inputIsFocus, setInputIsFocus] = useState(false);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [suggestList, setSuggestList] = useState<SuggestItem[]>([]);
 
   const handleClickIconSearch = useCallback(
     () => {
@@ -94,7 +92,36 @@ const Option: React.FC<OptionProps> = ({ toggleMenu, handleChangeLanguage, slugS
     }
   }, [handleClickIconSearch]);
 
-  useClickOutside(refSuggest, () => setIsOpenSearch(false));
+  useClickOutside(refSuggest, () => {
+    setIsOpenSearch(false);
+    if (refInputSearch.current) {
+      refInputSearch.current.value = '';
+    }
+    setSuggestList([]);
+    setSearchTerm('');
+  });
+
+  const fetchSuggest = useCallback(async (keyword?: string) => {
+    try {
+      const res = await getSuggestService({ keyword, limit: 10 });
+      if (isMounted()) setSuggestList(res);
+    } catch {
+      if (isMounted()) setSuggestList([]);
+    }
+  }, [isMounted]);
+
+  const handleOnChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  }, [setSearchTerm]);
+
+  useSearchDebounce(
+    () => {
+      if (inputIsFocus) {
+        fetchSuggest(searchTerm);
+      }
+    },
+    [searchTerm, inputIsFocus], 500,
+  );
 
   return (
     <ul ref={refSuggest} className="o-header-option">
@@ -122,28 +149,33 @@ const Option: React.FC<OptionProps> = ({ toggleMenu, handleChangeLanguage, slugS
               <InputSearch
                 onBlur={() => handleFocusInputMobile(false)}
                 onFocus={() => handleFocusInputMobile(true)}
+                onChange={handleOnChange}
                 ref={refInputSearch}
                 handleClickSearch={handleClickIconSearch}
                 placeholder="Tìm kiếm"
                 onKeyDown={handleKeyDown}
               />
             </div>
-            <div className="o-header-suggest-driver" />
-            <ul className={mapModifiers('o-header-suggest-list', inputIsFocus && 'expand')}>
-              {suggestList.map((item, index) => (
-                <li className="o-header-suggest-item" key={`_suggest-item${String(index)}`}>
-                  <Link
-                    className="o-header-suggest-link"
-                    to={{
-                      pathname: item.link,
-                      search: window.location.search,
-                    }}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {suggestList.length > 0 && (
+              <>
+                <div className="o-header-suggest-driver" />
+                <ul className={mapModifiers('o-header-suggest-list', inputIsFocus && 'expand')}>
+                  {suggestList?.map((item, index) => (
+                    <li className="o-header-suggest-item" key={`_suggest-item${String(index)}`}>
+                      <Link
+                        extendsClass="o-header-suggest-link"
+                        href={slugSearch || ''}
+                        state={{
+                          keyword: item.name || '',
+                        }}
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
         </div>
       </li>
@@ -327,7 +359,6 @@ const Header: React.FC<HeaderProps> = ({
       className={mapModifiers(
         'o-header',
         isScroll && 'scroll',
-        // isHome && 'transparent',
         isOpenMenu && 'open',
       )}
     >
@@ -336,11 +367,7 @@ const Header: React.FC<HeaderProps> = ({
           {iconMenu}
           <div className="o-header-logo">
             <Link
-              to={{
-                pathname: getHomeLangURL(i18n.language),
-                search: window.location.search,
-              }}
-              aria-label="label"
+              href={getHomeLangURL(i18n.language)}
             >
               <Image
                 ratio="logo-novaworld"
@@ -354,11 +381,7 @@ const Header: React.FC<HeaderProps> = ({
             <div className="o-header-sm">
               <div className="o-header-sm-logo">
                 <Link
-                  to={{
-                    pathname: '/',
-                    search: window.location.search,
-                  }}
-                  aria-label="label"
+                  href={getHomeLangURL(i18n.language)}
                 >
                   <Image
                     ratio="logo-novaworld"

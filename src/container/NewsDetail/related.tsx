@@ -7,6 +7,7 @@ import Container from 'components/organisms/Container';
 import { RelatedNewsData } from 'services/newsDetail/types';
 import { useAppSelector } from 'store/hooks';
 import { getImageURL } from 'utils/functions';
+import { fnCustomUrlDetail } from 'utils/language';
 
 interface RelatedProps {
   data?: RelatedNewsData[]
@@ -32,13 +33,13 @@ const Related: React.FC<RelatedProps> = ({ data }) => {
           {data.slice(0, 3).map((item, index) => (
             <div className="item" key={`_newcard${String(index)}`}>
               <NewsCard
-                imgSrc={getImageURL(item.thumbnail)}
+                imgSrc={getImageURL(item?.thumbnail)}
                 direction={index === 0 ? 'vertical' : 'horizontal'}
                 ratio={index === 0 ? '644x323' : '450x248'}
-                href={prefix?.newsDetail + item.slug}
+                href={fnCustomUrlDetail(prefix?.newsDetail, item?.slug)}
                 updatedate={index === 0 ? item.publishedAt : ''}
-                title={item.title}
-                desc={index === 0 ? item.description : ''}
+                title={item?.title}
+                desc={index === 0 ? item?.description : ''}
               />
             </div>
           ))}

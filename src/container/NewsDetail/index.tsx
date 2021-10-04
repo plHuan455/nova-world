@@ -28,7 +28,7 @@ const NewsDetail: React.FC = () => {
   });
 
   if (status === 'pending') {
-    return <Loading modifiers={['blue']} />;
+    return <Loading modifiers={['blue', 'page']} />;
   }
 
   return (

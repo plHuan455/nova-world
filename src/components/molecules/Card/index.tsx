@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Image from 'components/atoms/Image';
+import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
 
 export interface CardProps {
@@ -9,17 +9,14 @@ export interface CardProps {
   title?: string;
   description?: string;
   href?: string;
+  target?: string;
 }
 
 const Card: React.FC<CardProps> = ({
-  imgSrc, title, description, href,
+  imgSrc, title, description, href, target,
 }) => (
   <div className="m-card">
-    <Link to={{
-      pathname: href,
-      search: window.location.search,
-    }}
-    >
+    <Link href={href || ''} target={target}>
       <div className="m-card_thumbnail">
         <Image imgSrc={imgSrc || ''} alt={title} ratio="16x9" />
       </div>

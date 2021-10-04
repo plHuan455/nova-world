@@ -14,6 +14,7 @@ import { DivergencesItem, JourneysItem } from 'services/journeys/types';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { setPageTranslation } from 'store/locales';
 import { getImageURL } from 'utils/functions';
+import { fnCustomUrlDetail } from 'utils/language';
 
 const ExperienceJourneyDetail:React.FC = () => {
   const dispatch = useAppDispatch();
@@ -66,10 +67,10 @@ const ExperienceJourneyDetail:React.FC = () => {
   const listCard = discover.data?.data
     .filter((item) => item.id !== detail?.id)
     .map((item) => ({
-      imgSrc: getImageURL(item.thumbnail),
-      title: item.title,
-      description: item.description,
-      href: (prefix?.journeysDetail && item.slug) ? prefix?.journeysDetail + item.slug : '',
+      imgSrc: getImageURL(item?.thumbnail),
+      title: item?.title,
+      description: item?.description,
+      href: fnCustomUrlDetail(prefix?.journeysDetail, item?.slug),
     }));
 
   if (loading) {
