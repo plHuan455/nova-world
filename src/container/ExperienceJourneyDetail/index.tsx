@@ -80,7 +80,13 @@ const ExperienceJourneyDetail:React.FC = () => {
 
   return (
     <>
-      <HelmetComponent seoData={{ imgSrc: detail?.thumbnail }} />
+      <HelmetComponent
+        seoData={{
+          imgSrc: detail?.thumbnail,
+          title: detail?.title,
+          description: detail?.description,
+        }}
+      />
       <section className="s-banner">
         <Banner thumbnail={getImageURL(detail?.banner)} layerDew={false} />
       </section>
