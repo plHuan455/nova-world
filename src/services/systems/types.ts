@@ -19,5 +19,6 @@ export type SystemsData = {
   googleTagManager?: string;
   videoAnimation: string;
   openGraphImage?: string;
+  footScripts?: string;
   consultancy: ConsultancySystem;
 }

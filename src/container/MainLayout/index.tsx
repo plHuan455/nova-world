@@ -30,6 +30,7 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
   const {
     menu: { staticSlug },
     locales: { listLocales },
+    systems,
   } = useAppSelector((state) => state);
   const [isHome, setIsHome] = useState<boolean>(true);
   const dispatch = useAppDispatch();
@@ -68,6 +69,15 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listLocales]);
+
+  useEffect(() => {
+    if (systems?.data?.footScripts) {
+      const script = document.createElement('script');
+      script.innerHTML = systems.data.footScripts;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, [systems]);
 
   const context = useMemo(() => ({
     isHome,
