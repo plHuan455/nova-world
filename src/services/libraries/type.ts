@@ -48,7 +48,7 @@ export interface LibraryListItemData {
   locale: string;
   title: string;
   media: string;
-  translation: TranslationData;
+  translation?: TranslationData;
   categories: CategoriesData[];
 }
 
@@ -56,10 +56,10 @@ interface TranslationData {
   id: number;
   libraryId: number;
   locale: string;
-  media: string;
+  media?: string;
   title: string;
   type: string;
-  mediaThumb: string;
+  mediaThumb?: string;
 }
 
 export interface CategoriesData {
