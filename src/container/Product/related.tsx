@@ -1,14 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Settings } from 'react-slick';
 
 import Heading from 'components/atoms/Heading';
 import Image from 'components/atoms/Image';
+import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
 import Container from 'components/organisms/Container';
 
-interface RelatedCardProps {
+export interface RelatedCardProps {
   imgSrc: string;
   title?: string;
   description?: string;
@@ -16,8 +17,8 @@ interface RelatedCardProps {
   target?: string;
 }
 
-const settings = {
-  infinite: false,
+const settings = (length:number) => ({
+  infinite: length > 3,
   dots: false,
   slidesToShow: 3,
   slidesToScroll: 1,
@@ -27,30 +28,31 @@ const settings = {
   nextArrow: <NextArrow variant="light" />,
   responsive: [
     {
-      breakpoint: 1025,
+      breakpoint: 1367,
       settings: {
-        prevArrow: <PrevArrow variant="light" />,
-        nextArrow: <NextArrow variant="light" />,
+        infinite: length > 2,
+        slidesToShow: 2,
+        centerPadding: '100',
+        className: 'center',
+        centerMode: true,
       },
     },
     {
       breakpoint: 991,
       settings: {
+        infinite: length > 2,
         slidesToShow: 2,
-        prevArrow: <PrevArrow variant="light" />,
-        nextArrow: <NextArrow variant="light" />,
       },
     },
     {
       breakpoint: 767,
       settings: {
+        infinite: length > 1,
         slidesToShow: 1,
-        prevArrow: <PrevArrow variant="light" />,
-        nextArrow: <NextArrow variant="light" />,
       },
     },
   ],
-};
+});
 
 const RelatedCard: React.FC<RelatedCardProps> = ({
   imgSrc,
@@ -59,7 +61,7 @@ const RelatedCard: React.FC<RelatedCardProps> = ({
   href = '',
   target,
 }) => (
-  <Link to={href} target={target}>
+  <Link href={href} target={target}>
     <div className="p-product_related-card">
       <div className="thumbnail">
         <Image imgSrc={imgSrc} ratio="451x273" alt={title} />
@@ -78,35 +80,35 @@ const RelatedCard: React.FC<RelatedCardProps> = ({
   </Link>
 );
 
-const Related: React.FC = () => {
-  const dummy = new Array(5).fill({
-    imgSrc: 'https://source.unsplash.com/random',
-    title: 'Shophouse trục đường ven biển',
-    description: 'NovaWorld Ho Tram - Tropicana',
-  });
-  return (
-    <div className="p-product_related">
-      <Container>
-        <Animate type="zoomIn" extendClassName="title">
-          <Heading type="h2" modifiers={['500', 'white', 'center']}>
-            NHỮNG SẢN PHẨM KHÁC
-          </Heading>
-        </Animate>
-      </Container>
-      <Container noPaddingRightDesktop>
-        <Animate type="scaleX" extendClassName="content">
-          <Carousel settings={settings}>
-            {dummy.map((item, index) => (
-              <RelatedCard
-                key={`_relatedcard${String(index)}`}
-                {...item}
-              />
-            ))}
-          </Carousel>
-        </Animate>
-      </Container>
-    </div>
-  );
-};
+interface RelatedProps {
+  title?: string;
+  data?: RelatedCardProps[];
+}
 
+const Related: React.FC<RelatedProps> = ({
+  title,
+  data = [],
+}) => (
+  <div className="p-product_related">
+    <Container>
+      <Animate type="zoomIn" extendClassName="title">
+        <Heading type="h2" modifiers={['500', 'white', 'center']}>
+          {title}
+        </Heading>
+      </Animate>
+    </Container>
+    <Container noPaddingRightDesktopLarge>
+      <Animate type="scaleX" extendClassName="content">
+        <Carousel settings={settings(data.length) as Settings}>
+          {data.map((item, index) => (
+            <RelatedCard
+              key={`_relatedcard${String(index)}`}
+              {...item}
+            />
+          ))}
+        </Carousel>
+      </Animate>
+    </Container>
+  </div>
+);
 export default Related;

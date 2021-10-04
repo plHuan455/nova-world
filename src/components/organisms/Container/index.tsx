@@ -8,6 +8,7 @@ interface ContainerProps {
   noPaddingRight?: boolean;
   noPaddingLeft?: boolean;
   noPaddingRightDesktop?: boolean;
+  noPaddingRightDesktopLarge?: boolean;
 }
 
 const Container: React.FC<ContainerProps> = ({
@@ -16,6 +17,7 @@ const Container: React.FC<ContainerProps> = ({
   noPaddingRight,
   noPaddingLeft,
   noPaddingRightDesktop,
+  noPaddingRightDesktopLarge,
   children,
 }) => (
   <div
@@ -26,6 +28,7 @@ const Container: React.FC<ContainerProps> = ({
       noPaddingRight && 'noPaddingRight',
       noPaddingLeft && 'noPaddingLeft',
       noPaddingRightDesktop && 'noPaddingRightDesktop',
+      noPaddingRightDesktopLarge && 'noPaddingRightDesktopLarge',
     )}`}
   >
     {children}
