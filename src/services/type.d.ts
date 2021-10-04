@@ -132,6 +132,9 @@ type BasePageData<T> = {
 
 type LibraryBlock = {
   title: string;
+  tab?: {
+    title?: string
+  }[];
 }
 
 type ContactBlock = {

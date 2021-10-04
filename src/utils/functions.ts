@@ -145,7 +145,7 @@ export function getImageURL(imgUrl?: string) {
 
 export function getBlockData<T>(
   _code: string,
-  listBlock?: BlockComponents<T>[],
+  listBlock?: BlockComponents<any>[],
 ): T | undefined {
   if (!listBlock) return undefined;
   return listBlock.find((item) => item.code === _code)?.blocks;
