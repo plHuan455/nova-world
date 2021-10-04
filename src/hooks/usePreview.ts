@@ -14,8 +14,6 @@ interface DataPreviewType<T> {
 
 const INITIAL_STATE = {
   status: 'pending',
-  data: undefined,
-  error: undefined,
 };
 
 const usePreview = <T, >(
