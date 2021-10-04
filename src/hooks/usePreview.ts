@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { DependencyList, useEffect, useState } from 'react';
 
 import useQueryParams from './useQueryParams';
 
@@ -12,7 +12,7 @@ interface DataPreviewType<T> {
 
 const usePreview = <T, >(
   callService: (...arg: any) => Promise<BasePageData<T>>,
-  dependency: Array<unknown>,
+  dependency: DependencyList,
 ) => {
   const { preview } = useQueryParams<{ preview?: string }>();
   const [data, setData] = useState<DataPreviewType<T>>({
