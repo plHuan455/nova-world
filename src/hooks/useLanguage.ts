@@ -17,7 +17,7 @@ const useLanguage = () => {
   const handleChangeLanguage = (lang: keyof LocalesResponse) => {
     // Page Detail news , detail ExperienceJourney
     if (checkActiveLang(lang, listLocales) && isDetail) {
-      window.location.href = window.location.origin + getLangURL(lang) + window.location.search;
+      window.location.href = window.location.origin + getLangURL(lang);
       return;
     }
     // Page home , page child
@@ -27,7 +27,7 @@ const useLanguage = () => {
       );
       const slugByTrans = transData?.slug !== '/' ? `/${transData?.slug}` : '';
       const pathName = getLangURL(lang) + slugByTrans;
-      window.location.href = window.location.origin + pathName + window.location.search;
+      window.location.href = window.location.origin + pathName;
       return;
     }
     // language dont active

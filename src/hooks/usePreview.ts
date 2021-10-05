@@ -8,7 +8,7 @@ import previewDataService from 'services/preview';
 
 interface DataPreviewType<T> {
   status: 'pending' | 'fullfilled' | 'rejected';
-  data?: BasePageData<T>;
+  data?: T;
   error?: unknown;
 }
 
@@ -17,7 +17,7 @@ const INITIAL_STATE = {
 };
 
 const usePreview = <T, >(
-  callService: (...arg: any) => Promise<BasePageData<T>>,
+  callService: (...arg: any) => Promise<T>,
   dependency: DependencyList,
 ) => {
   const { preview } = useQueryParams<{ preview?: string }>();
@@ -34,16 +34,9 @@ const usePreview = <T, >(
         } else {
           result = await callService();
         }
-        const dataNews = {
-          ...result,
-          seoData: {
-            ...result.seoData,
-            imgSrc: result.pageData?.image,
-          },
-        };
         setData({
           status: 'fullfilled',
-          data: dataNews,
+          data: result,
         });
       } catch (error) {
         setData({

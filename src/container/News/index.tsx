@@ -23,6 +23,7 @@ const NewsContainer: React.FC<BasePageData<NewsPage>> = ({
   banners,
   blocks,
   seoData,
+  pageData,
 }) => {
   const { banner } = useMainLayout({ isHome: false, banners });
   const isMounted = useIsMounted();
@@ -146,7 +147,7 @@ const NewsContainer: React.FC<BasePageData<NewsPage>> = ({
 
   return (
     <>
-      <HelmetComponent seoData={seoData} />
+      <HelmetComponent seoData={{ ...seoData, imgSrc: pageData?.image }} />
       <section>
         <Banner thumbnail={banner} />
       </section>

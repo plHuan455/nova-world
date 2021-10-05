@@ -16,6 +16,7 @@ const NotFound: React.FC<BasePageData<NotFoundPage>> = ({
   banners,
   blocks,
   seoData,
+  pageData,
 }) => {
   const { banner } = useMainLayout({ isHome: false, banners });
   const history = useHistory();
@@ -24,7 +25,7 @@ const NotFound: React.FC<BasePageData<NotFoundPage>> = ({
 
   return (
     <>
-      <HelmetComponent seoData={seoData} />
+      <HelmetComponent seoData={{ ...seoData, imgSrc: pageData?.image }} />
       <section className="s-banner">
         <div className="thumbnail">
           <Image ratio="1366x568" imgSrc={banner} alt="banner_notfound" />

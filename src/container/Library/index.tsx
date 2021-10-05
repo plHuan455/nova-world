@@ -12,6 +12,7 @@ const LibraryContainer: React.FC<BasePageData<LibraryPage>> = ({
   banners,
   blocks,
   seoData,
+  pageData,
 }) => {
   const { banner } = useMainLayout({ isHome: false, banners });
   const { state } = useLocation<{ id?: number }>();
@@ -20,7 +21,7 @@ const LibraryContainer: React.FC<BasePageData<LibraryPage>> = ({
 
   return (
     <>
-      <HelmetComponent seoData={seoData} />
+      <HelmetComponent seoData={{ ...seoData, imgSrc: pageData?.image }} />
       <section>
         <Banner thumbnail={banner} />
       </section>

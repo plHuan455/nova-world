@@ -18,7 +18,7 @@ const PageNav: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const { staticSlug } = useAppSelector((state) => state.menu);
 
-  const pageData = usePreview<any>(() => getPageService(slug), [slug]);
+  const pageData = usePreview<BasePageData<any>>(() => getPageService(slug), [slug]);
 
   useEffect(() => {
     if (pageData) {

@@ -8,10 +8,11 @@ import BannerDetail from 'assets/images/banner_news.jpg';
 import Loading from 'components/atoms/Loading';
 import Banner from 'components/organisms/Banner';
 import HelmetComponent from 'container/MainLayout/helmet';
-import useCallService from 'hooks/useCallService';
 import useDidMount from 'hooks/useDidMount';
 import useMainLayout from 'hooks/useMainLayout';
+import usePreview from 'hooks/usePreview';
 import getNewsDetail from 'services/newsDetail';
+import { NewsDetailData } from 'services/newsDetail/types';
 import { useAppDispatch } from 'store/hooks';
 import { setPageTranslation } from 'store/locales';
 
@@ -19,7 +20,7 @@ const NewsDetail: React.FC = () => {
   useMainLayout({ isHome: false });
   const { slug } = useParams<{slug?: string}>();
   const dispatch = useAppDispatch();
-  const { status, data } = useCallService(() => getNewsDetail(slug), [slug]);
+  const { status, data } = usePreview<NewsDetailData>(() => getNewsDetail(slug), [slug]);
 
   useDidMount(() => {
     dispatch(setPageTranslation({
