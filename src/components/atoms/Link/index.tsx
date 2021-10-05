@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 
-interface LinkProps {
+interface LinkProps extends Omit<RouterLinkProps, 'to'> {
   target?: string;
   href: string;
-  extendsClass?: string;
   search?: string;
   state?: unknown;
 }
@@ -13,26 +12,26 @@ const Link: React.FC<LinkProps> = ({
   children,
   target,
   href,
-  extendsClass,
   search,
   state,
+  ...props
 }) => {
   if (href.includes('http')) {
     return (
-      <a target={target} href={href} className={extendsClass}>
+      <a {...props} target={target} href={href}>
         {children}
       </a>
     );
   }
   return (
     <RouterLink
+      {...props}
       to={{
         pathname: href,
-        search: search || window.location.search,
+        search,
         state,
       }}
       target={target}
-      className={extendsClass}
       aria-label="label"
     >
       {children}

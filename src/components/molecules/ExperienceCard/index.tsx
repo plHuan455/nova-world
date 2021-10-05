@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Image from 'components/atoms/Image';
+import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
 import Carousel from 'components/organisms/Carousel';
 import mapModifiers, { scrollCenter } from 'utils/functions';
@@ -52,10 +52,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
           listImg?.map((item, index) => (
             <Link
               key={`item-${index.toString()}`}
-              to={{
-                pathname: href,
-                search: window.location.search,
-              }}
+              href={href}
             >
               <Image imgSrc={item} ratio="546x618" alt={alt || 'thumbnail'} />
             </Link>

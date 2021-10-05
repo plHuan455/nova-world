@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
 import Image from 'components/atoms/Image';
+import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
 import Carousel, { NextArrow, PrevArrow } from 'components/organisms/Carousel';
@@ -61,11 +61,8 @@ export const DivergencesCard:React.FC<DivergencesCardType> = ({
       </div>
       <div className="t-divergences_card_link">
         <Link
-          to={{
-            pathname: link,
-            search: window.location.search,
-          }}
-          target={target || '_blank'}
+          href={link}
+          target={target}
         >
           <Text modifiers={['cyanCobaltBlue', 'underline', '700']}>
             {textLink}

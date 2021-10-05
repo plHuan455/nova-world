@@ -9,11 +9,14 @@ import NotifyContainer from './notify';
 import useDidMount from 'hooks/useDidMount';
 import useGaTracker from 'hooks/useGATracker';
 import useGTM from 'hooks/useGTM';
+import useQueryParams from 'hooks/useQueryParams';
+import { UTMParams } from 'services/contact/type';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getSystemsLocalesAsync } from 'store/locales';
 import { getHeaderMenuAsync, getStaticSlugAsync, setPrefixAction } from 'store/menu';
 import { getSystemsAsync } from 'store/systems';
 import { getTradingFloorsAsync } from 'store/trading';
+import { addUtmParams } from 'store/utm';
 import {
   checkActiveLang, findLanguageDefault, getLangURL, getPrefixCardDetail,
 } from 'utils/language';
@@ -34,10 +37,10 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
   } = useAppSelector((state) => state);
   const [isHome, setIsHome] = useState<boolean>(true);
   const dispatch = useAppDispatch();
+  const params = useQueryParams<UTMParams>();
 
   useGaTracker();
   useGTM();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
@@ -48,6 +51,9 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
     dispatch(getStaticSlugAsync());
     dispatch(getTradingFloorsAsync());
     dispatch(getSystemsAsync());
+    if (params && Object.keys(params).length > 0) {
+      dispatch(addUtmParams(params));
+    }
   });
 
   useEffect(() => {

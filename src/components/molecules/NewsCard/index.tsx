@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Image from 'components/atoms/Image';
+import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
 import mapModifiers from 'utils/functions';
 
@@ -26,11 +26,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
   ratio,
   href,
 }) => (
-  <Link to={{
-    pathname: href,
-    search: window.location.search,
-  }}
-  >
+  <Link href={href}>
     <div className={mapModifiers('m-newscard', direction)}>
       <div className="m-newscard_image">
         <Image imgSrc={imgSrc} alt={alt || 'thumbnail'} ratio={ratio} />

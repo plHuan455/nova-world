@@ -1,7 +1,7 @@
 import React, {
   useCallback, useMemo, useRef, useState,
 } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
 
 import Container from '../Container';
 
@@ -70,7 +70,6 @@ const Option: React.FC<OptionProps> = ({
         state: {
           keyword: refInputSearch.current?.value || '',
         },
-        search: window.location.search,
       });
       if (toggleMenu) {
         toggleMenu();
@@ -163,7 +162,7 @@ const Option: React.FC<OptionProps> = ({
                   {suggestList?.map((item, index) => (
                     <li className="o-header-suggest-item" key={`_suggest-item${String(index)}`}>
                       <Link
-                        extendsClass="o-header-suggest-link"
+                        className="o-header-suggest-link"
                         href={slugSearch || ''}
                         state={{
                           keyword: item.name || '',
@@ -243,10 +242,24 @@ interface NavProps {
 }
 
 const Nav: React.FC<NavProps> = ({ menuList, toggleMenu }) => {
+  const location = useLocation();
   const ref = useRef(null);
   const [isOpenMenuChild, setIsOpenMenuChild] = useState<number>(); // Menu Id
 
   useClickOutside(ref, (): void => setIsOpenMenuChild(undefined));
+
+  const checkActive = useCallback((href?: string) => {
+    if (href) {
+      if (i18n.language === 'vi') {
+        return location.pathname.split('/')[1].includes(href);
+      }
+      if (location.pathname.split('/')[2]) {
+        return location.pathname.split('/')[2].includes(href);
+      }
+      return false;
+    }
+    return false;
+  }, [location.pathname]);
 
   return (
     <ul className="o-header-nav" ref={ref}>
@@ -262,11 +275,11 @@ const Nav: React.FC<NavProps> = ({ menuList, toggleMenu }) => {
             ) : (
               <NavLink
                 exact
-                className="o-header-link"
-                to={{
-                  pathname: getSlugItemMenuHeader(menu, i18n.language),
-                  search: window.location.search,
-                }}
+                className={
+                  `o-header-link 
+                  ${checkActive(menu.reference?.slug) ? 'active' : ''}`
+                }
+                to={getSlugItemMenuHeader(menu, i18n.language)}
                 target={menu.target}
                 onClick={() => {
                   if (toggleMenu) {

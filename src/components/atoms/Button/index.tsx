@@ -31,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
   if (useLink) {
     return (
       <Link
-        extendsClass={mapModifiers('a-button', modifiers, isBorderWhite && 'border')}
+        className={mapModifiers('a-button', modifiers, isBorderWhite && 'border')}
         href={href || ''}
         target={target}
       >
