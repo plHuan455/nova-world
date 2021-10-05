@@ -11,13 +11,14 @@ const Search: React.FC<BasePageData<SearchPage>> = ({
   banners,
   blocks,
   seoData,
+  pageData,
 }) => {
   const { banner } = useMainLayout({ isHome: false, banners });
   const searchBlock = useMemo(() => getBlockData<SearchBlock>('section1', blocks), [blocks]);
 
   return (
     <>
-      <HelmetComponent seoData={seoData} />
+      <HelmetComponent seoData={{ ...seoData, imgSrc: pageData?.image }} />
       <section className="s-banner">
         <Banner thumbnail={banner} layerDew={false} />
       </section>

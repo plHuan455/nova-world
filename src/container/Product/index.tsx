@@ -35,6 +35,7 @@ const Screen: React.FC<BasePageData<ProductPage>> = ({
   banners,
   blocks,
   seoData,
+  pageData,
 }) => {
   const isMounted = useIsMounted();
 
@@ -86,7 +87,7 @@ const Screen: React.FC<BasePageData<ProductPage>> = ({
 
   return (
     <>
-      <HelmetComponent seoData={seoData} />
+      <HelmetComponent seoData={{ ...seoData, imgSrc: pageData?.image }} />
       <section className="s-banner">
         <Banner thumbnail={banner} />
       </section>

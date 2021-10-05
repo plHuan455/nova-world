@@ -12,6 +12,7 @@ const Contact:React.FC<BasePageData<ContactPage>> = ({
   banners,
   blocks,
   seoData,
+  pageData,
 }) => {
   const {
     trading: { data: addressList },
@@ -36,7 +37,7 @@ const Contact:React.FC<BasePageData<ContactPage>> = ({
 
   return (
     <>
-      <HelmetComponent seoData={seoData} />
+      <HelmetComponent seoData={{ ...seoData, imgSrc: pageData?.image }} />
       <section className="s-banner">
         <Banner thumbnail={banner} />
       </section>

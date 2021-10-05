@@ -19,6 +19,7 @@ const ExperienceJourney: React.FC<BasePageData<JourneysPage>> = ({
   banners,
   blocks,
   seoData,
+  pageData,
 }) => {
   const { banner } = useMainLayout({ isHome: false, banners });
   const dispatch = useAppDispatch();
@@ -54,7 +55,7 @@ const ExperienceJourney: React.FC<BasePageData<JourneysPage>> = ({
 
   return (
     <>
-      <HelmetComponent seoData={seoData} />
+      <HelmetComponent seoData={{ ...seoData, imgSrc: pageData?.image }} />
       <section>
         <Banner thumbnail={banner} />
       </section>

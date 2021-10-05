@@ -17,6 +17,7 @@ const Home: React.FC<BasePageData<HomePage>> = ({
   blocks,
   seoData,
   banners,
+  pageData,
 }) => {
   const { banner } = useMainLayout({ isHome: true, banners });
 
@@ -24,7 +25,7 @@ const Home: React.FC<BasePageData<HomePage>> = ({
 
   return (
     <>
-      <HelmetComponent seoData={seoData} />
+      <HelmetComponent seoData={{ ...seoData, imgSrc: pageData?.image }} />
       <section className="s-banner">
         <Banner isHomePage videoSrc={video?.videoLink} thumbnail={banner} />
       </section>

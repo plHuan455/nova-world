@@ -34,16 +34,9 @@ const usePreview = <T, >(
         } else {
           result = await callService();
         }
-        const dataNews = {
-          ...result,
-          seoData: {
-            ...result.seoData,
-            imgSrc: result.pageData?.image,
-          },
-        };
         setData({
           status: 'fullfilled',
-          data: dataNews,
+          data: result,
         });
       } catch (error) {
         setData({
