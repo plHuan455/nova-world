@@ -11,7 +11,7 @@ export type FooterSystems = {
 }
 
 export type SystemsData = {
-  seo: SEOData;
+  seo?: SEOData;
   header: HeaderSystems;
   footer: FooterSystems;
   googleAnalytics?: string;

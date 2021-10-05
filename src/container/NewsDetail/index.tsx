@@ -33,7 +33,7 @@ const NewsDetail: React.FC = () => {
 
   return (
     <>
-      <HelmetComponent seoData={data?.seoData} />
+      <HelmetComponent seoData={{ ...(data?.seoData || {}), imgSrc: data?.newsData?.thumbnail }} />
       <section className="s-banner">
         <Banner thumbnail={BannerDetail} />
       </section>
