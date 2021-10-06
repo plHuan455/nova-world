@@ -7,6 +7,7 @@ import news from './news';
 import notify from './notify';
 import systems from './systems';
 import trading from './trading';
+import utm from './utm';
 
 export const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
@@ -18,6 +19,7 @@ export const store = configureStore({
     locales,
     news,
     systems,
+    utm,
   },
 });
 

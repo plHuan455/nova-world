@@ -47,7 +47,6 @@ const NotFound: React.FC<BasePageData<NotFoundPage>> = ({
                 modifiers="android-green"
                 handleClick={() => history.push({
                   pathname: getHomeLangURL(i18n.language),
-                  search: window.location.search,
                 })}
               >
                 {data?.btnLabel}

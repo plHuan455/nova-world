@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 
 import Image from 'components/atoms/Image';
+import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
@@ -66,10 +66,7 @@ const Footer: React.FC<FooterProps> = ({
           <Container>
             <div className="o-footer_branch">
               <Link
-                to={{
-                  pathname: getHomeLangURL(i18n.language),
-                  search: window.location.search,
-                }}
+                href={getHomeLangURL(i18n.language)}
                 aria-label="logo-novaland"
               >
                 <Image ratio="335x261" imgSrc={logo || ''} />

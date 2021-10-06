@@ -8,10 +8,8 @@ import Input, { InputNumber } from 'components/atoms/Input';
 import Text from 'components/atoms/Text';
 import TextArea from 'components/atoms/Textarea';
 import Form from 'components/organisms/Form';
-import useQueryParams from 'hooks/useQueryParams';
 import { createContactStoreService } from 'services/contact';
-import { UTMParams } from 'services/contact/type';
-import { useAppDispatch } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { openNotify } from 'store/notify';
 import registerSchema from 'utils/schemas';
 
@@ -29,13 +27,12 @@ export interface FormRegisterProps {
 const FormRegister: React.FC<FormRegisterProps> = ({
   consultancySystem,
 }) => {
+  const { utm } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
   const method = useForm<ContactForm>({
     resolver: yupResolver(registerSchema),
     mode: 'onSubmit',
   });
-
-  const params = useQueryParams<UTMParams>();
 
   const [isLoading, setIsLoading] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -48,7 +45,7 @@ const FormRegister: React.FC<FormRegisterProps> = ({
       await createContactStoreService({
         ...data,
         grecaptchaToken: tokenRecaptcha,
-        ...params,
+        ...(utm?.data || {}),
       });
       dispatch(openNotify({ type: 'success', message: 'Đăng ký thành công' }));
       method.reset();

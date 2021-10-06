@@ -17,7 +17,6 @@ const ExperienceTextCard: React.FC<ExperienceTextCardProps> = ({ content, btnLin
     if (btnLink) {
       history.push({
         pathname: btnLink,
-        search: window.location.search,
       });
     }
   }, [btnLink, history]);

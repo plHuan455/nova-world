@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
+import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
 import mapModifiers from 'utils/functions';
@@ -40,11 +40,8 @@ const LibraryHome: React.FC<LibraryHomeProps> = ({ data, title }) => {
       >
         {data?.map((item, index) => (
           <Link
-            to={{
-              pathname: item.href,
-              state: { id: item.id },
-              search: window.location.search,
-            }}
+            href={item.href}
+            state={{ id: item.id }}
             key={`librarycard${String(index)}`}
             className={mapModifiers('t-libraryhome-link', idx === index && 'active')}
             onMouseEnter={() => setIdx(index)}
