@@ -23,7 +23,7 @@ const LocationCard: React.FC<LocationCardProps> = ({
 }) => (
   <div className="m-locationcard">
     <div className="m-locationcard_image">
-      <Image imgSrc={imgSrc} ratio="257x125" alt={alt || 'thumbnail'} />
+      <Image imgSrc={imgSrc} ratio="16x9" alt={alt || 'thumbnail'} />
     </div>
     <div className="m-locationcard_content">
       <div className="m-locationcard_content_title">

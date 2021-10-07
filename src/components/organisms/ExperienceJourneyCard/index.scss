@@ -7,6 +7,10 @@
     width: 100%;
     @include mobile-down {
       max-width: 100%;
+
+      .a-image {
+        background-size: cover;
+      }
     }
   }
 

@@ -64,7 +64,7 @@ const RelatedCard: React.FC<RelatedCardProps> = ({
   <Link href={href} target={target}>
     <div className="p-product_related-card">
       <div className="thumbnail">
-        <Image imgSrc={imgSrc} ratio="451x273" alt={title} />
+        <Image imgSrc={imgSrc} ratio="16x9" alt={title} />
       </div>
       <div className="title">
         <Text modifiers={['20x24', '500', 'white']}>
