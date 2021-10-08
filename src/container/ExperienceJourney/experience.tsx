@@ -20,7 +20,7 @@ type ExperienceProps = {
 const checkPositionCard = (index:number) => {
   switch (index) {
     case 1:
-      return 'right';
+      return 'custom';
     case 2:
       return 'bottom';
     case 3:
@@ -90,26 +90,29 @@ const Experience:React.FC<ExperienceProps> = ({
       </Container>
       <div className="p-experience-journey_content">
         {
-        data.map((item, key) => (
-          <div
-            key={`card-${key.toString()}`}
-            className="p-experience-journey_card-item"
-            ref={key + 1 === data.length ? (node) => setNode(node) : undefined}
-          >
-            <BgLayer index={fnLoop(key)} />
-            <Container>
-              <Animate
-                type={key % 2 === 0 ? 'scaleY' : 'scaleX'}
-              >
-                <ExperienceJourneyCard
-                  ratio={key + 1 === 2 ? '1126x617' : '840x521'}
-                  position={checkPositionCard(fnLoop(key))}
-                  {...item}
-                />
-              </Animate>
-            </Container>
-          </div>
-        ))
+        data.map((item, key) => {
+          console.log(fnLoop(key));
+          return (
+            <div
+              key={`card-${key.toString()}`}
+              className="p-experience-journey_card-item"
+              ref={key + 1 === data.length ? (node) => setNode(node) : undefined}
+            >
+              <BgLayer index={fnLoop(key)} />
+              <Container>
+                <Animate
+                  type={key % 2 === 0 ? 'scaleY' : 'scaleX'}
+                >
+                  <ExperienceJourneyCard
+                    ratio={key + 1 === 2 ? '1126x617' : '840x521'}
+                    position={checkPositionCard(fnLoop(key))}
+                    {...item}
+                  />
+                </Animate>
+              </Container>
+            </div>
+          );
+        })
       }
         { loading && <Loading modifiers={['blue']} />}
       </div>
