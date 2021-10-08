@@ -147,4 +147,58 @@
       }
     }
   }
+
+  &-custom {
+    position: relative;
+    #{$root}_image {
+      position: relative;
+      @include mobile-up {
+        max-width: calc(720 / 1126 * 100%);
+      }
+    }
+
+    #{$root}_inner, #{$root}_outer {
+      position: absolute;
+      text-align: right;
+      top: calc(153 / 521 * 100%);
+      @include desktop-down {
+        top: calc(108 / 521 * 100%);
+      }
+      @include tablet-down {
+        top: calc(98 / 521 * 100%);
+      }
+      @include mobile-down {
+        display: none;
+      }
+    }
+    #{$root}_inner {
+      right: rem(8);
+    }
+
+    #{$root}_outer {
+      left: calc(100% + 8px);
+      width: fit-content;
+    }
+
+    #{$root}_title {
+      @include mobile-up {
+        display: none;
+      }
+    }
+
+    #{$root}_info {
+      left: calc(520 / 1126 * 100%);
+      top: calc(153 / 521 * 100% + 70px);
+      @include desktop-down {
+        left: calc(477 / 1126 * 100%);
+        max-width: calc(548 / 1126 * 100%);
+        top: calc(94 / 521 * 100% + 70px);
+      }
+      @include tablet-down {
+        left: calc(343 / 1126 * 100%);
+        max-width: calc(748 / 1126 * 100%);
+        top: calc(80 / 521 * 100% + 56px);
+      }
+    }
+  }
 }
