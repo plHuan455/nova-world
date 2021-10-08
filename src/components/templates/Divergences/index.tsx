@@ -152,7 +152,7 @@ const Divergences: React.FC<DivergencesProps> = ({
               >
                 {
                   data.map((item, index) => (
-                    <Image key={`item-right-${index.toString()}`} ratio="762x470" imgSrc={item.imgSrc || ''} />
+                    <Image key={`item-right-${index.toString()}`} ratio="16x9" imgSrc={item.imgSrc || ''} />
                   ))
                 }
               </Carousel>

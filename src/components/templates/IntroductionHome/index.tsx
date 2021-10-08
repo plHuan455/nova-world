@@ -92,7 +92,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                           transform: `translate(-50%, -50%) rotate(${getRandomInt[index]}deg)`,
                         }}
                       >
-                        <Image imgSrc={getImageURL(item.image)} ratio="551x335" />
+                        <Image imgSrc={getImageURL(item.image)} ratio="16x9" />
                       </div>
                     ))
                   }

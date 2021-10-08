@@ -43,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => (
   <div className={mapModifiers('p-product_card', isReverse && 'reverse')}>
     <Animate type={isReverse ? 'scaleY' : 'scaleX'} extendClassName="thumbnail">
-      <Image ratio="676x430" alt={title} imgSrc={imgSrc} />
+      <Image ratio="16x9" alt={title} imgSrc={imgSrc} />
     </Animate>
     <Animate type={isReverse ? 'slideInLeft' : 'slideInRight'} extendClassName="wrapper">
       <div className="content">
