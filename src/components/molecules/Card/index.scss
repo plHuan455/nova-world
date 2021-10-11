@@ -1,6 +1,7 @@
 .m-card {
   box-shadow: 0 rem(4) rem(8) $black-overlay01;
-
+  height: 100%;
+  
   &_content {
     background-color: $white;
     padding: rem(16) rem(16) rem(24);

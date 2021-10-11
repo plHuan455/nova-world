@@ -16,11 +16,13 @@ export interface ExperienceCardProps {
 }
 
 const settings = {
-  infinite: false,
+  infinite: true,
   dots: true,
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: false,
+  autoplay: true,
+  autoplaySpeed: 3000,
   dotsClass: 'slick-dots o-carousel_dots',
   customPaging() {
     return (

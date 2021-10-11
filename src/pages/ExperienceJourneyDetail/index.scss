@@ -101,6 +101,19 @@
       height: auto;
       width: 100%;
     }
+
+    @include desktop-down {
+      img,
+      video {
+        height: auto !important;
+        width: 100% !important;
+      }
+
+      a img {
+        height: 51px !important;
+        width: 166px !important;
+      }
+    }
   }
 
   &_discover {

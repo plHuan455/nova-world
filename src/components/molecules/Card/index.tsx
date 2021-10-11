@@ -26,7 +26,7 @@ const Card: React.FC<CardProps> = ({
         </div>
         <div className="m-card_spacer" />
         <div className="m-card_content_desc">
-          <Text modifiers={['400']}>{description}</Text>
+          <Text modifiers={['400']} innerHTML={description} />
         </div>
       </div>
     </Link>

@@ -24,6 +24,8 @@ const settings = (length:number) => ({
   slidesToScroll: 1,
   arrows: true,
   speed: 300,
+  autoplay: true,
+  autoplaySpeed: 3000,
   prevArrow: <PrevArrow variant="light" />,
   nextArrow: <NextArrow variant="light" />,
   responsive: [

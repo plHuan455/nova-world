@@ -23,11 +23,13 @@ interface FeaturedProductProps {
 }
 
 const settings = {
-  infinite: false,
+  infinite: true,
   dots: false,
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: true,
+  autoplaySpeed: 4000,
+  autoplay: true,
   prevArrow: <PrevArrow />,
   nextArrow: <NextArrow />,
 };
