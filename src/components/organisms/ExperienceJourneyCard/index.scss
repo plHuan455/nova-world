@@ -10,17 +10,8 @@
 
       .a-image {
         background-size: cover;
-        display: block;
-        padding-top: 56.25%;
-        position: relative;
-
-        img {
-          display: block;
-          height: 100%;
-          left: 0;
-          position: absolute;
-          top: 0;
-          width: 100%;
+        @include mobile-down {
+          @include aspect-ratio(16,9);
         }
       }
     }
