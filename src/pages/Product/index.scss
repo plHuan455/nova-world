@@ -268,26 +268,26 @@
     $related-card: &;
 
     &:hover {
-      .thumbnail::after {
-        height: 0;
-        width: 0;
+      .thumbnail::before {
+        transform: translateX(300%) rotate(45deg);
       }
     }
 
     .thumbnail {
+      overflow: hidden;
       position: relative;
 
-      &::after {
-        background: linear-gradient(180deg, #10431f -18.49%, #2354a3 100%);
+      &::before {
+        background-color: rgba($white, 0.3);
         content: '';
-        height: 100%;
-        left: 50%;
-        opacity: 0.6;
+        height: 200%;
+        left: 0;
         position: absolute;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        transition: all $transition-long ease-in-out;
-        width: 100%;
+        top: -20%;
+        transform: translateX(-100%);
+        transition: $transition-long ease;
+        width: 50%;
+        z-index: $z-1;
       }
     }
 

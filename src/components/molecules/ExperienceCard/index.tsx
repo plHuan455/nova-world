@@ -22,7 +22,7 @@ const settings = {
   slidesToScroll: 1,
   arrows: false,
   autoplay: true,
-  autoplaySpeed: 3000,
+  autoplaySpeed: 4000,
   dotsClass: 'slick-dots o-carousel_dots',
   customPaging() {
     return (
