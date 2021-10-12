@@ -24,9 +24,11 @@ const ExperienceTextCard: React.FC<ExperienceTextCardProps> = ({ content, btnLin
   return (
     <div className="m-exptextcard">
       <div className="m-exptextcard_content">
-        <Text modifiers={['400', 'white']}>
-          {content}
-        </Text>
+        <div className="m-exptextcard_detail">
+          <Text modifiers={['400', 'white']}>
+            {content}
+          </Text>
+        </div>
         <div className="m-exptextcard_btn">
           <Button type="button" handleClick={handleClick} modifiers="normal" isBorderWhite>
             {btnLabel}

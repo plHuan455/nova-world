@@ -1,4 +1,5 @@
 .m-exptextcard {
+  $root: &;
   position: relative;
 
   &::before {
@@ -16,9 +17,12 @@
     @include tablet-down {
       padding: rem(24);
     }
-    @include text-overflow(5);
     @include mobile-down {
       padding: rem(16);
+    }
+
+    #{$root}_detail {
+      @include text-overflow(4);
     }
   }
 
