@@ -1,6 +1,7 @@
 import React, {
   useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 
 import Divider from 'components/atoms/Divider';
@@ -34,6 +35,7 @@ const Search: React.FC<SearchProps> = ({ title }) => {
   } = useAppSelector((state) => state);
 
   const isMounted = useIsMounted();
+  const { t } = useTranslation('translation');
 
   const { state } = useLocation<{keyword?: string}>();
   const refInputSearch = useRef<HTMLInputElement>(null);
@@ -117,6 +119,7 @@ const Search: React.FC<SearchProps> = ({ title }) => {
             handleClickSearch={handleClickSearch}
             onKeyDown={handleKeyDown}
             ref={refInputSearch}
+            placeholder={t('search.placeholder')}
           />
         </div>
         <div className="description">
@@ -124,9 +127,9 @@ const Search: React.FC<SearchProps> = ({ title }) => {
             <>
               <strong>{meta?.total || 0}</strong>
               {' '}
-              kết quả tìm thấy cho
+              {t('search.description')}
               {' '}
-              <strong>{`“${refKeyword.current}”`}</strong>
+              <strong>{`“${refKeyword.current || ''}”`}</strong>
             </>
           </Text>
         </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
 import Detail from './detail';
@@ -19,6 +20,7 @@ import { fnCustomUrlDetail } from 'utils/language';
 
 const ExperienceJourneyDetail:React.FC = () => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation('translation');
 
   const {
     menu: { prefix },
@@ -90,10 +92,9 @@ const ExperienceJourneyDetail:React.FC = () => {
       <section className="s-banner">
         <Banner thumbnail={getImageURL(detail?.banner)} layerDew={false} />
       </section>
-      {/* TODO: update banner and title */}
       <section className="s-wrap s-donut">
-        <Detail title="HÀNH TRÌNH TRẢI NGHIỆM" panel={dataPanel || []} labels={dataLabels || []} />
-        <Discover title="KHÁM PHÁ THÊM" listCard={listCard || []} />
+        <Detail title={t('experience_journey.title_detail')} panel={dataPanel || []} labels={dataLabels || []} />
+        <Discover title={t('experience_journey.title_discover_more')} listCard={listCard || []} />
       </section>
     </>
   );

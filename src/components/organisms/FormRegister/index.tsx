@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useState } from 'react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import Button from 'components/atoms/Button';
 import Input, { InputNumber } from 'components/atoms/Input';
@@ -29,9 +30,18 @@ const FormRegister: React.FC<FormRegisterProps> = ({
 }) => {
   const { utm } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
+
+  const { t } = useTranslation('translation');
+
   const method = useForm<ContactForm>({
-    resolver: yupResolver(registerSchema),
+    resolver: yupResolver(registerSchema(t)),
     mode: 'onSubmit',
+    defaultValues: {
+      name: '',
+      phone: '',
+      email: '',
+      content: '',
+    },
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -47,10 +57,10 @@ const FormRegister: React.FC<FormRegisterProps> = ({
         grecaptchaToken: tokenRecaptcha,
         ...(utm?.data || {}),
       });
-      dispatch(openNotify({ type: 'success', message: 'Đăng ký thành công' }));
+      dispatch(openNotify({ type: 'success', message: t('notify.success') }));
       method.reset();
     } catch {
-      dispatch(openNotify({ type: 'warning', message: 'Đăng ký không thành công' }));
+      dispatch(openNotify({ type: 'warning', message: t('notify.fail') }));
     } finally {
       setIsLoading(false);
     }

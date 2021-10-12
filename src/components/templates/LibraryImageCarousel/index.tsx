@@ -1,6 +1,7 @@
 import React, {
   useEffect, useRef, useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import Slider from 'react-slick';
 
 import Icon from 'components/atoms/Icon';
@@ -22,6 +23,7 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
   handleBack,
 }) => {
   const [slideIdx, setSlideIdx] = useState<number>(idxActive);
+  const { t } = useTranslation('translation');
 
   const sliderRef = useRef<Slider>(null);
 
@@ -111,7 +113,7 @@ const LibraryImageCarousel: React.FC<LibraryImageCarouselProps> = ({
           <button type="button" className="t-library-carousel_bottom_nav" onClick={handleBack}>
             <Icon iconName="arrowPrevArsenic" />
             <Text modifiers={['400', 'uppercase', 'cyanCobaltBlue']}>
-              Quay lại thư viện
+              {t('library.back_library')}
             </Text>
           </button>
           <div className="t-library-carousel_bottom_count">

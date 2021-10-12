@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Product, { ProductCardProps } from './product';
 import Related from './related';
@@ -18,19 +19,6 @@ const PAGE = {
   LIMIT: 4,
 };
 
-const formatData = (data: ProductData[]) => data.map((item) => (
-  {
-    index: item.id,
-    imgSrc: getImageURL(item?.thumbnail),
-    title: item?.title || '',
-    description: item?.subTitle || '',
-    // TODO : Update btn label
-    btnLabel: 'Khám phá ngay',
-    btnLink: item?.link || '',
-    target: item?.linkTarget || '',
-  }
-));
-
 const Screen: React.FC<BasePageData<ProductPage>> = ({
   banners,
   blocks,
@@ -38,6 +26,7 @@ const Screen: React.FC<BasePageData<ProductPage>> = ({
   pageData,
 }) => {
   const isMounted = useIsMounted();
+  const { t } = useTranslation('translation');
 
   const { banner } = useMainLayout({ isHome: false, banners });
   const block1 = useMemo(() => getBlockData<ProductBlock>('section1', blocks), [blocks]);
@@ -56,6 +45,18 @@ const Screen: React.FC<BasePageData<ProductPage>> = ({
     href: item.link,
     target: item.linkTarget,
   })), [dataRelated]);
+
+  const formatData = useCallback((data: ProductData[]) => data.map((item) => (
+    {
+      index: item.id,
+      imgSrc: getImageURL(item?.thumbnail),
+      title: item?.title || '',
+      description: item?.subTitle || '',
+      btnLabel: t('product.btn_label'),
+      btnLink: item?.link || '',
+      target: item?.linkTarget || '',
+    }
+  )), [t]);
 
   const fetchProductCard = useCallback(async (page) => {
     try {
