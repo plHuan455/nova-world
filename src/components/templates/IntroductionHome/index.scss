@@ -235,6 +235,19 @@
       &.remove {
         animation: zoomImage 0.8s ease-in-out;
       }
+
+      &-0,
+      &-3 {
+        transform: translate(-50%, -50%) rotate(-1deg);
+      }
+
+      &-1 {
+        transform: translate(-50%, -50%) rotate(-8deg);
+      }
+
+      &-2 {
+        transform: translate(-50%, -50%) rotate(4deg);
+      }
     }
   }
 
