@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Heading from 'components/atoms/Heading';
 import NewsCard from 'components/molecules/NewsCard';
@@ -17,7 +18,7 @@ const Related: React.FC<RelatedProps> = ({ data }) => {
   const {
     menu: { prefix },
   } = useAppSelector((state) => state);
-
+  const { t } = useTranslation('translation');
   if (!data?.length) return null;
 
   return (
@@ -26,7 +27,7 @@ const Related: React.FC<RelatedProps> = ({ data }) => {
         <div className="divider" />
         <div className="title">
           <Heading type="h2" modifiers={['500', 'cyanCobaltBlue', 'uppercase', 'center']}>
-            TIN TỨC LIÊN QUAN
+            {t('news.title_news_related')}
           </Heading>
         </div>
         <div className="list">

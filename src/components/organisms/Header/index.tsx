@@ -1,6 +1,7 @@
 import React, {
   useCallback, useMemo, useRef, useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 
 import Container from '../Container';
@@ -54,6 +55,7 @@ const Option: React.FC<OptionProps> = ({
 }) => {
   const isMounted = useIsMounted();
   const history = useHistory();
+  const { t } = useTranslation('translation');
 
   const refInputSearch = useRef<HTMLInputElement|null>(null);
   const refSuggest = useRef<HTMLUListElement|null>(null);
@@ -151,7 +153,7 @@ const Option: React.FC<OptionProps> = ({
                 onChange={handleOnChange}
                 ref={refInputSearch}
                 handleClickSearch={handleClickIconSearch}
-                placeholder="Tìm kiếm"
+                placeholder={t('search.placeholder')}
                 onKeyDown={handleKeyDown}
               />
             </div>

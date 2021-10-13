@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Button from 'components/atoms/Button';
 import Divider from 'components/atoms/Divider';
@@ -45,74 +46,77 @@ const NewsList: React.FC<NewsListProps> = ({
   page = 1,
   handleClickTab,
   handleShowMore,
-}) => (
-  <div className="t-news">
-    <Container>
-      <Animate type="beatSmall" extendClassName="t-news_title">
-        <Heading type="h2">
-          {title}
-          <Divider />
-        </Heading>
-      </Animate>
-      <Tabs slidesToShow={listLabel.length}>
-        {listLabel.map((ele, idx) => (
-          <Tab
-            key={idx.toString()}
-            label={ele.label}
-            active={idx === tabActive}
-            labelColor="cyanCobaltBlue"
-            handleClick={() => handleClickTab && handleClickTab(idx)}
-          />
-        ))}
-      </Tabs>
-      <div className="t-news_list">
-        {fetching ? (
-          <div className="t-news_loading">
-            <Loading modifiers={['blue']} />
-          </div>
-        ) : (
-          <>
-            {listPanel?.length > 0 && (
+}) => {
+  const { t } = useTranslation('translation');
+  return (
+    <div className="t-news">
+      <Container>
+        <Animate type="beatSmall" extendClassName="t-news_title">
+          <Heading type="h2">
+            {title}
+            <Divider />
+          </Heading>
+        </Animate>
+        <Tabs slidesToShow={listLabel.length}>
+          {listLabel.map((ele, idx) => (
+            <Tab
+              key={idx.toString()}
+              label={ele.label}
+              active={idx === tabActive}
+              labelColor="cyanCobaltBlue"
+              handleClick={() => handleClickTab && handleClickTab(idx)}
+            />
+          ))}
+        </Tabs>
+        <div className="t-news_list">
+          {fetching ? (
+            <div className="t-news_loading">
+              <Loading modifiers={['blue']} />
+            </div>
+          ) : (
             <>
-              {listPanel?.map((panel, index) => (
-                <Panel
-                  key={`panel-${index.toString()}`}
-                  active={tabActive === index}
-                >
-                  <div className="t-news_list_wrapper">
-                    {panel.listNews.length > 0 ? (
-                      panel.listNews.map((item, idx) => (
-                        <div className="t-news_list_item" key={idx.toString()}>
-                          <Card
-                            imgSrc={item.imgSrc}
-                            title={item.title}
-                            description={item.description}
-                            href={item.href}
-                          />
+              {listPanel?.length > 0 && (
+              <>
+                {listPanel?.map((panel, index) => (
+                  <Panel
+                    key={`panel-${index.toString()}`}
+                    active={tabActive === index}
+                  >
+                    <div className="t-news_list_wrapper">
+                      {panel.listNews.length > 0 ? (
+                        panel.listNews.map((item, idx) => (
+                          <div className="t-news_list_item" key={idx.toString()}>
+                            <Card
+                              imgSrc={item.imgSrc}
+                              title={item.title}
+                              description={item.description}
+                              href={item.href}
+                            />
+                          </div>
+                        ))
+                      ) : (
+                        <div className="t-news_list_empty">
+                          <Text>Không có tin tức</Text>
                         </div>
-                      ))
-                    ) : (
-                      <div className="t-news_list_empty">
-                        <Text>Không có tin tức</Text>
-                      </div>
-                    )}
-                  </div>
-                </Panel>
-              ))}
-              {totalPage > 1 && (
-              <div className="t-news_button">
-                <Button loading={loadingBtn} handleClick={handleShowMore} type="button">
-                  {totalPage > page ? 'Xem thêm' : 'Rút gọn'}
-                </Button>
-              </div>
+                      )}
+                    </div>
+                  </Panel>
+                ))}
+                {totalPage > 1 && (
+                <div className="t-news_button">
+                  <Button loading={loadingBtn} handleClick={handleShowMore} type="button">
+                    {totalPage > page ? t('button.show_more') : t('button.show_less')}
+                  </Button>
+                </div>
+                )}
+              </>
               )}
             </>
-            )}
-          </>
-        )}
-      </div>
-    </Container>
-  </div>
-);
+          )}
+        </div>
+      </Container>
+    </div>
+  );
+};
 
 export default NewsList;

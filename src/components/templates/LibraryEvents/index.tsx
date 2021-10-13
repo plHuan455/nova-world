@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Button from 'components/atoms/Button';
 import Loading from 'components/atoms/Loading';
@@ -23,44 +24,47 @@ const LibraryEvent: React.FC<LibraryEventProps> = ({
   loading,
   handleClick,
   handleShowMore,
-}) => (
-  <Animate type="scaleY" extendClassName="t-library-events">
-    <div className="t-library-events_list">
-      {fetching ? (
-        <div className="t-library-events_loading">
-          <Loading modifiers={['blue']} />
-        </div>
-      ) : (
-        <div className="t-library-events_list_wrapper">
-          {listEvent?.map((item, idx) => (
-            <div
-              className="t-library-events_list_item"
-              key={idx.toString()}
-              onClick={() => handleClick && handleClick(idx)}
-            >
-              <Card
-                imgSrc={item.imgSrc}
-                title={item.title}
-                description={item.description}
-              />
-            </div>
-          ))}
-        </div>
-      )}
-      {totalPage > 1 && (
+}) => {
+  const { t } = useTranslation('translation');
+  return (
+    <Animate type="scaleY" extendClassName="t-library-events">
+      <div className="t-library-events_list">
+        {fetching ? (
+          <div className="t-library-events_loading">
+            <Loading modifiers={['blue']} />
+          </div>
+        ) : (
+          <div className="t-library-events_list_wrapper">
+            {listEvent?.map((item, idx) => (
+              <div
+                className="t-library-events_list_item"
+                key={idx.toString()}
+                onClick={() => handleClick && handleClick(idx)}
+              >
+                <Card
+                  imgSrc={item.imgSrc}
+                  title={item.title}
+                  description={item.description}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+        {totalPage > 1 && (
         <div className="t-library-events_button">
           <Button
             loading={loading}
             handleClick={handleShowMore}
             type="button"
           >
-            {totalPage > page ? 'Xem thêm' : 'Rút gọn'}
+            {totalPage > page ? t('button.show_more') : t('button.show_less')}
           </Button>
         </div>
-      )}
-    </div>
-  </Animate>
-);
+        )}
+      </div>
+    </Animate>
+  );
+};
 
 LibraryEvent.defaultProps = {};
 

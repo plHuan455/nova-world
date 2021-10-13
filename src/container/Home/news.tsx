@@ -1,6 +1,7 @@
 import React, {
   useState, useEffect, useCallback, useRef,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import NewsHome, { NewsHomeTabProps } from 'components/templates/NewsHome';
 import useDidMount from 'hooks/useDidMount';
@@ -23,6 +24,8 @@ const NewsHomeContainer: React.FC<NewsHomeContainerProps> = ({
     menu: { prefix },
   } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
+
+  const { t } = useTranslation('translation');
 
   const firstCall = useRef(true);
 
@@ -65,7 +68,7 @@ const NewsHomeContainer: React.FC<NewsHomeContainerProps> = ({
           ratio: index === 0 ? '644x323' : '450x248' as Ratio,
           title: card.title,
           desc: card.description,
-          updatedate: `Cập nhật lúc ${card.publishedAt}`,
+          updatedate: `${t('news.update_at')} ${card.publishedAt}`,
           href: prefix?.newsDetail + card.slug,
         }));
 
