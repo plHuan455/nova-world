@@ -50,27 +50,28 @@
 
   &_content {
     padding: rem(52) rem(24) 0;
+    @include tablet-up {
+      height: 100%;
+      left: 0;
+      overflow-y: auto;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      @include scroll-bars(10);
+    }
+
 
     @include tablet-down {
-      padding: rem(36) rem(24) rem(24);
+      padding: rem(36) rem(24) 0;
     }
 
     @include mobile-down {
-      padding: rem(24) rem(16) rem(16);
-    }
-
-    &_titlemain {
-      max-height: rem(60);
-      overflow-y: auto;
-      @include scroll-bars(4);
+      padding: rem(24) rem(16) 0;
     }
 
     &_title {
       margin-bottom: rem(24);
       margin-top: rem(12);
-      max-height: rem(200);
-      overflow-y: auto;
-      @include scroll-bars(4);
     }
 
     .a-button {
@@ -81,8 +82,14 @@
 
   &_right {
     flex: 0 0 calc(400 / 1024 * 100%);
+    @include tablet-up {
+      overflow: hidden;
+      position: relative;
+    }
     @include tablet-down {
       flex: 0 0 100%;
+      max-height: rem(330);
+      overflow-y: auto;
     }
   }
 }
