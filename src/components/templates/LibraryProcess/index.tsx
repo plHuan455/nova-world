@@ -152,9 +152,10 @@ const LibraryProcess: React.ForwardRefRenderFunction<
                     >
                       <div className="t-library-process_content_inner">
                         <div className="t-library-process_content_info-desc">
-                          <Text modifiers={['20x24', '500', 'cyanCobaltBlue']}>
-                            {val.desc}
-                          </Text>
+                          <Text
+                            type="div"
+                            innerHTML={val.desc}
+                          />
                         </div>
                       </div>
                     </div>

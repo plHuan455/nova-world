@@ -236,6 +236,14 @@
         margin-top: rem(20);
       }
     }
+
+    &_info-desc {
+      .a-text {
+        color: $cyan-cobalt-blue;
+        font-weight: 500;
+        @include font-base (20, 24);
+      }
+    }
   }
 
   .slick {
