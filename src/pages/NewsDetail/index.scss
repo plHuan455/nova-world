@@ -80,4 +80,19 @@
       width: 100%;
     }
   }
+
+  .s-donut {
+    &::before {
+      top: -12%;
+      @include desktop-down {
+        top: -10%;
+      }
+      @include tablet-down {
+        top: -8%;
+      }
+      @include mobile-down {
+        top: -5%;
+      }
+    }
+  }
 }

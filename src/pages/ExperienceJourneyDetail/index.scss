@@ -159,4 +159,20 @@
       }
     }
   }
+
+  .s-donut {
+    &::before {
+      top: -6%;
+      @include desktop-down {
+        top: -3%;
+      }
+      @include tablet-down {
+        top: -2%;
+      }
+      @include mobile-down {
+        top: -1%;
+      }
+    }
+  }
+
 }

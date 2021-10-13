@@ -55,9 +55,11 @@ const EventPopup: React.FC<EventPopupProps> = ({
           </div>
           <div className="t-eventpopup_right">
             <div className="t-eventpopup_content">
-              <Text modifiers={['20x32', 'cyanCobaltBlue', 's00015', '600']}>
-                {eventData?.title}
-              </Text>
+              <div className="t-eventpopup_content_titlemain">
+                <Text modifiers={['20x32', 'cyanCobaltBlue', 's00015', '600']}>
+                  {eventData?.title}
+                </Text>
+              </div>
               <div className="t-eventpopup_content_title">
                 <Text
                   modifiers={['dimGray']}
