@@ -225,15 +225,48 @@
       left: 50%;
       position: absolute;
       top: 50%;
+      transform: translate(-50%, -50%) rotate(7deg);
       transition-delay: 0.35s;
       width: 100%;
-
+      
       &.active {
         z-index: 2;
       }
 
       &.remove {
         animation: zoomImage 0.8s ease-in-out;
+      }
+
+      &-0 {
+        transform: translate(-50%, -50%) rotate(-2.6deg);
+      }
+
+      &-1 {
+        transform: translate(-50%, -50%) rotate(3.17deg);
+      }
+
+      &-2 {
+        transform: translate(-50%, -50%) rotate(-11deg);
+      }
+
+      &-3 {
+        transform: translate(-50%, -50%) rotate(7deg);
+      }
+
+      &-4 {
+        transform: translate(-50%, -50%) rotate(-5deg);
+      }
+
+      &-5 {
+        transform: translate(-50%, -50%) rotate(7deg);
+      }
+
+      &-6 {
+        transform: translate(-50%, -50%) rotate(8deg);
+      }
+
+      &-7 {
+        transform: translate(-50%, -50%) rotate(-2deg);
       }
     }
   }

@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Slider, { Settings } from 'react-slick';
 
 import Divider from 'components/atoms/Divider';
@@ -37,16 +37,6 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const refCarousel = useRef<Slider|null>(null);
-
-  const getRandomInt = useMemo(() => {
-    const result: number[] = [];
-    const min = Math.ceil(-11);
-    const max = Math.floor(11);
-    image.forEach(() => {
-      result.push(Math.floor(Math.random() * (max - min) + min));
-    });
-    return result;
-  }, [image]);
 
   const handleSlide = () => {
     if (currentSlide < image.length - 1) {
@@ -87,10 +77,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
                       <div
                         onClick={handleSlide}
                         key={`item-${index.toString()}`}
-                        className={`t-introductionhome_box-image ${index === currentSlide ? 'active' : 'remove'}`}
-                        style={{
-                          transform: `translate(-50%, -50%) rotate(${getRandomInt[index]}deg)`,
-                        }}
+                        className={`t-introductionhome_box-image t-introductionhome_box-image-${index} ${index === currentSlide ? 'active' : 'remove'}`}
                       >
                         <Image imgSrc={getImageURL(item.image)} ratio="16x9" />
                       </div>
