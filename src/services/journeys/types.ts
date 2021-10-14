@@ -1,3 +1,8 @@
+export type Images = {
+  image: string;
+  title: string;
+  subTitle: string;
+}
 export type JourneysItem = {
   id: number;
   displayOrder: number;
@@ -13,7 +18,7 @@ export type JourneysItem = {
   buttonLable?: string;
   subtitle?: string;
   thumnailHome?: string;
-  images?: Array<string>;
+  images?: Images[];
   banner?: string;
 }
 

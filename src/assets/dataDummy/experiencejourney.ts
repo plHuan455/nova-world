@@ -4,31 +4,33 @@ import imgExperienceCard3 from 'assets/images/experienceJourney/img_experienceCa
 import imgExperienceCard4 from 'assets/images/experienceJourney/img_experienceCard4.png';
 import { ExperienceCardProps } from 'components/molecules/ExperienceCard';
 
-const dataExperienceJourney:ExperienceCardProps[] = [
-  {
-    listImg: [imgExperienceCard],
-    title: 'Vui chơi giải trí',
-    location: 'NovaWorld Ho Tram',
-    href: '',
-  },
-  {
-    listImg: [imgExperienceCard2],
-    title: 'nghỉ dưỡng cao cấp',
-    location: 'NovaWorld Ho Tram',
-    href: '',
-  },
-  {
-    listImg: [imgExperienceCard3],
-    title: 'DỊCH VỤ LƯU TRÚ',
-    location: 'NovaWorld Ho Tram',
-    href: '',
-  },
-  {
-    listImg: [imgExperienceCard4],
-    title: 'ẨM THỰC THƯƠNG MẠI',
-    location: 'NovaWorld Ho Tram',
-    href: '',
-  },
-];
+const dataExperienceJourney: ExperienceCardProps = {
+  item: [
+    {
+      imgSrc: imgExperienceCard,
+      title: 'Vui chơi giải trí',
+      subTitle: 'NovaWorld Ho Tram',
+      href: '',
+    },
+    {
+      imgSrc: imgExperienceCard2,
+      title: 'nghỉ dưỡng cao cấp',
+      subTitle: 'NovaWorld Ho Tram',
+      href: '',
+    },
+    {
+      imgSrc: imgExperienceCard3,
+      title: 'DỊCH VỤ LƯU TRÚ',
+      subTitle: 'NovaWorld Ho Tram',
+      href: '',
+    },
+    {
+      imgSrc: imgExperienceCard4,
+      title: 'ẨM THỰC THƯƠNG MẠI',
+      subTitle: 'NovaWorld Ho Tram',
+      href: '',
+    },
+  ],
+};
 
 export default dataExperienceJourney;

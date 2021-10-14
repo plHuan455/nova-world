@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import ExperienceJourney from '.';
 
-import dataExperienceJourney from 'assets/dataDummy/experiencejourney';
+// import dataExperienceJourney from 'assets/dataDummy/experiencejourney';
 
 export default {
   title: 'Components/templates/ExperienceJourney',
@@ -16,7 +16,7 @@ export const normal: Story = () => (
   <BrowserRouter>
     <ExperienceJourney
       title="HÀNH TRÌNH TRẢI NGHIỆM"
-      dataExperienceJourney={dataExperienceJourney}
+      dataExperienceJourney={[]}
     />
   </BrowserRouter>
 );

@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 
+import { ExperienceCardItem } from 'components/molecules/ExperienceCard';
 import ExperienceJourney from 'components/templates/ExperienceJourney';
 import useDidMount from 'hooks/useDidMount';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
@@ -31,17 +32,21 @@ const ExperienceJourneyHome: React.FC<ExperienceJourneyHomeProps> = ({
     }
   });
 
-  const dataJourneys = useMemo(() => journeys.data.map((item) => {
-    const groupImg = item?.thumnailHome
-      ? [item.thumnailHome, ...(item?.images || [])]
-      : (item?.images || []);
-    return ({
-      listImg: groupImg.map((img) => getImageURL(img)),
-      title: item?.title || '',
-      location: item?.subtitle || '',
-      href: (prefix?.journeysDetail && item.slug) ? prefix.journeysDetail + item.slug : '',
+  const dataJourneys = useMemo((): ExperienceCardItem[][] => {
+    if (!journeys?.data.length) return [];
+
+    return journeys.data.map((item) => {
+      if (!item.images?.length) return [];
+
+      return item.images.map((e) => ({
+        href: (prefix?.journeysDetail && item.slug) ? prefix.journeysDetail + item.slug : '',
+        title: e.title,
+        subTitle: e.subTitle,
+        imgSrc: getImageURL(e.image),
+        alt: e.title,
+      }));
     });
-  }), [journeys.data, prefix]);
+  }, [journeys, prefix]);
 
   return (
     <ExperienceJourney
