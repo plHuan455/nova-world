@@ -28,11 +28,14 @@ const ExperienceJourneyCard: React.FC<ExperienceJourneyCardProps> = ({
   const customText = useMemo(() => {
     if (position === 'custom') {
       const arr = title?.split(' ');
+      const mid = arr ? arr?.length / 2 : 0;
 
-      return {
-        left: arr?.slice(0, 2).join(' '),
-        right: arr?.slice(2).join(' '),
-      };
+      if (mid) {
+        return {
+          left: arr?.slice(0, mid).join(' '),
+          right: arr?.slice(mid).join(' '),
+        };
+      }
     }
     return {
       left: '',
