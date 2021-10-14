@@ -20,11 +20,15 @@ export const normal: Story = () => (
       }}
     >
       <ExperienceCard
-        listImg={[imgExperianceCard]}
-        title="Vui chơi giải trí"
-        location="Novaworld Ho Tram Wonderland"
-        stt={1}
-        href=""
+        item={[
+          {
+            title: 'Vui chơi giải trí',
+            subTitle: 'Novaworld Ho Tram Wonderland',
+            imgSrc: imgExperianceCard,
+            alt: '',
+            href: '',
+          },
+        ]}
       />
     </div>
   </BrowserRouter>
