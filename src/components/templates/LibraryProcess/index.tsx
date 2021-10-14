@@ -42,37 +42,10 @@ const LibraryProcess: React.ForwardRefRenderFunction<
     variableWidth: milestoneArr.length > 1,
     arrows: true,
     slidesToScroll: 1,
-    slidesToShow: 9,
     infinite: false,
     focusOnSelect: milestoneArr.length > 1,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-    responsive: [
-      {
-        breakpoint: 1210,
-        settings: {
-          arrows: true,
-          slidesToShow: 6,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 991,
-        settings: {
-          arrows: true,
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          arrows: true,
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-    ],
   };
   const contentSettings = {
     infinite: false,
@@ -89,7 +62,7 @@ const LibraryProcess: React.ForwardRefRenderFunction<
   useEffect(() => {
     if (processList.length > 0) setVideoItem(processList[processList.length - 1]);
     if (nav1) {
-      nav1.slickGoTo(processList.length - 1, true);
+      nav1.slickGoTo(0, true);
     }
   }, [processList, nav1]);
   return (
@@ -154,6 +127,7 @@ const LibraryProcess: React.ForwardRefRenderFunction<
                         <div className="t-library-process_content_info-desc">
                           <Text
                             type="div"
+                            modifiers={['20x24', '500', 'cyanCobaltBlue']}
                             innerHTML={val.desc}
                           />
                         </div>
