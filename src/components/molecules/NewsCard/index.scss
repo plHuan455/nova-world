@@ -1,17 +1,3 @@
-@mixin layer ($bg) {
-  background: $bg;
-  bottom: 0;
-  content: '';
-  height: 100%;
-  left: 0;
-  opacity: 0.5;
-  pointer-events: none;
-  position: absolute;
-  right: 0;
-  transition: $transition ease;
-  z-index: 1;
-}
-
 .m-newscard {
   $root: &;
   position: relative;
@@ -73,10 +59,20 @@
   }
 
   &_image {
+    overflow: hidden;
     position: relative;
 
     &::before {
-      @include layer(rgba(27, 30, 34, 0.4));
+      background-color: rgba($white, 0.3);
+      content: '';
+      height: 200%;
+      left: 0;
+      position: absolute;
+      top: -20%;
+      transform: translateX(-100%);
+      transition: $transition-long ease;
+      width: 50%;
+      z-index: $z-1;
     }
 
     @include small-mobile {
@@ -89,7 +85,7 @@
   &:hover {
     #{$root}_image {
       &::before {
-        background: transparent;
+        transform: translateX(300%) rotate(45deg);
       }
     }
 
