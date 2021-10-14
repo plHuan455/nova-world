@@ -4,16 +4,16 @@ import React, {
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 
+import Content from './content';
+import { TabsFirst, TabsSecond } from './tabs-search';
+
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
-import Loading from 'components/atoms/Loading';
 import Text from 'components/atoms/Text';
-import Card from 'components/molecules/Card';
 import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
 import { InputSearch } from 'components/organisms/Header';
 import useIsMounted from 'hooks/useIsMounted';
-import useScrollInfinite from 'hooks/useScrollInfinite';
 import { getSearchService } from 'services/search';
 import { SearchItem } from 'services/search/type';
 import { useAppSelector } from 'store/hooks';
@@ -26,7 +26,7 @@ interface SearchProps {
 
 const PAGE = {
   PAGE_INITIAL: 1,
-  LIMIT: 12,
+  LIMIT: 9,
 };
 
 const Search: React.FC<SearchProps> = ({ title }) => {
@@ -38,13 +38,15 @@ const Search: React.FC<SearchProps> = ({ title }) => {
   const { t } = useTranslation('translation');
 
   const { state } = useLocation<{keyword?: string}>();
-  const refInputSearch = useRef<HTMLInputElement>(null);
   const refKeyword = useRef<string>('');
 
   const [value, setValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [meta, setMeta] = useState<Meta>();
   const [dataSearch, setDataSearch] = useState<SearchItem[]>([]);
+  const [slice, setSlice] = useState<number>();
+  const [indexTabsFirst, setIndexTabsFirst] = useState(0);
+  const [indexTabsSecond, setIndexTabsSecond] = useState(0);
 
   const fetchCardList = useCallback(async (page, keyword) => {
     try {
@@ -72,14 +74,6 @@ const Search: React.FC<SearchProps> = ({ title }) => {
     if (isMounted()) setValue(state?.keyword || '');
   }, [state, isMounted]);
 
-  const listCard = useMemo(() => dataSearch.map((item) => ({
-    imgSrc: getImageURL(item?.thumbnail),
-    title: item?.title,
-    description: item?.description,
-    href: item?.type === 'news' ? fnCustomUrlDetail(prefix?.newsDetail, item?.slug) : item?.link,
-    target: item?.linkTarget,
-  })), [dataSearch, prefix?.newsDetail]);
-
   useEffect(() => {
     fetchCardList(1, state?.keyword);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -96,34 +90,45 @@ const Search: React.FC<SearchProps> = ({ title }) => {
   }, [fetchCardList, value]);
 
   const handleLoadMore = useCallback(() => {
-    if (meta && meta.page < meta.totalPages) {
+    if (!slice && meta && meta.page < meta.totalPages) {
       fetchCardList(meta.page + 1, value);
     }
-  }, [fetchCardList, meta, value]);
+    if (!slice && meta && meta.page >= meta.totalPages) {
+      setSlice(9);
+    }
+    if (slice) {
+      setSlice(undefined);
+    }
+  }, [fetchCardList, meta, slice, value]);
 
-  const { setNode } = useScrollInfinite(handleLoadMore);
+  const listCard = useMemo(() => dataSearch.map((item) => ({
+    imgSrc: getImageURL(item?.thumbnail),
+    title: item?.title,
+    description: item?.description,
+    href: item?.type === 'news' ? fnCustomUrlDetail(prefix?.newsDetail, item?.slug) : item?.link,
+    target: item?.linkTarget,
+  })), [dataSearch, prefix?.newsDetail]);
 
   return (
     <Container>
-      <Animate type="fadeInUp" extendClassName="title">
-        <Heading type="h2">
-          {title}
-          <Divider />
-        </Heading>
-      </Animate>
       <Animate type="fadeInUp">
+        <div className="title">
+          <Heading type="h2">
+            {title}
+            <Divider />
+          </Heading>
+        </div>
         <div className="input">
           <InputSearch
             onChange={(e) => setValue(e.target.value)}
             value={value}
             handleClickSearch={handleClickSearch}
             onKeyDown={handleKeyDown}
-            ref={refInputSearch}
             placeholder={t('search.placeholder')}
           />
         </div>
         <div className="description">
-          <Text type="p">
+          <Text modifiers={['center']} type="p">
             <>
               <strong>{meta?.total || 0}</strong>
               {' '}
@@ -133,18 +138,26 @@ const Search: React.FC<SearchProps> = ({ title }) => {
             </>
           </Text>
         </div>
-        <div className="list">
-          {listCard.map((item, index) => (
-            <div
-              ref={index + 1 === listCard.length ? (node) => setNode(node) : undefined}
-              className="item"
-              key={`_card${String(index)}`}
-            >
-              <Card {...item} />
-            </div>
-          ))}
-        </div>
-        { loading && <Loading modifiers={['blue']} />}
+      </Animate>
+      <Animate type="fadeInUp" extendClassName="tabs-first">
+        <TabsFirst
+          indexActive={indexTabsFirst}
+          handleClick={(index) => setIndexTabsFirst(index)}
+        />
+      </Animate>
+      <Animate type="fadeInUp" extendClassName="tabs-second">
+        <TabsSecond
+          indexActive={indexTabsSecond}
+          handleClick={(index) => setIndexTabsSecond(index)}
+        />
+      </Animate>
+      <Animate type="fadeInUp" extendClassName="search-content">
+        <Content
+          buttonName={(!slice && meta && meta.page >= meta.totalPages) ? t('button.show_less') : t('button.show_more')}
+          listCard={listCard.slice(0, slice || listCard.length)}
+          handleClick={handleLoadMore}
+          isLoading={loading}
+        />
       </Animate>
     </Container>
   );
