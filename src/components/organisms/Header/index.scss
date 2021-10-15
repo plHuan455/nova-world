@@ -176,7 +176,7 @@
     }
 
     @include desktop-down {
-      @include mx(-6, -6);
+      @include mx(0, -16);
     }
 
     @include tablet-down {
@@ -194,7 +194,7 @@
       }
 
       @include desktop-down {
-        @include px(6, 6);
+        @include px(0, 10);
       }
 
       @include tablet-down {
