@@ -9,10 +9,12 @@ import HelmetComponent from 'container/MainLayout/helmet';
 import useDidMount from 'hooks/useDidMount';
 import useIsMounted from 'hooks/useIsMounted';
 import useMainLayout from 'hooks/useMainLayout';
+import i18n from 'i18n';
 import {
   getNewsListByCateService,
 } from 'services/news';
 import { CategoriesData, NewsData } from 'services/news/types';
+import { News } from 'services/systems/types';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getListCategoriesAsync } from 'store/news';
 import { getBlockData, getImageURL } from 'utils/functions';
@@ -29,8 +31,10 @@ const NewsContainer: React.FC<BasePageData<NewsPage>> = ({
   const isMounted = useIsMounted();
   const {
     news: { categories, loading: loadingGetCategories },
-    menu: { prefix },
   } = useAppSelector((state) => state);
+
+  const { baseSystem } = useAppSelector((state) => state.systems);
+  const newsDetailSlug = baseSystem?.routeMappings.novaworld.news[i18n.language as keyof News];
 
   const dispatch = useAppDispatch();
 
@@ -59,7 +63,7 @@ const NewsContainer: React.FC<BasePageData<NewsPage>> = ({
     imgSrc: getImageURL(item.thumbnail),
     title: item.title,
     description: item.description,
-    href: prefix?.newsDetail + item.slug,
+    href: `/${newsDetailSlug}/${item.slug}`,
   }));
 
   const convertPanelList = (

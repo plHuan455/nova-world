@@ -1,0 +1,43 @@
+{
+  "button": {
+		"show_more": "Show more",
+		"show_less": "Show less"
+  },
+  "form": {
+		"required_information": "Required information",
+		"invalid_email": "Invalid email",
+		"invalid_phone": "Invalid phone number"
+  },
+  "notify": {
+    "success" : "Sign up success",
+    "fail": "Sign up failed",
+    "data_not_found": "Data not found"
+  },
+  "product": {
+    "btn_label": "Discover"
+  },
+  "experience_journey": {
+    "title_detail": "EXPERIENCE JOURNEY",
+    "title_discover_more": "Discovery more"
+  },
+  "library": {
+    "back_library": "Back to library"
+  },
+  "news": {
+    "update_at": "Update at",
+    "title_news_related" : "Related news"
+  },
+  "search": {
+    "placeholder" : "Search",
+    "description" : "Results found for",
+    "nova_hotram" : "NovaWorld Ho Tram",
+    "habana_island": "Habana Island",
+    "morito": "Morito",
+    "the_tropicana": "The Tropicana",
+    "wonderland": "Wonderland",
+    "page": "Page",
+    "news": "News",
+    "utilities": "Utilities",
+    "products": "Products"
+  }
+}

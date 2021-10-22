@@ -5,21 +5,21 @@ import Heading from 'components/atoms/Heading';
 import NewsCard from 'components/molecules/NewsCard';
 import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
+import i18n from 'i18n';
 import { RelatedNewsData } from 'services/newsDetail/types';
+import { News } from 'services/systems/types';
 import { useAppSelector } from 'store/hooks';
 import { getImageURL } from 'utils/functions';
-import { fnCustomUrlDetail } from 'utils/language';
 
 interface RelatedProps {
   data?: RelatedNewsData[]
 }
 
 const Related: React.FC<RelatedProps> = ({ data }) => {
-  const {
-    menu: { prefix },
-  } = useAppSelector((state) => state);
+  const { baseSystem } = useAppSelector((state) => state.systems);
   const { t } = useTranslation('translation');
   if (!data?.length) return null;
+  const newsDetailSlug = baseSystem?.routeMappings.novaworld.news[i18n.language as keyof News];
 
   return (
     <Container>
@@ -37,7 +37,7 @@ const Related: React.FC<RelatedProps> = ({ data }) => {
                 imgSrc={getImageURL(item?.thumbnail)}
                 direction={index === 0 ? 'vertical' : 'horizontal'}
                 ratio={index === 0 ? '644x323' : '450x248'}
-                href={fnCustomUrlDetail(prefix?.newsDetail, item?.slug)}
+                href={`/${newsDetailSlug}/${item.slug}`}
                 updatedate={index === 0 ? item.publishedAt : ''}
                 title={item?.title}
                 desc={index === 0 ? item?.description : ''}
