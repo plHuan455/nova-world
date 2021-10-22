@@ -14,7 +14,7 @@ import { UTMParams } from 'services/contact/type';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getSystemsLocalesAsync } from 'store/locales';
 import { getHeaderMenuAsync, getStaticSlugAsync, setPrefixAction } from 'store/menu';
-import { getSystemsAsync } from 'store/systems';
+import { getSystemsAsync, getBaseSystemAsync } from 'store/systems';
 import { getTradingFloorsAsync } from 'store/trading';
 import { addUtmParams } from 'store/utm';
 import {
@@ -51,6 +51,7 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
     dispatch(getStaticSlugAsync());
     dispatch(getTradingFloorsAsync());
     dispatch(getSystemsAsync());
+    dispatch(getBaseSystemAsync());
     if (params && Object.keys(params).length > 0) {
       dispatch(addUtmParams(params));
     }

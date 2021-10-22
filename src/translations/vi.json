@@ -1,0 +1,43 @@
+{
+  "button": {
+    "show_more": "Xem thêm",
+    "show_less": "Thu gọn"
+  },
+  "form": {
+    "required_information": "Thông tin bắt buộc",
+    "invalid_email": "Email không hợp lệ",
+    "invalid_phone": "Số điện thoại không hợp lệ"
+  },
+  "notify": {
+    "success" : "Đăng ký thành công",
+    "fail": "Đăng ký không thành công",
+    "data_not_found": "Dữ liệu không tồn tại"
+  },
+  "product": {
+    "btn_label": "Khám phá ngay"
+  },
+  "experience_journey": {
+    "title_detail": "HÀNH TRÌNH TRẢI NGHIỆM",
+    "title_discover_more": "KHÁM PHÁ THÊM"
+  },
+  "library": {
+    "back_library": "QUAY LẠI THƯ VIỆN"
+  },
+  "news": {
+    "update_at": "Cập nhập lúc",
+    "title_news_related" : "TIN TỨC LIÊN QUAN"
+  },
+  "search": {
+    "placeholder" : "Tìm kiếm",
+    "description" : "Kết quả tìm thấy cho",
+    "nova_hotram" : "Habana Island",
+    "habana_island": "Habana Island",
+    "morito": "Morito",
+    "the_tropicana": "The Tropicana",
+    "wonderland": "Wonderland",
+    "page": "Trang",
+    "news": "Tin tức",
+    "utilities": "Tiện ích",
+    "products": "Sản phẩm"
+  }
+}

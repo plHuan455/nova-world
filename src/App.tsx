@@ -9,6 +9,8 @@ import {
 } from 'react-router-dom';
 
 import { MainLayoutProvider } from 'container/MainLayout';
+import i18n from 'i18n';
+import { News } from 'services/systems/types';
 import { store } from 'store';
 import { useAppSelector } from 'store/hooks';
 import {
@@ -26,12 +28,15 @@ const App: React.FC = () => {
     locales: { listLocales },
   } = useAppSelector((state) => state);
 
+  const { baseSystem } = useAppSelector((state) => state.systems);
+  const newsDetailSlug = baseSystem?.routeMappings.novaworld.news[i18n.language as keyof News];
+
   const routesList = useMemo(() => ({
     home: convertHomeRoute(listLocales),
-    newsDetail: convertRoute(listLocales, `/${getSlugByTemplateCode('news', staticSlug)}/:slug`),
+    newsDetail: convertRoute(listLocales, `/${newsDetailSlug}/:slug`),
     journeyDetail: convertRoute(listLocales, `/${getSlugByTemplateCode('journey', staticSlug)}/:slug`),
     pages: convertRoute(listLocales, '/:slug'),
-  }), [staticSlug, listLocales]);
+  }), [staticSlug, listLocales, newsDetailSlug]);
 
   return (
     <div className="app">
