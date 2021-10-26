@@ -5,7 +5,9 @@ import { useTranslation } from 'react-i18next';
 
 import NewsHome, { NewsHomeTabProps } from 'components/templates/NewsHome';
 import useDidMount from 'hooks/useDidMount';
+import i18n from 'i18n';
 import { getNewsListByCateService } from 'services/news';
+import { News } from 'services/systems/types';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getListCategoriesAsync } from 'store/news';
 import { getImageURL } from 'utils/functions';
@@ -21,7 +23,6 @@ const NewsHomeContainer: React.FC<NewsHomeContainerProps> = ({
 }) => {
   const {
     news: { categories },
-    menu: { prefix },
   } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
@@ -32,6 +33,9 @@ const NewsHomeContainer: React.FC<NewsHomeContainerProps> = ({
   const [tabDataNewsHome, setTabDataNewsHome] = useState<NewsHomeTabProps[]>([]);
   const [indexActive, setIndexActive] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  const { baseSystem } = useAppSelector((state) => state.systems);
+  const newsDetailSlug = baseSystem?.routeMappings.novaworld.news[i18n.language as keyof News];
 
   useDidMount(() => {
     if (!categories) {
@@ -69,7 +73,7 @@ const NewsHomeContainer: React.FC<NewsHomeContainerProps> = ({
           title: card.title,
           desc: card.description,
           updatedate: `${t('news.update_at')} ${card.publishedAt}`,
-          href: prefix?.newsDetail + card.slug,
+          href: `/${newsDetailSlug}/${card.slug}`,
         }));
 
         const newTabs = [...tabDataNewsHome].map((item, idx) => {
@@ -88,7 +92,7 @@ const NewsHomeContainer: React.FC<NewsHomeContainerProps> = ({
         setLoading(false);
       }
     },
-    [prefix?.newsDetail, tabDataNewsHome],
+    [newsDetailSlug, tabDataNewsHome],
   );
 
   useEffect(() => {
