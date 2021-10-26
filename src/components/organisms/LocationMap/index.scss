@@ -13,28 +13,28 @@
   $root: &;
 
   &_tropicana {
-    @include location-card(24%, 53%);
+    @include location-card(24%, 59%);
     @include tablet-down {
       top: 12%; 
     }
   }
 
   &_morito {
-    @include location-card(30%, 49.5%);
+    @include location-card(27%, 56.5%);
     @include tablet-down {
       top: 16%; 
     }
   }
 
   &_wonderland {
-    @include location-card(32%, 45.5%);
+    @include location-card(32%, 49.5%);
     @include tablet-down {
       top: 20%; 
     }
   }
 
   &_habana {
-    @include location-card(33%, 42.5%);
+    @include location-card(33%, 46.5%);
     @include tablet-down {
       top: 21%; 
     }
