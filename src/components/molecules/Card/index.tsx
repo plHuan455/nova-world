@@ -4,12 +4,16 @@ import Image from 'components/atoms/Image';
 import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
 
+export type SiteName = 'novaworld' | 'novamorito' | 'novatropicana' | 'novawonderland' | 'novahabana' | string;
+
 export interface CardProps {
   imgSrc?: string;
   title?: string;
   description?: string;
   href?: string;
   target?: string;
+  type?: string;
+  siteName?: SiteName;
 }
 
 const Card: React.FC<CardProps> = ({

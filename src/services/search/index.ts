@@ -3,6 +3,7 @@ import {
 } from './type';
 
 import axiosInstance from 'services/common/instance';
+import { formatParams } from 'utils/functions';
 
 export const getSuggestService = async (
   params?: SuggestParams,
@@ -12,8 +13,12 @@ export const getSuggestService = async (
 };
 
 export const getSearchService = async (
-  params?: SearchParams,
+  _params?: SearchParams,
 ): Promise<APIPaginationResponse<SearchItem[]>> => {
-  const res = await axiosInstance.get('systems/search-all', { params });
+  const params = formatParams(_params);
+  const res = await axiosInstance.get('search-all', {
+    baseURL: process.env.REACT_APP_API_SYSTEM_URL,
+    params,
+  });
   return res.data;
 };

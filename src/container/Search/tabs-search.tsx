@@ -1,48 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Tab, TabsScroll, TabButton } from 'components/organisms/Tabs';
 
-const labelsFirst = ['Tất cả', 'NOVAWORLD HOTRAM', 'HABANA', 'MORITO', 'TROPICANA', 'WONDERLAND'];
-const labelsSecond = ['Tin Tức', 'Tiện Ích', 'Sản Phẩm'];
-
-interface TabsSearchProps {
-  indexActive: number;
-  handleClick: (index: number)=>void;
+type siteNameType = {
+  label: string,
+  value: string,
 }
 
-export const TabsFirst: React.FC<TabsSearchProps> = ({
-  indexActive,
-  handleClick,
-}) => (
-  <TabsScroll variableMutate={indexActive}>
-    {
-        labelsFirst.map((ele, idx) => (
-          <Tab
-            labelColor="cyanCobaltBlue"
-            key={`tab-${idx.toString()}`}
-            active={idx === indexActive}
-            label={ele}
-            handleClick={() => handleClick(idx)}
-          />
-        ))
-      }
-  </TabsScroll>
-);
+type moduleNameType = {
+  id: number,
+  title: string,
+  slug: string,
+}
 
-export const TabsSecond: React.FC<TabsSearchProps> = ({
-  indexActive,
+interface TabsFirstSearchProps {
+  handleClick: (index: number)=>void;
+  siteName: siteNameType[];
+}
+
+interface TabsSecondSearchProps {
+  handleClick: (index: number)=>void;
+  moduleName: moduleNameType[];
+}
+
+export const TabsFirst: React.FC<TabsFirstSearchProps> = ({
   handleClick,
-}) => (
-  <TabsScroll classTabsActive=".o-tabs_tab-button-active" variableMutate={indexActive}>
-    {
-        labelsSecond.map((ele, idx) => (
-          <TabButton
-            key={`tab-${idx.toString()}`}
-            active={idx === indexActive}
-            label={ele}
-            handleClick={() => handleClick(idx)}
-          />
-        ))
-      }
-  </TabsScroll>
-);
+  siteName,
+}) => {
+  const [tabActive, setTabActive] = useState(0);
+  return (
+    <TabsScroll variableMutate={tabActive}>
+      {
+          siteName.map((ele, idx) => (
+            <Tab
+              labelColor="cyanCobaltBlue"
+              key={`tab-${idx.toString()}`}
+              active={idx === tabActive}
+              label={ele.label}
+              handleClick={() => {
+                setTabActive(idx);
+                if (handleClick) handleClick(idx);
+              }}
+            />
+          ))
+        }
+    </TabsScroll>
+  );
+};
+
+export const TabsSecond: React.FC<TabsSecondSearchProps> = ({
+  handleClick,
+  moduleName,
+}) => {
+  const [tabActive, setTabActive] = useState(0);
+  return (
+    <TabsScroll classTabsActive=".o-tabs_tab-button-active" variableMutate={tabActive}>
+      {
+          moduleName.map((ele, idx) => (
+            <TabButton
+              key={`tab-${idx.toString()}`}
+              active={idx === tabActive}
+              label={ele.title}
+              handleClick={() => {
+                setTabActive(idx);
+                if (handleClick) handleClick(idx);
+              }}
+            />
+          ))
+        }
+    </TabsScroll>
+  );
+};
