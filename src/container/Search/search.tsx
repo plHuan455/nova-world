@@ -1,14 +1,16 @@
 import React, {
   useState,
+  ChangeEvent,
   KeyboardEvent,
   useEffect,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 
 import Content from './content';
 import { TabsFirst, TabsSecond } from './tabs-search';
 
-import { siteName, moduleName } from 'assets/dataDummy/search';
+import featureHotel from 'assets/images/feature-hotel.jpg';
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
 import Text from 'components/atoms/Text';
@@ -21,20 +23,71 @@ import { getSearchService } from 'services/search';
 import { SearchItem } from 'services/search/type';
 import {
   getImageURL,
+  getBlockData,
 } from 'utils/functions';
 
 const LIMIT_ITEMS = 12;
 
 interface LocationState {
-  searchText: string;
+  keyword: string;
 }
 
 const Search: React.FC<BasePageData<SearchBlock>> = ({
-  pageData,
+  blocks,
 }) => {
+  const { t } = useTranslation('translation', { i18n });
+
+  const siteName = [
+    {
+      value: 'novaworld',
+      label: `${t('search.novaworld_hotram')}`,
+    },
+    {
+      value: 'novahabana',
+      label: `${t('search.habana_island')}`,
+    },
+    {
+      value: 'novamorito',
+      label: `${t('search.morito')}`,
+    },
+    {
+      value: 'novatropicana',
+      label: `${t('search.the_tropicana')}`,
+    },
+    {
+      value: 'novawonderland',
+      label: `${t('search.wonderland')}`,
+    },
+  ];
+
+  const moduleName = [
+    {
+      id: 1,
+      slug: 'page',
+      title: `${t('search.page')}`,
+    },
+    {
+      id: 2,
+      slug: 'news',
+      title: `${t('search.news')}`,
+    },
+    {
+      id: 3,
+      slug: 'utility',
+      title: `${t('search.utilities')}`,
+    },
+    {
+      id: 4,
+      slug: 'products',
+      title: `${t('search.products')}`,
+    },
+  ];
+
+  const searchTitle = getBlockData('section1', blocks) as SearchBlock;
+
   const currentLang = i18n.language || ' vi';
   const location = useLocation<LocationState>();
-  const searchTextParams = location.state?.searchText;
+  const searchTextParams = location.state?.keyword;
   const [value, setValue] = useState<string>(searchTextParams);
   const [searchText, setSearchText] = useState<string>(searchTextParams);
   const [currentSiteName, setCurrentSiteName] = useState<string>(siteName[0].value);
@@ -44,6 +97,11 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
   const [page, setPage] = useState<number>(1);
   const [totalPage, setTotalPage] = useState<number>(1);
   const [loading, setLoading] = useState(false);
+  const [currentModuleIdx, setCurrentModuleIdx] = useState<number>(0);
+  const [argMutable, setArgMutable] = useState('');
+
+  const novaWorldModuleName = moduleName.filter((item) => item.slug !== 'utility');
+  const moduleList = currentSiteName === 'novaworld' ? novaWorldModuleName : moduleName;
 
   const convertNewsList = (list: SearchItem[]) => {
     if (list.length > 0) {
@@ -51,15 +109,13 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
         title: item.title,
         siteName: item.siteName,
         type: item.moduleName,
-        imgSrc: getImageURL(item?.thumbnail) || getImageURL(pageData?.image),
+        imgSrc: getImageURL(item?.thumbnail) || featureHotel,
         description: item.description,
         href: item.slug,
       }));
     }
     return [];
   };
-
-  console.log(pageData?.image);
 
   const fetchSearchResult = async (params?: {
     searchParams?: string,
@@ -90,22 +146,29 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
   };
 
   const handleShowMore = async () => {
-    if (totalPage > page) {
-      const increasePage = page + 1;
-      const { data, meta } = await getSearchService({
-        limit: LIMIT_ITEMS,
-        keyword: value,
-        moduleName: currentModule,
-        siteName: currentSiteName,
-        page: increasePage,
-        locale: currentLang,
-      });
-      setSearchResult(searchResult.concat(convertNewsList(data)));
-      setTotalPage(meta.totalPages);
-      setPage(increasePage);
-    } else {
-      setSearchResult(searchResult.slice(0, LIMIT_ITEMS));
-      setPage(1);
+    try {
+      setLoading(true);
+      if (totalPage > page) {
+        const increasePage = page + 1;
+        const { data, meta } = await getSearchService({
+          limit: LIMIT_ITEMS,
+          keyword: value,
+          moduleName: currentModule,
+          siteName: currentSiteName,
+          page: increasePage,
+          locale: currentLang,
+        });
+        setSearchResult(searchResult.concat(convertNewsList(data)));
+        setTotalPage(meta.totalPages);
+        setPage(increasePage);
+      } else {
+        setSearchResult(searchResult.slice(0, LIMIT_ITEMS));
+        setPage(1);
+      }
+    } catch {
+      // empty
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -118,14 +181,31 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
 
   const handleClickSiteName = (idx: number) => {
     setCurrentSiteName(siteName[idx].value);
+    const tempList = siteName[idx].value === 'novaworld' ? novaWorldModuleName : moduleName;
+    const moduleIdx = tempList.findIndex((item) => item.slug === currentModule);
+    if (moduleIdx === -1) {
+      setCurrentModuleIdx(0);
+      setArgMutable('reset');
+    } else {
+      setCurrentModuleIdx(moduleIdx);
+      setArgMutable('');
+    }
     setPage(1);
-    fetchSearchResult({ site: siteName[idx].value, pageNumber: 1 });
+    if (currentModule === 'products') {
+      fetchSearchResult({ site: siteName[0].value, pageNumber: 1 });
+    } else {
+      fetchSearchResult({ site: siteName[idx].value, pageNumber: 1 });
+    }
   };
 
   const handleClickModuleName = (idx: number) => {
-    setCurrentModule(moduleName[idx].slug);
+    setCurrentModule(moduleList[idx].slug);
     setPage(1);
-    fetchSearchResult({ module: moduleName[idx].slug, pageNumber: 1 });
+    if (moduleList[idx].slug === 'products') {
+      fetchSearchResult({ site: siteName[0].value, module: moduleList[idx].slug, pageNumber: 1 });
+    } else {
+      fetchSearchResult({ module: moduleList[idx].slug, pageNumber: 1 });
+    }
   };
 
   useEffect(() => {
@@ -141,35 +221,34 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTextParams]);
 
-  console.log(i18n);
-
   return (
     <>
       <Container>
         <div className="title">
           <Heading type="h2">
-            Tìm Kiếm
+            {searchTitle.title}
             <Divider />
           </Heading>
         </div>
         <div className="input">
           <InputSearch
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
             value={value}
             handleClickSearch={() => fetchSearchResult()}
             onKeyDown={onPressEnter}
-            placeholder="Please fill search text"
+            placeholder={t('search.placeholder')}
+            autoComplete="off"
           />
         </div>
         <div className="description">
           <Text modifiers={['center']} type="p">
             <b>{total}</b>
             {' '}
-            kết quả
+            {t('search.result')}
             {' '}
             {searchText && (
               <>
-                tìm thấy cho
+                {t('search.result_for')}
                 {' '}
                 <b>{`“${searchText}”`}</b>
               </>
@@ -185,12 +264,15 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
         <Animate type="fadeInUp" extendClassName="tabs-second">
           <TabsSecond
             handleClick={handleClickModuleName}
-            moduleName={moduleName}
+            moduleName={moduleList}
+            currentModuleIdx={currentModuleIdx}
+            argMutable={argMutable}
           />
         </Animate>
         <Animate type="fadeInUp" extendClassName="search-content">
           <Content
-            buttonName={totalPage > page ? 'Xem thêm' : 'Rút gọn'}
+            totalPage={totalPage}
+            page={page}
             listCard={searchResult}
             handleClick={handleShowMore}
             isLoading={loading}

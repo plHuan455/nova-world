@@ -1,51 +1,60 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Button from 'components/atoms/Button';
 import Loading from 'components/atoms/Loading';
-import Card, { CardProps, SiteName } from 'components/molecules/Card';
+import Card, { CardProps } from 'components/molecules/Card';
 import i18n from 'i18n';
-import { StaticSlug } from 'services/menus/types';
+import { TranslateData } from 'services/systems/types';
+import { useAppSelector } from 'store/hooks';
 import {
   externalUrl,
   getLangURL,
-  getSlugByTemplateCode,
 } from 'utils/functions';
 
 interface ContentProps {
   listCard: CardProps[];
   isLoading?: boolean;
-  buttonName?: string;
+  page?: number;
+  totalPage?: number;
   handleClick?: () => void;
 }
+
+type SiteName = 'novaworld' | 'novamorito' | 'novatropicana' | 'novawonderland' | 'novahabana';
 
 const Content:React.FC<ContentProps> = ({
   listCard,
   isLoading,
-  buttonName,
+  page = 0,
+  totalPage = 0,
   handleClick,
 }) => {
-  const staticSlug: StaticSlug[] = [
-    {
-      templateCode: 'news',
-      slug: 'tin-tuc',
-    },
-    {
-      templateCode: 'products',
-      slug: 'san-pham',
-    },
-    {
-      templateCode: 'utility',
-      slug: 'tien-ich',
-    },
-  ];
+  const { baseSystem } = useAppSelector((state) => state.systems);
+  const { t } = useTranslation('translation', { i18n });
+
   const renderHref = (href: string, type?: string, siteNameText?: SiteName) => {
-    const url = siteNameText ? externalUrl(siteNameText) : '';
-    if (type === 'news') return `${url}${getLangURL(i18n.language)}/${getSlugByTemplateCode('news', staticSlug)}/${href}`;
-    if (type === 'products') return `${url}${getLangURL(i18n.language)}/${getSlugByTemplateCode('products', staticSlug)}`;
-    if (type === 'utility') return `${url}${getLangURL(i18n.language)}/${getSlugByTemplateCode('utility', staticSlug)}`;
-    return `${url}${getLangURL(i18n.language)}/${href}`;
+    if (href) {
+      const externalNewsDetailSlug = baseSystem?.routeMappings[
+        siteNameText as SiteName
+      ].news[i18n.language as keyof TranslateData];
+
+      const externalUtilitySlug = (siteNameText !== 'novaworld' && baseSystem?.routeMappings[
+        siteNameText as SiteName
+      ].ultility[i18n.language as keyof TranslateData]) || '';
+
+      const externalProductSlug = (baseSystem?.routeMappings.novaworld.product
+        && baseSystem?.routeMappings.novaworld.product[
+          i18n.language as keyof TranslateData
+        ]) || '';
+
+      const url = siteNameText ? externalUrl(siteNameText) : '';
+      if (type === 'news') return `${url}${getLangURL(i18n.language)}/${externalNewsDetailSlug}/${href}`;
+      if (type === 'products') return `${url}${getLangURL(i18n.language)}/${externalProductSlug}`;
+      if (type === 'utility') return `${url}${getLangURL(i18n.language)}/${externalUtilitySlug}`;
+    }
+    return '';
   };
-  // console.log(listCard);
+
   return (
     <>
       <div className="list">
@@ -60,18 +69,18 @@ const Content:React.FC<ContentProps> = ({
               imgSrc={item.imgSrc}
               title={item.title}
               description={item.description}
-              href={renderHref(item.href!, item.type, item.siteName)}
+              href={renderHref(item.href!, item.type, item.siteName as SiteName)}
             />
           </div>
         ))}
       </div>
       { isLoading && <Loading modifiers={['blue']} />}
-      {!isLoading && listCard.length > 0 && buttonName && (
+      {!isLoading && listCard.length > 0 && totalPage > 1 && (
       <div className="button-show">
         <Button
           handleClick={handleClick}
         >
-          {buttonName}
+          {totalPage > page ? t('button.show_more') : t('button.show_less')}
         </Button>
       </div>
       )}

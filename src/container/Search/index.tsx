@@ -13,8 +13,6 @@ const Search: React.FC<BasePageData<SearchPage>> = (props) => {
   const { banners } = props;
   const { banner } = useMainLayout({ isHome: false, banners });
 
-  console.log(pageData);
-
   return (
     <>
       <HelmetComponent seoData={{ ...seoData, imgSrc: pageData?.image }} />

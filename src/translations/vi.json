@@ -29,8 +29,9 @@
   },
   "search": {
     "placeholder" : "Tìm kiếm",
-    "description" : "Kết quả tìm thấy cho",
-    "nova_hotram" : "Habana Island",
+    "result" : "kết quả",
+    "result_for" : "tìm thấy cho",
+    "novaworld_hotram" : "NovaWorld Ho Tram",
     "habana_island": "Habana Island",
     "morito": "Morito",
     "the_tropicana": "The Tropicana",

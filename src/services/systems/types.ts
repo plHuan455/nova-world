@@ -10,7 +10,7 @@ export type FooterSystems = {
   copyright?: string;
 }
 
-export type News = {
+export type TranslateData = {
   vi: string;
   en: string;
   kr: string;
@@ -36,19 +36,25 @@ export type BaseSystemData = {
   googleRecaptchaSiteKey: string;
   routeMappings: {
     novahabana: {
-      news: News;
+      news: TranslateData;
+      ultility: TranslateData;
     },
     novaworld: {
-      news: News;
+      news: TranslateData;
+      product?: TranslateData;
+      ultility: TranslateData;
     },
     novatropicana: {
-      news: News;
+      news: TranslateData;
+      ultility: TranslateData;
     },
     novamorito: {
-      news: News;
+      news: TranslateData;
+      ultility: TranslateData;
     },
     novawonderland: {
-      news: News;
+      news: TranslateData;
+      ultility: TranslateData;
     }
   },
 }

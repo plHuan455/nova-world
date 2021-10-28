@@ -6,9 +6,13 @@ import axiosInstance from 'services/common/instance';
 import { formatParams } from 'utils/functions';
 
 export const getSuggestService = async (
-  params?: SuggestParams,
+  _params?: SuggestParams,
 ): Promise<SuggestItem[]> => {
-  const res = await axiosInstance.get('suggest-keywords/get-list', { params });
+  const params = formatParams(_params);
+  const res = await axiosInstance.get('suggest-keywords/get-list', {
+    baseURL: process.env.REACT_APP_API_BASE_URL,
+    params,
+  });
   return res.data.data;
 };
 

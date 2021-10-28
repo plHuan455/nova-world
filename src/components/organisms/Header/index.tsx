@@ -55,7 +55,7 @@ const Option: React.FC<OptionProps> = ({
 }) => {
   const isMounted = useIsMounted();
   const history = useHistory();
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('translation', { i18n });
 
   const refInputSearch = useRef<HTMLInputElement|null>(null);
   const refSuggest = useRef<HTMLUListElement|null>(null);
@@ -155,6 +155,8 @@ const Option: React.FC<OptionProps> = ({
                 handleClickSearch={handleClickIconSearch}
                 placeholder={t('search.placeholder')}
                 onKeyDown={handleKeyDown}
+                value={searchTerm}
+                autoComplete="off"
               />
             </div>
             {suggestList.length > 0 && (

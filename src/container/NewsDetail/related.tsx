@@ -7,7 +7,7 @@ import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
 import i18n from 'i18n';
 import { RelatedNewsData } from 'services/newsDetail/types';
-import { News } from 'services/systems/types';
+import { TranslateData } from 'services/systems/types';
 import { useAppSelector } from 'store/hooks';
 import { getImageURL } from 'utils/functions';
 
@@ -19,7 +19,9 @@ const Related: React.FC<RelatedProps> = ({ data }) => {
   const { baseSystem } = useAppSelector((state) => state.systems);
   const { t } = useTranslation('translation');
   if (!data?.length) return null;
-  const newsDetailSlug = baseSystem?.routeMappings.novaworld.news[i18n.language as keyof News];
+  const newsDetailSlug = baseSystem?.routeMappings.novaworld.news[
+    i18n.language as keyof TranslateData
+  ];
 
   return (
     <Container>
