@@ -82,7 +82,7 @@
     max-width: rem(183);
     position: absolute;
     width: 13.4%;
-    @include tablet-desktop {
+    @include break(768px, 1440px) {
       width: 9%;
     }
 
