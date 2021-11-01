@@ -17,7 +17,7 @@ const Player = React.lazy(() => import('components/organisms/Player'));
 
 const HomeNav: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { staticSlug } = useAppSelector((state) => state.menu);
+  const baseSystem = useAppSelector((state) => state.systems.baseSystem?.staticPages.novaworld);
   const videoAnimation = useAppSelector((state) => state.systems.data?.videoAnimation);
   const [videoLoading, setVideoLoading] = useState('pending');
 
@@ -58,7 +58,7 @@ const HomeNav: React.FC = () => {
         : undefined;
       if (error?.code.toString() === '404') {
         return (
-          <Redirect to={`${getLangURL(i18n.language)}/${getSlugByTemplateCode('page404', staticSlug)}`} />
+          <Redirect to={`${getLangURL(i18n.language)}/${getSlugByTemplateCode('page404', baseSystem)}`} />
         );
       }
       return <div>Error</div>;

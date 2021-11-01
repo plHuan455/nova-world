@@ -16,7 +16,7 @@ const NotFound = React.lazy(() => import('pages/NotFound'));
 const PageNav: React.FC = () => {
   const dispatch = useAppDispatch();
   const { slug } = useParams<{ slug: string }>();
-  const { staticSlug } = useAppSelector((state) => state.menu);
+  const baseSystem = useAppSelector((state) => state.systems.baseSystem?.staticPages.novaworld);
 
   const pageData = usePreview<BasePageData<any>>(() => getPageService(slug), [slug]);
 
@@ -51,7 +51,7 @@ const PageNav: React.FC = () => {
         : undefined;
       if (error?.code.toString() === '404') {
         return (
-          <Redirect to={`${getLangURL(i18n.language)}/${getSlugByTemplateCode('page404', staticSlug)}`} />
+          <Redirect to={`${getLangURL(i18n.language)}/${getSlugByTemplateCode('page404', baseSystem)}`} />
         );
       }
       return <div>Error</div>;

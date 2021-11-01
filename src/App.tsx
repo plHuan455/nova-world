@@ -24,7 +24,6 @@ const JourneyDetail = lazy(() => import('pages/ExperienceJourneyDetail'));
 
 const App: React.FC = () => {
   const {
-    menu: { staticSlug },
     locales: { listLocales },
   } = useAppSelector((state) => state);
 
@@ -36,9 +35,9 @@ const App: React.FC = () => {
   const routesList = useMemo(() => ({
     home: convertHomeRoute(listLocales),
     newsDetail: convertRoute(listLocales, `/${newsDetailSlug}/:slug`),
-    journeyDetail: convertRoute(listLocales, `/${getSlugByTemplateCode('journey', staticSlug)}/:slug`),
+    journeyDetail: convertRoute(listLocales, `/${getSlugByTemplateCode('journey', baseSystem?.staticPages.novaworld)}/:slug`),
     pages: convertRoute(listLocales, '/:slug'),
-  }), [staticSlug, listLocales, newsDetailSlug]);
+  }), [baseSystem?.staticPages.novaworld, listLocales, newsDetailSlug]);
 
   return (
     <div className="app">

@@ -12,7 +12,7 @@ type LibraryHomeProps = {
 const Library: React.FC<LibraryHomeProps> = ({
   data,
 }) => {
-  const staticSlug = useAppSelector((state) => state.menu.staticSlug);
+  const baseSystem = useAppSelector((state) => state.systems.baseSystem?.staticPages.novaworld);
 
   const convertData = useMemo(() => {
     if (!data?.item) return [];
@@ -22,9 +22,9 @@ const Library: React.FC<LibraryHomeProps> = ({
       title: e.title,
       thumbnail: getImageURL(e.image),
       alt: e.title,
-      href: getSlugByTemplateCode('library', staticSlug),
+      href: getSlugByTemplateCode('library', baseSystem),
     }));
-  }, [data, staticSlug]);
+  }, [data, baseSystem]);
 
   return (
     <LibraryHome

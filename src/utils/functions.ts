@@ -1,5 +1,3 @@
-import { StaticSlug } from 'services/menus/types';
-
 export const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function mapModifiers(
@@ -193,15 +191,3 @@ export function getLangURL(lang?: string) {
   if (lang && lang !== 'vi') return `/${lang}`;
   return '';
 }
-
-export const getSlugByTemplateCode = (
-  templateCode: string,
-  staticSlug?: StaticSlug[],
-): string => {
-  if (staticSlug) {
-    const res = staticSlug.find((ele) => ele.templateCode === templateCode);
-    if (res) return res.slug;
-    return '';
-  }
-  return '';
-};
