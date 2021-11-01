@@ -14,7 +14,7 @@ import {
   getNewsListByCateService,
 } from 'services/news';
 import { CategoriesData, NewsData } from 'services/news/types';
-import { TranslateData } from 'services/systems/types';
+import { LanguageRouteMapping } from 'services/systems/types';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getListCategoriesAsync } from 'store/news';
 import { getBlockData, getImageURL } from 'utils/functions';
@@ -35,7 +35,7 @@ const NewsContainer: React.FC<BasePageData<NewsPage>> = ({
 
   const { baseSystem } = useAppSelector((state) => state.systems);
   const newsDetailSlug = baseSystem?.routeMappings.novaworld.news[
-    i18n.language as keyof TranslateData
+    i18n.language as keyof LanguageRouteMapping
   ];
 
   const dispatch = useAppDispatch();

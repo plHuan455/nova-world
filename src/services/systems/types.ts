@@ -10,13 +10,28 @@ export type FooterSystems = {
   copyright?: string;
 }
 
-export type TranslateData = {
+export type LanguageRouteMapping = {
   vi: string;
   en: string;
   kr: string;
   jp: string;
   cn: string;
 }
+
+type SlugLocale = {
+  slug: string;
+}
+
+export type SiteStaticPage = {
+  templateCode: string;
+  locales: {
+    cn: SlugLocale;
+    en: SlugLocale;
+    jp: SlugLocale;
+    kr: SlugLocale;
+    vi: SlugLocale;
+  };
+};
 
 export type SystemsData = {
   seo?: SEOData;
@@ -36,25 +51,32 @@ export type BaseSystemData = {
   googleRecaptchaSiteKey: string;
   routeMappings: {
     novahabana: {
-      news: TranslateData;
-      ultility: TranslateData;
+      news: LanguageRouteMapping;
+      ultility: LanguageRouteMapping;
     },
     novaworld: {
-      news: TranslateData;
-      product?: TranslateData;
-      ultility: TranslateData;
+      news: LanguageRouteMapping;
+      product?: LanguageRouteMapping;
+      ultility: LanguageRouteMapping;
     },
     novatropicana: {
-      news: TranslateData;
-      ultility: TranslateData;
+      news: LanguageRouteMapping;
+      ultility: LanguageRouteMapping;
     },
     novamorito: {
-      news: TranslateData;
-      ultility: TranslateData;
+      news: LanguageRouteMapping;
+      ultility: LanguageRouteMapping;
     },
     novawonderland: {
-      news: TranslateData;
-      ultility: TranslateData;
+      news: LanguageRouteMapping;
+      ultility: LanguageRouteMapping;
     }
   },
+  staticPages: {
+    novahabana: SiteStaticPage[];
+    novamorito: SiteStaticPage[];
+    novatropicana: SiteStaticPage[];
+    novawonderland: SiteStaticPage[];
+    novaworld: SiteStaticPage[];
+  }
 }

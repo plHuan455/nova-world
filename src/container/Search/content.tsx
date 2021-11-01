@@ -5,7 +5,7 @@ import Button from 'components/atoms/Button';
 import Loading from 'components/atoms/Loading';
 import Card, { CardProps } from 'components/molecules/Card';
 import i18n from 'i18n';
-import { TranslateData } from 'services/systems/types';
+import { LanguageRouteMapping } from 'services/systems/types';
 import { useAppSelector } from 'store/hooks';
 import {
   externalUrl,
@@ -36,21 +36,17 @@ const Content:React.FC<ContentProps> = ({
     if (href) {
       const externalNewsDetailSlug = baseSystem?.routeMappings[
         siteNameText as SiteName
-      ].news[i18n.language as keyof TranslateData];
+      ].news[i18n.language as keyof LanguageRouteMapping];
 
-      const externalUtilitySlug = (siteNameText !== 'novaworld' && baseSystem?.routeMappings[
-        siteNameText as SiteName
-      ].ultility[i18n.language as keyof TranslateData]) || '';
-
-      const externalProductSlug = (baseSystem?.routeMappings.novaworld.product
-        && baseSystem?.routeMappings.novaworld.product[
-          i18n.language as keyof TranslateData
-        ]) || '';
+      const externalUtilitySlug = (baseSystem?.staticPages.novatropicana.find(
+        (f) => f.templateCode === 'utility',
+      )?.locales[i18n.language as keyof LanguageRouteMapping].slug) || '';
 
       const url = siteNameText ? externalUrl(siteNameText) : '';
       if (type === 'news') return `${url}${getLangURL(i18n.language)}/${externalNewsDetailSlug}/${href}`;
-      if (type === 'products') return `${url}${getLangURL(i18n.language)}/${externalProductSlug}`;
+      if (type === 'products') return `${href}`;
       if (type === 'utility') return `${url}${getLangURL(i18n.language)}/${externalUtilitySlug}`;
+      return `${url}${getLangURL(i18n.language)}/${href === '/' ? '' : href}`;
     }
     return '';
   };
@@ -63,7 +59,6 @@ const Content:React.FC<ContentProps> = ({
             className="item"
             key={`_card${String(index)}`}
           >
-            {/* <Card {...item} /> */}
             <Card
               key={`card-${index.toString()}`}
               imgSrc={item.imgSrc}

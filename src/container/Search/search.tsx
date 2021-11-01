@@ -40,7 +40,7 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
   const siteName = [
     {
       value: 'novaworld',
-      label: `${t('search.novaworld_hotram')}`,
+      label: `${t('search.nova_hotram')}`,
     },
     {
       value: 'novahabana',

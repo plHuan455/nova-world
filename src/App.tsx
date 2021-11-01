@@ -10,7 +10,7 @@ import {
 
 import { MainLayoutProvider } from 'container/MainLayout';
 import i18n from 'i18n';
-import { TranslateData } from 'services/systems/types';
+import { LanguageRouteMapping } from 'services/systems/types';
 import { store } from 'store';
 import { useAppSelector } from 'store/hooks';
 import {
@@ -30,7 +30,7 @@ const App: React.FC = () => {
 
   const { baseSystem } = useAppSelector((state) => state.systems);
   const newsDetailSlug = baseSystem?.routeMappings.novaworld.news[
-    i18n.language as keyof TranslateData
+    i18n.language as keyof LanguageRouteMapping
   ];
 
   const routesList = useMemo(() => ({
