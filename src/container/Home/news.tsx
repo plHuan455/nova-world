@@ -7,7 +7,7 @@ import NewsHome, { NewsHomeTabProps } from 'components/templates/NewsHome';
 import useDidMount from 'hooks/useDidMount';
 import i18n from 'i18n';
 import { getNewsListByCateService } from 'services/news';
-import { News } from 'services/systems/types';
+import { LanguageRouteMapping } from 'services/systems/types';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getListCategoriesAsync } from 'store/news';
 import { getImageURL } from 'utils/functions';
@@ -35,7 +35,8 @@ const NewsHomeContainer: React.FC<NewsHomeContainerProps> = ({
   const [loading, setLoading] = useState(false);
 
   const { baseSystem } = useAppSelector((state) => state.systems);
-  const newsDetailSlug = baseSystem?.routeMappings.novaworld.news[i18n.language as keyof News];
+  const newsDetailSlug = baseSystem?.routeMappings
+    .novaworld.news[i18n.language as keyof LanguageRouteMapping];
 
   useDidMount(() => {
     if (!categories) {
