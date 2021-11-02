@@ -7,10 +7,7 @@ import HelmetComponent from 'container/MainLayout/helmet';
 import useMainLayout from 'hooks/useMainLayout';
 
 const Search: React.FC<BasePageData<SearchPage>> = (props) => {
-  const { seoData } = props;
-  const { pageData } = props;
-
-  const { banners } = props;
+  const { seoData, pageData, banners } = props;
   const { banner } = useMainLayout({ isHome: false, banners });
 
   return (

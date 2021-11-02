@@ -38,9 +38,11 @@ const Content:React.FC<ContentProps> = ({
         siteNameText as SiteName
       ].news[i18n.language as keyof LanguageRouteMapping];
 
-      const externalUtilitySlug = (baseSystem?.staticPages.novatropicana.find(
+      const localeUtility = (siteNameText !== 'novaworld' && baseSystem?.staticPages[siteNameText as SiteName].find(
         (f) => f.templateCode === 'utility',
-      )?.locales[i18n.language as keyof LanguageRouteMapping].slug) || '';
+      )?.locales[i18n.language as keyof LanguageRouteMapping]) || '';
+
+      const externalUtilitySlug = localeUtility ? localeUtility.slug : '';
 
       const url = siteNameText ? externalUrl(siteNameText) : '';
       if (type === 'news') return `${url}${getLangURL(i18n.language)}/${externalNewsDetailSlug}/${href}`;
