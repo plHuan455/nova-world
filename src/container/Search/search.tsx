@@ -176,7 +176,7 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
   const onPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       setSearchText(value);
-      fetchSearchResult();
+      fetchSearchResult(({ site: currentModule === 'products' ? 'novaworld' : currentSiteName }));
     }
   };
 
@@ -186,9 +186,11 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
     const moduleIdx = tempList.findIndex((item) => item.slug === currentModule);
     if (moduleIdx === -1) {
       setCurrentModuleIdx(0);
+      setCurrentModule(tempList[0].slug);
       setArgMutable('reset');
     } else {
       setCurrentModuleIdx(moduleIdx);
+      setCurrentModule(tempList[moduleIdx].slug);
       setArgMutable('');
     }
     setPage(1);
@@ -236,7 +238,7 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
           <InputSearch
             onChange={(e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
             value={value}
-            handleClickSearch={() => fetchSearchResult()}
+            handleClickSearch={() => fetchSearchResult(({ site: currentModule === 'products' ? 'novaworld' : currentSiteName }))}
             onKeyDown={onPressEnter}
             placeholder={t('search.placeholder')}
             autoComplete="off"
