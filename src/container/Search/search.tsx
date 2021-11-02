@@ -5,7 +5,7 @@ import React, {
   useEffect,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import Content from './content';
 import { TabsFirst, TabsSecond } from './tabs-search';
@@ -87,6 +87,7 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
 
   const currentLang = i18n.language || ' vi';
   const location = useLocation<LocationState>();
+  const history = useHistory();
   const searchTextParams = location.state?.keyword;
   const [value, setValue] = useState<string>(searchTextParams);
   const [searchText, setSearchText] = useState<string>(searchTextParams);
@@ -215,6 +216,7 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
       fetchSearchResult({
         searchParams: searchTextParams,
       });
+      history.replace({ state: {} });
     } else {
       fetchSearchResult();
     }
