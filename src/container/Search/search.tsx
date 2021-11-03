@@ -197,7 +197,11 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
     if (currentModule === 'products') {
       fetchSearchResult({ site: siteName[0].value, pageNumber: 1 });
     } else {
-      fetchSearchResult({ site: siteName[idx].value, pageNumber: 1 });
+      fetchSearchResult({
+        site: siteName[idx].value,
+        module: (siteName[idx].value === 'novaworld' && currentModule === 'utility') ? 'page' : currentModule,
+        pageNumber: 1,
+      });
     }
   };
 
@@ -205,9 +209,16 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
     setCurrentModule(moduleList[idx].slug);
     setPage(1);
     if (moduleList[idx].slug === 'products') {
-      fetchSearchResult({ site: siteName[0].value, module: moduleList[idx].slug, pageNumber: 1 });
+      fetchSearchResult({
+        site: siteName[0].value,
+        module: moduleList[idx].slug,
+        pageNumber: 1,
+      });
     } else {
-      fetchSearchResult({ module: moduleList[idx].slug, pageNumber: 1 });
+      fetchSearchResult({
+        module: moduleList[idx].slug,
+        pageNumber: 1,
+      });
     }
   };
 
