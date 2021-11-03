@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 
 import useLanguage from 'hooks/useLanguage';
+import i18n from 'i18n';
 import { useAppSelector } from 'store/hooks';
-import { getImageURL } from 'utils/functions';
+import { getImageURL, getLangURL } from 'utils/functions';
 import { getSlugByTemplateCode } from 'utils/language';
 
 const Header = React.lazy(() => import('components/organisms/Header'));
@@ -35,7 +36,7 @@ const MainLayout: React.FC = ({ children }) => {
     logoBlue: getImageURL(dataSystems?.header?.logo),
     menuList: header || [],
     handleChangeLanguage,
-    slugSearch: `/${getSlugByTemplateCode('search', baseSystem)}`,
+    slugSearch: `${getLangURL(i18n.language)}/${getSlugByTemplateCode('search', baseSystem)}`,
   }), [dataSystems, header, handleChangeLanguage, baseSystem]);
 
   return (
