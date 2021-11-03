@@ -3,6 +3,7 @@ import React, {
   ChangeEvent,
   KeyboardEvent,
   useEffect,
+  useRef,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -29,7 +30,7 @@ import {
 const LIMIT_ITEMS = 12;
 
 interface LocationState {
-  keyword: string;
+  keyword?: string;
 }
 
 const Search: React.FC<BasePageData<SearchBlock>> = ({
@@ -89,8 +90,8 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
   const location = useLocation<LocationState>();
   const history = useHistory();
   const searchTextParams = location.state?.keyword;
-  const [value, setValue] = useState<string>(searchTextParams);
-  const [searchText, setSearchText] = useState<string>(searchTextParams);
+  const [value, setValue] = useState<string>(searchTextParams || '');
+  const [searchText, setSearchText] = useState<string>(searchTextParams || '');
   const [currentSiteName, setCurrentSiteName] = useState<string>(siteName[0].value);
   const [currentModule, setCurrentModule] = useState<string>(moduleName[0].slug);
   const [searchResult, setSearchResult] = useState<CardProps[]>([]);
@@ -100,6 +101,7 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
   const [loading, setLoading] = useState(false);
   const [currentModuleIdx, setCurrentModuleIdx] = useState<number>(0);
   const [argMutable, setArgMutable] = useState('');
+  const isPageSearchRef = useRef(false);
 
   const novaWorldModuleName = moduleName.filter((item) => item.slug !== 'utility');
   const moduleList = currentSiteName === 'novaworld' ? novaWorldModuleName : moduleName;
@@ -229,10 +231,15 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
       fetchSearchResult({
         searchParams: searchTextParams,
       });
-      history.replace({ state: {} });
-    } else {
+      delete location.state.keyword;
+      history.replace({ ...history.location });
+    }
+    if (!isPageSearchRef.current) {
       fetchSearchResult();
     }
+    return () => {
+      isPageSearchRef.current = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTextParams]);
 
