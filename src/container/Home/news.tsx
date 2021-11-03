@@ -10,7 +10,7 @@ import { getNewsListByCateService } from 'services/news';
 import { LanguageRouteMapping } from 'services/systems/types';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getListCategoriesAsync } from 'store/news';
-import { getImageURL } from 'utils/functions';
+import { getImageURL, getLangURL } from 'utils/functions';
 
 type NewsHomeContainerProps = {
   data?: HomeBlockSection7;
@@ -74,7 +74,7 @@ const NewsHomeContainer: React.FC<NewsHomeContainerProps> = ({
           title: card.title,
           desc: card.description,
           updatedate: `${t('news.update_at')} ${card.publishedAt}`,
-          href: `/${newsDetailSlug}/${card.slug}`,
+          href: `${getLangURL(i18n.language)}/${newsDetailSlug}/${card.slug}`,
         }));
 
         const newTabs = [...tabDataNewsHome].map((item, idx) => {

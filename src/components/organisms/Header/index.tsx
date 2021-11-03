@@ -148,7 +148,7 @@ const Option: React.FC<OptionProps> = ({
           <div className="o-header-suggest-content">
             <div className="o-header-suggest-search">
               <InputSearch
-                onBlur={() => handleFocusInputMobile(false)}
+                onBlur={() => handleFocusInputMobile(true)}
                 onFocus={() => handleFocusInputMobile(true)}
                 onChange={handleOnChange}
                 ref={refInputSearch}
