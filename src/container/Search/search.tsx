@@ -221,6 +221,7 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
 
   useEffect(() => {
     if (searchTextParams) {
+      isPageSearchRef.current = true;
       setSearchText(searchTextParams);
       fetchSearchResult({
         searchParams: searchTextParams,

@@ -1,19 +1,19 @@
 import {
-  SearchItem, SearchParams, SuggestItem, SuggestParams,
+  SearchItem, SearchParams, SuggestItem,
 } from './type';
 
 import axiosInstance from 'services/common/instance';
 import { formatParams } from 'utils/functions';
 
 export const getSuggestService = async (
-  _params?: SuggestParams,
-): Promise<SuggestItem[]> => {
+  _params?: SearchParams,
+): Promise<APIResponse<SuggestItem[]>> => {
   const params = formatParams(_params);
   const res = await axiosInstance.get('suggest-keywords/get-list', {
     baseURL: process.env.REACT_APP_API_BASE_URL,
     params,
   });
-  return res.data.data;
+  return res.data;
 };
 
 export const getSearchService = async (

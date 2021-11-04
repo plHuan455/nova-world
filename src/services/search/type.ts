@@ -17,11 +17,6 @@ export type SuggestItem = {
   }[];
 }
 
-export type SuggestParams = {
-  limit?: number;
-  keyword?: string;
-}
-
 export type SearchItem = {
   siteName: SiteName;
   moduleName: string;

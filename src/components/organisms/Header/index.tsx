@@ -98,14 +98,15 @@ const Option: React.FC<OptionProps> = ({
     if (refInputSearch.current) {
       refInputSearch.current.value = '';
     }
-    setSuggestList([]);
-    setSearchTerm('');
   });
 
   const fetchSuggest = useCallback(async (keyword?: string) => {
     try {
-      const res = await getSuggestService({ keyword, limit: 10 });
-      if (isMounted()) setSuggestList(res);
+      const res = await getSuggestService({
+        keyword: keyword || null,
+        limit: 10,
+      });
+      if (isMounted()) setSuggestList(res.data);
     } catch {
       if (isMounted()) setSuggestList([]);
     }
@@ -117,11 +118,9 @@ const Option: React.FC<OptionProps> = ({
 
   useSearchDebounce(
     () => {
-      if (inputIsFocus) {
-        fetchSuggest(searchTerm);
-      }
+      fetchSuggest(searchTerm);
     },
-    [searchTerm, inputIsFocus], 500,
+    [searchTerm], 800,
   );
 
   return (
