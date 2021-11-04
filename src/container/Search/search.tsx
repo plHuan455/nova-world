@@ -90,7 +90,6 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
   const location = useLocation<LocationState>();
   const history = useHistory();
   const searchTextParams = location.state?.keyword;
-  const [value, setValue] = useState<string>(searchTextParams || '');
   const [searchText, setSearchText] = useState<string>(searchTextParams || '');
   const [currentSiteName, setCurrentSiteName] = useState<string>(siteName[0].value);
   const [currentModule, setCurrentModule] = useState<string>(moduleName[0].slug);
@@ -130,19 +129,17 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
       setLoading(true);
       const { data, meta } = await getSearchService({
         limit: LIMIT_ITEMS,
-        keyword: params?.searchParams || value || null,
+        keyword: params?.searchParams || searchText || null,
         moduleName: params?.module || currentModule,
         siteName: params?.site || currentSiteName,
         page: params?.pageNumber || page,
         locale: currentLang,
       });
-      setSearchText(value);
+      setSearchText(params?.searchParams || searchText);
       setSearchResult(convertNewsList(data));
       setTotal(meta.total);
       setTotalPage(meta.totalPages);
       setPage(meta.page);
-    } catch {
-      // empty
     } finally {
       setLoading(false);
     }
@@ -155,7 +152,7 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
         const increasePage = page + 1;
         const { data, meta } = await getSearchService({
           limit: LIMIT_ITEMS,
-          keyword: value,
+          keyword: searchText,
           moduleName: currentModule,
           siteName: currentSiteName,
           page: increasePage,
@@ -168,8 +165,6 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
         setSearchResult(searchResult.slice(0, LIMIT_ITEMS));
         setPage(1);
       }
-    } catch {
-      // empty
     } finally {
       setLoading(false);
     }
@@ -177,7 +172,7 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
 
   const onPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      setSearchText(value);
+      setSearchText(searchText);
       fetchSearchResult(({ site: currentModule === 'products' ? 'novaworld' : currentSiteName }));
     }
   };
@@ -226,7 +221,6 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
 
   useEffect(() => {
     if (searchTextParams) {
-      setValue(searchTextParams);
       setSearchText(searchTextParams);
       fetchSearchResult({
         searchParams: searchTextParams,
@@ -254,8 +248,8 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
         </div>
         <div className="input">
           <InputSearch
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
-            value={value}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchText(e.target.value)}
+            value={searchText}
             handleClickSearch={() => fetchSearchResult(({ site: currentModule === 'products' ? 'novaworld' : currentSiteName }))}
             onKeyDown={onPressEnter}
             placeholder={t('search.placeholder')}

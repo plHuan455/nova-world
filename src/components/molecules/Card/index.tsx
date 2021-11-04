@@ -3,8 +3,7 @@ import React from 'react';
 import Image from 'components/atoms/Image';
 import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
-
-export type SiteName = 'novaworld' | 'novamorito' | 'novatropicana' | 'novawonderland' | 'novahabana' | string;
+import { SiteName } from 'services/search/type';
 
 export interface CardProps {
   imgSrc?: string;

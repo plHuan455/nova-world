@@ -5,6 +5,7 @@ import Button from 'components/atoms/Button';
 import Loading from 'components/atoms/Loading';
 import Card, { CardProps } from 'components/molecules/Card';
 import i18n from 'i18n';
+import { SiteName } from 'services/search/type';
 import { LanguageRouteMapping } from 'services/systems/types';
 import { useAppSelector } from 'store/hooks';
 import {
@@ -19,8 +20,6 @@ interface ContentProps {
   totalPage?: number;
   handleClick?: () => void;
 }
-
-type SiteName = 'novaworld' | 'novamorito' | 'novatropicana' | 'novawonderland' | 'novahabana';
 
 const Content:React.FC<ContentProps> = ({
   listCard,
@@ -46,7 +45,7 @@ const Content:React.FC<ContentProps> = ({
 
       const url = siteNameText ? externalUrl(siteNameText) : '';
       if (type === 'news') return `${url}${getLangURL(i18n.language)}/${externalNewsDetailSlug}/${href}`;
-      if (type === 'products') return `${href}`;
+      if (type === 'products') return href;
       if (type === 'utility') return `${url}${getLangURL(i18n.language)}/${externalUtilitySlug}`;
       return `${url}${getLangURL(i18n.language)}/${href === '/' ? '' : href}`;
     }

@@ -1,4 +1,4 @@
-type SiteName = 'novaworld' | 'novamorito' | 'novatropicana' | 'novawonderland' | 'novahabana';
+export type SiteName = 'novaworld' | 'novamorito' | 'novatropicana' | 'novawonderland' | 'novahabana';
 
 export type SuggestItem = {
   id: number;
