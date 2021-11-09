@@ -8,7 +8,7 @@ import i18n from 'i18n';
 import { SiteName } from 'services/search/type';
 import { LanguageRouteMapping } from 'services/systems/types';
 import { useAppSelector } from 'store/hooks';
-import {
+import mapModifiers, {
   externalUrl,
   getLangURL,
 } from 'utils/functions';
@@ -54,7 +54,7 @@ const Content:React.FC<ContentProps> = ({
 
   return (
     <>
-      <div className="list">
+      <div className={mapModifiers('list', listCard.length < 3 && 'case')}>
         {listCard.map((item, index) => (
           <div
             className="item"

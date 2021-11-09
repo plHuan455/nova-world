@@ -46,6 +46,10 @@
       @include tablet-down {
         margin: rem(24) rem(-8) 0;
       }
+
+      &-case {
+        justify-content: center;
+      }
     }
 
     .item {
