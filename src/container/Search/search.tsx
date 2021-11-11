@@ -1,152 +1,298 @@
 import React, {
-  useCallback, useEffect, useMemo, useRef, useState,
+  ChangeEvent,
+  KeyboardEvent,
+  useEffect,
+  useRef, useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
+import Content from './content';
+import { TabsFirst, TabsSecond } from './tabs-search';
+
+import featureHotel from 'assets/images/feature-hotel.jpg';
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
-import Loading from 'components/atoms/Loading';
 import Text from 'components/atoms/Text';
-import Card from 'components/molecules/Card';
+import { CardProps } from 'components/molecules/Card';
 import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
 import { InputSearch } from 'components/organisms/Header';
-import useIsMounted from 'hooks/useIsMounted';
-import useScrollInfinite from 'hooks/useScrollInfinite';
+import i18n from 'i18n';
 import { getSearchService } from 'services/search';
 import { SearchItem } from 'services/search/type';
-import { useAppSelector } from 'store/hooks';
-import { getImageURL } from 'utils/functions';
-import { fnCustomUrlDetail } from 'utils/language';
+import {
+  getBlockData, getImageURL,
+} from 'utils/functions';
 
-interface SearchProps {
-  title: string;
+const LIMIT_ITEMS = 12;
+
+interface LocationState {
+  keyword?: string;
 }
 
-const PAGE = {
-  PAGE_INITIAL: 1,
-  LIMIT: 12,
-};
+const Search: React.FC<BasePageData<SearchBlock>> = ({
+  blocks,
+}) => {
+  const { t } = useTranslation('translation', { i18n });
 
-const Search: React.FC<SearchProps> = ({ title }) => {
-  const {
-    menu: { prefix },
-  } = useAppSelector((state) => state);
+  const siteName = [
+    {
+      value: 'novaworld',
+      label: `${t('search.nova_hotram')}`,
+    },
+    {
+      value: 'novahabana',
+      label: `${t('search.habana_island')}`,
+    },
+    {
+      value: 'novamorito',
+      label: `${t('search.morito')}`,
+    },
+    {
+      value: 'novatropicana',
+      label: `${t('search.the_tropicana')}`,
+    },
+    {
+      value: 'novawonderland',
+      label: `${t('search.wonderland')}`,
+    },
+  ];
 
-  const isMounted = useIsMounted();
-  const { t } = useTranslation('translation');
+  const moduleName = [
+    {
+      id: 1,
+      slug: 'page',
+      title: `${t('search.page')}`,
+    },
+    {
+      id: 2,
+      slug: 'news',
+      title: `${t('search.news')}`,
+    },
+    {
+      id: 3,
+      slug: 'utility',
+      title: `${t('search.utilities')}`,
+    },
+    {
+      id: 4,
+      slug: 'products',
+      title: `${t('search.products')}`,
+    },
+  ];
 
-  const { state } = useLocation<{keyword?: string}>();
-  const refInputSearch = useRef<HTMLInputElement>(null);
-  const refKeyword = useRef<string>('');
+  const searchTitle = getBlockData('section1', blocks) as SearchBlock;
 
-  const [value, setValue] = useState('');
+  const currentLang = i18n.language || ' vi';
+  const location = useLocation<LocationState>();
+  const history = useHistory();
+  const searchTextParams = location.state?.keyword;
+  const [searchText, setSearchText] = useState<string>(searchTextParams || '');
+  const [currentSiteName, setCurrentSiteName] = useState<string>(siteName[0].value);
+  const [currentModule, setCurrentModule] = useState<string>(moduleName[0].slug);
+  const [searchResult, setSearchResult] = useState<CardProps[]>([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState<number>(1);
+  const [totalPage, setTotalPage] = useState<number>(1);
   const [loading, setLoading] = useState(false);
-  const [meta, setMeta] = useState<Meta>();
-  const [dataSearch, setDataSearch] = useState<SearchItem[]>([]);
+  const [currentModuleIdx, setCurrentModuleIdx] = useState<number>(0);
+  const [argMutable, setArgMutable] = useState('');
+  const isPageSearchRef = useRef(false);
 
-  const fetchCardList = useCallback(async (page, keyword) => {
+  const novaWorldModuleName = moduleName.filter((item) => item.slug !== 'utility');
+  const moduleList = currentSiteName === 'novaworld' ? novaWorldModuleName : moduleName;
+
+  const convertNewsList = (list: SearchItem[]) => {
+    if (list.length > 0) {
+      return list.map((item) => ({
+        title: item.title,
+        siteName: item.siteName,
+        type: item.moduleName,
+        imgSrc: getImageURL(item?.thumbnail) || featureHotel,
+        description: item.description,
+        href: item.slug,
+      }));
+    }
+    return [];
+  };
+
+  const fetchSearchResult = async (params?: {
+    searchParams?: string,
+    site?: string,
+    module?: string;
+    pageNumber?: number;
+  }) => {
     try {
-      if (isMounted()) setLoading(true);
-      const res = await getSearchService({
-        limit: PAGE.LIMIT,
-        page,
-        keyword,
+      setLoading(true);
+      const { data, meta } = await getSearchService({
+        limit: LIMIT_ITEMS,
+        keyword: params?.searchParams || searchText || null,
+        moduleName: params?.module || currentModule,
+        siteName: params?.site || currentSiteName,
+        page: params?.pageNumber || page,
+        locale: currentLang,
       });
-      if (page === 1) {
-        if (isMounted()) setDataSearch(res.data);
-      } else if (isMounted()) setDataSearch([...dataSearch, ...res.data]);
-      // setKeyWord(keyword);
-      refKeyword.current = keyword;
-      if (isMounted()) setMeta(res.meta);
-      if (isMounted()) setLoading(false);
-    } catch {
-      // empty
+      setSearchText(params?.searchParams || searchText);
+      setSearchResult(convertNewsList(data));
+      setTotal(meta.total);
+      setTotalPage(meta.totalPages);
+      setPage(meta.page);
     } finally {
-      if (isMounted()) setLoading(false);
+      setLoading(false);
     }
-  }, [dataSearch, isMounted]);
+  };
+
+  const handleShowMore = async () => {
+    try {
+      setLoading(true);
+      if (totalPage > page) {
+        const increasePage = page + 1;
+        const { data, meta } = await getSearchService({
+          limit: LIMIT_ITEMS,
+          keyword: searchText,
+          moduleName: currentModule,
+          siteName: currentModule === 'products' ? 'novaworld' : currentSiteName,
+          page: increasePage,
+          locale: currentLang,
+        });
+        setSearchResult(searchResult.concat(convertNewsList(data)));
+        setTotalPage(meta.totalPages);
+        setPage(increasePage);
+      } else {
+        setSearchResult(searchResult.slice(0, LIMIT_ITEMS));
+        setPage(1);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      setSearchText(searchText);
+      fetchSearchResult(({ site: currentModule === 'products' ? 'novaworld' : currentSiteName }));
+    }
+  };
+
+  const handleClickSiteName = (idx: number) => {
+    setCurrentSiteName(siteName[idx].value);
+    const tempList = siteName[idx].value === 'novaworld' ? novaWorldModuleName : moduleName;
+    const moduleIdx = tempList.findIndex((item) => item.slug === currentModule);
+    if (moduleIdx === -1) {
+      setCurrentModuleIdx(0);
+      setCurrentModule(tempList[0].slug);
+      setArgMutable('reset');
+    } else {
+      setCurrentModuleIdx(moduleIdx);
+      setCurrentModule(tempList[moduleIdx].slug);
+      setArgMutable('');
+    }
+    setPage(1);
+    if (currentModule === 'products') {
+      fetchSearchResult({ site: siteName[0].value, pageNumber: 1 });
+    } else {
+      fetchSearchResult({
+        site: siteName[idx].value,
+        module: (siteName[idx].value === 'novaworld' && currentModule === 'utility') ? 'page' : currentModule,
+        pageNumber: 1,
+      });
+    }
+  };
+
+  const handleClickModuleName = (idx: number) => {
+    setCurrentModule(moduleList[idx].slug);
+    setPage(1);
+    if (moduleList[idx].slug === 'products') {
+      fetchSearchResult({
+        site: siteName[0].value,
+        module: moduleList[idx].slug,
+        pageNumber: 1,
+      });
+    } else {
+      fetchSearchResult({
+        module: moduleList[idx].slug,
+        pageNumber: 1,
+      });
+    }
+  };
 
   useEffect(() => {
-    if (isMounted()) setValue(state?.keyword || '');
-  }, [state, isMounted]);
-
-  const listCard = useMemo(() => dataSearch.map((item) => ({
-    imgSrc: getImageURL(item?.thumbnail),
-    title: item?.title,
-    description: item?.description,
-    href: item?.type === 'news' ? fnCustomUrlDetail(prefix?.newsDetail, item?.slug) : item?.link,
-    target: item?.linkTarget,
-  })), [dataSearch, prefix?.newsDetail]);
-
-  useEffect(() => {
-    fetchCardList(1, state?.keyword);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state?.keyword]);
-
-  const handleClickSearch = useCallback(() => {
-    fetchCardList(1, value);
-  }, [value, fetchCardList]);
-
-  const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      fetchCardList(1, value);
+    if (searchTextParams) {
+      isPageSearchRef.current = true;
+      setSearchText(searchTextParams);
+      fetchSearchResult({
+        searchParams: searchTextParams,
+      });
+      delete location.state.keyword;
+      history.replace({ ...history.location });
     }
-  }, [fetchCardList, value]);
-
-  const handleLoadMore = useCallback(() => {
-    if (meta && meta.page < meta.totalPages) {
-      fetchCardList(meta.page + 1, value);
+    if (!isPageSearchRef.current) {
+      fetchSearchResult();
     }
-  }, [fetchCardList, meta, value]);
-
-  const { setNode } = useScrollInfinite(handleLoadMore);
+    return () => {
+      isPageSearchRef.current = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTextParams]);
 
   return (
-    <Container>
-      <Animate type="fadeInUp" extendClassName="title">
-        <Heading type="h2">
-          {title}
-          <Divider />
-        </Heading>
-      </Animate>
-      <Animate type="fadeInUp">
+    <>
+      <Container>
+        <div className="title">
+          <Heading type="h2">
+            {searchTitle.title}
+            <Divider />
+          </Heading>
+        </div>
         <div className="input">
           <InputSearch
-            onChange={(e) => setValue(e.target.value)}
-            value={value}
-            handleClickSearch={handleClickSearch}
-            onKeyDown={handleKeyDown}
-            ref={refInputSearch}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchText(e.target.value)}
+            value={searchText}
+            handleClickSearch={() => fetchSearchResult(({ site: currentModule === 'products' ? 'novaworld' : currentSiteName }))}
+            onKeyDown={onPressEnter}
             placeholder={t('search.placeholder')}
+            autoComplete="off"
           />
         </div>
         <div className="description">
-          <Text type="p">
-            <>
-              <strong>{meta?.total || 0}</strong>
-              {' '}
-              {t('search.description')}
-              {' '}
-              <strong>{`“${refKeyword.current || ''}”`}</strong>
-            </>
+          <Text modifiers={['center']} type="p">
+            <b>{total}</b>
+            {' '}
+            {t('search.description')}
+            {' '}
+            {searchText && (
+              <>
+                <b>{`“${searchText}”`}</b>
+              </>
+            )}
           </Text>
         </div>
-        <div className="list">
-          {listCard.map((item, index) => (
-            <div
-              ref={index + 1 === listCard.length ? (node) => setNode(node) : undefined}
-              className="item"
-              key={`_card${String(index)}`}
-            >
-              <Card {...item} />
-            </div>
-          ))}
-        </div>
-        { loading && <Loading modifiers={['blue']} />}
-      </Animate>
-    </Container>
+        <Animate type="fadeInUp" extendClassName="tabs-first">
+          <TabsFirst
+            handleClick={handleClickSiteName}
+            siteName={siteName}
+          />
+        </Animate>
+        <Animate type="fadeInUp" extendClassName="tabs-second">
+          <TabsSecond
+            handleClick={handleClickModuleName}
+            moduleName={moduleList}
+            currentModuleIdx={currentModuleIdx}
+            argMutable={argMutable}
+          />
+        </Animate>
+        <Animate type="fadeInUp" extendClassName="search-content">
+          <Content
+            totalPage={totalPage}
+            page={page}
+            listCard={searchResult}
+            handleClick={handleShowMore}
+            isLoading={loading}
+          />
+        </Animate>
+      </Container>
+    </>
   );
 };
 

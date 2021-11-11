@@ -6,7 +6,7 @@ import Card from '.';
 describe('<Card />', () => {
   test('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Card />, div);
+    ReactDOM.render(<Card href="" />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });

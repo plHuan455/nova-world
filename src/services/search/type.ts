@@ -1,3 +1,5 @@
+export type SiteName = 'novaworld' | 'novamorito' | 'novatropicana' | 'novawonderland' | 'novahabana';
+
 export type SuggestItem = {
   id: number;
   displayOrder: number;
@@ -15,28 +17,22 @@ export type SuggestItem = {
   }[];
 }
 
-export type SuggestParams = {
-  limit?: number;
-  keyword?: string;
-}
-
 export type SearchItem = {
-  type: string;
+  siteName: SiteName;
+  moduleName: string;
+  id: string;
+  thumbnail: string;
+  slug: string;
   locale: string;
-  title?: string;
-  description?: string;
-  thumbnail?: string;
-  link?: string;
-  linkTarget?: string;
-  publishedAt: string;
-  displayOrder: number;
-  id: number;
-  slug?: string;
-  status: number;
+  title: string;
+  description: string;
 }
 
 export type SearchParams = {
   limit?: number;
-  keyword?: string;
+  keyword?: string | null;
   page?: number;
+  siteName?: string;
+  moduleName?: string;
+  locale?: string;
 }

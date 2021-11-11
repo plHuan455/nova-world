@@ -1,20 +1,14 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import Content from './search';
 
 import Banner from 'components/organisms/Banner';
 import HelmetComponent from 'container/MainLayout/helmet';
 import useMainLayout from 'hooks/useMainLayout';
-import { getBlockData } from 'utils/functions';
 
-const Search: React.FC<BasePageData<SearchPage>> = ({
-  banners,
-  blocks,
-  seoData,
-  pageData,
-}) => {
+const Search: React.FC<BasePageData<SearchPage>> = (props) => {
+  const { seoData, pageData, banners } = props;
   const { banner } = useMainLayout({ isHome: false, banners });
-  const searchBlock = useMemo(() => getBlockData<SearchBlock>('section1', blocks), [blocks]);
 
   return (
     <>
@@ -23,7 +17,7 @@ const Search: React.FC<BasePageData<SearchPage>> = ({
         <Banner thumbnail={banner} layerDew={false} />
       </section>
       <section className="s-content s-wrap">
-        <Content title={searchBlock?.title || ''} />
+        <Content {...props} />
       </section>
     </>
   );

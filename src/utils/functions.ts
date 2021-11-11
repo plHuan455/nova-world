@@ -150,3 +150,44 @@ export function getBlockData<T>(
   if (!listBlock) return undefined;
   return listBlock.find((item) => item.code === _code)?.blocks;
 }
+
+const formatKey = (key: string) => key.replace(/[A-Z]/g, '_$&').toLowerCase();
+
+export function formatParams<T>(params?: T) {
+  if (!params) return undefined;
+  return Object.keys(params).reduce((prev, cur) => {
+    const obj: any = {};
+    const key = formatKey(cur);
+    obj[key] = params[cur as keyof T];
+    return { ...prev, ...obj };
+  }, {});
+}
+
+const NovaWorld = process.env.REACT_APP_WORLD_URL;
+const NovaWonderland = process.env.REACT_APP_WONDERLAND_URL;
+const NovaTropicana = process.env.REACT_APP_TROPICANA_URL;
+const NovaHabana = process.env.REACT_APP_HABANA_URL;
+const Morito = process.env.REACT_APP_MORITO_URL;
+
+export const externalUrl = (siteName: string) => {
+  switch (siteName) {
+    case 'novaworld':
+      return NovaWorld || '';
+    case 'novawonderland':
+      return NovaWonderland || '';
+    case 'novatropicana':
+      return NovaTropicana || '';
+    case 'novahabana':
+      return NovaHabana || '';
+    case 'novamorito':
+      return Morito || '';
+    default:
+      break;
+  }
+  return '';
+};
+
+export function getLangURL(lang?: string) {
+  if (lang && lang !== 'vi') return `/${lang}`;
+  return '';
+}

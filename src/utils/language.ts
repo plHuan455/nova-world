@@ -1,4 +1,6 @@
-import { MenuItem, StaticSlug } from 'services/menus/types';
+import i18n from 'i18n';
+import { MenuItem } from 'services/menus/types';
+import { SiteStaticPage, LanguageRouteMapping } from 'services/systems/types';
 
 export const checkActiveLang = (
   activeLang: keyof LocalesResponse,
@@ -67,11 +69,11 @@ export function convertRoute(locales?: LocalesResponse, slug?: string) {
 
 export const getSlugByTemplateCode = (
   templateCode: string,
-  staticSlug?: StaticSlug[],
+  staticSlug?: SiteStaticPage[],
 ): string => {
   if (staticSlug) {
     const res = staticSlug.find((ele) => ele.templateCode === templateCode);
-    if (res) return res.slug;
+    if (res) return res.locales[i18n.language as keyof LanguageRouteMapping].slug;
     return '';
   }
   return '';
@@ -79,7 +81,7 @@ export const getSlugByTemplateCode = (
 
 export const getPrefixCardDetail = (
   templateCode: string,
-  staticSlug?: StaticSlug[],
+  staticSlug?: SiteStaticPage[],
   lang?: string,
 ):string => {
   const prefixLanguage = getLangURL(lang);

@@ -13,7 +13,7 @@ import useQueryParams from 'hooks/useQueryParams';
 import { UTMParams } from 'services/contact/type';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getSystemsLocalesAsync } from 'store/locales';
-import { getHeaderMenuAsync, getStaticSlugAsync, setPrefixAction } from 'store/menu';
+import { getHeaderMenuAsync, setPrefixAction } from 'store/menu';
 import { getSystemsAsync, getBaseSystemAsync } from 'store/systems';
 import { getTradingFloorsAsync } from 'store/trading';
 import { addUtmParams } from 'store/utm';
@@ -31,10 +31,10 @@ export const MainLayoutContext = createContext<MainLayoutContextProps | undefine
 export const MainLayoutProvider: React.FC = ({ children }) => {
   const location = useLocation();
   const {
-    menu: { staticSlug },
     locales: { listLocales },
     systems: { data: dataSystems },
   } = useAppSelector((state) => state);
+  const baseSystem = useAppSelector((state) => state.systems.baseSystem?.staticPages.novaworld);
   const [isHome, setIsHome] = useState<boolean>(true);
   const dispatch = useAppDispatch();
   const params = useQueryParams<UTMParams>();
@@ -48,7 +48,6 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
   useDidMount(() => {
     dispatch(getSystemsLocalesAsync());
     dispatch(getHeaderMenuAsync());
-    dispatch(getStaticSlugAsync());
     dispatch(getTradingFloorsAsync());
     dispatch(getSystemsAsync());
     dispatch(getBaseSystemAsync());
@@ -58,13 +57,13 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
   });
 
   useEffect(() => {
-    if (staticSlug) {
+    if (baseSystem) {
       dispatch(setPrefixAction({
-        newsDetail: getPrefixCardDetail('news', staticSlug, i18n.language),
-        journeysDetail: getPrefixCardDetail('journey', staticSlug, i18n.language),
+        newsDetail: getPrefixCardDetail('news', baseSystem, i18n.language),
+        journeysDetail: getPrefixCardDetail('journey', baseSystem, i18n.language),
       }));
     }
-  }, [dispatch, staticSlug]);
+  }, [dispatch, baseSystem]);
 
   useEffect(() => {
     // language dont active

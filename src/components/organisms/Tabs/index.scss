@@ -81,6 +81,22 @@
     }
   }
 
+  &_tab-button {
+    @include font-base(16,24);
+    background-color: $anti-flash-white;
+    border: 0;
+    border-radius: rem(10);
+    color: $dim-gray;
+    font-weight: 400;
+    padding: rem(10) rem(16);
+    white-space: nowrap;
+
+    &-active {
+      background-color: $cyan-cobalt-blue;
+      color: $white;
+    }
+  }
+
   &_panel {
     display: none;
 
@@ -110,6 +126,16 @@
     margin-left: rem(100);
     @include desktop-down {
       margin-left: rem(60);
+    }
+    @include tablet-down {
+      margin-left: rem(20);
+    }
+  }
+
+  .o-tabs_tab-button + .o-tabs_tab-button {
+    margin-left: rem(44);
+    @include desktop-down {
+      margin-left: rem(30);
     }
     @include tablet-down {
       margin-left: rem(20);

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { getMenusService, getStaticSlugService } from 'services/menus';
+import { getMenusService } from 'services/menus';
 import { MenuItem, StaticSlug } from 'services/menus/types';
 import groupMenus from 'utils/menu';
 
@@ -28,18 +28,6 @@ export const getHeaderMenuAsync = createAsyncThunk(
   },
 );
 
-export const getStaticSlugAsync = createAsyncThunk(
-  'menu/getStaticSlug',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await getStaticSlugService();
-      return response;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  },
-);
-
 export const menuSlice = createSlice({
   name: 'menu',
   initialState,
@@ -51,9 +39,6 @@ export const menuSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(getHeaderMenuAsync.fulfilled, ($state, action) => {
       $state.header = groupMenus(action.payload);
-    });
-    builder.addCase(getStaticSlugAsync.fulfilled, ($state, action) => {
-      $state.staticSlug = action.payload;
     });
   },
 });

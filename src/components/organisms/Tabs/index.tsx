@@ -47,18 +47,34 @@ export const Tab: React.FC<TabProps> = ({
   </div>
 );
 
+export const TabButton: React.FC<TabProps> = ({
+  label,
+  active,
+  handleClick,
+}) => (
+  <button
+    type="button"
+    onClick={handleClick}
+    className={mapModifiers('o-tabs_tab-button', active && 'active')}
+  >
+    {label}
+  </button>
+);
+
 type TabsScrollProps = {
   variableMutate?: string|number;
+  classTabsActive?: string;
 }
 
 export const TabsScroll:React.FC<TabsScrollProps> = ({
   children,
   variableMutate,
+  classTabsActive,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
-    handleScrollCenter(ref, '.o-tabs_tab-active');
+    handleScrollCenter(ref, classTabsActive || '.o-tabs_tab-active');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [variableMutate]);
 

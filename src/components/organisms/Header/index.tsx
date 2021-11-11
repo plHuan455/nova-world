@@ -55,7 +55,7 @@ const Option: React.FC<OptionProps> = ({
 }) => {
   const isMounted = useIsMounted();
   const history = useHistory();
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('translation', { i18n });
 
   const refInputSearch = useRef<HTMLInputElement|null>(null);
   const refSuggest = useRef<HTMLUListElement|null>(null);
@@ -98,14 +98,15 @@ const Option: React.FC<OptionProps> = ({
     if (refInputSearch.current) {
       refInputSearch.current.value = '';
     }
-    setSuggestList([]);
-    setSearchTerm('');
   });
 
   const fetchSuggest = useCallback(async (keyword?: string) => {
     try {
-      const res = await getSuggestService({ keyword, limit: 10 });
-      if (isMounted()) setSuggestList(res);
+      const res = await getSuggestService({
+        keyword: keyword || null,
+        limit: 10,
+      });
+      if (isMounted()) setSuggestList(res.data);
     } catch {
       if (isMounted()) setSuggestList([]);
     }
@@ -117,11 +118,9 @@ const Option: React.FC<OptionProps> = ({
 
   useSearchDebounce(
     () => {
-      if (inputIsFocus) {
-        fetchSuggest(searchTerm);
-      }
+      fetchSuggest(searchTerm);
     },
-    [searchTerm, inputIsFocus], 500,
+    [searchTerm], 800,
   );
 
   return (
@@ -148,13 +147,15 @@ const Option: React.FC<OptionProps> = ({
           <div className="o-header-suggest-content">
             <div className="o-header-suggest-search">
               <InputSearch
-                onBlur={() => handleFocusInputMobile(false)}
+                onBlur={() => handleFocusInputMobile(true)}
                 onFocus={() => handleFocusInputMobile(true)}
                 onChange={handleOnChange}
                 ref={refInputSearch}
                 handleClickSearch={handleClickIconSearch}
                 placeholder={t('search.placeholder')}
                 onKeyDown={handleKeyDown}
+                value={searchTerm}
+                autoComplete="off"
               />
             </div>
             {suggestList.length > 0 && (

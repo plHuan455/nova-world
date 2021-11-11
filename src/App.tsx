@@ -10,7 +10,7 @@ import {
 
 import { MainLayoutProvider } from 'container/MainLayout';
 import i18n from 'i18n';
-import { News } from 'services/systems/types';
+import { LanguageRouteMapping } from 'services/systems/types';
 import { store } from 'store';
 import { useAppSelector } from 'store/hooks';
 import {
@@ -24,19 +24,20 @@ const JourneyDetail = lazy(() => import('pages/ExperienceJourneyDetail'));
 
 const App: React.FC = () => {
   const {
-    menu: { staticSlug },
     locales: { listLocales },
   } = useAppSelector((state) => state);
 
   const { baseSystem } = useAppSelector((state) => state.systems);
-  const newsDetailSlug = baseSystem?.routeMappings.novaworld.news[i18n.language as keyof News];
+  const newsDetailSlug = baseSystem?.routeMappings.novaworld.news[
+    i18n.language as keyof LanguageRouteMapping
+  ];
 
   const routesList = useMemo(() => ({
     home: convertHomeRoute(listLocales),
     newsDetail: convertRoute(listLocales, `/${newsDetailSlug}/:slug`),
-    journeyDetail: convertRoute(listLocales, `/${getSlugByTemplateCode('journey', staticSlug)}/:slug`),
+    journeyDetail: convertRoute(listLocales, `/${getSlugByTemplateCode('journey', baseSystem?.staticPages.novaworld)}/:slug`),
     pages: convertRoute(listLocales, '/:slug'),
-  }), [staticSlug, listLocales, newsDetailSlug]);
+  }), [baseSystem?.staticPages.novaworld, listLocales, newsDetailSlug]);
 
   return (
     <div className="app">

@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'components/atoms/Image';
 import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
+import { SiteName } from 'services/search/type';
 
 export interface CardProps {
   imgSrc?: string;
@@ -10,6 +11,8 @@ export interface CardProps {
   description?: string;
   href?: string;
   target?: string;
+  type?: string;
+  siteName?: SiteName;
 }
 
 const Card: React.FC<CardProps> = ({

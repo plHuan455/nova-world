@@ -29,8 +29,9 @@
   },
   "search": {
     "placeholder" : "Search",
-    "description" : "Results found for",
-    "nova_hotram" : "NovaWorld Ho Tram",
+    "result" : "result",
+    "result_for" : "for",
+    "novaworld_hotram" : "NovaWorld Ho Tram",
     "habana_island": "Habana Island",
     "morito": "Morito",
     "the_tropicana": "The Tropicana",

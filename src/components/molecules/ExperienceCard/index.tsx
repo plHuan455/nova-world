@@ -39,8 +39,6 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ item }) => {
   const ref = useRef<ReactSlick | null>(null);
   const [idInterval, setIdInterval] = useState<NodeJS.Timeout | null>(null);
 
-  console.log({ item });
-
   return (
     <div
       onMouseEnter={() => {
