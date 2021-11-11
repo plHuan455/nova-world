@@ -10,7 +10,6 @@ describe('<ExperienceCard />', () => {
       {
         title: 'Vui chơi giải trí',
         subTitle: 'Novaworld Ho Tram Wonderland',
-        stt: 1,
         imgSrc: '',
         alt: '',
         href: '',

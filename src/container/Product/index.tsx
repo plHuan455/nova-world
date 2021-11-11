@@ -74,7 +74,7 @@ const Screen: React.FC<BasePageData<ProductPage>> = ({
     } finally {
       if (isMounted()) setLoading(false);
     }
-  }, [dataProduct, isMounted]);
+  }, [dataProduct, formatData, isMounted]);
 
   useDidMount(() => {
     fetchProductCard(PAGE.PAGE_INITIAL);

@@ -1,9 +1,8 @@
 import React, {
-  useState,
   ChangeEvent,
   KeyboardEvent,
   useEffect,
-  useRef,
+  useRef, useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -23,8 +22,7 @@ import i18n from 'i18n';
 import { getSearchService } from 'services/search';
 import { SearchItem } from 'services/search/type';
 import {
-  getImageURL,
-  getBlockData,
+  getBlockData, getImageURL,
 } from 'utils/functions';
 
 const LIMIT_ITEMS = 12;
@@ -154,7 +152,7 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
           limit: LIMIT_ITEMS,
           keyword: searchText,
           moduleName: currentModule,
-          siteName: currentSiteName,
+          siteName: currentModule === 'products' ? 'novaworld' : currentSiteName,
           page: increasePage,
           locale: currentLang,
         });
@@ -261,12 +259,10 @@ const Search: React.FC<BasePageData<SearchBlock>> = ({
           <Text modifiers={['center']} type="p">
             <b>{total}</b>
             {' '}
-            {t('search.result')}
+            {t('search.description')}
             {' '}
             {searchText && (
               <>
-                {t('search.result_for')}
-                {' '}
                 <b>{`“${searchText}”`}</b>
               </>
             )}

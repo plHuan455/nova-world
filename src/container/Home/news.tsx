@@ -93,6 +93,7 @@ const NewsHomeContainer: React.FC<NewsHomeContainerProps> = ({
         setLoading(false);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [newsDetailSlug, tabDataNewsHome],
   );
 
