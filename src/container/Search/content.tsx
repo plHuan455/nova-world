@@ -54,23 +54,25 @@ const Content:React.FC<ContentProps> = ({
 
   return (
     <>
-      <div className={mapModifiers('list', listCard.length < 3 && 'case')}>
-        {listCard.map((item, index) => (
-          <div
-            className="item"
-            key={`_card${String(index)}`}
-          >
-            <Card
-              key={`card-${index.toString()}`}
-              imgSrc={item.imgSrc}
-              title={item.title}
-              description={item.description}
-              href={renderHref(item.href!, item.type, item.siteName as SiteName)}
-            />
+      { isLoading ? <Loading modifiers={['blue']} />
+        : (
+          <div className={mapModifiers('list', listCard.length < 3 && 'case')}>
+            {listCard.map((item, index) => (
+              <div
+                className="item"
+                key={`_card${String(index)}`}
+              >
+                <Card
+                  key={`card-${index.toString()}`}
+                  imgSrc={item.imgSrc}
+                  title={item.title}
+                  description={item.description}
+                  href={renderHref(item.href!, item.type, item.siteName as SiteName)}
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      { isLoading && <Loading modifiers={['blue']} />}
+        )}
       {!isLoading && listCard.length > 0 && totalPage > 1 && (
       <div className="button-show">
         <Button

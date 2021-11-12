@@ -95,6 +95,7 @@ const Option: React.FC<OptionProps> = ({
 
   useClickOutside(refSuggest, () => {
     setIsOpenSearch(false);
+    setInputIsFocus(false);
     if (refInputSearch.current) {
       refInputSearch.current.value = '';
     }
@@ -115,6 +116,13 @@ const Option: React.FC<OptionProps> = ({
   const handleOnChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   }, [setSearchTerm]);
+
+  const handleClickMobile = useCallback(() => {
+    setInputIsFocus(false);
+    if (toggleMenu) {
+      toggleMenu();
+    }
+  }, [toggleMenu]);
 
   useSearchDebounce(
     () => {
@@ -163,7 +171,11 @@ const Option: React.FC<OptionProps> = ({
                 <div className="o-header-suggest-driver" />
                 <ul className={mapModifiers('o-header-suggest-list', inputIsFocus && 'expand')}>
                   {suggestList?.map((item, index) => (
-                    <li className="o-header-suggest-item" key={`_suggest-item${String(index)}`}>
+                    <li
+                      className="o-header-suggest-item"
+                      key={`_suggest-item${String(index)}`}
+                      onClick={handleClickMobile}
+                    >
                       <Link
                         className="o-header-suggest-link"
                         href={slugSearch || ''}
