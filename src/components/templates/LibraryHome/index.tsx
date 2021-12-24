@@ -47,7 +47,7 @@ const LibraryHome: React.FC<LibraryHomeProps> = ({ data, title }) => {
             onMouseEnter={() => setIdx(index)}
           >
             <div className="t-libraryhome-card" style={{ backgroundImage: `url(${item.thumbnail})` }}>
-              <Text type="p" modifiers={['s005', 'white', 'uppercase', '500', '20x32', 'center']}>
+              <Text type="p" modifiers={['s005', 'white', 'uppercase', '700', '20x32', 'center']}>
                 {item.title}
               </Text>
             </div>
