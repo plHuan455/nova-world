@@ -15,7 +15,7 @@ const Location:React.FC<LocationProps> = ({
 
     return data.item.map((e) => ({
       ...e,
-      thumbnail: getImageURL(e.thumbnail),
+      thumbnail: getImageURL(e.logo),
     }));
   }, [data]);
 
