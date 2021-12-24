@@ -55,7 +55,7 @@ export const DivergencesCard:React.FC<DivergencesCardType> = ({
         </div>
       </div>
       <div className="t-divergences_card_description">
-        <Text>
+        <Text modifiers={['justify']}>
           {description}
         </Text>
       </div>
