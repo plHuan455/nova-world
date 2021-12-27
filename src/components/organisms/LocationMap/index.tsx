@@ -1,10 +1,16 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, {
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+} from 'react';
 
 import mapImg from 'assets/images/locationmap/location_map.png';
 import markerImg from 'assets/images/locationmap/location_marker.png';
 import markerImg2 from 'assets/images/locationmap/location_marker2.png';
 import LocationCard from 'components/molecules/LocationCard';
 import useClickOutside from 'hooks/useClickOutside';
+import useHover from 'hooks/useHover';
 import useScrollAnimate from 'hooks/useScrollAnimation';
 
 export interface LocationMapCard {
@@ -31,11 +37,19 @@ const LocationMap: React.FC<LocationMapProps> = ({
 
   const [state, setState] = useState<string>();
 
+  const [tropicanaHoverRef, isTropicanaHovered] = useHover<SVGAElement>();
+  const [moritoHoverRef, isMoritoHovered] = useHover<SVGAElement>();
+  const [habanaHoverRef, isHabanaHovered] = useHover<SVGAElement>();
+  const [wonderlandHoverRef, isWonderlandHovered] = useHover<SVGAElement>();
+
   useClickOutside(ref, () => setState(undefined));
 
-  const handleClick = useCallback((type: string) => {
-    setState(type);
-  }, []);
+  useEffect(() => {
+    if (isMoritoHovered) setState('Morito');
+    if (isTropicanaHovered) setState('Tropicana');
+    if (isWonderlandHovered) setState('Wonderland');
+    if (isHabanaHovered) setState('Habana');
+  }, [isMoritoHovered, isTropicanaHovered, isWonderlandHovered, isHabanaHovered]);
 
   const isActive = useCallback((type: string) => {
     if (type === state) return 'active';
@@ -55,7 +69,7 @@ const LocationMap: React.FC<LocationMapProps> = ({
               <g className="o-locationmap_map_animate o-locationmap_map_line">
                 <path d="M472.949 413.19L466.533 424.984L467.755 433.543L470.81 442.206L468.875 448.051L461.848 452.435L459.811 459.01L457.265 482.703L454.922 485.208L432.415 500.552L430.887 501.282L424.878 503.057L412.86 516.312L408.277 524.975" stroke="#0D6F28" strokeWidth="1.355" strokeMiterlimit="10" />
               </g>
-              <g className="o-locationmap_map_animate o-locationmap_map_building">
+              <g className="o-locationmap_map_animate o-locationmap_map_buildings">
                 <path d="M62.7185 158.202C55.182 158.202 49.0713 151.94 49.0713 144.216C49.0713 136.492 55.182 130.23 62.7185 130.23C70.255 130.23 76.3657 136.492 76.3657 144.216C76.3657 151.94 70.255 158.202 62.7185 158.202ZM62.7185 131.587C55.8949 131.587 50.3953 137.223 50.3953 144.216C50.3953 151.209 55.8949 156.845 62.7185 156.845C69.5421 156.845 75.0417 151.209 75.0417 144.216C75.0417 137.223 69.5421 131.587 62.7185 131.587Z" fill="#2354A3" />
                 <path d="M62.7186 156.428C56.0987 156.428 50.8027 151 50.8027 144.216C50.8027 137.432 56.0987 132.004 62.7186 132.004C69.3385 132.004 74.6344 137.432 74.6344 144.216C74.6344 151 69.2367 156.428 62.7186 156.428ZM62.7186 132.422C56.4043 132.422 51.2101 137.64 51.2101 144.216C51.2101 150.792 56.3024 156.01 62.7186 156.01C69.033 156.01 74.227 150.792 74.227 144.216C74.227 137.64 69.033 132.422 62.7186 132.422Z" fill="#2354A3" />
                 <path d="M68.4214 140.459H71.3749L68.9306 137.119H65.7734C66.9956 137.954 67.9121 139.102 68.4214 140.459Z" fill="#2354A3" />
@@ -138,16 +152,16 @@ const LocationMap: React.FC<LocationMapProps> = ({
                 <path d="M474 412.678L489.786 418.002L500.174 431.257L508.016 460.273L506.692 468.519L508.525 478.435L513.312 485.01L519.219 490.229L523.7 497.222H530.524L533.375 499.831L535.82 498.996L535.412 495.97C535.412 495.97 539.079 490.333 539.588 489.603C539.995 488.872 545.902 485.219 545.902 485.219L547.124 484.697L561.586 466.745L564.438 458.603L561.688 452.863L570.141 441.382L575.946 439.503L582.261 441.486L593.056 439.607L597.334 436.998L602.935 426.769L610.37 423.22L626.461 425.412L637.664 424.786L651.617 426.352L671.273 424.577L678.3 424.682L685.531 419.88L688.586 412.574L702.437 401.719L708.141 401.302L716.39 402.032L721.686 400.362L725.963 402.137L735.639 399.736L743 387L742 381L757 366.5" stroke="#0D6F28" strokeWidth="2" strokeMiterlimit="10" />
               </g>
               <g className="o-locationmap_map_animate o-locationmap_map_marker" ref={ref}>
-                <g className="o-locationmap_map_marker_item1" onClick={() => handleClick('Tropicana')}>
+                <g className="o-locationmap_map_marker_item1" ref={tropicanaHoverRef}>
                   <rect x="730.57" y="300.572" width="51" height="74" fill="url(#patternMarker2)" />
                 </g>
-                <g onClick={() => handleClick('Morito')}>
+                <g ref={moritoHoverRef}>
                   <rect x="720.57" y="330.572" width="51" height="74" fill="url(#patternMarker)" />
                 </g>
-                <g onClick={() => handleClick('Wonderland')}>
+                <g ref={wonderlandHoverRef}>
                   <rect x="623.57" y="365.572" width="51" height="74" fill="url(#patternMarker)" />
                 </g>
-                <g onClick={() => handleClick('Habana')}>
+                <g ref={habanaHoverRef}>
                   <rect x="588.57" y="380.572" width="51" height="74" fill="url(#patternMarker)" />
                 </g>
               </g>
