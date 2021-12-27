@@ -209,7 +209,7 @@ type HomeBlockSection3 = {
     key: string;
     thumbnail: string;
     title: string;
-    logo: string;
+    logo?: string;
     link: {
       url: string;
       text: string;
