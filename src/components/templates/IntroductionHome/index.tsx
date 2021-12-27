@@ -90,7 +90,7 @@ const IntroductionHome: React.FC<IntroductionHomeProps> = ({
               >
                 <div className="t-introductionhome_right_content">
                   <div className="t-introductionhome_description">
-                    <Text modifiers={['cyanCobaltBlue']}>
+                    <Text modifiers={['cyanCobaltBlue', 'justify']}>
                       {description}
                     </Text>
                   </div>
