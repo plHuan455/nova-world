@@ -43,19 +43,19 @@
       }
     }
     
-    #{$root}-vertical & {
-      @include small-mobile {
-        bottom: 0;
-        left: 0;
-        max-width: 100%;
-        padding: rem(16);
-        position: absolute;
-        right: 0;
-        transition: $transition ease;
-        width: 100%;
-        z-index: 2;
-      }
-    }
+    // #{$root}-vertical & {
+    //   @include small-mobile {
+    //     bottom: 0;
+    //     left: 0;
+    //     max-width: 100%;
+    //     padding: rem(16);
+    //     position: absolute;
+    //     right: 0;
+    //     transition: $transition ease;
+    //     width: 100%;
+    //     z-index: 2;
+    //   }
+    // }
   }
 
   &_image {
