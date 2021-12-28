@@ -49,11 +49,11 @@
     .list {
       display: grid;
       grid-gap: rem(32);
-      grid-template-columns: 54.2% 42.8%;
+      grid-template-columns: 60.2% 36.8%;
       margin-top: rem(32);
       overflow: hidden;
       @include tablet-down {
-        grid-gap: rem(16);
+        grid-gap: rem(24);
         margin-top: rem(24);
       }
       @include mobile-down {
@@ -65,19 +65,18 @@
       &:first-of-type {
         @include mobile-up {
           grid-row: 1 / span 2;
-
-          .m-newscard_content_title > .a-text,
-          .m-newscard_content_updatedate > .a-text {
-            color: $cyan-cobalt-blue;
-          }
-  
-          .m-newscard_content_desc > .a-text {
-            color: $dim-gray;
-          }
         }
       }
       position: relative;
       width: 100%;
+      .m-newscard_content_title > .a-text,
+      .m-newscard_content_updatedate > .a-text {
+        color: $cyan-cobalt-blue;
+      }
+
+      .m-newscard_content_desc > .a-text {
+        color: $dim-gray;
+      }
     }
   }
 

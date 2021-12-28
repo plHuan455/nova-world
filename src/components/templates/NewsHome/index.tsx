@@ -91,7 +91,6 @@ const NewsHome: React.FC<NewsHomeProps> = ({
                               stt > 0 && (
                                 <NewsCard
                                   key={`news-card-${stt.toString()}`}
-                                  direction="horizontal"
                                   imgSrc={item.imgSrc}
                                   ratio={item.ratio}
                                   title={item.title}

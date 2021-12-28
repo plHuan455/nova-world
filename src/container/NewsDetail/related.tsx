@@ -37,7 +37,7 @@ const Related: React.FC<RelatedProps> = ({ data }) => {
             <div className="item" key={`_newcard${String(index)}`}>
               <NewsCard
                 imgSrc={getImageURL(item?.thumbnail)}
-                direction={index === 0 ? 'vertical' : 'horizontal'}
+                direction="vertical"
                 ratio={index === 0 ? '644x323' : '450x248'}
                 href={`/${newsDetailSlug}/${item.slug}`}
                 updatedate={index === 0 ? item.publishedAt : ''}
