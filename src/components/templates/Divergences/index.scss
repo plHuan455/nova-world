@@ -79,6 +79,13 @@
   &_card {
     &_branch {
       max-width: rem(126);
+      margin-bottom: rem(30);
+      @include tablet-down {
+        margin-bottom: rem(16);
+      }
+      @include mobile-down {
+        margin-bottom: rem(9);
+      }
     }
 
     &_title {
@@ -86,19 +93,12 @@
       display: flex;
       flex-grow: 1;
       justify-content: space-between;
-      margin-top: rem(30);
 
       .a-heading {
         @include text-overflow(1);
         @include mobile-down {
           @include text-overflow(2);
         }
-      }
-      @include tablet-down {
-        margin-top: rem(16);
-      }
-      @include mobile-down {
-        margin-top: rem(9);
       }
     }
 
