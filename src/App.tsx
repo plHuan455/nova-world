@@ -71,19 +71,25 @@ const App: React.FC = () => {
   );
 };
 
-const GoogleReCaptchaWrapper: React.FC = ({ children }) => (
-  <GoogleReCaptchaProvider
-    reCaptchaKey="6LcwgsIZAAAAAHZFFWu3icOSaGK2_SVjZwY-kEjQ"
-    language="vi"
-    scriptProps={{
-      appendTo: 'head',
-      async: true,
-      defer: true,
-    }}
-  >
-    {children}
-  </GoogleReCaptchaProvider>
-);
+const GoogleReCaptchaWrapper: React.FC = ({ children }) => {
+  const {
+    systems: { baseSystem },
+  } = useAppSelector((state) => state);
+
+  return (
+    <GoogleReCaptchaProvider
+      reCaptchaKey={baseSystem?.googleRecaptchaSiteKey}
+      language="vi"
+      scriptProps={{
+        appendTo: 'head',
+        async: true,
+        defer: true,
+      }}
+    >
+      {children}
+    </GoogleReCaptchaProvider>
+  );
+};
 
 const AppWrapper: React.FC = () => (
   <Provider store={store}>
