@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import Divider from 'components/atoms/Divider';
 import Heading from 'components/atoms/Heading';
-import Icon from 'components/atoms/Icon';
 import Text from 'components/atoms/Text';
 import Animate from 'components/organisms/Animate';
 import Container from 'components/organisms/Container';
@@ -77,12 +76,6 @@ const Detail:React.FC<DetailProps> = ({
                   <Heading type="h5" modifiers={['cyanCobaltBlue', '500']}>
                     {item.title}
                   </Heading>
-                </div>
-                <div className="p-experience-journey-detail_panel-publish">
-                  <Icon iconName="clock" />
-                  <Text>
-                    {item.publishedAt}
-                  </Text>
                 </div>
                 <div className="p-experience-journey-detail_panel-content">
                   <Text innerHTML={item.content} />
