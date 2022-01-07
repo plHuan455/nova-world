@@ -53,7 +53,7 @@ const Banner: React.FC<BannerProps> = ({
             videoSrc={videoSrc}
             handleClickPlayBtn={() => setPlayerPlay(!playerPlay)}
             isHomePlayer
-            hasControls={false}
+            hasControls
           />
         </Animate>
       ) : (
