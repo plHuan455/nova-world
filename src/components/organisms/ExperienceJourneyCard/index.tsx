@@ -7,7 +7,6 @@ import mapModifiers from 'utils/functions';
 
 export interface ExperienceJourneyCardProps {
   imgSrc?: string;
-  ratio?: Ratio;
   title?: string;
   btnLink?: string;
   btnLabel?: string;
@@ -17,7 +16,6 @@ export interface ExperienceJourneyCardProps {
 
 const ExperienceJourneyCard: React.FC<ExperienceJourneyCardProps> = ({
   imgSrc,
-  ratio = '840x521',
   title,
   btnLink,
   btnLabel,
@@ -46,7 +44,7 @@ const ExperienceJourneyCard: React.FC<ExperienceJourneyCardProps> = ({
   return (
     <div className={mapModifiers('m-experience-journey-card', position)}>
       <div className="m-experience-journey-card_image">
-        <Image imgSrc={imgSrc || ''} ratio={ratio} size="contain" />
+        <Image imgSrc={imgSrc || ''} ratio="16x9" size="cover" />
         {isCustom && (
           <>
             <div className="m-experience-journey-card_inner">

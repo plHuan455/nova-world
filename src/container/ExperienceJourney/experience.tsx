@@ -102,7 +102,6 @@ const Experience:React.FC<ExperienceProps> = ({
                 type={key % 2 === 0 ? 'scaleY' : 'scaleX'}
               >
                 <ExperienceJourneyCard
-                  ratio={key + 1 === 2 ? '1126x617' : '840x521'}
                   position={checkPositionCard(fnLoop(key))}
                   {...item}
                 />

@@ -44,7 +44,6 @@ export const bottom: Story = () => (
     <div style={{ paddingBottom: '200px' }}>
       <ExperienceJourneyCard
         position="bottom"
-        ratio="1126x617"
         {...info}
       />
     </div>
