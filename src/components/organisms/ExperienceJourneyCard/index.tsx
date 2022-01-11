@@ -7,7 +7,6 @@ import mapModifiers from 'utils/functions';
 
 export interface ExperienceJourneyCardProps {
   imgSrc?: string;
-  ratio?: Ratio;
   title?: string;
   btnLink?: string;
   btnLabel?: string;
@@ -17,7 +16,6 @@ export interface ExperienceJourneyCardProps {
 
 const ExperienceJourneyCard: React.FC<ExperienceJourneyCardProps> = ({
   imgSrc,
-  ratio = '840x521',
   title,
   btnLink,
   btnLabel,
@@ -46,16 +44,16 @@ const ExperienceJourneyCard: React.FC<ExperienceJourneyCardProps> = ({
   return (
     <div className={mapModifiers('m-experience-journey-card', position)}>
       <div className="m-experience-journey-card_image">
-        <Image imgSrc={imgSrc || ''} ratio={ratio} size="contain" />
+        <Image imgSrc={imgSrc || ''} ratio="16x9" size="cover" />
         {isCustom && (
           <>
             <div className="m-experience-journey-card_inner">
-              <Heading type="h2" modifiers={['500', 'uppercase', 's005', 'white']}>
+              <Heading type="h2" modifiers={['700', 'uppercase', 's005', 'white']}>
                 {customText.left}
               </Heading>
             </div>
             <div className="m-experience-journey-card_outer">
-              <Heading type="h2" modifiers={['500', 'uppercase', 's005', 'cyanCobaltBlue']}>
+              <Heading type="h2" modifiers={['700', 'uppercase', 's005', 'cyanCobaltBlue']}>
                 {customText.right}
               </Heading>
             </div>
@@ -64,7 +62,7 @@ const ExperienceJourneyCard: React.FC<ExperienceJourneyCardProps> = ({
       </div>
       <div className="m-experience-journey-card_content">
         <div className="m-experience-journey-card_title">
-          <Heading type="h2" modifiers={['500', 'uppercase', 's005', 'white']}>
+          <Heading type="h2" modifiers={['700', 'uppercase', 's005', 'white']}>
             {title}
           </Heading>
         </div>
