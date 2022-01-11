@@ -48,12 +48,12 @@ const ExperienceJourneyCard: React.FC<ExperienceJourneyCardProps> = ({
         {isCustom && (
           <>
             <div className="m-experience-journey-card_inner">
-              <Heading type="h2" modifiers={['500', 'uppercase', 's005', 'white']}>
+              <Heading type="h2" modifiers={['700', 'uppercase', 's005', 'white']}>
                 {customText.left}
               </Heading>
             </div>
             <div className="m-experience-journey-card_outer">
-              <Heading type="h2" modifiers={['500', 'uppercase', 's005', 'cyanCobaltBlue']}>
+              <Heading type="h2" modifiers={['700', 'uppercase', 's005', 'cyanCobaltBlue']}>
                 {customText.right}
               </Heading>
             </div>
@@ -62,7 +62,7 @@ const ExperienceJourneyCard: React.FC<ExperienceJourneyCardProps> = ({
       </div>
       <div className="m-experience-journey-card_content">
         <div className="m-experience-journey-card_title">
-          <Heading type="h2" modifiers={['500', 'uppercase', 's005', 'white']}>
+          <Heading type="h2" modifiers={['700', 'uppercase', 's005', 'white']}>
             {title}
           </Heading>
         </div>
