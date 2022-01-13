@@ -36,6 +36,7 @@ const ExperienceJourney: React.FC<BasePageData<JourneysPage>> = ({
     content: item?.description || '',
     btnLabel: item?.buttonLable || '',
     btnLink: (prefix?.journeysDetail && item?.slug) ? prefix.journeysDetail + item.slug : '',
+    target: '_self',
   })), [data, prefix]);
 
   useDidMount(() => {

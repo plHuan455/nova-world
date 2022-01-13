@@ -12,6 +12,7 @@ export interface ExperienceJourneyCardProps {
   btnLabel?: string;
   content?: string;
   position?:'bottom' | 'left' | 'right' | 'custom';
+  target?: string;
 }
 
 const ExperienceJourneyCard: React.FC<ExperienceJourneyCardProps> = ({
@@ -21,6 +22,7 @@ const ExperienceJourneyCard: React.FC<ExperienceJourneyCardProps> = ({
   btnLabel,
   content,
   position,
+  target,
 }) => {
   const isCustom = useMemo(() => position === 'custom', [position]);
   const customText = useMemo(() => {
@@ -71,6 +73,7 @@ const ExperienceJourneyCard: React.FC<ExperienceJourneyCardProps> = ({
             btnLink={btnLink}
             btnLabel={btnLabel}
             content={content}
+            target={target}
           />
         </div>
       </div>
