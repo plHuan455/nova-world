@@ -5,8 +5,10 @@
     bottom: rem(24);
 
     li {
+      cursor: pointer;
+      display: block;
       height: auto;
-      margin: 0 rem(8);
+      margin: 0 rem(2);
       width: auto;
       &.slick-active #{$root}_dots_main::before {
         height: rem(14);
@@ -15,13 +17,24 @@
     }
 
     &_main {
-      background-color: $white;
-      border-radius: 50%;
       display: block;
-      height: rem(8);
+      height: rem(15);
       position: relative;
-      width: rem(8);
-  
+      width: rem(15);
+      box-sizing: border-box;
+
+      &::after {
+        border-radius: 50%;
+        content: '';
+        background-color: $white;
+        width: rem(8);
+        height: rem(8);
+        left: 50%;
+        top: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+      }
+
       &::before {
         border: 1px solid $white;
         border-radius: 50%;
