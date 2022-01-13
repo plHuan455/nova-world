@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 
 import Text from 'components/atoms/Text';
@@ -25,9 +25,11 @@ const LibraryProcess: React.ForwardRefRenderFunction<
 > = ({ processList, useLibraryProcessPage, handleClick }) => {
   const [nav1, setNav1] = useState<Slider | null>();
   const [nav2, setNav2] = useState<Slider | null>();
+
   const [videoItem, setVideoItem] = useState<LibraryProcessListTypes | null>(
     processList[0],
   );
+
   const [playerPlay, setPlayerPlay] = useState(false);
 
   const renderMilestones = () => {
@@ -46,6 +48,10 @@ const LibraryProcess: React.ForwardRefRenderFunction<
     focusOnSelect: milestoneArr.length > 1,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
+    afterChange: (current: number) => {
+      setVideoItem(processList[current]);
+      setPlayerPlay(false);
+    },
   };
   const contentSettings = {
     infinite: false,
@@ -54,17 +60,8 @@ const LibraryProcess: React.ForwardRefRenderFunction<
     slidesToShow: 1,
     slidesToScroll: 1,
     draggable: false,
-    afterChange: (current: any) => {
-      setVideoItem(processList[current]);
-      setPlayerPlay(false);
-    },
   };
-  useEffect(() => {
-    if (processList.length > 0) setVideoItem(processList[processList.length - 1]);
-    if (nav1) {
-      nav1.slickGoTo(0, true);
-    }
-  }, [processList, nav1]);
+
   return (
     <div
       className={mapModifiers(
