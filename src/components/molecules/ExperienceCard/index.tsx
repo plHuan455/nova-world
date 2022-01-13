@@ -26,7 +26,8 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: false,
-  speed: 1200,
+  autoplaySpeed: 1700,
+  speed: 700,
   fade: true,
   dotsClass: 'slick-dots o-carousel_dots',
   customPaging() {
@@ -37,22 +38,14 @@ const settings = {
 const ExperienceCard: React.FC<ExperienceCardProps> = ({ item }) => {
   const [indexActive, setIndexActive] = useState(-1);
   const ref = useRef<ReactSlick | null>(null);
-  const [idInterval, setIdInterval] = useState<NodeJS.Timeout | null>(null);
 
   return (
     <div
       onMouseEnter={() => {
-        setIdInterval(
-          setInterval(() => {
-            ref.current?.slickNext();
-          }, 2000),
-        );
+        ref.current?.slickPlay();
       }}
       onMouseLeave={() => {
-        if (idInterval) {
-          clearInterval(idInterval);
-          setIdInterval(null);
-        }
+        ref.current?.slickPause();
       }}
       className="m-expcard"
     >
