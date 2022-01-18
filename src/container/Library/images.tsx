@@ -65,9 +65,9 @@ const Images: React.FC<ImagesProps> = ({ handleClick }) => {
 
   const handleClickTag = (id: number) => {
     if (tagsActive.includes(id)) {
-      setTagsActive((prev) => prev.filter((e) => e !== id));
+      setTagsActive([]);
     } else {
-      setTagsActive([...tagsActive, id]);
+      setTagsActive([id]);
     }
   };
 
