@@ -31,7 +31,7 @@ const settings = {
   fade: true,
   dotsClass: 'slick-dots o-carousel_dots',
   customPaging() {
-    return <span className="o-carousel_dots_main" />;
+    return <span className="o-carousel_dots_main wide" />;
   },
 };
 

@@ -23,6 +23,13 @@
       width: rem(15);
       box-sizing: border-box;
 
+      &.wide {
+        @include tablet-up {
+          width: rem(30);
+          height: rem(20);
+        }
+      }
+
       &::after {
         border-radius: 50%;
         content: '';
