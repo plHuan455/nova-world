@@ -1,5 +1,8 @@
 import React, { useContext, useMemo } from 'react';
 
+import imgFacebook from 'assets/icons/ic_facebook.svg';
+import imgYoutube from 'assets/icons/ic_youtube.svg';
+import imgMinistryIndustry from 'assets/images/logo-dang-ky-bo-cong-thuong.png';
 import Image from 'components/atoms/Image';
 import Link from 'components/atoms/Link';
 import Text from 'components/atoms/Text';
@@ -64,6 +67,26 @@ const Footer: React.FC<FooterProps> = ({
         </Animate>
         <div className="o-footer_top">
           <Container>
+            <div className="o-footer_socials">
+              <div className="o-footer_socials_item">
+                <Link
+                  href="https://www.youtube.com/channel/UCPeTTBNXHxeK4PPzPsDsNWg"
+                  target="_blank"
+                  aria-label="youtube"
+                >
+                  <Image ratio="1x1" imgSrc={imgYoutube} />
+                </Link>
+              </div>
+              <div className="o-footer_socials_item">
+                <Link
+                  href="https://www.facebook.com/NovaWorldHoTram.vn/"
+                  target="_blank"
+                  aria-label="facebook"
+                >
+                  <Image ratio="1x1" imgSrc={imgFacebook} />
+                </Link>
+              </div>
+            </div>
             <div className="o-footer_branch">
               <Link
                 href={getHomeLangURL(i18n.language)}
@@ -95,6 +118,9 @@ const Footer: React.FC<FooterProps> = ({
                   ))
                 }
               </div>
+            </div>
+            <div className="o-footer_ministryImage">
+              <Image imgSrc={imgMinistryIndustry} ratio="161x61" />
             </div>
           </Container>
         </div>
