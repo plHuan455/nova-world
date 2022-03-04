@@ -93,8 +93,10 @@ export const MainLayoutProvider: React.FC = ({ children }) => {
 
   return (
     <MainLayoutContext.Provider value={context}>
+      <div id="fb-root" />
       {children}
       <NotifyContainer />
+      <div id="fb-customer-chat" className="fb-customerchat" />
     </MainLayoutContext.Provider>
   );
 };
