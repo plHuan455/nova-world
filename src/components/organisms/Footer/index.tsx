@@ -121,7 +121,7 @@ const Footer: React.FC<FooterProps> = ({
             </div>
             <div className="o-footer_ministryImage">
               <Link
-                href="http://online.gov.vn/Home/WebDetails/5841"
+                href="http://online.gov.vn/Home/WebDetails/73090"
                 aria-label="imgMinistryIndustry"
                 target="_blank"
               >
