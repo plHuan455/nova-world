@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />  
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>NovaGroup</title>
+    <style>
+      @font-face {
+        font-family: 'iCiel Gotham';
+        font-weight: bold;
+        src: url("assets/iCielGotham-Bold.woff"), url("assets/iCielGotham-Bold.woff2");
+      }
+      @font-face {
+        font-family: 'iCiel Gotham';
+        src: url("assets/iCielGotham-Book.woff"), url("assets/iCielGotham-Book.woff2");
+      }
+      body {
+        margin: 0;
+        font-family: "iCiel Gotham";
+      }
+
+      .p-maintenance {
+        background: #265969 url('assets/bg_maintaince.png') no-repeat center / cover;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 400px;
+      }
+
+      .p-maintenance_img {
+        text-align: center;
+      }
+
+      .p-maintenance_img img {
+        max-width: 200px;
+        width: 100%;
+      }
+
+      .p-maintenance_info {
+        margin-top: 70px;
+        padding: 0 20px;
+      }
+
+      .p-maintenance_message {
+        color: white;
+        font-size: 48px;
+        font-weight: bold;
+        line-height: 72px;
+        margin: 0;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .p-maintenance_des {
+        color: white;
+        font-size: 36px;
+        font-weight: 400;
+        line-height: 48px;
+        text-align: center;
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+      .p-maintenance_des.first{
+        margin-top: 30px;
+      }
+
+      @media (max-width: 767px) {
+        .p-maintenance_message {
+          font-size: 36px;
+          line-height: 48px;
+        }
+
+        .p-maintenance_des {
+          font-size: 24px;
+          line-height: 34px;
+        }
+      }
+
+      @media (min-width: 1440px) {
+        .p-maintenance_img img {
+          max-width: 280px;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="p-maintenance">
+      <div class="p-maintenance_content">
+        <div class="p-maintenance_img">
+          <img src="./assets/nova-world-white.png" alt="logo">
+        </div>
+        <div class="p-maintenance_info">
+          <h2 class="p-maintenance_message">
+            Thông báo
+          </h2>
+          <h3 class="p-maintenance_des first">
+            Website đang bảo trì
+          </h3>
+          <h3 class="p-maintenance_des">
+            và nâng cấp hệ thống
+          </h3>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
