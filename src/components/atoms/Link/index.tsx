@@ -16,7 +16,7 @@ const Link: React.FC<LinkProps> = ({
   state,
   ...props
 }) => {
-  if (href && href.includes('http')) {
+  if (href && href.includes('http' || 'https')) {
     return (
       <a {...props} target={target} href={href}>
         {children}
