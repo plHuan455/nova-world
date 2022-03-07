@@ -120,7 +120,13 @@ const Footer: React.FC<FooterProps> = ({
               </div>
             </div>
             <div className="o-footer_ministryImage">
-              <Image imgSrc={imgMinistryIndustry} ratio="161x61" />
+              <Link
+                href="http://online.gov.vn/Home/WebDetails/5841"
+                aria-label="imgMinistryIndustry"
+                target="_blank"
+              >
+                <Image imgSrc={imgMinistryIndustry} ratio="161x61" />
+              </Link>
             </div>
           </Container>
         </div>
