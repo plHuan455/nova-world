@@ -78,8 +78,8 @@
 
   &_card {
     &_branch {
-      max-width: rem(126);
       margin-bottom: rem(30);
+      max-width: rem(126);
       @include tablet-down {
         margin-bottom: rem(16);
       }

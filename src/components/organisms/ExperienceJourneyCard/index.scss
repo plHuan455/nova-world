@@ -4,19 +4,19 @@
 
   &_image {
     max-width: calc(840 / 1126 * 100%);
-    width: 100%;
     position: relative;
+    width: 100%;
 
     .a-image {
       &::after {
-        content: '';
-        pointer-events: none;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        position: absolute;
         background: $black-overlay014;
+        content: '';
+        height: 100%;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        width: 100%;
       }
     }
 
@@ -169,10 +169,10 @@
     }
 
     #{$root}_inner, #{$root}_outer {
-      z-index: 1;
       position: absolute;
       text-align: right;
       top: calc(153 / 521 * 100%);
+      z-index: 1;
       @include desktop-down {
         top: calc(108 / 521 * 100%);
       }

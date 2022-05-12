@@ -17,29 +17,29 @@
     }
 
     &_main {
+      box-sizing: border-box;
       display: block;
       height: rem(15);
       position: relative;
       width: rem(15);
-      box-sizing: border-box;
 
       &.wide {
         @include tablet-up {
-          width: rem(30);
           height: rem(20);
+          width: rem(30);
         }
       }
 
       &::after {
+        background-color: $white;
         border-radius: 50%;
         content: '';
-        background-color: $white;
-        width: rem(8);
         height: rem(8);
         left: 50%;
-        top: 50%;
         position: absolute;
+        top: 50%;
         transform: translate(-50%, -50%);
+        width: rem(8);
       }
 
       &::before {
