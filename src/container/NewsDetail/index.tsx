@@ -35,7 +35,7 @@ const NewsDetail: React.FC = () => {
     return <Loading modifiers={['blue', 'page']} />;
   }
 
-  if (error) {
+  if (error && baseSystem) {
     const err = Array.isArray(error) && error.length > 0
       ? error[0]
       : undefined;

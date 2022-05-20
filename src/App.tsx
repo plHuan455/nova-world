@@ -49,12 +49,14 @@ const App: React.FC = () => {
               <Route exact path={routesList.home}>
                 <HomeNav />
               </Route>
+              {newsDetailSlug && (
               <Route
                 exact
                 path={routesList.newsDetail}
               >
                 <NewsDetail />
               </Route>
+              )}
               <Route
                 exact
                 path={routesList.journeyDetail}
@@ -64,9 +66,14 @@ const App: React.FC = () => {
               <Route exact path={routesList.pages}>
                 <PageNav />
               </Route>
+              {baseSystem
+              && newsDetailSlug
+              && listLocales
+              && Object.keys(listLocales).length > 0 && (
               <Route exact path="*">
                 <ErrorNav />
               </Route>
+              )}
             </Switch>
           </MainLayoutProvider>
         </Suspense>
