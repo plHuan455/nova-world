@@ -21,6 +21,7 @@ const NewsDetail = lazy(() => import('pages/NewsDetail'));
 const PageNav = lazy(() => import('navigation/PageNav'));
 const HomeNav = lazy(() => import('navigation/HomeNav'));
 const JourneyDetail = lazy(() => import('pages/ExperienceJourneyDetail'));
+const ErrorNav = lazy(() => import('navigation/ErrorNav'));
 
 const App: React.FC = () => {
   const {
@@ -62,6 +63,9 @@ const App: React.FC = () => {
               </Route>
               <Route exact path={routesList.pages}>
                 <PageNav />
+              </Route>
+              <Route exact path="*">
+                <ErrorNav />
               </Route>
             </Switch>
           </MainLayoutProvider>
