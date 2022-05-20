@@ -1,6 +1,7 @@
+import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 
 import Detail from './detail';
 import Discover from './discover';
@@ -11,12 +12,13 @@ import HelmetComponent from 'container/MainLayout/helmet';
 import useCallService from 'hooks/useCallService';
 import useDidMount from 'hooks/useDidMount';
 import useMainLayout from 'hooks/useMainLayout';
+import i18n from 'i18n';
 import { getJourneyDetailService, getJourneyDivergencesService, getJourneysService } from 'services/journeys';
 import { DivergencesItem, JourneysItem } from 'services/journeys/types';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { setPageTranslation } from 'store/locales';
 import { getImageURL } from 'utils/functions';
-import { fnCustomUrlDetail } from 'utils/language';
+import { fnCustomUrlDetail, getLangURL, getSlugByTemplateCode } from 'utils/language';
 
 const ExperienceJourneyDetail:React.FC = () => {
   const dispatch = useAppDispatch();
@@ -39,8 +41,10 @@ const ExperienceJourneyDetail:React.FC = () => {
   const [detail, setDetail] = useState<JourneysItem>();
   const [divergences, setDivergences] = useState<DivergencesItem[]>();
   const [loading, setLoading] = useState(false);
+  const [errorAxs, setErrorAxs] = useState<AxiosError[]>([]);
 
   const discover = useCallService(() => getJourneysService());
+  const baseSystem = useAppSelector((state) => state.systems.baseSystem?.staticPages.novaworld);
 
   useEffect(() => {
     const fetchInit = async () => {
@@ -53,6 +57,7 @@ const ExperienceJourneyDetail:React.FC = () => {
         setLoading(false);
       } catch (error) {
         setLoading(false);
+        setErrorAxs(error);
       }
     };
     fetchInit();
@@ -78,6 +83,12 @@ const ExperienceJourneyDetail:React.FC = () => {
 
   if (loading) {
     return <Loading modifiers={['blue', 'page']} />;
+  }
+
+  if (errorAxs?.length && !!errorAxs.find((e) => e.code?.toString() === '404')) {
+    return (
+      <Redirect to={`${getLangURL(i18n.language)}/${getSlugByTemplateCode('page404', baseSystem)}`} />
+    );
   }
 
   return (

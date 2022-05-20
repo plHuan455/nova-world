@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 
 import Content from './content';
 import Related from './related';
@@ -11,16 +11,19 @@ import HelmetComponent from 'container/MainLayout/helmet';
 import useDidMount from 'hooks/useDidMount';
 import useMainLayout from 'hooks/useMainLayout';
 import usePreview from 'hooks/usePreview';
+import i18n from 'i18n';
 import getNewsDetail from 'services/newsDetail';
 import { NewsDetailData } from 'services/newsDetail/types';
-import { useAppDispatch } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { setPageTranslation } from 'store/locales';
+import { getLangURL, getSlugByTemplateCode } from 'utils/language';
 
 const NewsDetail: React.FC = () => {
   useMainLayout({ isHome: false });
   const { slug } = useParams<{slug?: string}>();
   const dispatch = useAppDispatch();
-  const { status, data } = usePreview<NewsDetailData>(() => getNewsDetail(slug), [slug]);
+  const { status, data, error } = usePreview<NewsDetailData>(() => getNewsDetail(slug), [slug]);
+  const baseSystem = useAppSelector((state) => state.systems.baseSystem?.staticPages.novaworld);
 
   useDidMount(() => {
     dispatch(setPageTranslation({
@@ -30,6 +33,17 @@ const NewsDetail: React.FC = () => {
 
   if (status === 'pending') {
     return <Loading modifiers={['blue', 'page']} />;
+  }
+
+  if (error && baseSystem) {
+    const err = Array.isArray(error) && error.length > 0
+      ? error[0]
+      : undefined;
+    if (err?.code.toString() === '404') {
+      return (
+        <Redirect to={`${getLangURL(i18n.language)}/${getSlugByTemplateCode('page404', baseSystem)}`} />
+      );
+    }
   }
 
   return (
