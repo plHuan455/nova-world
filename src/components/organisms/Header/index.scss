@@ -266,7 +266,7 @@
         transform: rotate(180deg);
       }
       #{$root}-nav-sub {
-        max-height: rem(176);
+        max-height: 100vh;
         opacity: 1;
         visibility: visible;
       }
