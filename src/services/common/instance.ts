@@ -10,13 +10,15 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   ($config: AxiosRequestConfig): AxiosRequestConfig => {
-    const token = getAccessToken();
-    if (token) {
-      $config.headers.Authorization = `Bearer ${token}`;
+    if ($config.headers) {
+      const token = getAccessToken();
+      if (token) {
+        $config.headers.Authorization = `Bearer ${token}`;
+      }
+      $config.headers.locale = i18n.language;
+      $config.headers['Content-Type'] = 'application/json';
+      $config.headers.Accept = 'application/json';
     }
-    $config.headers.locale = i18n.language;
-    $config.headers['Content-Type'] = 'application/json';
-    $config.headers.Accept = 'application/json';
     return $config;
   },
   async (error: AxiosError): Promise<AxiosError> => Promise.reject(error),
